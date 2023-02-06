@@ -15,6 +15,7 @@
 * AI: 30%
 * AF: 30%
 * Atividades Prairie Learn: 10%
+* Condições de barreira: APS > 5, média(AI,AF) > 5
 
 # Calendário
 
