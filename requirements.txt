@@ -1,0 +1,8 @@
+matplotlib
+numpy
+pygame
+opencv-python
+scipy
+scikit-learn
+autograd
+pandas
