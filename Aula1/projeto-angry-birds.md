@@ -8,32 +8,27 @@ O jogo funciona da seguinte forma:
 2. O jogador usa um canhão para disparar o objeto, e manipula a direção e módulo da velocidade inicial do objeto usando o *mouse*.
 3. O objeto, em princípio, navega em movimento uniforme através do espaço.
 4. Alguns corpos celestes realizam atração gravitacional, desviando a rota do objeto.
-5. Níveis mais avançados têm mais de um corpo celeste. Pense sobre o que acontece quando há duas acelerações gravitacionais atuando sobre o objeto lançado.
 6. Use texturas para caracterizar os elementos do jogo!
+7. Entregue também um vídeo no qual o grupo explica como funciona a matemática por trás do jogo e demonstra o gameplay.
 
 Anotações importantes:
 
 1. O grupo de projeto deve definir todos os elementos e parâmetros do jogo pensando em melhorar sua jogabilidade.
 2. O grupo deve enviar um link para o repositório GitHub onde está localizado o jogo.
-3. O jogo será instalado localmente no 
+3. O jogo será instalado localmente no computador do professor e obrigatoriamente será instalado usando `pip install git://seurepositorio`.
+4. Nós vamos usar o Python 3.11 para fazer a avaliação
 
 **ENTREGAS**
 * Link para o repositório onde está o jogo.
-* No `README.md` do repositório, inclua uma descrição de como jogar o jogo, como executar o programa, etc.
-* No `README.md`, inclua uma breve descrição matemática do modelo físico que você implementou.
-* Inclua também, no próprio `README.md`, um GIF com o gameplay do jogo
+* Link para o vídeo explicativo (até 5 minutos)
+* No `README.md` do repositório, inclua uma descrição de como jogar o jogo, como executar o programa, etc., pensando em facilitar que outras pessoas joguem.
 
 **RUBRICA**
 
-O projeto será avaliado usando a rubrica abaixo. Os níveis são cumulativos, isto é, para passar de um nível, *todos* os requisitos dele devem ser cumpridos. As rubricas foram inspiradas nos níveis da [Taxonomia de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/).
-
-| Nível | Descrição | [Tax. de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/) |
-| --- | --- | --- |
-| F | Não entregue ou entregue sem completar o `README.md` ou entregue sem adições em relação ao código visto em sala | Não fez |
-| E | O jogo foi entregue, mas o `README.md` não indica como instalar ou rodar o programa. | Entender (-) |
-| D | O jogo roda com alguns travamentos ou o `README.md` não descreve bem o modelo físico usado ou não tem correpondência com o modelo implementado. | Entender | 
-| C | O jogo funciona sem travar e o `README.md` está completo, mas o jogo está muito difícil de jogar devido à falta de ajuste de parâmetros (exemplo: o jogo está muito rápido). | Compreender |
-| B | O jogo funciona bem mas o código está muito confuso e sem comentários | Aplicar |
-| B+ | jogo obedece a todos os requisitos e o código tem uma correspondência imediata ao modelo físico descrito no `README.md` | Analisar |
-| A | Jogo funciona perfeitamente e, em adição aos requisitos pedidos, tem ao menos uma feature que altera o modelo físico inicialmente proposto (novas formas de interagir com o jogador, ou novos elementos com comportamentos diferentes, por exemplo) | Avaliar |
-| A+ | O jogo tem features estéticas em adição às texturas (efeitos sonoros, trilha sonora, possibilidade de customizar parâmetros de dentro do próprio jogo, etc.) | Criar |
+| Nível | Descrição | 
+| --- | --- |
+| F | Não entregue, entregue sem vídeo, sem opção de instalação com `pip install`, sem modelo físico, ou não roda. 
+| D | Todos os elementos do nível F foram observados, mas nem todos os elementos do nível C foram observados |
+| C | O jogo tem modelo físico, roda sem travamentos, não tem bugs. O vídeo foi entregue, mas tem explicações imprecisas, incompletas ou inconsistentes |
+| B | Todos os elementos do nível C foram observados, mas nem todos os elementos do nível A foram observados |
+| A | O jogo tem um menu inicial para começar o jogo, uma identidade visual (comentada no vídeo), há pelo menos um elemento com comportamento físico diferente da atração gravitacional (exemplos: resistência do ar, força eletromagnética, colisões elásticas, etc. - em especial, somente inverter a atração gravitacional para uma repulsão gravitacional não vale para este quesito). O vídeo tem uma explicação correta, concisa e completa sobre a matemática, o modelo físico e o que foi feito no jogo |
