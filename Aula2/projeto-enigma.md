@@ -141,39 +141,22 @@ $
 
 
 ## Descrição do projeto
-Neste projeto, faremos uma biblioteca Python para criptografia usando Enigma
-
-A biblioteca deve conter:
-* Uma função `para_one_hot(msg : str)` para codificar mensagens como uma matriz usando one-hot encoding
-* Uma função `para_string(M : np.array)` para converter mensagens da representação one-hot encoding para uma string legível
-* Uma função `cifrar(msg : str, P : np.array)` que aplica uma cifra simples em uma mensagem recebida como entrada e retorna a mensagem cifrada. `P` é a matriz de permutação que realiza a cifra.
-* Uma função `de_cifrar(msg : str, P : np.array)` que recupera uma mensagem cifrada, recebida como entrada, e retorna a mensagem original. `P` é a matriz de permutação que realiza a cifra.
-* Uma função `enigma(msg : str, P : np.array, E : np.array)` que faz a cifra enigma na mensagem de entrada usando o cifrador `P` e o cifrador auxiliar `E`, ambos representados como matrizes de permutação.
-* Uma função `de_enigma(msg : str, P : np.array, E : np.array)` que recupera uma mensagem cifrada como enigma assumindo que ela foi cifrada com o usando o cifrador `P` e o cifrador auxiliar `E`, ambos representados como matrizes de permutação.
-
-Anotações importantes:
-
-1. O grupo deve enviar um link para o repositório GitHub onde está localizada a biblioteca.
-2. No diretório principal do repositório, deve haver um programa `demo.py`, que, quando executado, demonstra o funcionamento de cada uma das funções da biblioteca
+Neste projeto, faremos uma biblioteca Python para criptografia usando Enigma. Use como exemplo o repositório https://github.com/tiagoft/hello_world/. Obrigatoriamente, implemente *no mínimo* as funções que estão no arquivo `enigma.py`. Se quiser, comece fazendo fork do repositório.
 
 
 **ENTREGAS**
-* Link para o repositório onde está a biblioteca.
-* No `README.md` do repositório, deve haver uma discussão sobre que equações foram implementadas para realizar a criptografia e a de-criptografia com Enigma.
-* Inclua também, no próprio `README.md`, instruções sobre como rodar o `demo.py` e como usar a biblioteca.
-* Também, inclua instruções sobre como executar procedimentos de teste rápidos. Serão testados: mensagens normais, mensagens com caracteres que não fazem parte do alfabeto, mensagens vazias.
+* Link para o repositório onde está a *sua* biblioteca.
+* No `README.md` do repositório, indique instruções de instalação
+* Entregue, em formato *texto* ou em formato *vídeo*, um relatório no qual o grupo explica matematicamente como funciona o processo de criptografia e indica quais partes do código implementam cada uma das partes da dedução matemática (por exemplo: onde são representadas as matrizes de permutação, como elas são usadas, etc.)
 
 **RUBRICA**
 
-O projeto será avaliado usando a rubrica abaixo. Os níveis são cumulativos, isto é, para passar de um nível, *todos* os requisitos dele devem ser cumpridos. As rubricas foram inspiradas nos níveis da [Taxonomia de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/).
+O projeto será avaliado usando a rubrica abaixo. Os níveis são cumulativos, isto é, para passar de um nível, *todos* os requisitos dele devem ser cumpridos. 
 
-| Nível | Descrição | [Tax. de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/) |
-| --- | --- | --- |
-| F | Não entregue, entregue sem completar o `README.md`, ou entregue sem implementar a criptografia Enigma | Não fez |
-| E | Entregue, mas o `README.md` não indica como instalar ou rodar o programa. | Entender (-) |
-| D | Roda com alguns travamentos ou erros ou o `README.md` não descreve o modelo matemático que foi aplicado. | Entender |
-| C | Funciona sem travar e o `README.md` está completo, mas falha nos casos de teste descritos na entrega. | Compreender |
-| B | A biblioteca funciona bem mas o código está muito confuso e sem comentários. | Aplicar |
-| A | A biblioteca obedece a todos os requisitos e o código tem uma correspondência imediata ao modelo matemático descrito no `README.md` | Analisar |
-| A+ | A biblioteca funciona perfeitamente e, em adição aos requisitos pedidos, tem um programa que permite que o algoritmo seja executado como uma API REST. | Analisar |
-| A++ | A biblioteca funciona perfeitamente e, em adição aos requisitos anteriores, pode ser instalada usando `pip install .`. | Analisar |
+| Nível | Descrição | 
+| --- | --- | 
+| F | Não entregue, entregue sem pip install, funções implementadas não seguem cabeçalho |
+| D | Todos os elementos de F foram contemplados, mas só alguns de C foram contemplados |
+| C | API foi implementada incompleta, o programa não usa lógica matricial, o relatório não foi entregue |
+| B | Todos os elementos de C foram contemplados, mas só alguns de A foram contemplados | 
+| A | Todas as funções funcionam. Relatório está completo, conciso e correto |
