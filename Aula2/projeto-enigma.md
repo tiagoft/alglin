@@ -88,6 +88,7 @@ $$
 
 ## Fazendo uma cifra usando uma multiplicação matricial
 É claro que, se multiplicamos a matriz $M$ por uma matriz identidade $I$, encontramos a própria matriz $M$:
+
 $$
 \begin{bmatrix}
 1 & 0 & 0 \\
@@ -130,14 +131,14 @@ $$
 
 Isso nos dá uma maneira bastante compacta de encontrar mensagens cifradas, e também um processo rápido para voltar à mensagem original:
 
-$
+$$
 \begin{aligned}
 P M & = M_c \\
 P^{-1} P M & = P^{-1} M_c \\
 I M & = P^{-1} M_c \\
 M & = P^{-1} M_c
 \end{aligned}
-$
+$$
 
 
 ## Descrição do projeto
