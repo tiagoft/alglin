@@ -73,12 +73,12 @@ Neste projeto, faremos um processador de vídeo em tempo real em Python. Ele dev
 
 Anotações importantes:
 
-1. No diretório principal do repositório, deve haver um programa `demo.py`, que, quando executado, inicializa o feed de vídeo e executa os efeitos em tempo real.
+1. Deve haver um programa (indicado no README.md) que executa uma demonstração da implementação.
 2. Como o objetivo do projeto é exatamente implementar as transformações, não é permitido usar bibliotecas externas que realizem as transformações. Se for preciso, bibliotecas externas podem ser usadas para funções que não estão ligadas diretamente à implementação das transformações em si. Toda a parte de álgebra linear, porém, deve ser feita pelo próprio grupo usando multiplicações matriciais em Numpy.
 
 **ENTREGAS**
-* No `README.md` do repositório, deve haver uma discussão sobre que equações foram implementadas para gerar a rotação. Essa discussão deve corresponder ao que foi feito no código.
-* Inclua também, no próprio `README.md`, instruções sobre como rodar o `demo.py` e como usar suas funcionalidades.
+* Inclua no próprio `README.md` instruções sobre como instalar, rodar e usar o programa.
+* O relatório deste projeto deve ser em formato PDF ou então em um formato vídeo de até 5 minutos. Ele deve explicar toda a matemática usada e indicar como o código entregue implementa essa matemática.
 
 **DICAS**
 * O código-base tem 19 linhas de código. A solução feita pela equipe tem 53 linhas. Isso significa que o programa que estamos tentando fazer não é especialmente longo. Porém, ele tem muitos detalhes.
@@ -88,15 +88,12 @@ Anotações importantes:
 
 **RUBRICA**
 
-O projeto será avaliado usando a rubrica abaixo. Os níveis são cumulativos, isto é, para passar de um nível, *todos* os requisitos dele devem ser cumpridos. As rubricas foram inspiradas nos níveis da [Taxonomia de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/).
+O projeto será avaliado usando a rubrica abaixo. Os níveis são cumulativos, isto é, para passar de um nível, *todos* os requisitos dele devem ser cumpridos.
 
-| Nível | Descrição | [Tax. de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/) |
-| --- | --- | --- |
-| F | Não entregue, entregue sem completar o `README.md`, entregue sem implementar a rotação (ver teoria), ou implementação usa bibliotecas prontas para implementar as transformações.  | Não fez |
-| E | Entregue, mas o `README.md` não indica como instalar ou rodar o programa, ou a rotação não ocorre ao redor do centro do vídeo. | Entender (-) |
-| D | Roda com alguns travamentos ou erros, ou o `README.md` não descreve o modelo matemático que foi aplicado, ou o `README.md` não corresponde ao modelo que foi implementado de fato, ou o programa não aplica a ideia de transformações compostas (ver a teoria). | Entender |
-| C | Funciona sem travar e o `README.md` está completo e corresponde ao código, mas o processo de rotação gera artefatos (pontos pretos) dentro da imagem (ver teoria). | Compreender (-) |
-| C+ | O processo de rotação está correto, mas gera artefatos (distorções indesejadas) **fora** da imagem (por exemplo: frames sobrepostos, etc) | Compreender |
-| B | O processo de rotação está correto e não gera artefatos | Aplicar |
-| A | O programa funciona perfeitamente e, em adição aos requisitos pedidos, permite interagir com a rotação usando teclado ou mouse, por exemplo controlando a velocidade angular através do mouse. | Avaliar |
-| A+ | O programa funciona perfeitamente e, em adição aos requisitos anteriores, incorpora outra transformação controlável, como expansões ou cisalhamentos | Criar |
+| Nível | Descrição | 
+| --- | --- | 
+| F | Não entregue, pip install não funciona, faltam declarar dependências, não executa, a rotação usa bibliotecas prontas.  |
+| D | Todos os elementos de F foram observados, mas somente alguns de C foram observados. |
+| C | A câmera gira. A implementação usa NumPy corretamente.
+| B | Todos os elementos de C foram observados, mas somente alguns de A foram observados. | 
+| A | Não há artefatos ao girar. Consigo controlar a velocidade do giro. Há pelo menos mais uma transformada, que não a rotação, que pode ser controlada pelo usuário. O relatório está completo, conciso e correto. | 
