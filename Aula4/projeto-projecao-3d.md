@@ -94,24 +94,16 @@ Essas matrizes já contém a nossa (necessária) dimensão adicional que permiti
 **ENTREGAS**
 * Link para o repositório onde está o programa.
 * No `README.md` do repositório, inclua uma descrição de como executar o programa, como usá-lo, etc.
-* No `README.md`, inclua uma descrição matemática do modelo que você implementou, incluindo quais transformações foram aplicadas e como as matrizes de transformação funcionam.
-* Inclua também, no próprio `README.md`, um GIF com o seu cubo girando no espaço.
+* Um relatório, em vídeo ou PDF, explicando como funciona a matemática que foi usada em cada uma das etapas.
 
 **RUBRICA**
 
-O projeto será avaliado usando a rubrica abaixo. Os níveis são cumulativos, isto é, para passar de um nível, *todos* os requisitos dele devem ser cumpridos. As rubricas foram inspiradas nos níveis da [Taxonomia de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/).
+O projeto será avaliado usando a rubrica abaixo. Os níveis são cumulativos, isto é, para passar de um nível, *todos* os requisitos dele devem ser cumpridos. 
 
-| Nível | Descrição | [Tax. de Bloom](https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/) |
-| --- | --- | --- |
-| F | Não entregue ou entregue sem completar o `README.md`, entregue sem adições em relação ao código visto em sala, entregue usando bibliotecas prontas para realizar transformações | Não fez |
-| E | O projeto foi entregue, mas o `README.md` não indica como instalar ou rodar o programa. | Entender (-) |
-| D | O projeto roda com alguns travamentos ou o `README.md` não descreve bem o modelo matemático usado ou não tem correpondência com o modelo implementado. | Entender | 
-| C | O projeto funciona sem travar e o `README.md` está completo, mas a visualização gera glitches (exemplo: pontos "escapam" da tela) | Compreender |
-| B | O projeto funciona bem mas o código está muito confuso e sem comentários | Aplicar |
-| A | O projeto obedece a todos os requisitos e o código tem uma correspondência imediata ao modelo matemático descrito no `README.md` | Analisar |
-| A+ | O projeto funciona perfeitamente e, em adição aos requisitos pedidos, permite interagir através do mouse mudando a distância focal $d$ | Avaliar |
-| A++ | O projeto permite navegar pelo mundo 3D usando mouse e as teclas ASDW, como um jogo em primeira pessoa | Criar |
-
-**OBSERVAÇÕES**
-
-Como um teste, este projeto pode ser realizado em trios. No entanto, a rubrica se torna mais exigente. Para atingir o conceito C, um trio deve entregar um projeto que atingiria o conceito B se fosse feito por uma dupla. Para atingir o conceito B, um trio deve entregar um projeto que atingiria o conceito A se fosse feito por uma dupla. E assim por diante.
+| Nível | Descrição |
+| --- | --- |
+| F | Não tem pip install, não tem documentação de usuário, não mostra cubo na tela em Pygame, não usa explicitamente o modelamento 3D que discutimos para fazer a projeção 
+| D | Todo o nível F foi contemplado, mas só alguns ítens de C foram contemplados
+| C | Cubo rotaciona automaticamente. Relatório explica completamente como o sistema funciona.
+| B | Todos os ítens de C foram contemplados, mas o nível A está incompleto. 
+| A | O grupo realizou ao menos duas das opções abaixo, incluindo a implementação e a adição de como funciona no relatório: (1) Usou outras formas que não são um cubo; (2) Controla a rotação pelo teclado; (3) Permite caminhar (translação) ao longo do mundo 3D.
