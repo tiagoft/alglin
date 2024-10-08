@@ -69,8 +69,11 @@ Neste projeto, o grupo deverá fazer um sistema preditor de nota de filmes por u
 **RUBRICA**
 
 | Nível | Descrição |
+| --- | --- |
 | F | Não tem explicação da matemática usada ou o código não traz evidência de que o algoritmo implementado funciona | 
 | D | Todos os requisitos de F foram contemplados mas só alguns de C foram contemplados | 
 | C | O método foi executado corretamente. A explicação segue o enunciado, sem apresentar ideias adicionais |
 | B | Todos os requisitos de C foram contemplados mas só alguns de A foram contemplados |
-| A | Dois requisitos entre: (1) Traz ideias novas em relação ao enunciado (as ideias devem ser destacadas claramente), (2) Relaciona o resultado com outras fontes (artigos científicos), mostrando como a técnica poderia ser aplicada em outros contextos, (3) Propôs, implementou e comparou os resultados com uma outra solução.
+| A | Dois requisitos entre: (1) Traz ideias novas em relação ao enunciado (as ideias devem ser destacadas claramente), (2) Relaciona o resultado com outras fontes (artigos científicos), mostrando como a técnica poderia ser aplicada em outros contextos, (3) Propôs, implementou e comparou os resultados com uma outra solução. |
+
+
