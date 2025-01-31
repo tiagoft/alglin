@@ -14,4 +14,4 @@ Confirme que tudo funciona rodando `python verificar_bibliotecas.py`.
 
 # Instâncias do curso
 
-* [2o. semestre de 2024](sobre_2024s2.md)
+* [1o. semestre de 2025](sobre_2025s1.md)
