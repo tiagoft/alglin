@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+Animacoes/*
+sandbox/*
 
 # C extensions
 *.so
