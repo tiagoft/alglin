@@ -5,7 +5,7 @@
 
 Recomendo criar um enviroment específico para o curso:
 
-    conda env create -f alglin python=3.11
+    conda create -n alglin python=3.11
     conda activate alglin
 
 Após, instale as bibliotecas usando: `pip install -r requirements.txt`.
