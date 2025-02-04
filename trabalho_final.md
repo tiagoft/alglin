@@ -47,8 +47,8 @@ Nesta atividade, o aluno deve escolher um tema da disciplina de Álgebra Linear 
     - **Avançado**: Apresentação bem organizada, clara e envolvente E Recursos visuais são capazes de aumentar o impacto do conteúdo. [Exemplo](https://www.youtube.com/watch?v=fNk_zzaMoSs&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
 
 2. **Fluxo da apresentação**:
-    - **Insuficiente**: Conteúdo superficial (conta sobre a solução, sem explicar a teoria por trás dela OU sem mostrar concretamente os resultados)
-    - **Em Desenvolvimento**: 
+    - **Insuficiente**: Conteúdo incorreto, com falhas que demonstram falta de domínio sobre o tema.
+    - **Em Desenvolvimento**: Conteúdo superficial (conta sobre a solução, sem explicar a teoria por trás dela OU sem mostrar concretamente os resultados)
     - **Proficiente**: Conteúdo correto, mas limitado ao domínio específico [Exemplo](https://www.youtube.com/watch?v=tR6S4dz6UGA).
     - **Avançado**: Conteúdo detalhado, preciso e bem explicado E Faz relações com o temas semelhantes E Dialoga com o espectador. [Exemplo](https://www.youtube.com/watch?v=ntBWrcbAhaY)
 
@@ -57,3 +57,9 @@ Nesta atividade, o aluno deve escolher um tema da disciplina de Álgebra Linear 
     - **Em Desenvolvimento**: A relação com a disciplina é superficial OU os resultados obtidos foram fracos sem que tenha havido uma investigação sobre o motivo disso acontecer.
     - **Proficiente**: Há uma conexão clara com a disciplina E Matemática é demonstrada corretamente E (Resultados obtidos são comparáveis aos da literatura seguida OU o motivo de não serem comparáveis é demonstrado).
     - **Avançado**: Os resultados alcançados são relacionados a possíveis trabalhos futuros sobre esse mesmo tema. O impacto dos resultados em um caso real é discutido.
+
+**Nota**:
+   - Se há algum conceito "Insuficiente": 0. Caso contrário, começamos de 10 e contamos:
+   - Cada conceito "Em Desenvolvimento": -3 pontos
+   - Cada conceito "Proficiente": -1.5 pontos
+   - Cada conceito "Avançado": 0 pontos
