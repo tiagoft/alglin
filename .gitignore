@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 Animacoes/*
 sandbox/*
+Testes/*
 
 # C extensions
 *.so
