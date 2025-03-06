@@ -4,25 +4,25 @@
 
 A ideia de enviar mensagens que não podem ser interceptadas é muito antiga. Uma das técnicas mais antigas para isso é a [cifra de substituição](https://pt.wikipedia.org/wiki/Cifra_de_substitui%C3%A7%C3%A3o), que consiste em trocar as letras da mensagem de entrada por outras letra do alfabeto. Essa é uma técnica simples, cujo processo para codificação e decodificação é essencialmente o mesmo. Ele pode ser implementada como no algoritmo abaixo:
 
-alfabeto_normal = "abcdefghijklmnopqrstuvwxyz "
-        alfabeto_cifrado = "bcdefghijkl mnopqrstuvwxyza"
-        mensagem_entrada = "o bolo de chocolate fica pronto quatro horas da tarde"
+    alfabeto_normal = "abcdefghijklmnopqrstuvwxyz "
+    alfabeto_cifrado = "bcdefghijkl mnopqrstuvwxyza"
+    mensagem_entrada = "o bolo de chocolate fica pronto quatro horas da tarde"
 
-        def cifrar(mensagem_entrada, alfabeto_normal, alfabeto_cifrado):
-            mensagem_cifrada = ""
-            for i in range(len(mensagem_entrada)):
-                c = mensagem_entrada[i]
-                idx = alfabeto_normal.index(c)
-                mensagem_cifrada += alfabeto_cifrado[idx]
-            return mensagem_cifrada
+    def cifrar(mensagem_entrada, alfabeto_normal, alfabeto_cifrado):
+        mensagem_cifrada = ""
+        for i in range(len(mensagem_entrada)):
+            c = mensagem_entrada[i]
+            idx = alfabeto_normal.index(c)
+            mensagem_cifrada += alfabeto_cifrado[idx]
+        return mensagem_cifrada
 
-        mensagem_cifrada = cifrar(mensagem_entrada, alfabeto_normal, alfabeto_cifrado)
-        mensagem_recuperada = cifrar(mensagem_cifrada, alfabeto_cifrado, alfabeto_normal)
+    mensagem_cifrada = cifrar(mensagem_entrada, alfabeto_normal, alfabeto_cifrado)
+    mensagem_recuperada = cifrar(mensagem_cifrada, alfabeto_cifrado, alfabeto_normal)
 
-        print(mensagem_cifrada)
-        print(mensagem_recuperada)
+    print(mensagem_cifrada)
+    print(mensagem_recuperada)
 
-        O problema desse tipo de criptografia é que a frequência das letras em cada língua é bastante diferente. A letra "A", por exemplo, aparece em muito mais palavras em português que a letra "Z". Então, se um número suficiente de mensagens for interceptado, podemos analisar as frequências das letras e descobrir que foi a regra de substituição que foi usada.
+O problema desse tipo de criptografia é que a frequência das letras em cada língua é bastante diferente. A letra "A", por exemplo, aparece em muito mais palavras em português que a letra "Z". Então, se um número suficiente de mensagens for interceptado, podemos analisar as frequências das letras e descobrir que foi a regra de substituição que foi usada.
 
 Durante a Segunda Guerra Mundial, o exército alemão passou a usar um tipo de cifra que foi implementado nas [máquinas Enigma](https://pt.wikipedia.org/wiki/Enigma_(m%C3%A1quina)). As máquinas enigma passam o alfabeto cifrado por um segundo processo de cifra a cada novo caractere cifrado. Então, o algoritmo funcionaria da seguinte forma:
 
