@@ -23,8 +23,9 @@
 
 6. Use o ambiente `alglin` para fazer as atividades
 
+# Link para o workbook
 
-
+    https://www.overleaf.com/read/qrxwjzfjpqrp#af6903
 
 # Instâncias do curso
 

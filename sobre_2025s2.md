@@ -3,20 +3,20 @@
 ## Informações de Contato
 
 * Professor: Tiago Fernandes Tavares
-* Ter e Qui 09h45-11h45
+* Ter e Qui 09h45-11h45, Sex 12h00-14h00
 * Atendimento: Terças 13h30 às 15h00.
 
 ## CRITÉRIO DE CÁLCULO DE NOTAS ##
 
 Teremos as seguintes notas:
 
-APS -> Média aritmética das notas das APSs
-AI -> Nota da AI
-AF -> Nota da AF
+* APS $\rightarrow$ Média aritmética das notas das APSs
+* AI $\rightarrow$ Nota da AI
+* AF $\rightarrow$ Nota da AF
 
 MEDIA = 
 $$
-\frac{3\text{APS} + 3\text{AI} + 4\text{AF}{10}
+\frac{3\text{APS} + 3\text{AI} + 4\text{AF}}{10}
 $$
 
 
@@ -24,7 +24,7 @@ $$
 
 ### Provas (AI, AF)
 
-São provas *em papel*, com exercícios objetivos, planejadas para serem feitas no tempo de uma aula (2h).
+São provas *em papel, individuais, sem consulta*, com exercícios objetivos, planejadas para serem feitas no tempo de uma aula (2h). Os exercícios serão inspirados em exercícios de sala, exercícios do [workbook](https://www.overleaf.com/read/qrxwjzfjpqrp#af6903) e material das APSs.
 
 ### APS (projetos)
 
