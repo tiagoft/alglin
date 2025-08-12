@@ -15,6 +15,7 @@ Teremos as seguintes notas:
 * AF $\rightarrow$ Nota da AF
 
 MEDIA = 
+
 $$
 \frac{3\text{APS} + 3\text{AI} + 4\text{AF}}{10}
 $$
