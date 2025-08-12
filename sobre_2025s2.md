@@ -5,6 +5,7 @@
 * Professor: Tiago Fernandes Tavares
 * Ter e Qui 09h45-11h45, Sex 12h00-14h00
 * Atendimento: Terças 13h30 às 15h00.
+* Ninjas: Thaís e Renan
 
 ## CRITÉRIO DE CÁLCULO DE NOTAS ##
 
