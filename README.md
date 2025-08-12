@@ -3,15 +3,30 @@
 
 # Ambiente computacional
 
-Recomendo criar um enviroment específico para o curso:
+1. Instale o package manager `uv`. Siga as [instruções de instalação](https://docs.astral.sh/uv/getting-started/installation/).
 
-    conda create -n alglin python=3.11
-    conda activate alglin
+2. Clone o repositório:
 
-Após, instale as bibliotecas usando: `pip install -r requirements.txt`.
+    git clone git@github.com:tiagoft/alglin.git
 
-Confirme que tudo funciona rodando `python verificar_bibliotecas.py`.
+3. Navegue para o diretório do curso:
+
+    cd alglin
+
+4. Instale as bibliotecas necessárias:
+
+    uv sync
+
+5. Ative o ambiente de desenvolvimento:
+
+    source .venv/bin/activate
+
+6. Use o ambiente `alglin` para fazer as atividades
+
+
+
 
 # Instâncias do curso
 
+* [2o. semestre de 2025](sobre_2025s2.md)
 * [1o. semestre de 2025](sobre_2025s1.md)
