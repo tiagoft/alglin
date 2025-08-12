@@ -19,6 +19,11 @@ $$
 \frac{3\text{APS} + 3\text{AI} + 4\text{AF}}{10}
 $$
 
+## O que trazer para as aulas
+
+* Seu laptop (devidamente configurado)
+* Um caderno
+* Lápis, lapiseira, borracha, caneta
 
 ## Avaliações
 
