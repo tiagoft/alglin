@@ -213,4 +213,6 @@ A = \begin{bmatrix}
 \end{bmatrix},
 $$
 
-verifique que $A = A^{-1}$.
+(a) Verifique que $A = A^{-1}$.
+
+(b) Calcule $A^{291}$
