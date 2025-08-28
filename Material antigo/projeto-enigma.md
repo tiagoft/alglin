@@ -140,24 +140,20 @@ M & = P^{-1} M_c
 \end{aligned}
 $$
 
+## A criptografia Enigma
 
-## Descrição do projeto
-Neste projeto, faremos uma biblioteca Python para criptografia usando Enigma. Use como exemplo o repositório https://github.com/tiagoft/hello_world/. Obrigatoriamente, implemente *no mínimo* as funções que estão no arquivo `enigma.py`. Se quiser, comece fazendo fork do repositório.
+Um problema da criptografia por substituição é que é relativamente fácil encontrar as correspondências entre letras buscando pela frequência em que elas aparecem e pelas suas posições relativas em cadeias. Pensando nisso, a máquina de criptografia Enigma usa duas matrizes de permutação, que chamaremos de $P$ e $R$.
 
+A mensagem, inicialmente, é codificada como one-hot encoding, gerando a matriz $M$. Então, a *primeira letra* codificada é alterada usando a matriz $P$. Daí, a matriz $P$ é modificada pela permutação da matriz $R$, gerando $P'$ (ou: $P'=RP$). A *segunda letra* de $M$ é modificada usando $P'$. O processo, então, é repetido para cada uma das letras.
 
-**ENTREGAS**
-* Link para o repositório onde está a *sua* biblioteca.
-* No `README.md` do repositório, indique instruções de instalação
-* Entregue, em formato *texto* ou em formato *vídeo*, um relatório no qual o grupo explica matematicamente como funciona o processo de criptografia e indica quais partes do código implementam cada uma das partes da dedução matemática (por exemplo: onde são representadas as matrizes de permutação, como elas são usadas, etc.)
+Veja que interessante: como "permutamos a permutação", uma sequência de letras iguais, por exemplo, nunca será mapeada para uma outra sequência de letras iguais. Isso impede que façamos a análise de frequências de caracteres para encontrar o processo inverso.
 
-**RUBRICA**
+## Projeto (e questões a pensar)
 
-O projeto será avaliado usando a rubrica abaixo. Os níveis são cumulativos, isto é, para passar de um nível, *todos* os requisitos dele devem ser cumpridos. 
+Faça um programa (pode ser um executável, uma função num notebook, ou qualquer forma que você consiga usar e testar) capaz de:
 
-| Nível | Descrição | 
-| --- | --- | 
-| F | Não entregue, entregue sem pip install, funções implementadas não seguem cabeçalho |
-| D | Todos os elementos de F foram contemplados, mas só alguns de C foram contemplados |
-| C | API foi implementada incompleta, o programa não usa lógica matricial, o relatório não foi entregue |
-| B | Todos os elementos de C foram contemplados, mas só alguns de A foram contemplados | 
-| A | Todas as funções funcionam. Relatório está completo, conciso e correto |
+1. Criar uma instância de uma máquina enigma, com matrizes de permutação inicializadas aleatoriamente.
+2. Receber um texto escrito como entrada e criptografá-lo usando a criptografia enigma.
+3. Receber um texto criptografado como entrada e de-criptografá-lo usando a criptografia enigma.
+
+Para fazer essa atividade, escreva explicitamente a formulação matricial do processo de criptografia e deduza como devemos fazer o processo inverso (dica: use matrizes inversas!). Ao fim da atividade, você deve ser capaz de demonstrar como o sistema funciona, e deve ser capaz de diferenciar a criptografia Enigma da simples cifra por substituição.
