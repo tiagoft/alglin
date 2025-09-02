@@ -31,9 +31,6 @@ def rotacionar_imagem(imagem: np.ndarray, angulo: float) -> np.ndarray:
     Returns:
         np.ndarray: Imagem rotacionada.
     """
-
-    Returns:
-        np.ndarray: _description_
-    """
+    
     imagem_nova = np.zeros_like(imagem)
     return imagem_nova
