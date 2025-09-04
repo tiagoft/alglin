@@ -38,7 +38,7 @@ def _rotacionar_imagem1(imagem: np.ndarray, angulo: float) -> np.ndarray:
     centro = (largura // 2, altura // 2)
     
     # Obtém a matriz de rotação
-    matriz_rotacao = matriz_de_rotacao(angulo, np.array(centro))
+    matriz_rotacao = _matriz_de_rotacao(angulo, np.array(centro))
 
     idx = criar_indices(0, altura, 0, largura)
     idxh = np.vstack( (idx, np.ones(idx.shape[1])) )
@@ -59,7 +59,7 @@ def _rotacionar_imagem2(imagem: np.ndarray, angulo: float) -> np.ndarray:
     centro = (largura // 2, altura // 2)
     
     # Obtém a matriz de rotação
-    matriz_rotacao = matriz_de_rotacao(angulo, np.array(centro))
+    matriz_rotacao = _matriz_de_rotacao(angulo, np.array(centro))
 
     idx = criar_indices(0, altura, 0, largura)
     idxh = np.vstack( (idx, np.ones(idx.shape[1])) )
