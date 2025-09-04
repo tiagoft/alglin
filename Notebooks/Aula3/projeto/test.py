@@ -44,7 +44,9 @@ def _rotacionar_imagem1(imagem: np.ndarray, angulo: float) -> np.ndarray:
     idxh = np.vstack( (idx, np.ones(idx.shape[1])) )
     
     idx_rot = matriz_rotacao @ idxh
-    
+    filter = (idx_rot[0,:] >= 0) & (idx_rot[0,:] < altura) & (idx_rot[1,:] >= 0) & (idx_rot[1,:] < largura)
+    idx_rot = idx_rot[:, filter]
+    idx = idx[:, filter]
     imagem_nova = np.zeros_like(imagem)
     imagem_nova[idx_rot[0,:].astype(int), idx_rot[1,:].astype(int)] = imagem[idx[0,:], idx[1,:]]
     return imagem_nova
@@ -63,6 +65,9 @@ def _rotacionar_imagem2(imagem: np.ndarray, angulo: float) -> np.ndarray:
     idxh = np.vstack( (idx, np.ones(idx.shape[1])) )
     idx_orig = np.linalg.inv(matriz_rotacao) @ idxh
     idx_orig = np.round(idx_orig).astype(int)
+    filter = (idxh[0,:] >= 0) & (idxh[0,:] < altura) & (idxh[1,:] >= 0) & (idxh[1,:] < largura)
+    idxh = idxh[:, filter]
+    idx = idx[:, filter]    
     
     imagem_nova = np.zeros_like(imagem)
     imagem_nova[idx[0,:].astype(int), idx[1,:].astype(int)] = imagem[idx_orig[0,:], idx_orig[1,:]]
