@@ -228,4 +228,9 @@ $$
 
 ---
 
-# 
+# CHAMADA!
+
+1. Fazer a chamada
+2. Notebook de hoje: aula 3 parte 2
+3. APS 3 já está online
+4. O teste da APS será na *quinta que vem*
