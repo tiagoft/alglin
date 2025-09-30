@@ -115,8 +115,9 @@ $$
 Av &= A(a_1 x_1 + a_2 x_2) \\
 &= A a_1 x_1 + A a_2 x_2 \\
 &= a_1 A X_1 + a_2 A x_2 \\
-&= a_1 \lambda _1 x_1 + a_2 \lambda _2 x_2
+&= a_1 \lambda _1 x_1 + a_2 \lambda _2 x_2\\
+& = \lambda _1 a_1 x_1 + \lambda_2 a_2 x_2
 \end{array}
 $$
 
-Ou seja, a multiplicação matricial por $A$ é equivalente a uma escala na direção dos autovetores de $A$.
+Ou seja, a multiplicação matricial por $A$ é equivalente a uma escala na direção dos autovetores de $A$, e os fatores de escala são os autovalores correspondentes.
