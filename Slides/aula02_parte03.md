@@ -116,11 +116,11 @@ $$
 1 & -1
 \end{bmatrix}
 \begin{bmatrix}
-a \\ b
+x \\ y
 \end{bmatrix}
 =
 \begin{bmatrix}
-x \\ y
+a \\ b
 \end{bmatrix}
 \\
 \begin{cases}
@@ -135,11 +135,11 @@ x \\ y
 \frac{1}{2} & -\frac{1}{2}
 \end{bmatrix}
 \begin{bmatrix}
-x \\ y
+a \\ b
 \end{bmatrix}
 =
 \begin{bmatrix}
-a \\ b
+x \\ y
 \end{bmatrix}
 \end{aligned}
 $$
