@@ -18,14 +18,14 @@ Esse processo de encontrar correspondências entre símbolos de diferentes alfab
 Um exemplo disso é quando usamos bytes para representar letras (como na [tabela ASCII](https://www.matematica.pt/util/resumos/tabela-ascii.php)): nesse caso, temos um alfabeto de 256 combinações de bits que está sendo mapeado para símbolos do alfabeto usual.
 
 !!! tip "Bits, bytes e banana"
-    Lembre-se que, para representar 256 combinações de bits, precisamos de, no mínimo, 8 bits, isto é, um byte. Então, se quisermos codificar a palavra BANANA, que tem 6 letras, usaríamos 6 bytes e, portanto, $6 \times 8 = 48\$ bits.
+    Lembre-se que, para representar 256 combinações de bits, precisamos de, no mínimo, 8 bits, isto é, um byte. Então, se quisermos codificar a palavra BANANA, que tem 6 letras, usaríamos 6 bytes e, portanto, $6 \times 8 = 4\$ bits.
 
 
 
 A codificação ASCII tem tamanho fixo, com 8 bits por caractere. Porém, lembre-se que ela é uma convenção. Poderíamos simplesmente escolher outra codificação, com um número variável de bits por caractere. Claro que essa escolha adiciona complexidade no processo de transmissão de dados: desta vez, **precisaremos de algum tipo de regra para determinar o fim de um caractere!** Porém, poderemos usar menos bits por caractere.
 
-??? info "Se B é codificado por 3 bits, N em 5 bits, a A em 12 bits, quantos bytes precisaríamos para codificar BANANA?"
-    Nesse caso, usaríamos $3 + 12 + 5 + 12 + 5 + 12 = 44$ bits.
+??? info "Se B é codificado por 3 bits, N em 5 bits, a A em 12 bits, quantos bits precisaríamos para codificar BANANA?"
+    Nesse caso, usaríamos $3 + 12 + 5 + 12 + 5 + 12 = 49$ bits.
 
 Vamos refletir um pouco sobre isso. Sabemos que alguns caracteres são mais frequentes que outros. Também, sabemos que é possível usar codificações de tamanhos diferentes para cada caractere. Se queremos que nossa cadeia de caracteres inteira tenha o menor tamanho possível, responda:
 
