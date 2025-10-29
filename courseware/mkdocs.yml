@@ -1,5 +1,7 @@
 site_name: Álgebra Linear e Teoria da Informação
 
+site_dir: build
+
 nav:
   - Home: index.md
   - "Teoria da Informação":
