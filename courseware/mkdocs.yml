@@ -1,9 +1,10 @@
-site_name: My Docs
+site_name: Álgebra Linear e Teoria da Informação
 
 nav:
   - Home: index.md
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao_huffman.md
+    - "Prática: Compressão Sem Perdas em Áudio": compressao_sem_perdas_audio.ipynb
 
 
 theme:
@@ -13,6 +14,7 @@ theme:
 
 
 markdown_extensions:
+  - codehilite
   - mdx_math:
       enable_dollar_delimiter: true 
       add_preview: true
@@ -37,6 +39,10 @@ plugins:
   # - mkdocs-jupyter:
   #     ignore_h1_titles: True
   #     theme: mkdocs
+  - mknotebooks:
+      tag_remove_configs:
+        remove_input_tags:
+          - remove-input
 
 
 
