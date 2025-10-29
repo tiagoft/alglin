@@ -6,7 +6,7 @@ nav:
   - Home: index.md
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao_huffman.md
-    - "Prática: Compressão Sem Perdas em Áudio": compressao_sem_perdas_audio.ipynb
+    #- "Prática: Compressão Sem Perdas em Áudio": compressao_sem_perdas_audio.ipynb
 
 
 theme:
