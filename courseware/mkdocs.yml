@@ -4,6 +4,8 @@ site_dir: build
 
 nav:
   - Home: index.md
+  - "Vetores":
+    - "Uma caminhada por Chicago": caminhando_pela_cidade.ipynb
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao_huffman.md
     - "Prática: Compressão Sem Perdas em Áudio": compressao_sem_perdas_audio.ipynb
