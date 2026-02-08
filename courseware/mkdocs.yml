@@ -5,10 +5,13 @@ site_dir: build
 nav:
   - Home: index.md
   - "Vetores":
-    - "Uma caminhada por Chicago": caminhando_pela_cidade.ipynb
+    - "Teoria: Uma caminhada por Chicago": vetores/caminhando_pela_cidade.ipynb
+    - "Teoria: Propriedades de vetores": vetores/propriedades_soma_e_multiplicacao_escalar.md
+    - "Atividade: Ângulos e Distâncias": vetores/angulos.ipynb
+    - "Teoria: Projeções e produto interno": vetores/projecoes.ipynb
   - "Teoria da Informação":
-    - "Compressão Sem Perdas": compressao_huffman.md
-    - "Prática: Compressão Sem Perdas em Áudio": compressao_sem_perdas_audio.ipynb
+    - "Compressão Sem Perdas": compressao/compressao_huffman.md
+    - "Prática: Compressão Sem Perdas em Áudio": compressao/compressao_sem_perdas_audio.ipynb
 
 
 theme:
