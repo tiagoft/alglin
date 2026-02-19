@@ -8,6 +8,7 @@ nav:
     - "Teoria: Uma caminhada por Chicago": vetores/caminhando_pela_cidade.ipynb
     - "Teoria: Propriedades de vetores": vetores/propriedades_soma_e_multiplicacao_escalar.md
     - "Atividade: Ângulos e Distâncias": vetores/angulos.ipynb
+    - "Teoria: Vetores e Numpy": vetores/numpy01.ipynb
     - "Teoria: Projeções e produto interno": vetores/projecoes.ipynb
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao/compressao_huffman.md
