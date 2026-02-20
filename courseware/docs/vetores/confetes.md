@@ -4,10 +4,12 @@ Nesta aula, utilizaremos os conceitos de vetores para executar uma simulação b
 
 Você vai perceber que nesta aula específica não há "certo" ou "errado" -- o que há é um processo de aprendizado. Sendo o processo tão particular de cada um, é preciso que cada um seja responsável por si. O que gostaríamos nessa atividade é praticar o seguinte fluxo de pensamento:
 
-```mermaid
+<div class="mermaid">
+
 flowchart TD
-    A["Entender a situação proposta: qual é o problema, e como sabemos que ele foi resolvido"] --> B["Ligar a situação a um modelo matemático e suas variáveis"] --> C["Resolver o modelo matemático (possivelmente implementando um programa para isso)"] --> D["Identificar, dentro do modelo resolvido e/ou dos resultados mostrados pelo programa, como a situação inicial foi resolvida"]
-```
+    A[Entender a situação proposta: qual é o problema, e como sabemos que ele foi resolvido, isto é, quais são os critérios de aceitação] --> B[Ligar a situação a um modelo matemático e suas variáveis] --> C[Resolver o modelo matemático, possivelmente implementando um programa para isso] --> D[Identificar, dentro do modelo resolvido e/ou dos resultados mostrados pelo programa, como a situação inicial foi resolvida]
+
+</div>
 
 Por esse motivo, essa atividade não tem uma "rubrica" ou um "gabarito". Existem muitas soluções para cada um dos exercícios propostos. Porém, é importante que, para cada um deles, você explicitamente passe por todas as etapas do fluxo.
 
