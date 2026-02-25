@@ -11,6 +11,7 @@ nav:
     - "Teoria: Vetores e Numpy": vetores/numpy01.ipynb
     - "Estudo de Caso: Confetes Digitais": vetores/confetes.md
     - "Teoria: Projeções e produto interno": vetores/projecoes.ipynb
+    - "Estudo de Caso: Embeddings": vetores/busca_embeddings.md
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao/compressao_huffman.md
     - "Prática: Compressão Sem Perdas em Áudio": compressao/compressao_sem_perdas_audio.ipynb
