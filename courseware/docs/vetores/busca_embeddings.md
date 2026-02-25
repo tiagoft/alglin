@@ -1,6 +1,6 @@
-# Busca em Bases de Dados
+# Embeddings
 
-Nesta aula, utilizaremos os conceitos de vetores para implementar um sistema de busca em bases de dados.
+Nesta aula, utilizaremos os conceitos de vetores para implementar um sistema para detectar semelhança semântica de textos.
 
 Você vai perceber que nesta aula específica não há "certo" ou "errado" -- o que há é um processo de aprendizado. Sendo o processo tão particular de cada um, é preciso que cada um seja responsável por si. O que gostaríamos nessa atividade é praticar o seguinte fluxo de pensamento:
 
