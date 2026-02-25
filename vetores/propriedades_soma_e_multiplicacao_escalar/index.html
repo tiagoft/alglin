@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Teoria: Propriedades de vetores - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../caminhando_pela_cidade/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../angulos/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#propriedades-de-vetores">Propriedades de vetores</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#notacao">Notação</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#operacoes-elementares">Operações elementares</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#propriedades">Propriedades</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicios">Exercícios</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio">Exercício</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="propriedades-de-vetores">Propriedades de vetores</h1>
+<p><strong>Objetivo: ao fim desta aula, o aluno deverá ser capaz de manipular propriedades ligadas às operações vetoriais</strong></p>
+<p>Em nossa <a href="../caminhando_pela_cidade/">caminhada por Chicago</a> começamos a trabalhar com uma entidade chamada vetor, que é usada para representar grandezas multi-dimensionais. Vamos então definir a nossa notação para nos referir a vetores sem que fiquemos nos confundindo.</p>
+<h2 id="notacao">Notação</h2>
+<h3 id="quando-uma-variavel-e-vetor-e-quando-e-um-numero">Quando uma variável é vetor, e quando é um "número"?</h3>
+<p>Quando a variável <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> é um "número", dizemos que ela pertence ao conjunto dos reais, ou:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x \in \mathbb{R}.
+$$</span><script type="math/tex; mode=display">
+x \in \mathbb{R}.
+</script>
+</div>
+</p>
+<p>Se <span><span class="MathJax_Preview">$x \in \mathbb{R}$</span><script type="math/tex">x \in \mathbb{R}</script></span>, dizemos que <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> é real, ou, ainda, que <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> é <em>escalar</em>.</p>
+<p>Se <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> é um "vetor" com <span><span class="MathJax_Preview">$n$</span><script type="math/tex">n</script></span> dimensões, a notação é:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x \in \mathbb{R}^n.
+$$</span><script type="math/tex; mode=display">
+x \in \mathbb{R}^n.
+</script>
+</div>
+</p>
+<div class="admonition info">
+<p class="admonition-title">Como saber se uma variável é escalar ou vetor</p>
+<p>Uma variável <strong>não é escalar ou vetor pela letra</strong>, mas pelo <strong>conjunto ao qual pertence</strong>.</p>
+<ul>
+<li>Se <span><span class="MathJax_Preview">\(x \in \mathbb{R}\)</span><script type="math/tex">x \in \mathbb{R}</script></span>, então <span><span class="MathJax_Preview">\(x\)</span><script type="math/tex">x</script></span> é um <strong>escalar</strong> (um número).</li>
+<li>Se <span><span class="MathJax_Preview">\(x \in \mathbb{R}^n\)</span><script type="math/tex">x \in \mathbb{R}^n</script></span>, então <span><span class="MathJax_Preview">\(x\)</span><script type="math/tex">x</script></span> é um <strong>vetor</strong>.</li>
+<li>O conjunto (<span><span class="MathJax_Preview">\(\mathbb{R}\)</span><script type="math/tex">\mathbb{R}</script></span> ou <span><span class="MathJax_Preview">\(\mathbb{R}^n\)</span><script type="math/tex">\mathbb{R}^n</script></span>) é sempre a informação mais importante.</li>
+</ul>
+</div>
+<h3 id="vetores-e-suas-componentes">Vetores e suas componentes</h3>
+<p>Como vamos trabalhar com vetores de várias dimensões, será útil usarmos índices para nos referir a elementos de um vetor:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix},
+$$</span><script type="math/tex; mode=display">
+x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix},
+</script>
+</div>
+</p>
+<p>onde:</p>
+<ul>
+<li><span><span class="MathJax_Preview">$x \in \mathbb{R}^n$</span><script type="math/tex">x \in \mathbb{R}^n</script></span></li>
+<li><span><span class="MathJax_Preview">$x_i \in \mathbb{R}$</span><script type="math/tex">x_i \in \mathbb{R}</script></span></li>
+</ul>
+<h2 id="operacoes-elementares">Operações elementares</h2>
+<p>As operações de "soma de vetores" e "multiplicação por escalar" são somente formalizações do que vimos na aula passada:</p>
+<h3 id="soma-de-vetores">Soma de vetores</h3>
+<p>
+<div><span class="MathJax_Preview">$$
+x + y = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+x + y = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{bmatrix}
+</script>
+</div>
+</p>
+<h3 id="multiplicacao-por-escalar">Multiplicação por escalar</h3>
+<p>
+<div><span class="MathJax_Preview">$$
+\alpha x = \begin{bmatrix} \alpha x_1 \\ \alpha x_2 \\ \vdots \\ \alpha x_n \end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+\alpha x = \begin{bmatrix} \alpha x_1 \\ \alpha x_2 \\ \vdots \\ \alpha x_n \end{bmatrix}
+</script>
+</div>
+</p>
+<p>Podemos aplicar essas duas operações para resolver, por exemplo:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+\begin{align*}
+&amp; \begin{bmatrix} 5 \\ 3 \end{bmatrix} + 5 \begin{bmatrix} 2 \\ -1 \end{bmatrix} \\
+=&amp; \begin{bmatrix} 5 \\ 3 \end{bmatrix} + \begin{bmatrix} 10 \\ -5 \end{bmatrix} \\
+=&amp; \begin{bmatrix} 5+10 \\ 3+(-5) \end{bmatrix}\\
+=&amp; \begin{bmatrix} 15 \\ -2 \end{bmatrix} 
+\end{align*}
+$$</span><script type="math/tex; mode=display">
+\begin{align*}
+& \begin{bmatrix} 5 \\ 3 \end{bmatrix} + 5 \begin{bmatrix} 2 \\ -1 \end{bmatrix} \\
+=& \begin{bmatrix} 5 \\ 3 \end{bmatrix} + \begin{bmatrix} 10 \\ -5 \end{bmatrix} \\
+=& \begin{bmatrix} 5+10 \\ 3+(-5) \end{bmatrix}\\
+=& \begin{bmatrix} 15 \\ -2 \end{bmatrix} 
+\end{align*}
+</script>
+</div>
+</p>
+<details class="info">
+<summary>Encontre o resultado de <span><span class="MathJax_Preview">$\begin{bmatrix} -2 \\ 0 \end{bmatrix} + \frac{2}{5} \begin{bmatrix} 5 \\ -1 \end{bmatrix}$</span><script type="math/tex">\begin{bmatrix} -2 \\ 0 \end{bmatrix} + \frac{2}{5} \begin{bmatrix} 5 \\ -1 \end{bmatrix}</script></span></summary>
+<p><span><span class="MathJax_Preview">$\begin{bmatrix} 0 \\ -\frac{2}{5} \end{bmatrix}$</span><script type="math/tex">\begin{bmatrix} 0 \\ -\frac{2}{5} \end{bmatrix}</script></span></p>
+</details>
+<div class="admonition info">
+<p class="admonition-title">Como identificar o tipo de uma variável em uma expressão</p>
+<p>Mesmo quando o conjunto não está escrito, o <strong>tipo da variável pode ser inferido pela operação</strong>.</p>
+<ul>
+<li>Em uma soma <span><span class="MathJax_Preview">\(x + y\)</span><script type="math/tex">x + y</script></span>, as duas variáveis <strong>devem ser do mesmo tipo</strong>.</li>
+<li>Em uma expressão <span><span class="MathJax_Preview">\(\alpha x\)</span><script type="math/tex">\alpha x</script></span>, <span><span class="MathJax_Preview">\(\alpha\)</span><script type="math/tex">\alpha</script></span> é um <strong>escalar</strong> e <span><span class="MathJax_Preview">\(x\)</span><script type="math/tex">x</script></span> é um <strong>vetor</strong>.</li>
+<li>Não existe soma entre escalar e vetor.</li>
+</ul>
+</div>
+<h2 id="propriedades">Propriedades</h2>
+<p>As operações que definimos levam imediatamente a algumas propriedades, todas elas demonstráveis à partir das definições que fizemos.</p>
+<div class="admonition info">
+<p class="admonition-title">Definição vs. propriedade</p>
+<ul>
+<li><strong>Definição</strong> explica <em>como</em> uma operação é feita.</li>
+<li><strong>Propriedade</strong> descreve <em>o que sempre vale</em> depois que a operação foi definida.</li>
+</ul>
+</div>
+<h3 id="comutatividade-da-soma">Comutatividade da soma</h3>
+<p>Uma operação é "comutativa" se a ordem não importa. A soma de vetores é comutativa, ou seja, se <span><span class="MathJax_Preview">$x \in \mathbb{R}^n$</span><script type="math/tex">x \in \mathbb{R}^n</script></span> e <span><span class="MathJax_Preview">$y \in \mathbb{R}^n$</span><script type="math/tex">y \in \mathbb{R}^n</script></span>, então:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x + y = y + x
+$$</span><script type="math/tex; mode=display">
+x + y = y + x
+</script>
+</div>
+</p>
+<details class="info">
+<summary>Demonstração</summary>
+<p>
+<div><span class="MathJax_Preview">$$
+x + y = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{bmatrix} = \begin{bmatrix} y_1 + x_1 \\ y_2 + x_2 \\ \vdots \\ y_n + x_n \end{bmatrix} = y + x
+$$</span><script type="math/tex; mode=display">
+x + y = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{bmatrix} = \begin{bmatrix} y_1 + x_1 \\ y_2 + x_2 \\ \vdots \\ y_n + x_n \end{bmatrix} = y + x
+</script>
+</div>
+</p>
+</details>
+<p>Lembra-se da caminhada por Chicago? Já sabemos intuitivamente que andar para o leste e depois para o norte leva ao mesmo destino (ou, o mesmo resultado) que andar para o norte e depois para o leste. Mais formalmente, podemos chamar o "andar para o norte" de <span><span class="MathJax_Preview">$y$</span><script type="math/tex">y</script></span> e o "andar para o leste" de <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span>. Então, os dois caminhos serem iguais é uma consequência de que <span><span class="MathJax_Preview">$x+y=y+x$</span><script type="math/tex">x+y=y+x</script></span>.</p>
+<h3 id="associatividade-da-soma">Associatividade da soma</h3>
+<p>A associatividade é o que permite fazer operações em qualquer ordem. Para <span><span class="MathJax_Preview">$x \in \mathbb{R}^n$</span><script type="math/tex">x \in \mathbb{R}^n</script></span>, <span><span class="MathJax_Preview">$y \in \mathbb{R}^n$</span><script type="math/tex">y \in \mathbb{R}^n</script></span> e <span><span class="MathJax_Preview">$z \in \mathbb{R}^n$</span><script type="math/tex">z \in \mathbb{R}^n</script></span>:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x + (y + z) = (x + y) + z
+$$</span><script type="math/tex; mode=display">
+x + (y + z) = (x + y) + z
+</script>
+</div>
+</p>
+<details class="info">
+<summary>Demonstração</summary>
+<p>
+<div><span class="MathJax_Preview">$$
+\begin{align*}
+x + (y + z) &amp;= \begin{bmatrix} x_1 \\ x_2  \\ \vdots \\ x_n  \end{bmatrix} + \begin{bmatrix} y_1 + z_1 \\ y_2 + z_2\\ \vdots \\ y_n + z_n \end{bmatrix} = \begin{bmatrix} x_1 + y_1 + z_1 \\ x_2 + y_2 + z_2  \\ \vdots \\ x_n + y_n + z_n  \end{bmatrix} = x + y + z\\
+(x + y) + z &amp;= \begin{bmatrix} x_1+y_1 \\ x_2+y_2  \\ \vdots \\ x_n+y_n  \end{bmatrix} + \begin{bmatrix} z_1 \\ z_2\\ \vdots \\ z_n \end{bmatrix} = \begin{bmatrix} x_1 + y_1 + z_1 \\ x_2 + y_2 + z_2  \\ \vdots \\ x_n + y_n + z_n  \end{bmatrix} = x + y+ z
+\end{align*}
+$$</span><script type="math/tex; mode=display">
+\begin{align*}
+x + (y + z) &= \begin{bmatrix} x_1 \\ x_2  \\ \vdots \\ x_n  \end{bmatrix} + \begin{bmatrix} y_1 + z_1 \\ y_2 + z_2\\ \vdots \\ y_n + z_n \end{bmatrix} = \begin{bmatrix} x_1 + y_1 + z_1 \\ x_2 + y_2 + z_2  \\ \vdots \\ x_n + y_n + z_n  \end{bmatrix} = x + y + z\\
+(x + y) + z &= \begin{bmatrix} x_1+y_1 \\ x_2+y_2  \\ \vdots \\ x_n+y_n  \end{bmatrix} + \begin{bmatrix} z_1 \\ z_2\\ \vdots \\ z_n \end{bmatrix} = \begin{bmatrix} x_1 + y_1 + z_1 \\ x_2 + y_2 + z_2  \\ \vdots \\ x_n + y_n + z_n  \end{bmatrix} = x + y+ z
+\end{align*}
+</script>
+</div>
+</p>
+</details>
+<p>A associatividade significa que, se sairmos de casa com três listas de compras (<span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span>, <span><span class="MathJax_Preview">$y$</span><script type="math/tex">y</script></span> e <span><span class="MathJax_Preview">$z$</span><script type="math/tex">z</script></span>), então tanto faz comprar primeiro as duas iniciais e depois comprar a terceira, ou comprar as duas últimas e, por último, a terceira - ou: <span><span class="MathJax_Preview">$x + (y+z) = (x+y) + z$</span><script type="math/tex">x + (y+z) = (x+y) + z</script></span>. Em outras palavras: podemos agrupar as operações de soma livremente.</p>
+<h3 id="distributividade-da-multiplicacao-por-escalar">Distributividade da multiplicação por escalar</h3>
+<p>"Distributividade" significa que podemos aplicar a distributiva em operações com parênteses, isto é, se <span><span class="MathJax_Preview">$\alpha \in \mathbb{R}$</span><script type="math/tex">\alpha \in \mathbb{R}</script></span>, <span><span class="MathJax_Preview">$x \in \mathbb{R}^n$</span><script type="math/tex">x \in \mathbb{R}^n</script></span> e <span><span class="MathJax_Preview">$y \in \mathbb{R}^n$</span><script type="math/tex">y \in \mathbb{R}^n</script></span>:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+\alpha (x + y)  = \alpha x + \alpha y
+$$</span><script type="math/tex; mode=display">
+\alpha (x + y)  = \alpha x + \alpha y
+</script>
+</div>
+</p>
+<details class="info">
+<summary>Demonstração</summary>
+<p>
+<div><span class="MathJax_Preview">$$
+\alpha (x + y) = \begin{bmatrix} \alpha (x_1 + y_1) \\ \alpha (x_2 + y_2) \\ \vdots \\ \alpha (x_n + y_n) \end{bmatrix} = \begin{bmatrix} \alpha x_1 + \alpha y_1 \\ \alpha x_2 + \alpha y_2 \\ \vdots \\ \alpha x_n + \alpha y_n \end{bmatrix} = \begin{bmatrix} \alpha x_1 \\ \alpha x_2  \\ \vdots \\ \alpha x_n \end{bmatrix} + \begin{bmatrix} \alpha y_1 \\ \alpha y_2 \\ \vdots \\ \alpha y_n \end{bmatrix} = \alpha x + \alpha y 
+$$</span><script type="math/tex; mode=display">
+\alpha (x + y) = \begin{bmatrix} \alpha (x_1 + y_1) \\ \alpha (x_2 + y_2) \\ \vdots \\ \alpha (x_n + y_n) \end{bmatrix} = \begin{bmatrix} \alpha x_1 + \alpha y_1 \\ \alpha x_2 + \alpha y_2 \\ \vdots \\ \alpha x_n + \alpha y_n \end{bmatrix} = \begin{bmatrix} \alpha x_1 \\ \alpha x_2  \\ \vdots \\ \alpha x_n \end{bmatrix} + \begin{bmatrix} \alpha y_1 \\ \alpha y_2 \\ \vdots \\ \alpha y_n \end{bmatrix} = \alpha x + \alpha y 
+</script>
+</div>
+</p>
+</details>
+<p>Em nossa caminhada por Chicago, essa propriedade significa que, se cada "passo" de deslocamento for dobrado, então a posição final do nosso passeio também será "dobrada".</p>
+<h2 id="exercicios">Exercícios</h2>
+<p>Nas situações abaixo, identifique qual é a propriedade que explica o comportamento observado e como as variáveis relevantes se relacionam aos elementos do problema.</p>
+<details class="info">
+<summary>Um pedestre faz três deslocamentos no plano: primeiro um vetor <strong>a</strong>, depois um vetor <strong>b</strong>, depois um vetor <strong>c</strong>. Para calcular o deslocamento total, ele soma primeiro <strong>a + b</strong> e depois soma <strong>c</strong>. Um colega soma primeiro <strong>b + c</strong> e depois soma <strong>a</strong>. Ambos chegam ao mesmo deslocamento final.</summary>
+<p>A propriedade envolvida é a <strong>associatividade da soma vetorial</strong>. No problema, os vetores <span><span class="MathJax_Preview">$a, b, c$</span><script type="math/tex">a, b, c</script></span> representam os três deslocamentos realizados pelo pedestre. A igualdade mostra que o deslocamento total independe da forma como esses deslocamentos são agrupados no cálculo.</p>
+</details>
+<details class="info">
+<summary>Um barco sofre dois deslocamentos vetoriais: um devido ao motor (<strong>m</strong>) e outro devido à correnteza (<strong>c</strong>). O piloto observa que aplicar primeiro o deslocamento do motor e depois o da correnteza produz o mesmo deslocamento final que aplicar primeiro a correnteza e depois o motor.</summary>
+<p>A propriedade envolvida é a <strong>comutatividade da soma vetorial</strong>. No problema, os vetores <span><span class="MathJax_Preview">$m$</span><script type="math/tex">m</script></span> e <span><span class="MathJax_Preview">$c$</span><script type="math/tex">c</script></span> representam os deslocamentos causados pelo motor e pela correnteza, respectivamente. A igualdade mostra que a ordem em que esses deslocamentos são somados não altera o deslocamento final do barco.</p>
+</details>
+<details class="info">
+<summary>Um drone realiza um trajeto composto por dois vetores de deslocamento, <strong>a</strong> e <strong>b</strong>. Um engenheiro decide ampliar toda a trajetória por um fator 2. Ele observa que pode multiplicar cada deslocamento por 2 e depois somá-los, ou somar os deslocamentos primeiro e multiplicar o resultado por 2, obtendo o mesmo deslocamento final.</summary>
+<p>A propriedade envolvida é a <strong>distributividade da multiplicação escalar em relação à soma vetorial</strong>. No problema, os vetores <span><span class="MathJax_Preview">$a$</span><script type="math/tex">a</script></span> e <span><span class="MathJax_Preview">$b$</span><script type="math/tex">b</script></span> representam os dois trechos do trajeto do drone, e o escalar <span><span class="MathJax_Preview">$2$</span><script type="math/tex">2</script></span> representa o fator de ampliação aplicado à trajetória. A igualdade mostra que a escala pode ser aplicada antes ou depois da soma dos deslocamentos.</p>
+</details>
+<details class="info">
+<summary>Em uma animação gráfica, um objeto é deslocado por dois vetores, <strong>a</strong> e <strong>b</strong>, e depois toda a cena é ampliada por um fator <strong>k</strong> (zoom). O programador percebe que o deslocamento final é o mesmo se o zoom for aplicado antes ou depois da soma dos deslocamentos.</summary>
+<p>A propriedade envolvida é a <strong>distributividade da multiplicação escalar em relação à soma vetorial</strong>. No problema, os vetores <span><span class="MathJax_Preview">$a$</span><script type="math/tex">a</script></span> e <span><span class="MathJax_Preview">$b$</span><script type="math/tex">b</script></span> representam os deslocamentos aplicados ao objeto, enquanto o escalar <span><span class="MathJax_Preview">$k$</span><script type="math/tex">k</script></span> representa o fator de ampliação da cena. A igualdade mostra que o efeito da escala se distribui sobre a soma dos vetores.</p>
+</details>
+<h2 id="exercicio">Exercício</h2>
+<div class="admonition info">
+<p class="admonition-title">Quando estou usando uma propriedade?</p>
+<p>Você está usando uma <strong>propriedade</strong> quando:</p>
+<ul>
+<li>troca a ordem de uma soma (comutatividade);</li>
+<li>muda o agrupamento com parênteses (associatividade);</li>
+<li>distribui um escalar sobre uma soma (distributividade).</li>
+</ul>
+<p>Você está usando uma <strong>definição</strong> quando:</p>
+<ul>
+<li>calcula somas componente a componente;</li>
+<li>multiplica cada componente de um vetor por um número.</li>
+</ul>
+</div>
+<p>Resolva a expressão abaixo encontrando <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span>. Para cada passo, explicite se está usando uma propriedade (dizendo qual propriedade foi usada - comutatividade, associatividade, distributividade) ou se está aplicando diretamente a definição de soma de vetores ou de multiplicação por escalares.</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} + 2 \left( \begin{bmatrix} 3 \\ 1 \\ 2 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ -3 \\ -2 \\ -1 \end{bmatrix} \right) + \begin{bmatrix} -6 \\ -4 \\ 0 \\ 2 \end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+x = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} + 2 \left( \begin{bmatrix} 3 \\ 1 \\ 2 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ -3 \\ -2 \\ -1 \end{bmatrix} \right) + \begin{bmatrix} -6 \\ -4 \\ 0 \\ 2 \end{bmatrix}
+</script>
+</div>
+</p></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Fatores - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#vetores-e-seus-fatores">Vetores e seus fatores</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h2 id="vetores-e-seus-fatores">Vetores e seus fatores</h2>
+<p>Já sabemos que podemos escrever um vetor na forma cartesiana e na forma polar. Porém, uma outra maneira de re-escrever vetores é através da <em>combinação linear de fatores</em>. A ideia aqui é escrever um vetor como a soma ponderada de dois outros vetores, isto é:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x = a_1 v_1 + a_2 v_2,
+$$</span><script type="math/tex; mode=display">
+x = a_1 v_1 + a_2 v_2,
+</script>
+</div>
+onde <span><span class="MathJax_Preview">$a_1, a_2 \in \mathbb{R}$</span><script type="math/tex">a_1, a_2 \in \mathbb{R}</script></span> e <span><span class="MathJax_Preview">$x, v_1, v_2 \in \mathbb{R}^2$</span><script type="math/tex">x, v_1, v_2 \in \mathbb{R}^2</script></span>.</p>
+<p>Note que estamos definindo esse processo apenas para vetores de 2 dimensões! Posteriormente, nos ocuparemos do caso geral.</p>
+<h3 id="exemplo-encontrar-coeficientes">Exemplo: encontrar coeficientes</h3>
+<p>Podemos encontrar coeficientes realizando diretamente a operação acima, por exemplo:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+\begin{bmatrix} 3 \\ 1 \end{bmatrix} = a_1 \begin{bmatrix} 1 \\ 1 \end{bmatrix} + a_2 \begin{bmatrix} -1 \\ 1 \end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+\begin{bmatrix} 3 \\ 1 \end{bmatrix} = a_1 \begin{bmatrix} 1 \\ 1 \end{bmatrix} + a_2 \begin{bmatrix} -1 \\ 1 \end{bmatrix}
+</script>
+</div>
+</p>
+<p>Nesse caso, encontramos:
+<div><span class="MathJax_Preview">$$
+\begin{bmatrix} 3 \\ 1 \end{bmatrix} = \begin{bmatrix} a_1 - a_2 \\ a_1 + a_2 \end{bmatrix} + a_2 \begin{bmatrix} -1 \\ 1 \end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+\begin{bmatrix} 3 \\ 1 \end{bmatrix} = \begin{bmatrix} a_1 - a_2 \\ a_1 + a_2 \end{bmatrix} + a_2 \begin{bmatrix} -1 \\ 1 \end{bmatrix}
+</script>
+</div>
+</p>
+<p>Veja como isso nos dá um sistema de equações:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+\begin{cases}
+\begin{align*}
+a_1 - a_2 &amp;= 3\\
+a_1 + a_2 &amp;= 1
+\end{align*}
+\end{cases}
+$$</span><script type="math/tex; mode=display">
+\begin{cases}
+\begin{align*}
+a_1 - a_2 &= 3\\
+a_1 + a_2 &= 1
+\end{align*}
+\end{cases}
+</script>
+</div>
+</p></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

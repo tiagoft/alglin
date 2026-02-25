@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Implementando codigo de huffman - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#implementando-codigo-de-huffman">Implementando Código de Huffman</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#contar-ocorrencias-unicas-de-cada-caractere">Contar ocorrências únicas de cada caractere</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#ordenar-simbolos-unicos-pela-contagem">Ordenar símbolos únicos pela contagem</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#como-representar-uma-arvore">Como representar uma árvore</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var requireJsScript = document.createElement('script');
+    requireJsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js';
+
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var jupyterWidgetsScript = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    jupyterWidgetsScript.src = widgetRendererSrc;
+
+    document.body.appendChild(requireJsScript);
+    document.body.appendChild(jupyterWidgetsScript);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="implementando-codigo-de-huffman">Implementando Código de Huffman</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://www.gutenberg.org/cache/epub/2701/pg2701.txt'</span><span class="p">)</span>
+<span class="n">string_de_teste</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span> 
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string_de_teste</span><span class="p">))</span>
+
+
+<span class="c1"># string_de_teste = "BANANA"</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>1260554
+</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="contar-ocorrencias-unicas-de-cada-caractere">Contar ocorrências únicas de cada caractere</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">no_vazio</span><span class="p">():</span>    
+    <span class="n">node</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'conteudo'</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s1">'filho_esquerdo'</span> <span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s1">'filho_direito'</span> <span class="p">:</span> <span class="kc">None</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">node</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">contar_ocorrencias_unicas</span><span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">caracteres_unicos</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="ow">in</span> <span class="n">caracteres_unicos</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">caracteres_unicos</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">caracteres_unicos</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">idx</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">caracteres_unicos</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">ocorrencias</span> <span class="o">=</span> <span class="n">contar_ocorrencias_unicas</span><span class="p">(</span><span class="n">string_de_teste</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="ordenar-simbolos-unicos-pela-contagem">Ordenar símbolos únicos pela contagem</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dict_to_tuple</span><span class="p">(</span><span class="n">d</span> <span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="n">list_of_tuples</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">no</span> <span class="o">=</span> <span class="n">no_vazio</span><span class="p">()</span>
+        <span class="n">no</span><span class="p">[</span><span class="s1">'conteudo'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">no</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">list_of_tuples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">list_of_tuples</span>
+
+<span class="n">tuplas_ocorrencias</span> <span class="o">=</span> <span class="n">dict_to_tuple</span><span class="p">(</span><span class="n">ocorrencias</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">tuplas_ocorrencias</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>[({'conteudo': ['\ufeff'], 'filho_direito': None, 'filho_esquerdo': None}, 1),
+ ({'conteudo': ['T'], 'filho_direito': None, 'filho_esquerdo': None}, 2370),
+ ({'conteudo': ['h'], 'filho_direito': None, 'filho_esquerdo': None}, 62491),
+ ({'conteudo': ['e'], 'filho_direito': None, 'filho_esquerdo': None}, 118528),
+ ({'conteudo': [' '], 'filho_direito': None, 'filho_esquerdo': None}, 197842)]
+</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_count</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="n">tuplas_ordenadas</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+    <span class="n">tuplas_ocorrencias</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="n">get_count</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">remover_dois_elementos</span><span class="p">(</span><span class="n">lista_de_tuplas</span><span class="p">):</span>
+    <span class="n">e1</span> <span class="o">=</span> <span class="n">lista_de_tuplas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">e2</span> <span class="o">=</span> <span class="n">lista_de_tuplas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">lista_de_tuplas_</span> <span class="o">=</span> <span class="n">lista_de_tuplas</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">lista_de_tuplas_</span>
+
+<span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">lista_nova</span> <span class="o">=</span> <span class="n">remover_dois_elementos</span><span class="p">(</span><span class="n">tuplas_ordenadas</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">juntar_dois_elementos</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">):</span>
+    <span class="n">novo_conteudo</span> <span class="o">=</span> <span class="n">e1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'conteudo'</span><span class="p">]</span> <span class="o">+</span> <span class="n">e2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'conteudo'</span><span class="p">]</span>
+    <span class="n">no</span> <span class="o">=</span> <span class="n">no_vazio</span><span class="p">()</span>
+    <span class="n">no</span><span class="p">[</span><span class="s1">'conteudo'</span><span class="p">]</span> <span class="o">=</span> <span class="n">novo_conteudo</span>
+    <span class="n">no</span><span class="p">[</span><span class="s1">'filho_esquerdo'</span><span class="p">]</span> <span class="o">=</span> <span class="n">e1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">no</span><span class="p">[</span><span class="s1">'filho_direito'</span><span class="p">]</span>  <span class="o">=</span> <span class="n">e2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">contagem</span> <span class="o">=</span> <span class="n">e1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">e2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">no</span><span class="p">,</span> <span class="n">contagem</span><span class="p">)</span>
+
+<span class="n">e_novo</span> <span class="o">=</span> <span class="n">juntar_dois_elementos</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">e_novo</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>({'conteudo': ['\ufeff', '#'],
+  'filho_esquerdo': {'conteudo': ['\ufeff'],
+   'filho_esquerdo': None,
+   'filho_direito': None},
+  'filho_direito': {'conteudo': ['#'],
+   'filho_esquerdo': None,
+   'filho_direito': None}},
+ 2)</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="como-representar-uma-arvore">Como representar uma árvore</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html"></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">no_pai</span> <span class="o">=</span> <span class="n">no_vazio</span><span class="p">()</span>
+<span class="n">no_filho1</span> <span class="o">=</span> <span class="n">no_vazio</span><span class="p">()</span>
+<span class="n">no_filho2</span> <span class="o">=</span> <span class="n">no_vazio</span><span class="p">()</span>
+
+<span class="n">e_novo</span> <span class="o">=</span> <span class="n">juntar_dois_elementos</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span>
+
+<span class="n">no_pai</span><span class="p">[</span><span class="s1">'conteudo'</span><span class="p">]</span> <span class="o">=</span> <span class="n">e_novo</span>
+<span class="n">no_filho1</span><span class="p">[</span><span class="s1">'conteudo'</span><span class="p">]</span> <span class="o">=</span> <span class="n">e1</span>
+<span class="n">no_filho2</span><span class="p">[</span><span class="s1">'conteudo'</span><span class="p">]</span> <span class="o">=</span> <span class="n">e2</span>
+<span class="n">no_pai</span><span class="p">[</span><span class="s1">'filho_esquerdo'</span><span class="p">]</span> <span class="o">=</span> <span class="n">no_filho1</span>
+<span class="n">no_pai</span><span class="p">[</span><span class="s1">'filho_direito'</span><span class="p">]</span> <span class="o">=</span> <span class="n">no_filho2</span>
+
+<span class="n">pprint</span><span class="p">(</span><span class="n">no_pai</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>{'conteudo': ({'conteudo': ['\ufeff', '#'],
+               'filho_direito': {'conteudo': ['#'],
+                                 'filho_direito': None,
+                                 'filho_esquerdo': None},
+               'filho_esquerdo': {'conteudo': ['\ufeff'],
+                                  'filho_direito': None,
+                                  'filho_esquerdo': None}},
+              2),
+ 'filho_direito': {'conteudo': ({'conteudo': ['#'],
+                                 'filho_direito': None,
+                                 'filho_esquerdo': None},
+                                1),
+                   'filho_direito': None,
+                   'filho_esquerdo': None},
+ 'filho_esquerdo': {'conteudo': ({'conteudo': ['\ufeff'],
+                                  'filho_direito': None,
+                                  'filho_esquerdo': None},
+                                 1),
+                    'filho_direito': None,
+                    'filho_esquerdo': None}}
+</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="c1"># Ok, vamos tentar fazer em um loop</span>
+
+
+<span class="n">nos_existentes</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="n">ocorrencias</span> <span class="o">=</span> <span class="n">contar_ocorrencias_unicas</span><span class="p">(</span><span class="n">string_de_teste</span><span class="p">)</span>
+<span class="n">tuplas_ocorrencias</span> <span class="o">=</span> <span class="n">dict_to_tuple</span><span class="p">(</span><span class="n">ocorrencias</span><span class="p">)</span>
+<span class="n">tuplas_ordenadas</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+    <span class="n">tuplas_ocorrencias</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="n">get_count</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">lista_nova</span> <span class="o">=</span> <span class="n">remover_dois_elementos</span><span class="p">(</span><span class="n">tuplas_ordenadas</span><span class="p">)</span>
+<span class="n">e_novo</span> <span class="o">=</span> <span class="n">juntar_dois_elementos</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span>
+<span class="n">lista_nova</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e_novo</span><span class="p">)</span>
+
+<span class="n">e_novo</span> <span class="o">=</span> <span class="n">juntar_dois_elementos</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span>
+<span class="n">no_pai</span> <span class="o">=</span> <span class="n">e_novo</span>
+
+<span class="n">pprint</span><span class="p">(</span><span class="n">no_pai</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>({'conteudo': ['\ufeff', '#'],
+  'filho_direito': {'conteudo': ['#'],
+                    'filho_direito': None,
+                    'filho_esquerdo': None},
+  'filho_esquerdo': {'conteudo': ['\ufeff'],
+                     'filho_direito': None,
+                     'filho_esquerdo': None}},
+ 2)
+</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">tuplas_ordenadas</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+    <span class="n">tuplas_ocorrencias</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="n">get_count</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">lista_nova2</span> <span class="o">=</span> <span class="n">remover_dois_elementos</span><span class="p">(</span><span class="n">lista_nova</span><span class="p">)</span>
+<span class="n">e_novo</span> <span class="o">=</span> <span class="n">juntar_dois_elementos</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span>
+<span class="n">no_pai</span> <span class="o">=</span> <span class="n">e_novo</span>
+
+
+<span class="n">pprint</span><span class="p">(</span><span class="n">no_pai</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>({'conteudo': ['\u200f', 'ח'],
+  'filho_direito': {'conteudo': ['ח'],
+                    'filho_direito': None,
+                    'filho_esquerdo': None},
+  'filho_esquerdo': {'conteudo': ['\u200f'],
+                     'filho_direito': None,
+                     'filho_esquerdo': None}},
+ 2)
+</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">arvore_de_huffman</span><span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">ocorrencias</span> <span class="o">=</span> <span class="n">contar_ocorrencias_unicas</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">tuplas</span> <span class="o">=</span> <span class="n">dict_to_tuple</span><span class="p">(</span><span class="n">ocorrencias</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">tuplas</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">tuplas</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="n">tuplas</span><span class="p">,</span>
+            <span class="n">key</span><span class="o">=</span><span class="n">get_count</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">,</span> <span class="n">tuplas</span> <span class="o">=</span> <span class="n">remover_dois_elementos</span><span class="p">(</span><span class="n">tuplas</span><span class="p">)</span>
+        <span class="n">e_novo</span> <span class="o">=</span> <span class="n">juntar_dois_elementos</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">e2</span><span class="p">)</span>
+        <span class="n">tuplas</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e_novo</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">e_novo</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">bananeira</span> <span class="o">=</span> <span class="n">arvore_de_huffman</span><span class="p">(</span><span class="s2">"BANANA"</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">codificar</span><span class="p">(</span><span class="n">no_pai</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="n">no_pai</span><span class="p">[</span><span class="s1">'filho_esquerdo'</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">codigo</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="k">elif</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">no_pai</span><span class="p">[</span><span class="s1">'filho_esquerdo'</span><span class="p">][</span><span class="s1">'conteudo'</span><span class="p">]:</span>
+        <span class="n">codigo</span> <span class="o">=</span> <span class="s1">'1'</span> <span class="o">+</span> <span class="n">codificar</span><span class="p">(</span><span class="n">no_pai</span><span class="p">[</span><span class="s1">'filho_esquerdo'</span><span class="p">],</span> <span class="n">c</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">no_pai</span><span class="p">[</span><span class="s1">'filho_direito'</span><span class="p">][</span><span class="s1">'conteudo'</span><span class="p">]:</span>
+        <span class="n">codigo</span> <span class="o">=</span> <span class="s1">'0'</span> <span class="o">+</span> <span class="n">codificar</span><span class="p">(</span><span class="n">no_pai</span><span class="p">[</span><span class="s1">'filho_direito'</span><span class="p">],</span> <span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">codigo</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">codificar_string</span><span class="p">(</span><span class="n">no_pai</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+    <span class="n">codigo</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">codigo</span> <span class="o">=</span> <span class="n">codigo</span> <span class="o">+</span> <span class="n">codificar</span><span class="p">(</span><span class="n">no_pai</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">codigo</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">pprint</span><span class="p">(</span><span class="n">bananeira</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>{'conteudo': ['A', 'B', 'N'],
+ 'filho_direito': {'conteudo': ['B', 'N'],
+                   'filho_direito': {'conteudo': ['N'],
+                                     'filho_direito': None,
+                                     'filho_esquerdo': None},
+                   'filho_esquerdo': {'conteudo': ['B'],
+                                      'filho_direito': None,
+                                      'filho_esquerdo': None}},
+ 'filho_esquerdo': {'conteudo': ['A'],
+                    'filho_direito': None,
+                    'filho_esquerdo': None}}
+</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">codificar_string</span><span class="p">(</span><span class="n">bananeira</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">'BANANA'</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>'011001001'</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">decodificar_string</span><span class="p">(</span><span class="n">no_pai</span><span class="p">,</span> <span class="n">s_cod</span><span class="p">):</span>
+    <span class="n">no_atual</span> <span class="o">=</span> <span class="n">no_pai</span>
+    <span class="n">saida</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s_cod</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">s_cod</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'1'</span><span class="p">:</span>
+            <span class="n">no_atual</span> <span class="o">=</span> <span class="n">no_atual</span><span class="p">[</span><span class="s1">'filho_esquerdo'</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">s_cod</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'0'</span><span class="p">:</span>
+            <span class="n">no_atual</span> <span class="o">=</span> <span class="n">no_atual</span><span class="p">[</span><span class="s1">'filho_direito'</span><span class="p">]</span>        
+        <span class="k">if</span> <span class="n">no_atual</span><span class="p">[</span><span class="s1">'filho_esquerdo'</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">saida</span> <span class="o">=</span> <span class="n">saida</span> <span class="o">+</span> <span class="n">no_atual</span><span class="p">[</span><span class="s1">'conteudo'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">no_atual</span> <span class="o">=</span> <span class="n">no_pai</span>
+    <span class="k">return</span> <span class="n">saida</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">codigo</span> <span class="o">=</span> <span class="n">codificar_string</span><span class="p">(</span><span class="n">bananeira</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">'BANANA'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>011001001
+</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">decodificacao</span> <span class="o">=</span> <span class="n">decodificar_string</span><span class="p">(</span><span class="n">bananeira</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">codigo</span><span class="p">)</span>
+<span class="n">decodificacao</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>'BANANA'</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">arvore</span> <span class="o">=</span> <span class="n">arvore_de_huffman</span><span class="p">(</span><span class="n">string_de_teste</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">codigo</span> <span class="o">=</span> <span class="n">codificar_string</span><span class="p">(</span><span class="n">arvore</span><span class="p">,</span> <span class="n">string_de_teste</span><span class="p">)</span>
+<span class="n">recuperado</span> <span class="o">=</span> <span class="n">decodificar_string</span><span class="p">(</span><span class="n">arvore</span><span class="p">,</span> <span class="n">codigo</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">tamanho_original</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">string_de_teste</span><span class="p">)</span>
+<span class="n">tamanho_comprimido</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span><span class="o">//</span><span class="mi">8</span>
+
+<span class="n">tamanho_comprimido</span> <span class="o">/</span> <span class="n">tamanho_original</span>
+</code></pre></div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>0.5721397100005235</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</div>
+</div></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

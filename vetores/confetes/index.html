@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Estudo de Caso: Confetes Digitais - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../numpy01/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../projecoes/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#confetes-digitais">Confetes digitais</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-1-analisar-os-efeitos-da-aceleracao-no-movimento-uniformemente-variado">Exercício 1: analisar os efeitos da aceleração no movimento uniformemente variado</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-2-adicionar-interatividade-ao-sistema-de-particulas">Exercício 2: adicionar interatividade ao sistema de partículas</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-3-adicionar-aleatoriedade-ao-sistema-de-particulas">Exercício 3: adicionar aleatoriedade ao sistema de partículas</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-4-operar-com-varias-particulas-simultaneamente">Exercício 4: operar com várias partículas simultaneamente</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-5-adicionar-atrito-do-ar">Exercício 5: adicionar atrito do ar</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-6-adicionar-vento">Exercício 6: adicionar vento</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-7-confetes-digitais">Exercício 7: confetes digitais</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="confetes-digitais">Confetes digitais</h1>
+<p>Nesta aula, utilizaremos os conceitos de vetores para executar uma simulação baseada em modelos físicos.</p>
+<p>Você vai perceber que nesta aula específica não há "certo" ou "errado" -- o que há é um processo de aprendizado. Sendo o processo tão particular de cada um, é preciso que cada um seja responsável por si. O que gostaríamos nessa atividade é praticar o seguinte fluxo de pensamento:</p>
+<div class="mermaid">
+
+flowchart TD
+    A[Entender a situação proposta: qual é o problema, e como sabemos que ele foi resolvido, isto é, quais são os critérios de aceitação] --&gt; B[Ligar a situação a um modelo matemático e suas variáveis] --&gt; C[Resolver o modelo matemático, possivelmente implementando um programa para isso] --&gt; D[Identificar, dentro do modelo resolvido e/ou dos resultados mostrados pelo programa, como a situação inicial foi resolvida]
+
+</div>
+<p>Por esse motivo, essa atividade não tem uma "rubrica" ou um "gabarito". Existem muitas soluções para cada um dos exercícios propostos. Porém, é importante que, para cada um deles, você explicitamente passe por todas as etapas do fluxo.</p>
+<p>A quarta etapa é especialmente importante: como este é um trabalho aberto, isto é, que envolve o pensamento <em>divergente</em>, é esperado do aluno (e dos grupos de alunos) que o entendimento de cada etapa, e do que significa ter "resolvido" cada etapa, seja discutido pelo grupo de trabalho. Isso significa que fazer essa atividade pensando em "cumprir rapidamente etapas para entregar um resultado que será avaliado" não é produtivo. Ao invés disso, trata-se um trabalho importante pelo <em>vivenciar o processo</em>, e não pela entrega em si.</p>
+<p>Dito isso, é claro que GPTs e IAs atuais resolvem todas as atividades. Não use GPTs e IAs para fazer o trabalho criativo para você neste contexto - até porque isso não faz nenhum sentido porque a atividade não recebe nota. Use essa oportunidade para identificar onde estão as <em>suas</em> dificuldades, e, ao superá-las, para exercitar o senso estético/poético de apreciar os resultados do programa que for fazendo.</p>
+<h2 id="exercicio-1-analisar-os-efeitos-da-aceleracao-no-movimento-uniformemente-variado">Exercício 1: analisar os efeitos da aceleração no movimento uniformemente variado</h2>
+<p>O código abaixo simula uma situação na qual jogamos uma pequena pedra do alto de um prédio. Na simulação, a cada iteração, calculamos novos valores para a velocidade e para a posição:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+\begin{cases}
+\begin{array}{rl}
+s_{t+1} &amp;= s_{t} + \Delta t v_t\\
+v_{t+1} &amp;= v_{t} + \Delta t a
+\end{array}
+\end{cases}
+$$</span><script type="math/tex; mode=display">
+\begin{cases}
+\begin{array}{rl}
+s_{t+1} &= s_{t} + \Delta t v_t\\
+v_{t+1} &= v_{t} + \Delta t a
+\end{array}
+\end{cases}
+</script>
+</div>
+</p>
+<p>Analise o código e responda:</p>
+<ol>
+<li>Na simulação, quanto vale <span><span class="MathJax_Preview">$\Delta t$</span><script type="math/tex">\Delta t</script></span>?</li>
+<li>Por que uma das componentes da variável <code>a</code> é zero?</li>
+<li>Modifique o código para que a pedra seja arremessada com uma velocidade inicial com módulo mais alto</li>
+<li>Modifique o código para que a gravidade seja mais suave que a inicialmente projetada</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pygame</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pygame.locals</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+
+<span class="c1"># Tamanho da tela e definição do FPS</span>
+<span class="n">screen</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">set_mode</span><span class="p">((</span><span class="mi">400</span><span class="p">,</span> <span class="mi">400</span><span class="p">))</span>
+<span class="n">clock</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">Clock</span><span class="p">()</span>
+<span class="n">FPS</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># Frames per Second</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">FPS</span>
+
+<span class="n">BLACK</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">COR_PERSONAGEM</span> <span class="o">=</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Inicializar posicoes</span>
+<span class="n">s0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span><span class="mi">200</span><span class="p">])</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">])</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">v0</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">s0</span>
+
+<span class="c1"># Personagem</span>
+<span class="n">personagem</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Surface</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>  <span class="c1"># Tamanho do personagem</span>
+<span class="n">personagem</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">COR_PERSONAGEM</span><span class="p">)</span>  <span class="c1"># Cor do personagem</span>
+
+<span class="n">rodando</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">while</span> <span class="n">rodando</span><span class="p">:</span>
+    <span class="c1"># Capturar eventos</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">pygame</span><span class="o">.</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">pygame</span><span class="o">.</span><span class="n">QUIT</span><span class="p">:</span>
+            <span class="n">rodando</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Controlar frame rate</span>
+    <span class="n">clock</span><span class="o">.</span><span class="n">tick</span><span class="p">(</span><span class="n">FPS</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">10</span> <span class="ow">or</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">390</span> <span class="ow">or</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">10</span> <span class="ow">or</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">390</span><span class="p">:</span> <span class="c1"># Se eu chegar ao limite da tela, reinicio a posição do personagem</span>
+        <span class="n">s</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">s0</span><span class="p">,</span> <span class="n">v0</span>
+
+    <span class="c1"># Recalcular posições</span>
+    <span class="n">s_novo</span> <span class="o">=</span> <span class="n">s</span> <span class="o">+</span> <span class="n">v</span> <span class="o">*</span> <span class="n">dt</span>
+    <span class="n">v_novo</span> <span class="o">=</span> <span class="n">v</span> <span class="o">+</span> <span class="n">a</span> <span class="o">*</span> <span class="n">dt</span> 
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s_novo</span> 
+    <span class="n">v</span> <span class="o">=</span> <span class="n">v_novo</span>
+
+    <span class="c1"># Desenhar fundo</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">BLACK</span><span class="p">)</span>
+
+    <span class="c1"># Desenhar personagem</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">pygame</span><span class="o">.</span><span class="n">Rect</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>  <span class="c1"># First tuple is position, second is size.</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="n">personagem</span><span class="p">,</span> <span class="n">rect</span><span class="p">)</span>
+
+    <span class="c1"># Update!</span>
+    <span class="n">pygame</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+
+<span class="c1"># Terminar tela</span>
+<span class="n">pygame</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="exercicio-2-adicionar-interatividade-ao-sistema-de-particulas">Exercício 2: adicionar interatividade ao sistema de partículas</h2>
+<p>Modifique novamente o código de forma que as partículas sejam disparadas sempre na direção do ponteiro do mouse do jogador (dica: use <code>mouseX</code> e <code>mouseY</code> do <code>pygame</code>), mas sempre com mesmo módulo.</p>
+<h2 id="exercicio-3-adicionar-aleatoriedade-ao-sistema-de-particulas">Exercício 3: adicionar aleatoriedade ao sistema de partículas</h2>
+<p>Modifique o código de forma que a velocidade inicial da pedra seja levemente diferente a cada vez que ela é "jogada". Uma das maneiras de conseguir isso é usar um vetor de números aleatórios (<code>rnd = np.random.randn(2)</code>) que é multiplicado por algum fator de escala (experimente vários, de acordo com como gostar) e então somado à velocidade da partícula no momento em que ela é re-criada. Assim, a "pedra" deve ser inicializada aproximadamente na direção do mouse, mas com uma componente de aleatoriedade.</p>
+<h2 id="exercicio-4-operar-com-varias-particulas-simultaneamente">Exercício 4: operar com várias partículas simultaneamente</h2>
+<p>Faça com que a simulação agora tenha 50 pedras operando simultaneamente, que são inicializadas do mesmo ponto (fazendo uma espécie de "metralhadora"). Como seria uma boa maneira de representar as posições e velocidades de 50 pedras diferentes?</p>
+<h2 id="exercicio-5-adicionar-atrito-do-ar">Exercício 5: adicionar atrito do ar</h2>
+<p>A resistência do ar, ou a resistência do ar, é uma força com módulo <span><span class="MathJax_Preview">$\beta v$</span><script type="math/tex">\beta v</script></span>, onde <span><span class="MathJax_Preview">$\beta \in \mathbb{R}$</span><script type="math/tex">\beta \in \mathbb{R}</script></span>, <span><span class="MathJax_Preview">$0 &lt; \beta &lt; 1$</span><script type="math/tex">0 < \beta < 1</script></span>, e direção contrária a velocidade da partícula. Adicione uma força de resistência do ar ao seu sistema. Veja que, nesse caso, será preciso modelar a <em>massa</em> das partículas. O que acontece se a massa é muito grande? E se a massa é muito pequena?</p>
+<h2 id="exercicio-6-adicionar-vento">Exercício 6: adicionar vento</h2>
+<p>A resistência do ar adicionada anteriormente assume que o ar está parado. Se o ar estiver em movimento, a força de resistência do ar deve ser calculada levando em consideração que há uma tendência de "arrastar" a partícula para uma determinada direção. Utilize esboços e diagramas para encontrar um modelo físico adequado para isso. Implemente seu modelo, e faça o teste com alguns valores diferentes para a velocidade do vento.</p>
+<h2 id="exercicio-7-confetes-digitais">Exercício 7: confetes digitais</h2>
+<p>Vamos usar uma função para definir um vetor "velocidade do vento" diferente para cada posição. Neste momento, temos liberdade para escolher o que quisermos. Por exemplo, podemos começar com:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">velocidade_do_vento</span><span class="p">(</span><span class="n">s</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="n">vx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">10</span> <span class="o">+</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">vy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span>  <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">vx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[</span><span class="n">vx</span><span class="p">,</span> <span class="n">vy</span><span class="p">]</span> <span class="p">)</span>
+</code></pre></div>
+<p>Aplique esse vento que varia de velocidade de acordo com a posição em seu modelo.</p>
+<p>Conseguimos fazer os confetes digitais? Altere os parâmetros do seu modelo para alterar sua estética.</p></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<script>mermaid.initialize({});</script></body>
+</html>

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Compressão Sem Perdas - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../vetores/busca_embeddings/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../compressao_sem_perdas_audio/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#compressao-de-informacao">Compressão de Informação</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#referencias">Referências</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#introducao">Introdução</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#frequencia-de-simbolos">Frequência de símbolos</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#o-codigo-de-huffman">O código de Huffman</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicios">Exercícios</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="compressao-de-informacao">Compressão de Informação</h1>
+<h2 id="referencias">Referências</h2>
+<ul>
+<li><a href="https://www.hlevkin.com/hlevkin/02imageprocC/The%20Data%20Compression%20Book%202nd%20edition.pdf">Mark Nelson and Jean-loup Gailly, The Data Compression Book</a>, Chap. 3.</li>
+<li><a href="(https://doi.org/10.1109/JRPROC.1952.273898)">D. A. Huffman, "A Method for the Construction of Minimum-Redundancy Codes,"</a> in Proceedings of the IRE, vol. 40, no. 9, pp. 1098-1101, Sept. 1952, doi: 10.1109/JRPROC.1952.273898.</li>
+</ul>
+<h2 id="introducao">Introdução</h2>
+<p>Quando nos comunicamos por escrito, usamos símbolos como "a", "b" ou "c". Esses símbolos fazem parte de um conjunto de símbolos válidos que é chamado de "alfabeto". O alfabeto é uma convenção, isto é, aceitamos esses símbolos porque "combinamos" que eles seriam assim - poderíamos simplesmente "combinar" que o "a" será escrito como "<span><span class="MathJax_Preview">$\alpha$</span><script type="math/tex">\alpha</script></span>", o "b" como "<span><span class="MathJax_Preview">$\beta$</span><script type="math/tex">\beta</script></span>", e assim por diante, e as regras gramaticais ficariam todas iguais.</p>
+<p>Esse processo de encontrar correspondências entre símbolos de diferentes alfabetos se chama "codificação". Em computação, é comum codificarmos alfabetos como sequências de bits.</p>
+<details class="info">
+<summary>Se o caractere B é codificado por <span><span class="MathJax_Preview">$111$</span><script type="math/tex">111</script></span>, N por <span><span class="MathJax_Preview">$011$</span><script type="math/tex">011</script></span> e A por <span><span class="MathJax_Preview">$010$</span><script type="math/tex">010</script></span>, qual é a palavra codificada por <span><span class="MathJax_Preview">$111010011010011010$</span><script type="math/tex">111010011010011010</script></span>?</summary>
+<p>Podemos resolver esse exercício encontrando sucessivamente quais caracteres "batem" com a cadeia. Se tudo deu certo, vamos encontrar a palavra "BANANA".</p>
+</details>
+<p>Um exemplo disso é quando usamos bytes para representar letras (como na <a href="https://www.matematica.pt/util/resumos/tabela-ascii.php">tabela ASCII</a>): nesse caso, temos um alfabeto de 256 combinações de bits que está sendo mapeado para símbolos do alfabeto usual.</p>
+<div class="admonition tip">
+<p class="admonition-title">Bits, bytes e banana</p>
+<p>Lembre-se que, para representar 256 combinações de bits, precisamos de, no mínimo, 8 bits, isto é, um byte. Então, se quisermos codificar a palavra BANANA, que tem 6 letras, usaríamos 6 bytes e, portanto, <span><span class="MathJax_Preview">$6 \times 8 = 4\$</span><script type="math/tex">6 \times 8 = 4\</script></span> bits.</p>
+</div>
+<p>A codificação ASCII tem tamanho fixo, com 8 bits por caractere. Porém, lembre-se que ela é uma convenção. Poderíamos simplesmente escolher outra codificação, com um número variável de bits por caractere. Claro que essa escolha adiciona complexidade no processo de transmissão de dados: desta vez, <strong>precisaremos de algum tipo de regra para determinar o fim de um caractere!</strong> Porém, poderemos usar menos bits por caractere.</p>
+<details class="info">
+<summary>Se B é codificado por 3 bits, N em 5 bits, a A em 12 bits, quantos bits precisaríamos para codificar BANANA?</summary>
+<p>Nesse caso, usaríamos <span><span class="MathJax_Preview">$3 + 12 + 5 + 12 + 5 + 12 = 49$</span><script type="math/tex">3 + 12 + 5 + 12 + 5 + 12 = 49</script></span> bits.</p>
+</details>
+<p>Vamos refletir um pouco sobre isso. Sabemos que alguns caracteres são mais frequentes que outros. Também, sabemos que é possível usar codificações de tamanhos diferentes para cada caractere. Se queremos que nossa cadeia de caracteres inteira tenha o menor tamanho possível, responda:</p>
+<details class="info">
+<summary>Qual deve ser a relação entre o tamanho da codificação de cada caractere e a sua frequência de ocorrência?</summary>
+<p>Deveríamos usar codificações menores para os caracteres mais frequentes!</p>
+</details>
+<h2 id="frequencia-de-simbolos">Frequência de símbolos</h2>
+<p>Uma característica importante de textos em linguagem natural é que a probabilidade de ocorrência de cada letra é bastante específica. Em outras palavras, por exemplo, em português, é muito mais comum encontrarmos a letra "A" que a letra "W" em uma palavra.</p>
+<p>Então, podemos calcular a probabilidade: <span><span class="MathJax_Preview">$P(\text{letra} | \text{texto})$</span><script type="math/tex">P(\text{letra} | \text{texto})</script></span>, que é a probabilidade de, ao selecionarmos um caractere aleatório de um texto, encontrarmos a letra correspondente.</p>
+<div class="admonition info">
+<p class="admonition-title">A distribuição de probabilidades de letras</p>
+<p>Na palavra BANANA, por exemplo, poderíamos calcular:</p>
+<ol>
+<li><span><span class="MathJax_Preview">$P(\text{B} | \text{BANANA}) = \frac{1}{6}$</span><script type="math/tex">P(\text{B} | \text{BANANA}) = \frac{1}{6}</script></span></li>
+<li><span><span class="MathJax_Preview">$P(\text{A} | \text{BANANA}) = \frac{3}{6}$</span><script type="math/tex">P(\text{A} | \text{BANANA}) = \frac{3}{6}</script></span></li>
+<li><span><span class="MathJax_Preview">$P(\text{N} | \text{BANANA}) = \frac{2}{6}$</span><script type="math/tex">P(\text{N} | \text{BANANA}) = \frac{2}{6}</script></span></li>
+</ol>
+</div>
+<p>Encontre <span><span class="MathJax_Preview">$P(\text{letra} | \text{texto})$</span><script type="math/tex">P(\text{letra} | \text{texto})</script></span> para os seguintes casos:</p>
+<table>
+<thead>
+<tr>
+<th>Letra</th>
+<th>Texto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>abacaxi</td>
+</tr>
+<tr>
+<td>b</td>
+<td>abacaxi</td>
+</tr>
+<tr>
+<td>b</td>
+<td>batman</td>
+</tr>
+<tr>
+<td>f</td>
+<td>mafagafos</td>
+</tr>
+</tbody>
+</table>
+<details class="info">
+<summary>Respostas aqui</summary>
+<ol>
+<li><span><span class="MathJax_Preview">$\frac{3}{7}$</span><script type="math/tex">\frac{3}{7}</script></span></li>
+<li><span><span class="MathJax_Preview">$\frac{1}{7}$</span><script type="math/tex">\frac{1}{7}</script></span></li>
+<li><span><span class="MathJax_Preview">$\frac{1}{6}$</span><script type="math/tex">\frac{1}{6}</script></span></li>
+<li><span><span class="MathJax_Preview">$\frac{2}{9}$</span><script type="math/tex">\frac{2}{9}</script></span></li>
+</ol>
+</details>
+<h2 id="o-codigo-de-huffman">O código de Huffman</h2>
+<p>Já sabemos encontrar os símbolos mais frequentes de uma cadeia. Agora, precisamos encontrar códigos (sequências de bits) pequenas para atribuirmos a eles. Esse processo pode ser realizado usando o <a href="https://doi.org/10.1109/JRPROC.1952.273898">algoritmo de Huffman</a>. A ideia do algoritmo é a seguinte:</p>
+<ol>
+<li>Calculamos a probabilidade de encontrar cada um dos símbolos da string</li>
+<li>Ordenamos os símbolos em ordem crescente de sua probabilidade de ocorrência, e colocamos esses símbolos numa lista</li>
+<li>Tiramos os dois elementos de menor probabilidade da lista e unimos ambos em um terceiro, que tem probabilidade igual à soma das probabilidades dos elementos retirados. Nesse passo, essa conversão deve ser armazenada em uma árvore.</li>
+<li>Inserimos esse novo elemento na lista</li>
+<li>Se há mais de um elemento na lista, voltamos ao passo 2.</li>
+</ol>
+<h3 id="exemplo-arvore-do-codigo-de-huffman-para-banana">Exemplo: árvore do código de Huffman para BANANA</h3>
+<p>Começamos com nossa cadeia de caracteres: BANANA. No primeiro passo do algoritmo, calculamos as probabilidades de cada símbolo:</p>
+<table>
+<thead>
+<tr>
+<th>Símbolo</th>
+<th>Probabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><span><span class="MathJax_Preview">$\frac{1}{6}$</span><script type="math/tex">\frac{1}{6}</script></span></td>
+</tr>
+<tr>
+<td>A</td>
+<td><span><span class="MathJax_Preview">$\frac{3}{6}$</span><script type="math/tex">\frac{3}{6}</script></span></td>
+</tr>
+<tr>
+<td>N</td>
+<td><span><span class="MathJax_Preview">$\frac{2}{6}$</span><script type="math/tex">\frac{2}{6}</script></span></td>
+</tr>
+</tbody>
+</table>
+<p>Agora, passamos ao passo 2: ordenamos nossos símbolos de acordo com suas probabilidades:</p>
+<table>
+<thead>
+<tr>
+<th>Símbolo</th>
+<th>Probabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td><span><span class="MathJax_Preview">$\frac{1}{6}$</span><script type="math/tex">\frac{1}{6}</script></span></td>
+</tr>
+<tr>
+<td>N</td>
+<td><span><span class="MathJax_Preview">$\frac{2}{6}$</span><script type="math/tex">\frac{2}{6}</script></span></td>
+</tr>
+<tr>
+<td>A</td>
+<td><span><span class="MathJax_Preview">$\frac{3}{6}$</span><script type="math/tex">\frac{3}{6}</script></span></td>
+</tr>
+</tbody>
+</table>
+<p>Agora, vamos unir nossos dois símbolos de menor probabilidade em um único símbolo:</p>
+<table>
+<thead>
+<tr>
+<th>Símbolo</th>
+<th>Probabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BN</td>
+<td><span><span class="MathJax_Preview">$\frac{3}{6}$</span><script type="math/tex">\frac{3}{6}</script></span></td>
+</tr>
+<tr>
+<td>A</td>
+<td><span><span class="MathJax_Preview">$\frac{3}{6}$</span><script type="math/tex">\frac{3}{6}</script></span></td>
+</tr>
+</tbody>
+</table>
+<p>O ato de unir os símbolos B e N pode ser representado como uma árvore na qual o nó raiz é esse novo símbolo, e os nós-folha são os nós originais:</p>
+<div class="mermaid">
+graph TD
+    BN --&gt; B;
+    BN --&gt; N;
+</div>
+<p>A estrutura de árvore permite guardar a informação de que o nó BN surgiu da união de B e N. Isso será útil na codificação e decodificação, como veremos logo a seguir.</p>
+<p>Realizando uma nova união, ficamos com:</p>
+<table>
+<thead>
+<tr>
+<th>Símbolo</th>
+<th>Probabilidade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BNA</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>e nossa árvore evolui para:</p>
+<div class="mermaid">
+graph TD
+    BN --&gt; B;
+    BN --&gt; N;
+    BNA --&gt; BN;
+    BNA --&gt; A;
+</div>
+<p>Uma dúvida relevante que aparece é como escolher o nó que fica à direita ou à esquerda. Na verdade, tanto faz: em ambos os casos, a árvore gerada será válida e igualmente boa. O mesmo vale para quando temos empates de vários símbolos com mesma probabilidade: a escolha é arbitrária, e qualquer uma das árvores geradas terá o mesmo poder de codificação.</p>
+<details class="info">
+<summary>Que árvore aparece à partir da palavra BATMAN?</summary>
+<p>Uma possível solução é:
+<div class="mermaid">
+graph TD
+    BATMN --&gt; A;
+    BATMN --&gt; BTMN;
+    BTMN --&gt; BT;
+    BTMN --&gt; MN;
+    BT --&gt; B;
+    BT --&gt; T;
+    MN --&gt; M;
+    MN --&gt; N;
+</div>
+Extra: você consegue mostrar que essa solução não é única (por exemplo, fazendo duas árvores diferentes para BATMAN)?</p>
+</details>
+<h3 id="codificacao-com-codigo-de-huffman">Codificação com código de Huffman</h3>
+<p>Agora vamos usar a árvore para codificar uma cadeia de caracteres. Para isso, vamos atribuir valores <span><span class="MathJax_Preview">$0$</span><script type="math/tex">0</script></span> ou <span><span class="MathJax_Preview">$1$</span><script type="math/tex">1</script></span> para cada uma das arestas de saída de cada vértice. Em princípio, a escolha por qual nó terá valor 0 ou 1 é arbitrária, então podemos simplesmente escolher, para o caso de BANANA, os valores:</p>
+<div class="mermaid">
+graph TD
+    BN --&gt;|0| B;
+    BN --&gt;|1| N;
+    BNA --&gt;|0| BN;
+    BNA --&gt;|1| A;
+</div>
+<p>Daí, <strong>a codificação para cada caractere é a sequência de rótulos do caminho entre o nó-raiz e o nó-folha correspondente ao símbolo</strong>. Por exemplo, para a letra B, faríamos o caminho:</p>
+<div class="mermaid">
+graph TD
+    BN --&gt;|0| B;
+    BN --&gt;|1| N;
+    BNA --&gt;|0| BN;
+    BNA --&gt;|1| A;
+    style BNA fill:#f1ea00,stroke:#0077cc
+    style BN fill:#f1ea00,stroke:#0077cc
+    style B fill:#f1ea00,stroke:#0077cc
+</div>
+<p>e, portanto, a letra B deveria ser codificada como 00.</p>
+<details class="info">
+<summary>Qual deveria ser a codificação de N e de A?</summary>
+<p>"N" deveria ser codificada como 01. "A" deveria ser codificada como 1.</p>
+</details>
+<details class="info">
+<summary>Qual deveria ser a codificação de BANANA?</summary>
+<p>Concatenando as codificações: 001011011.</p>
+</details>
+<h3 id="decodificacao-com-codigo-de-huffman">Decodificação com código de Huffman</h3>
+<p>Para <strong>decodificar</strong> uma cadeia, partimos do nó raiz. Então, "andamos" pela árvore seguindo o caminho da sequência. Ao chegar num nó folha, reconhecemos que aquele caractere foi recebido. No próximo passo, voltamos para a raiz para começar a receber o próximo caractere.</p>
+<div class="admonition info">
+<p class="admonition-title">Decodificando 00101</p>
+<p>Se recebemos a cadeia 00101, assumindo a árvore que fizemos para a palavra "BANANA", poderíamos fazer a decodificação da seguinte forma:</p>
+<table>
+<thead>
+<tr>
+<th>Bit recebido</th>
+<th>Vértice que estou</th>
+<th>Decisão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Início</td>
+<td>BNA</td>
+<td>Começando novamente</td>
+</tr>
+<tr>
+<td>0</td>
+<td>BN</td>
+<td>Continuar lendo</td>
+</tr>
+<tr>
+<td>0</td>
+<td>B</td>
+<td>Aceitar B, voltar para o começo</td>
+</tr>
+<tr>
+<td>-</td>
+<td>BNA</td>
+<td>Começando novamente</td>
+</tr>
+<tr>
+<td>1</td>
+<td>A</td>
+<td>Aceitar A, voltar para o começo</td>
+</tr>
+<tr>
+<td>-</td>
+<td>BNA</td>
+<td>Começando novamente</td>
+</tr>
+<tr>
+<td>0</td>
+<td>BN</td>
+<td>Continuar lendo</td>
+</tr>
+<tr>
+<td>1</td>
+<td>N</td>
+<td>Aceitar N, voltar para o começo</td>
+</tr>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>Fim de cadeia, encerrando</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="info">
+<summary>Com a árvore que usamos para BANANA, qual é a cadeia codificada por 001001001001001011011?</summary>
+<p>Se tudo deu certo, você deveria ter achado a cadeia BABABABABANANA.</p>
+</details>
+<div class="admonition info">
+<p class="admonition-title">Código de Prefixos</p>
+<p>A construção da árvore de Huffman garante uma propriedade muito importante, conhecida como código de prefixo. Isso significa que o código gerado para qualquer caractere nunca é o início (prefixo) do código de qualquer outro caractere. É por isso que o algoritmo de decodificação funciona sem ambiguidades: no momento em que a sequência de bits que você está lendo bate com o código de um caractere, você pode ter certeza absoluta de que aquele é o caractere, pois nenhuma outra combinação mais longa começa daquela forma.</p>
+</div>
+<h2 id="exercicios">Exercícios</h2>
+<h3 id="1-executar-o-codigo-de-huffman">1. Executar o código de Huffman</h3>
+<p>Usando o código de Huffman, encontre e árvore e o código para as seguintes palavras:</p>
+<ol>
+<li>BATMAN</li>
+<li>TOMATE</li>
+<li>ALGEBRA</li>
+</ol>
+<h3 id="2-inverter-0s-e-1s">2. Inverter 0's e 1's</h3>
+<p>Em certo momento, este texto diz que a escolha de quais arestas recebem 0's ou 1's é arbitrária. Vamos testar esta hipótese: escolha uma das árvores que você fez no exercício 1, e inverta os bits de sua codificação. Realize a codificação e a decodificação, mostrando assim que a escolha é, realmente, arbitrária, e que em qualquer caso o código gerado é válido.</p>
+<h3 id="3-usar-o-codigo-de-huffman-para-comunicacao">3. Usar o código de Huffman para comunicação</h3>
+<p>Escreva uma mensagem (curta). Faça a árvore de Huffman e codifique sua mensagem como uma cadeia de bits. Após, mostre sua cadeia de bits e sua árvore para um colega. O colega deve decodificar sua mensagem. Confira se a decodificação foi correta. Após, inverta os papeis e decodifique a mensagem que seu colega codificou.</p>
+<h3 id="4-medir-a-taxa-de-compressao-do-codigo-de-huffman">4. Medir a taxa de compressão do código de Huffman</h3>
+<p>Se fossemos codificar a palavra BANANA usando um número fixo de bits por caractere, precisaríamos de 2 bits por caractere, já que temos 3 símbolos diferentes. Porém, usando o código de Huffan, precisamos de um número menor de bits por caractere. Qual é a razão entre o número de bits por caractere da sequência codificada usando Huffman e a sequência codificada usando 2 bits por caractere?</p>
+<h3 id="5-refletir-sobre-as-arvores-do-codigo-de-huffman">5. Refletir sobre as árvores do código de Huffman</h3>
+<p>Considere uma string que tenha o mesmo número de ocorrências de cada caractere, como por exemplo: ABCDEFG. Faça a codificação de Huffman para essa string. Após, considere uma string que tenha muito mais ocorrências de um ou dois caracteres, como AAAAAAABBBBBBBBBCDEFG. Faça a codificação de Huffman para essa string. Em qual dos dois casos a codificação de Huffman "economizou" mais caracteres? Por que você acha que isso acontece?</p>
+<h3 id="6-refletir-sobre-encontrar-o-fim-de-uma-cadeia">6. Refletir sobre encontrar o fim de uma cadeia</h3>
+<p>Reflita, revisando o algoritmo de decodificação: se as codificações geradas pelo Código de Huffman têm tamanho variável, como o sistema "sabe" que chegou ao fim de um caractere?</p>
+<h3 id="7-implementar-um-codificador-de-huffman">7. Implementar um codificador de Huffman</h3>
+<p>Faça um programa em Python que recebe uma string e implementa a codificação e a decodificação de Huffman em strings recebidas como entrada. Implemente as seguintes funções:</p>
+<ol>
+<li><code>gerar_arvore(s : str)</code>, que gera uma árvore de Huffman com base na string <code>s</code></li>
+<li><code>codificar(arvore : any, s : str)</code>, que codifica uma string <code>s</code> usando a árvore recebida como entrada.</li>
+<li><code>decodificar(arvore: any, s_cod : str)</code>, que decodifica uma string <code>s_cod</code> usando a árvore recebida como entrada.</li>
+</ol></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<script>mermaid.initialize({});</script></body>
+</html>

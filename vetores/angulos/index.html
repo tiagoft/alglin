@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Atividade: Ângulos e Distâncias - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../propriedades_soma_e_multiplicacao_escalar/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../numpy01/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#angulos-e-distancias">Ângulos e Distâncias</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-1">Exercício 1</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-2">Exercício 2</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-3">Exercício 3</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-4">Exercício 4</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-5">Exercício 5</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-6">Exercício 6</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var requireJsScript = document.createElement('script');
+    requireJsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js';
+
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var jupyterWidgetsScript = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    jupyterWidgetsScript.src = widgetRendererSrc;
+
+    document.body.appendChild(requireJsScript);
+    document.body.appendChild(jupyterWidgetsScript);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="angulos-e-distancias">Ângulos e Distâncias</h1>
+<p><strong>Objetivo: ao fim desta atividade, o aluno deverá ser capaz de manipular vetores e transitar entre as formas polar e cartesiana</strong></p>
+<p>Instruções:</p>
+<ul>
+<li>Faça essa atividade em duplas ou trios. Use a lousa, caderno, etc.</li>
+<li>O tempo total da atividade é de 1h30</li>
+<li>Entregue os exercício resolvidos em papel manuscrito (sulfite ou almaço), indicando o nome de todos os integrantes do grupo</li>
+<li>Ao fim da atividade, teremos um teste (individual) sobre a atividade</li>
+<li>A etapa "grupo" receberá nota entre 0 e 1. A etapa "individual" receberá nota entre 0 e 1. A nota final é o produto das duas notas.</li>
+</ul>
+<p>Sobre esta atividade e estudo prévio</p>
+<p>Veja que esta atividade está disponível desde o primeiro dia de aula. Isso significa que, tecnicamente, você pode fazer a atividade antes do dia marcado. Isso não é um problema. Você talvez precise desse tempo adicional - ou, talvez, você não precise ou não tenha tempo para isso. Nenhuma das atividades aqui é um grande segredo. Se precisar de material de estudo, talvez você deva buscar por princípios de <em>trigonometria</em> e por <em>forma polar de vetores</em>, e existem inúmeros vídeos e websites que podem dar boas explicações. Atente-se para os critérios de avaliação e lembre-se que a avaliação individual parte do pressuposto de que o aluno é capaz de <em>produzir</em> (e não simplesmente decorou) as respostas para os exercícios. Mais especificamente, a avaliação individual usará conceitos que são os que <em>levam</em> às respostas, e não as repostas em si. É importante investir esforço em se tornar uma pessoa capaz de aprender autonomamente, e de desenvolver métodos para determinar, de forma independente de avaliações, se os seus próprios conceitos estão corretos (por exemplo: discutir com colegas, fazer operações inversas, conferir com material didático, etc.). Esta atividade não acompanha um gabarito, mas chegar às respostas corretas envolve somente a aplicação de conceitos que já foram trabalhados nesta disciplina.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-1">Exercício 1</h2>
+<p>Um vetor <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> de duas dimensões pode ser desenhado no plano cartesiano, como nesta figura:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_remove-input">
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_png output_subarea">
+<img alt="No description has been provided for this image" src="data:image/png;base64,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"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Veja que a "seta" desenhada tem um comprimento. O comprimento de um vetor é chamado de <em>módulo</em>, <em>norma</em>, ou simplesmente de <em>comprimento</em>, e é escrito usando barras verticais:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+||x||
+$$</span><script type="math/tex; mode=display">
+||x||
+</script>
+</div>
+</p>
+<p>Encontre uma equação capaz de encontrar o módulo de um vetor <span><span class="MathJax_Preview">$x \in \mathbb{R}^2$</span><script type="math/tex">x \in \mathbb{R}^2</script></span> qualquer, sabendo que:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+</script>
+</div>
+</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-2">Exercício 2</h2>
+<p>Ao desenharmos o vetor no plano cartesiano, veja que ele faz um ângulo <span><span class="MathJax_Preview">$\theta$</span><script type="math/tex">\theta</script></span> em relação ao eixo horizontal. Esse ângulo é chamado de <em>argumento</em>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered celltag_remove-input">
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_png output_subarea">
+<img alt="No description has been provided for this image" src="data:image/png;base64,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rd27d9vW5R566CFdddVV5X9Av1+aOVPaseP4VzYBEHUoOkS0cePG6aWXXrKty1122WUaPny4cwc9/fSStbaJE6W8POeOAyAsKDpErHfffVf333+/Nfb7/apZs6YWLFggwzCcPfjdd0sJCdLIkc4eB4DjKDpEpL1796pLly62faZpavHixaofjgsix8dLDz4o5eSUXIgZQNSi6BBxiouLdcMNN2jv3r22CzY/8sgjat++ffiC3HabVLeu9Nhj4TsmgHJH0SHiPPbYY1qxYoVtXa5Dhw564IEHwhukcmVpyJCSS4SxVgdELYoOEWX16tV68MEHrbHf71edOnU0f/58+f0u/HW9/faSu5JPnBj+YwMoFxQdIsbu3buVnp4un89n279kyRIlJSW5E6p69ZKrm8ydK/33DBNAdKHoEBFCoZB69uypffv22dblRo8erUvcvn/bTTdJO3f+735yAKIKRYeIMGrUKL311lu2dbmOHTvq3nvvdTmZSm7l07JlyVodgKhD0cF1K1eu1IifXYXE7/erbt26euGFF9xZl/sln6/krC4QkA4ccDsNgFKKgP+LoCLbuXOnunXrZluX8/l8ys3NVe3atV1M9gu9ekk//ijl5rqdBEApUXRwzdGjR9W9e3cVFBTY1uXGjh2rP/7xjy4mO44mTUput7NwodtJAJQSRQfXjBgxQu+8846OHj0qqWRdrnPnzro7Um9OevXV0rvv8u5LIMpQdHDFa6+9ptGjR8s0TUklJdegQQPNnj37mI8XRIxLL5UKCkpu3wMgalB0CLtvvvlGPXr0sO37aV2uZs2aLqU6ARdcUHKH8LffdjsJgFKg6BBWR48eVbdu3XTgwAHrbE6Sxo8frwsuuMDFZCegcmWpbVuKDogyFB3C6sEHH9TatWttn5dLS0vTgAEDXE52gi69VHrnHelnJQ0gslF0CJvly5dr7NixtnW5xo0b67nnnovcdblfuuQSadcu6auv3E4C4ARRdAiL7du368Ybb7QVmt/vVyAQUGJioovJSunMM0u+bt3qbg4AJ4yig+OKiorUtWtXFRYW2tblJk6cqHPPPdfFZCehUaOSK6Vs3+52EgAnKMbtAPC+oUOH6sMPP7RNWXbp0kW33Xaby8lOQqVKUsOGFB0QRSg6OGr58uV68sknrbFhGGrSpIlmzJgRPetyv9SkCUUHRBGmLuGo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"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Dado um vetor:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix},
+$$</span><script type="math/tex; mode=display">
+x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix},
+</script>
+</div>
+</p>
+<p>encontre (e justifique explicitamente usando diagramas, desenhos, referências à trigonometria, etc.) uma equação capaz de encontrar o ângulo <span><span class="MathJax_Preview">$\theta$</span><script type="math/tex">\theta</script></span> à partir das componentes <span><span class="MathJax_Preview">$x_1$</span><script type="math/tex">x_1</script></span> e <span><span class="MathJax_Preview">$x_2$</span><script type="math/tex">x_2</script></span>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-3">Exercício 3</h2>
+<p>Podemos escrever um vetor usando seu módulo e seu argumento usando a notação:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x = ||x|| \angle \theta
+$$</span><script type="math/tex; mode=display">
+x = ||x|| \angle \theta
+</script>
+</div>
+</p>
+<p>Esta forma é chamada de "forma polar".  Veja que as duas notações são igualmente válidas, isto é, sempre podemos escrever um vetor na forma cartesiana ou na forma polar:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x = ||x|| \angle \theta = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+x = ||x|| \angle \theta = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}
+</script>
+</div>
+</p>
+<p>Deduza as equações para encontrar <span><span class="MathJax_Preview">$x_1$</span><script type="math/tex">x_1</script></span> e <span><span class="MathJax_Preview">$x_2$</span><script type="math/tex">x_2</script></span> à partir de <span><span class="MathJax_Preview">$||x||$</span><script type="math/tex">||x||</script></span> e <span><span class="MathJax_Preview">$\theta$</span><script type="math/tex">\theta</script></span>, isto é, para encontrar a forma <em>cartesiana</em> do vetor à partir de sua forma <em>polar</em>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-4">Exercício 4</h2>
+<p>Sabemos que, se <span><span class="MathJax_Preview">$\alpha \in \mathbb{R}$</span><script type="math/tex">\alpha \in \mathbb{R}</script></span>, então:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+\alpha x = \alpha \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} \alpha  x_1 \\ \alpha  x_2 \end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+\alpha x = \alpha \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} \alpha  x_1 \\ \alpha  x_2 \end{bmatrix}
+</script>
+</div>
+</p>
+<p>(a) Se o comprimento de <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> é conhecido e igual a <span><span class="MathJax_Preview">$||x||$</span><script type="math/tex">||x||</script></span>, encontre <span><span class="MathJax_Preview">$||\alpha x||$</span><script type="math/tex">||\alpha x||</script></span>.</p>
+<p>(b) Se o comprimento de <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> é conhecido e igual a <span><span class="MathJax_Preview">$||x||$</span><script type="math/tex">||x||</script></span>, encontre <span><span class="MathJax_Preview">$\alpha$</span><script type="math/tex">\alpha</script></span> tal que <span><span class="MathJax_Preview">$|| \alpha x ||=1$</span><script type="math/tex">|| \alpha x ||=1</script></span>.</p>
+<p>(c) Se o argumento de <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> é conhecido e igual a <span><span class="MathJax_Preview">$\theta$</span><script type="math/tex">\theta</script></span>, encontre o argumento de <span><span class="MathJax_Preview">$\alpha x$</span><script type="math/tex">\alpha x</script></span>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-5">Exercício 5</h2>
+<p>Mostre que, se <span><span class="MathJax_Preview">$x = \|x\| \angle \theta$</span><script type="math/tex">x = \|x\| \angle \theta</script></span>, então podemos escrever, na forma cartesiana:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x = \|x\| \begin{bmatrix} \cos(\theta) \\ \sin(\theta) \end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+x = \|x\| \begin{bmatrix} \cos(\theta) \\ \sin(\theta) \end{bmatrix}
+</script>
+</div>
+</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-6">Exercício 6</h2>
+<p>Existem várias forças na natureza cuja intensidade depende da distância entre dois corpos. Um exemplo dessas é a força gravitacional. A força gravitacional é calculada como um vetor <span><span class="MathJax_Preview">$f$</span><script type="math/tex">f</script></span> tal que:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+||f|| = \frac{k}{d^2},
+$$</span><script type="math/tex; mode=display">
+||f|| = \frac{k}{d^2},
+</script>
+</div>
+</p>
+<p>onde <span><span class="MathJax_Preview">$k$</span><script type="math/tex">k</script></span> é uma constante que depende das massas dos corpos e <span><span class="MathJax_Preview">$d$</span><script type="math/tex">d</script></span> é a distância entre os corpos. A força gravitacional aplicada sobre um dos corpos aponta na direção do outro corpo (como por exemplo no caso da Terra: a força que o Sol exerce sobre a Terra "aponta" na direção do Sol).</p>
+<p>Suponha que temos um corpo <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> localizado na origem do plano cartesiano e um outro corpo localizado em:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+y = \begin{bmatrix} y_1 \\ y_2 \end{bmatrix}.
+$$</span><script type="math/tex; mode=display">
+y = \begin{bmatrix} y_1 \\ y_2 \end{bmatrix}.
+</script>
+</div>
+</p>
+<p>(a) Encontre a força <span><span class="MathJax_Preview">$f$</span><script type="math/tex">f</script></span> gravitacional aplicada sobre o corpo <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> na forma <em>cartesiana</em> à partir de <span><span class="MathJax_Preview">$y_1$</span><script type="math/tex">y_1</script></span> e <span><span class="MathJax_Preview">$y_2$</span><script type="math/tex">y_2</script></span>. Mostre passo a passo como chegar a essa conclusão.</p>
+<p>(b) Assuma a mesma situação do ítem (a), mas com o corpo <span><span class="MathJax_Preview">$x$</span><script type="math/tex">x</script></span> deslocado para a posição:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}.
+$$</span><script type="math/tex; mode=display">
+x = \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}.
+</script>
+</div>
+</p>
+<p>Encontre <span><span class="MathJax_Preview">$f$</span><script type="math/tex">f</script></span> à partir das posições conhecidas <span><span class="MathJax_Preview">$x_1$</span><script type="math/tex">x_1</script></span>, <span><span class="MathJax_Preview">$x_2$</span><script type="math/tex">x_2</script></span>, <span><span class="MathJax_Preview">$y_1$</span><script type="math/tex">y_1</script></span> e <span><span class="MathJax_Preview">$y_2$</span><script type="math/tex">y_2</script></span>. Mostre passo a passo como chegar a essa conclusão.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html"></div>
+</div>
+</div></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
