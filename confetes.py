@@ -14,8 +14,8 @@ BLACK = (0, 0, 0)
 COR_PERSONAGEM = (30, 200, 20)
 
 def velocidade_do_vento(s : np.ndarray) -> np.ndarray:
-    vx = s[0] + s[1] * np.cos(s[0]/100)
-    vy = (s[1]/200)**2 * np.sin(s[0]*s[1]/1000)
+    vx = s[1] * np.cos(s[0]/100)
+    vy = (s[1]/200)**2 * 10*np.sin(np.cos(s[0]*s[1]/100)*20)
     v = np.array([vx, vy])
     return v
 
