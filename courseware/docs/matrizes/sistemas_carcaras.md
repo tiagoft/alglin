@@ -180,7 +180,7 @@ Veja que $v_t$ não muda (por que o movimento é uniforme!), mas ele precisa ser
     \begin{cases}
         \begin{aligned}
         x_{t+1} & = x_{t} + v_{t} \Delta t \\
-        v_{t+1} & = v_t + a_t \Delta t - \frac{\beta}{m} v_t\\
+        v_{t+1} & = v_t + a_t \Delta t - \frac{\beta}{m} v_t \Delta t\\
         a_{t+1} &= a_t
         \end{aligned}
     \end{cases}
@@ -197,7 +197,7 @@ Veja que $v_t$ não muda (por que o movimento é uniforme!), mas ele precisa ser
     =
     \begin{bmatrix}
         1 & \Delta t & 0\\
-        0 & 1- \frac{\beta}{m} & \Delta t \\
+        0 & 1- \frac{\beta}{m} \Delta t & \Delta t \\
         0 & 0 & 1
     \end{bmatrix} 
     \begin{bmatrix}
