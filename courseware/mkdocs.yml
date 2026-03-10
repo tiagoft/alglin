@@ -17,6 +17,7 @@ nav:
     - "Teoria: Sistemas Lineares": matrizes/sistemas_carcaras.md
     - "Estudo de caso: Resolvendo Sistemas": matrizes/inversa.md
     - "Projeto (opcional): Criptografia": matrizes/projeto-enigma.md
+    - "Teoria: Determinantes": matrizes/determinante.md
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao/compressao_huffman.md
     - "Prática: Compressão Sem Perdas em Áudio": compressao/compressao_sem_perdas_audio.ipynb
