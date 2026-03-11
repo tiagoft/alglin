@@ -18,6 +18,7 @@ nav:
     - "Estudo de caso: Resolvendo Sistemas": matrizes/inversa.md
     - "Projeto (opcional): Criptografia": matrizes/projeto-enigma.md
     - "Teoria: Determinantes": matrizes/determinante.md
+    - "Prática: Transformadas Afins": matrizes/pratica_afins.ipynb
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao/compressao_huffman.md
     - "Prática: Compressão Sem Perdas em Áudio": compressao/compressao_sem_perdas_audio.ipynb
@@ -31,6 +32,8 @@ theme:
 
 markdown_extensions:
   - codehilite
+  - pymdownx.arithmatex:
+      generic: true
   - mdx_math:
       enable_dollar_delimiter: true 
       add_preview: true
@@ -46,6 +49,7 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.snippets
+  
 
 
 
