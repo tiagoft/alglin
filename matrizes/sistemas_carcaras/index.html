@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Teoria: Sistemas Lineares - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../matrizes/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../inversa/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#sistemas-lineares-os-carcaras-e-os-sapos">Sistemas lineares: os Carcarás e os Sapos</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#implementacao-computacional">Implementação computacional</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exemplo-uma-pedra-que-cai">Exemplo: uma pedra que cai</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-encontrar-a-velocidade-terminal">Exercício: encontrar a velocidade terminal</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="sistemas-lineares-os-carcaras-e-os-sapos">Sistemas lineares: os Carcarás e os Sapos</h1>
+<p>Uma situação que acontece na natureza é que alguns seres vivos são predadores de outros. Por exemplo: o <a href="https://pt.wikipedia.org/wiki/Carcar%C3%A1">carcará</a>, uma ave de rapina sul-americana parecida com um falcão, se alimenta de sapos, e, por isso, dizemos que o carcará é um <em>predador</em> do sapo. Nessa relação, o carcará é o <em>predador</em> e o sapo é a <em>presa</em>. Nosso objetivo, neste exercício, é encontrar como a quantidade de carcarás e de sapos varia com o tempo.</p>
+<p>Na nossa simulação, o tempo é medido em meses (veja que <span class="arithmatex">\(t\)</span> será sempre um número inteiro!). Vamos usar a variável <span class="arithmatex">\(c\)</span> para representar o número de carcarás na população, e <span class="arithmatex">\(s\)</span> para representar o número de sapos. Então, <span class="arithmatex">\(c_t\)</span> é o número de carcarás no tempo <span class="arithmatex">\(t\)</span>, e <span class="arithmatex">\(s_t\)</span> é o número de sapos no tempo <span class="arithmatex">\(t\)</span>. Como cada carcará come muitos sapos, vamos convencionar que <span class="arithmatex">\(c\)</span> está em unidades e <span class="arithmatex">\(s\)</span> está em milhares.</p>
+<p>Vamos assumir alguns comportamentos </p>
+<ul>
+<li>A população de carcarás naturalmente cai em 20% a cada mês</li>
+<li>Para cada cinco mil sapos existentes naquele mês, um novo carcará nasce</li>
+<li>A população de sapos naturalmente sobe em 10% porque eles se reproduzem</li>
+<li>A cada mês, cada carcará consegue comer 100 sapos</li>
+</ul>
+<p>Isso significa que podemos escrever equações para calcular o número de carcarás e de sapos a cada mês, tomando por base a quantidade deles no mês anterior:</p>
+<div class="arithmatex">\[ 
+\begin{cases}
+    \begin{aligned}
+    c_{t+1} &amp; = 0.8 c_{t} + 0.2 s_{t} \\
+    s_{t+1} &amp; = - 0.1 c_{t} + 1.1 s_{t} \\
+    \end{aligned}
+\end{cases}
+\]</div>
+<div class="admonition info">
+<p class="admonition-title">Sistemas dinâmicos</p>
+<p>Assim como na simulação dos confetes digitais, temos variáveis ligadas à iteração atual, que são recombinadas para gerar a <em>próxima</em> iteração. As variáveis <span class="arithmatex">\(c\)</span> e <span class="arithmatex">\(s\)</span> determinam o <em>estado</em> do sistema.</p>
+</div>
+<p>Veja que o sistema de equações pode ser re-escrito como:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    c_{t+1} \\
+    s_{t+1} 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0.8 &amp; 0.2\\
+    -0.1 &amp; 1.1
+\end{bmatrix} 
+\begin{bmatrix}
+    c_{t} \\
+    s_{t}
+\end{bmatrix}
+\]</div>
+<p>Isso acontece porque, ao realizar a multiplicação matricial no membro direito da equação, obtemos:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    c_{t+1} \\
+    s_{t+1} 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0.8 &amp; 0.2\\
+    -0.1 &amp; 1.1
+\end{bmatrix} 
+\begin{bmatrix}
+    c_{t} \\
+    s_{t}
+\end{bmatrix}
+= 
+\begin{bmatrix}
+0.8 c_{t} + 0.2 s_{t} \\
+- 0.1 c_{t} + 1.1 s_{t}
+\end{bmatrix}
+\]</div>
+<p>Essa igualdade é verdadeira se os elementos dos vetores são todos iguais, isto é:</p>
+<div class="arithmatex">\[ 
+\begin{cases}
+    \begin{aligned}
+    c_{t+1} &amp; = 0.8 c_{t} + 0.2 s_{t} \\
+    s_{t+1} &amp; = - 0.1 c_{t} + 1.1 s_{t} \\
+    \end{aligned}
+\end{cases}
+\]</div>
+<details class="info">
+<summary>Manualmente, assuma <span class="arithmatex">\(c_t=10\)</span> e <span class="arithmatex">\(s_t=20\)</span>. Use primeiro a formulação em sistema, e, depois, a formulação matricial, para encontrar <span class="arithmatex">\(c_{t+1}\)</span> e <span class="arithmatex">\(s_{t+1}\)</span></summary>
+<p>Em ambos os casos: <span class="arithmatex">\(c_{t+1} = 0.8 \times 10 + 0.2 \times 20 = 8+4=12\)</span> e <span class="arithmatex">\(s_{t+1} = -0.1 \times 10 + 1.1 \times 20 = -1 + 22 = 21\)</span>.</p>
+</details>
+<h2 id="implementacao-computacional">Implementação computacional</h2>
+<p>Em Python, podemos definir matrizes usando Numpy, e usar o operador <code>@</code> para realizar a multiplicação matricial:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]</span> <span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[[</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">20</span><span class="p">]])</span>
+<span class="n">x_novo</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span> <span class="c1"># Quanto vale x_novo? Tivemos o mesmo resultado que a multiplicação manual?</span>
+</code></pre></div>
+<p>Veja que agora podemos calcular a quantidade de carcarás e sapos em nossa população ao longo de várias iterações:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">n_iteracoes</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">]</span> <span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span> <span class="p">[[</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">20</span><span class="p">]])</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iteracoes</span><span class="p">):</span>
+    <span class="n">x_novo</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x_novo</span>
+</code></pre></div>
+<p><strong>Exercício:</strong> Calcule o número de carcarás e de sapos na região após 10 anos.</p>
+<h2 id="exemplo-uma-pedra-que-cai">Exemplo: uma pedra que cai</h2>
+<p>Podemos usar o mesmo processo para modelar uma pedra em movimento uniforme. Usando uma simulação em intervalos de <span class="arithmatex">\(\Delta t\)</span>, temos que:</p>
+<div class="arithmatex">\[ 
+\begin{cases}
+    \begin{aligned}
+    x_{t+1} &amp; = x_{t} + v_{t} \Delta t \\
+    v_{t+1} &amp; = v_t\\
+    \end{aligned}
+\end{cases}
+\]</div>
+<p>E, na forma matricial, temos:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    x_{t+1} \\
+    v_{t+1} 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 &amp; \Delta t\\
+    0 &amp; 1
+\end{bmatrix} 
+\begin{bmatrix}
+    x_{t} \\
+    v_{t}
+\end{bmatrix}
+\]</div>
+<p>Veja que <span class="arithmatex">\(v_t\)</span> não muda (por que o movimento é uniforme!), mas ele precisa ser usado como uma variável para que possa influenciar no cálculo de <span class="arithmatex">\(x_{t+1}\)</span>.</p>
+<details class="info">
+<summary>Modifique o sistema de equações e sua formulação matricial para adicionar aceleração constante ao sistema</summary>
+<p>Nesse caso, teríamos:
+<div><span class="MathJax_Preview">$$ 
+\begin{cases}
+    \begin{aligned}
+    x_{t+1} &amp; = x_{t} + v_{t} \Delta t \\
+    v_{t+1} &amp; = v_t + a_t \Delta t\\
+    a_{t+1} &amp;= a_t
+    \end{aligned}
+\end{cases}
+$$</span><script type="math/tex; mode=display"> 
+\begin{cases}
+    \begin{aligned}
+    x_{t+1} & = x_{t} + v_{t} \Delta t \\
+    v_{t+1} & = v_t + a_t \Delta t\\
+    a_{t+1} &= a_t
+    \end{aligned}
+\end{cases}
+</script>
+</div>
+</p>
+<p>e, portanto:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    x_{t+1} \\
+    v_{t+1} \\
+    a_{t+1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 &amp; \Delta t &amp; 0\\
+    0 &amp; 1 &amp; \Delta t \\
+    0 &amp; 0 &amp; 1
+\end{bmatrix} 
+\begin{bmatrix}
+    x_{t} \\
+    v_{t} \\
+    a_{t}
+\end{bmatrix}
+\]</div>
+</details>
+<details class="info">
+<summary>Adicione uma força de resistência do ar a esse sistema. Lembre-se que a resistência do ar gera uma força no sentido oposto à velocidade e com módulo <span class="arithmatex">\(\beta |v|\)</span>, onde <span class="arithmatex">\(\beta \in [0,1]\)</span>.</summary>
+<p>Vamos precisar definir a massa da pedra (<span class="arithmatex">\(m\)</span>) e o coeficiente <span class="arithmatex">\(\beta\)</span>. Após isso, usamos a Segunda Lei de Newton (<span class="arithmatex">\(F=ma\)</span>) e verificamos que a aceleração decorrente da resistência do ar vale <span class="arithmatex">\(\frac{-\beta}{m} v\)</span>. Portanto, ficamos com o sistema:
+<div><span class="MathJax_Preview">$$ 
+\begin{cases}
+    \begin{aligned}
+    x_{t+1} &amp; = x_{t} + v_{t} \Delta t \\
+    v_{t+1} &amp; = v_t + a_t \Delta t - \frac{\beta}{m} v_t \Delta t\\
+    a_{t+1} &amp;= a_t
+    \end{aligned}
+\end{cases}
+$$</span><script type="math/tex; mode=display"> 
+\begin{cases}
+    \begin{aligned}
+    x_{t+1} & = x_{t} + v_{t} \Delta t \\
+    v_{t+1} & = v_t + a_t \Delta t - \frac{\beta}{m} v_t \Delta t\\
+    a_{t+1} &= a_t
+    \end{aligned}
+\end{cases}
+</script>
+</div>
+</p>
+<p>Na forma matricial, isso fica:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    x_{t+1} \\
+    v_{t+1} \\
+    a_{t+1}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 &amp; \Delta t &amp; 0\\
+    0 &amp; 1- \frac{\beta}{m} \Delta t &amp; \Delta t \\
+    0 &amp; 0 &amp; 1
+\end{bmatrix} 
+\begin{bmatrix}
+    x_{t} \\
+    v_{t} \\
+    a_{t}
+\end{bmatrix}
+\]</div>
+</details>
+<h2 id="exercicio-encontrar-a-velocidade-terminal">Exercício: encontrar a velocidade terminal</h2>
+<p>Quando um objeto cai em um ambiente com resistência do ar, ele é puxado pela gravidade. Isso faz com que a velocidade de queda aumente. Porém, esse aumento de velocidade faz com que a força de arraste também aumente. Quando as acelerações devidas à gravidade (<span class="arithmatex">\(g\)</span>) e ao arraste são iguais, o objeto atinge sua velocidade terminal.</p>
+<p>(a) Esboce a situação discutida mostrando as forças da gravidade e de arraste sobre o objeto.</p>
+<p>(b) Mostre que a velocidade terminal é <span class="arithmatex">\(v = \frac{m g}{\beta}\)</span>.</p>
+<p>(c) Calcule a velocidade terminal assumindo <span class="arithmatex">\(\beta=0.7\)</span>, <span class="arithmatex">\(m=100kg\)</span> e <span class="arithmatex">\(a=10m/s^2\)</span>.</p>
+<p>(d) Use a formulação matricial e uma simulação computacional para confirmar o resultado encontrado em (c).</p>
+<p>(e) Faça um gráfico da velocidade de queda do objeto como uma função do tempo, assumindo velocidade inicial nula.</p></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
