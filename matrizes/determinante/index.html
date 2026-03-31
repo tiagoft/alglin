@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Teoria: Determinantes - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../avancado/bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../projeto-enigma/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../pratica_afins/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#determinantes-e-seu-significado-geometrico">Determinantes e seu significado geométrico</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#significado-geometrico-interseccao-de-retas">Significado geométrico: intersecção de retas</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#significado-geometrico-areas-de-formas">Significado geométrico: áreas de formas</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="determinantes-e-seu-significado-geometrico">Determinantes e seu significado geométrico</h1>
+<p>Talvez você se lembre do determinante de matrizes que talvez tenha aprendido no ensino médio. O <em>determinante</em> da matriz é um número relacionado à matriz, e vamos estudar seu significado. Para isso, usaremos o caso de matrizes <span class="arithmatex">\(2 \times 2\)</span>, sabendo que esse significado pode ser extrapolado para matrizes de dimensão mais alta.</p>
+<div class="admonition info">
+<p class="admonition-title">Equação para calcular determinante da matriz <span class="arithmatex">\(2 \times 2\)</span></p>
+<div class="arithmatex">\[
+\text{det}(\begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}) = ad-cb
+\]</div>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Significado do determinante</p>
+<p>Tipicamente, ensinamos que, se o determinante de <span class="arithmatex">\(A\)</span> é zero, então <span class="arithmatex">\(A^{-1}\)</span> não existe.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Determinantes em Python</p>
+<p>A função <code>np.linalg.det(A)</code> calcula o determinante de <code>A</code>.</p>
+</div>
+<h2 id="significado-geometrico-interseccao-de-retas">Significado geométrico: intersecção de retas</h2>
+<p>As equações de primeiro grau são aquelas que relacionam uma variável de entrada (<span class="arithmatex">\(x\)</span>) a uma saída (<span class="arithmatex">\(y\)</span>) por meio de um polinômio de primeiro grau como:</p>
+<div class="arithmatex">\[
+y = ax + b
+\]</div>
+<p>Esse tipo de equação também é chamado de "equação da reta". O motivo disso é que os pontos <span class="arithmatex">\((x_0,y_0)\)</span> que satisfazem a essa equação se organizam em uma reta.</p>
+<p>Uma outra forma de escrever a equação da reta é usar a forma geral: </p>
+<div class="arithmatex">\[
+Ax + By + C = 0
+\]</div>
+<p>Nesse caso, para traçar a reta, é preciso isolar <span class="arithmatex">\(y\)</span> e então proceder normalmente.</p>
+<p>Esboce (manualmente), na mesma figura, as retas:</p>
+<ol>
+<li><span class="arithmatex">\(y = 0.5x\)</span></li>
+<li><span class="arithmatex">\(y = 1 - 0.5x\)</span></li>
+<li><span class="arithmatex">\(2y - 2 - x = 0\)</span></li>
+<li><span class="arithmatex">\(y = 2\)</span></li>
+</ol>
+<h3 id="problema-onde-corredores-se-encontram">Problema: onde corredores se encontram?</h3>
+<p>Dois corredores estão correndo por uma trilha. Um deles parte da marcação do km 3, e corre a 5km/h. O outro deles parte da marcação do km 5 e corre a 2km/h, na mesma direção do primeiro. Para encontrar a posição na estrada e o instante em que eles vão se encontrar, podemos modelar o problema como um sistema de equações e resolvê-lo normalmente.</p>
+<ol>
+<li>Após quanto tempo os corredores se encontrarão?</li>
+<li>Em que local da trilha os corredores se encontrarão?</li>
+<li>Esboce as retas que representam os movimentos dos corredores</li>
+<li>Qual é o ponto em que as retas se encontram?</li>
+<li>Qual é a relação desse ponto de encontro com a solução do sistema linear?</li>
+</ol>
+<h3 id="formulacao-matricial-do-problema">Formulação matricial do problema</h3>
+<div class="admonition info">
+<p class="admonition-title">Exemplo</p>
+<p>O sistema de equações com que lidamos é:</p>
+<div class="arithmatex">\[
+\begin{cases}
+\begin{aligned}
+y &amp;= 5x + 3\\
+y &amp;= 2x + 5
+\end{aligned}
+\end{cases}
+\]</div>
+<p>Ele pode ser re-escrito como:</p>
+<div class="arithmatex">\[
+\begin{cases}
+\begin{aligned}
+-5x + 1y  &amp;= 3\\
+-2 + 1y  &amp;=  5
+\end{aligned}
+\end{cases}
+\]</div>
+<p>e, na forma matricial, ficaríamos com:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    -5 &amp; 1\\
+    -2 &amp; 1
+\end{bmatrix} 
+\begin{bmatrix}
+    x \\
+    y
+\end{bmatrix}
+=
+\begin{bmatrix}
+    3 \\
+    5 
+\end{bmatrix}
+\]</div>
+</div>
+<h3 id="da-forma-matricial-para-equacoes-da-reta">Da forma matricial para equações da reta</h3>
+<p>O sistema de equações abaixo, escrito na forma matricial, determina duas retas. Encontre a equação das retas e determine (use um script Python, e depois confira manualmente se a resposta está correta) o ponto em que elas se cruzam:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    -15 &amp; 2\\
+    -3 &amp; 4
+\end{bmatrix} 
+\begin{bmatrix}
+    x \\
+    y
+\end{bmatrix}
+=
+\begin{bmatrix}
+    1 \\
+    2 
+\end{bmatrix}
+\]</div>
+<h3 id="retas-paralelas">Retas paralelas</h3>
+<p>Dizemos que duas retas são paralelas quando seus coeficientes angulares (o "<span class="arithmatex">\(a\)</span>" na equação <span class="arithmatex">\(y=ax+b\)</span>) é igual. Por exemplo:</p>
+<div class="arithmatex">\[
+\begin{cases}
+\begin{array}{rl}
+y &amp;= 3x + 6 \\
+y &amp;= 3x + 12
+\end{array}
+\end{cases}
+\]</div>
+<ol>
+<li>
+<p>Determine <span class="arithmatex">\(c \in \mathbb{R}\)</span> abaixo para que as retas relacionadas ao sistema sejam paralelas: 
+<div><span class="MathJax_Preview">$$
+\begin{cases}
+\begin{array}{rl}
+y &amp;= 3x + 6 \\
+y &amp;= cx + 12 
+\end{array}
+\end{cases}
+$$</span><script type="math/tex; mode=display">
+\begin{cases}
+\begin{array}{rl}
+y &= 3x + 6 \\
+y &= cx + 12 
+\end{array}
+\end{cases}
+</script>
+</div>
+</p>
+</li>
+<li>
+<p>Determine <span class="arithmatex">\(c \in \mathbb{R}\)</span> abaixo para que as retas relacionadas ao sistema sejam paralelas: 
+<div><span class="MathJax_Preview">$$
+\begin{cases}
+\begin{array}{rl}
+y &amp;= 3x + 6 \\
+10 &amp;= cx + 12 + 2y 
+\end{array}
+\end{cases}
+$$</span><script type="math/tex; mode=display">
+\begin{cases}
+\begin{array}{rl}
+y &= 3x + 6 \\
+10 &= cx + 12 + 2y 
+\end{array}
+\end{cases}
+</script>
+</div>
+</p>
+</li>
+<li>
+<p>Determine <span class="arithmatex">\(c \in \mathbb{R}\)</span> abaixo para que as retas relacionadas ao sistema sejam paralelas: 
+<div><span class="MathJax_Preview">$$
+\begin{bmatrix}
+    1 &amp; 2\\
+    c &amp; 4
+\end{bmatrix} 
+\begin{bmatrix}
+    x \\
+    y
+\end{bmatrix}
+=
+\begin{bmatrix}
+    17 \\
+    23
+\end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+\begin{bmatrix}
+    1 & 2\\
+    c & 4
+\end{bmatrix} 
+\begin{bmatrix}
+    x \\
+    y
+\end{bmatrix}
+=
+\begin{bmatrix}
+    17 \\
+    23
+\end{bmatrix}
+</script>
+</div>
+</p>
+</li>
+<li>
+<p>Determine qual deve ser a relação entre <span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(b\)</span>, <span class="arithmatex">\(c\)</span> e <span class="arithmatex">\(d\)</span> abaixo para que as retas relacionadas ao sistema sejam paralelas:
+<div><span class="MathJax_Preview">$$
+\begin{bmatrix}
+    a &amp; b\\
+    c &amp; d
+\end{bmatrix} 
+\begin{bmatrix}
+    x \\
+    y
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \beta_1 \\
+    \beta_2
+\end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+\begin{bmatrix}
+    a & b\\
+    c & d
+\end{bmatrix} 
+\begin{bmatrix}
+    x \\
+    y
+\end{bmatrix}
+=
+\begin{bmatrix}
+    \beta_1 \\
+    \beta_2
+\end{bmatrix}
+</script>
+</div>
+</p>
+</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Resumo: determinantes e a intersecção das retas</p>
+<p>O determinante da matriz <span class="arithmatex">\(2 \times 2\)</span> é zero quando as retas determinadas por esse sistema não se cruzam. Nessas condições, não existe inversa da matriz porque o sistema relacionado não tem solução. No caso de matrizers de tamanho maior, estamos falando da intersecção de planos ou de hiperplanos.</p>
+</div>
+<h2 id="significado-geometrico-areas-de-formas">Significado geométrico: áreas de formas</h2>
+<p>Neste estudo, verificaremos o que acontece com áreas de polígonos na multiplicação matricial. Para isso, vamos partir de criar uma núvem de pontos:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p>Veja que <code>x</code> contém vários pontos (1 ponto por coluna). Mas, gostaríamos de verificar o que acontece com nossa núvem de pontos quando multiplicamos por uma matriz <span class="arithmatex">\(A\)</span>. Em outras palavras, gostaríamos de fazer:</p>
+<div class="arithmatex">\[
+Y = AX
+\]</div>
+<p>que pode ser interpretado como aplicar a matriz <span class="arithmatex">\(A\)</span> sobre cada uma das colunas de <span class="arithmatex">\(X\)</span>, ou:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+\vert &amp; \vert &amp;  &amp; \vert \\
+ y_1 &amp; y_2 &amp; \cdots &amp; y_n \\
+ \vert &amp; \vert &amp;  &amp; \vert \\
+ \end{bmatrix} = A \begin{bmatrix}
+\vert &amp; \vert &amp;  &amp; \vert \\
+ x_1 &amp; x_2 &amp; \cdots &amp; x_n \\
+ \vert &amp; \vert &amp;  &amp; \vert \\
+ \end{bmatrix}
+\]</div>
+<p>Podemos implementar essa situação para a matriz <span class="arithmatex">\(A=\begin{bmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{bmatrix}\)</span> com o código:</p>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">600</span><span class="p">))</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'r'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">'b'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+<p>Veja que isso levou a termos duas núvens de pontos: a vermelha, correspondente aos pontos originais, e a azul, correspondente aos pontos transformados.</p>
+<details class="info">
+<summary>Qual é a área ocupada pelos pontos originais (vermelhos)?</summary>
+<p>A área é <span class="arithmatex">\(1\)</span></p>
+</details>
+<details class="info">
+<summary>Qual é a área ocupada pelos pontos transformados (azuis)?</summary>
+<p>A área é <span class="arithmatex">\(4\)</span></p>
+</details>
+<p>Transforme a núvem de pontos anterior, experimentando independentemente cada uma das candiatas a matriz <span class="arithmatex">\(A\)</span> abaixo. Use os seguintes valores para <span class="arithmatex">\(D\)</span>: <span class="arithmatex">\(1\)</span>, <span class="arithmatex">\(1.5\)</span>, <span class="arithmatex">\(2\)</span>, <span class="arithmatex">\(0\)</span>. Para cada valor de <span class="arithmatex">\(D\)</span> na matriz, calcule o determinante da matriz e a área da núvem de pontos resultante.</p>
+<div class="arithmatex">\[
+A = 
+\begin{bmatrix}
+    1 &amp; 0\\
+    0 &amp; D
+\end{bmatrix}
+\]</div>
+<details class="info">
+<summary>O que significa o determinante em relação à transformação da área da núvem de pontos?</summary>
+<p>Se transformamos uma núvem de pontos por uma matriz <span class="arithmatex">\(A\)</span>, a área ocupada pela núvem transformada é a área original multiplicada pelo determinante de <span class="arithmatex">\(A\)</span>.</p>
+</details>
+<details class="info">
+<summary>Por que o determinante <span class="arithmatex">\(0\)</span> implica necessariamente em uma matriz não ser inversível?</summary>
+<p>Como os pontos de uma área são projetados sobre uma reta (ou seja, estão sendo achatados, de forma semelhante a uma foto achatando um mundo 3D), então sabemos que há vários pontos da núvem original que são projetados sobre o mesmo ponto da núvem transformada. Por isso, é impossível determinar qual era o ponto original, e, portanto, a função que leva de <span class="arithmatex">\(X\)</span> para <span class="arithmatex">\(Y\)</span> não é inversível. Por isso, <span class="arithmatex">\(A\)</span> não tem inversa.</p>
+</details></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
