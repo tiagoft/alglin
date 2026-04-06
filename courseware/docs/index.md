@@ -1,5 +1,23 @@
 # Álgebra Linear e Teoria da Informação
 
+## Calendário
+
+Abril
+* 7 Teoria: autovalores
+* 9 Estudo de caso: autovalores
+* 10 Prática 3
+* 14 Avaliação: prática 3 + teste 3
+* 16 Teoria: pseudo-inversa
+* 17 Estudo de caso: gravidade
+* 23 Teoria: compressão sem perdas
+* 24 Prática 4: compressão sem perdas em áudio
+* 28 Avaliação prática 4 + teste 4
+* 30 Projeto
+
+Maio
+* 5 Projeto
+* 7 Início das PFs
+
 
 ## Notas:
 
