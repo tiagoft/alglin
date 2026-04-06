@@ -24,6 +24,9 @@ nav:
   - "Avançados":
     - "Teoria: Mudanças de Base": avancado/bases.ipynb
     - "Estudo de caso: Pixels e Cores": avancado/pixels.ipynb
+    - "Teoria: Auto-vetores e Auto-valores": avancado/autovetores_autovalores.md
+    - "Estudo de caso: Cadeias de Markov": avancado/autovetores.ipynb
+    - "Prática: Modelos de Linguagem": avancado/atividade_autovetores.ipynb
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao/compressao_huffman.md
     - "Prática: Compressão Sem Perdas em Áudio": compressao/compressao_sem_perdas_audio.ipynb
