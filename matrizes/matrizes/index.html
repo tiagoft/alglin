@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Teoria: O que são matrizes - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../avancado/bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/autovetores_autovalores/">Teoria: Auto-vetores e Auto-valores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/autovetores/">Estudo de caso: Cadeias de Markov</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/atividade_autovetores/">Prática: Modelos de Linguagem</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/regressao/">Teoria: Regressão e Pseudo-inversa</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/gravidade/">Estudo de caso: Estimar a Gravidade</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../projeto-final/">Projeto final</a>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../vetores/busca_embeddings/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../sistemas_carcaras/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#matrizes">Matrizes</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#introducao-a-sobremesa">Introdução: a sobremesa</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#matrizes_1">Matrizes</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#soma-de-matrizes-e-multiplicacao-por-escalar">Soma de matrizes e multiplicação por escalar</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#multiplicacao-de-matrizes">Multiplicação de matrizes</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#matrizes-transpostas">Matrizes transpostas</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#matrizes-sao-vetores-empilhados">Matrizes são vetores empilhados</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#a-multiplicacao-matricial-e-uma-serie-de-produtos-internos">A multiplicação matricial é uma série de produtos internos</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#a-busca-em-espacos-de-embeddings">A busca em espaços de embeddings</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="matrizes">Matrizes</h1>
+<p>Referência bibliográfica: <a href="https://hefferon.net/linearalgebra/">Jim Hefferon - Linear Algebra - 4th Edition</a> - Chap. One, I, Chap. Three, III-IV</p>
+<h2 id="introducao-a-sobremesa">Introdução: a sobremesa</h2>
+<h3 id="calculando-o-preco-da-minha-fornada-de-brigadeiros">Calculando o preço da minha fornada de brigadeiros</h3>
+<p>Uma forma muito comum de fazer brigadeiros é a seguinte: coloque uma lata de leite condensado, duas colheres de chocolate em pó e uma colher de manteiga em uma panela. Leve a mistura ao fogo baixo e misture bem. Quando ferver, recite devagar um soneto de Camões e então desligue.</p>
+<p>Bem, após toda a poesia de usar um soneto como medida de tempo, podemos medir friamente nossos ingredientes e descobrir que, para fazer uma fornada com 20 brigadeiros, é preciso usar 40g de manteiga, uma lata (400g) de leite condensado e 20g de chocolate em pó.</p>
+<p>Também, podemos lembrar os preços de cada um dos ingredientes:</p>
+<table>
+<thead>
+<tr>
+<th>Ingrediente</th>
+<th>Custo por embalagem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Leite condensado</td>
+<td>R$10,00 (lata de 400g)</td>
+</tr>
+<tr>
+<td>Manteiga</td>
+<td>R$15,00 (pote com 200g)</td>
+</tr>
+<tr>
+<td>Chocolate em pó</td>
+<td>R$18,00 (caixa com 200g)</td>
+</tr>
+</tbody>
+</table>
+<p>Podemos representar a quantidade de nossos ingredientes (em gramas) como um vetor <span class="arithmatex">\(x \in \mathbb{R}^3\)</span>:</p>
+<div class="arithmatex">\[
+x = \begin{bmatrix} 40 \\ 400 \\ 20 \end{bmatrix}.
+\]</div>
+<p>Podemos também representar o preço por grama de cada ingrediente como um vetor <span class="arithmatex">\(y \in \mathbb{R}^3\)</span>:</p>
+<div class="arithmatex">\[
+y = \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \end{bmatrix}.
+\]</div>
+<details class="info">
+<summary>Mostre que o preço de uma fornada pode ser calculado por <span class="arithmatex">\(&lt;x,y&gt;\)</span>.</summary>
+<p>O preço total da fornada é calculado somando os preços parciais de cada ingrediente, ou seja:</p>
+<div class="arithmatex">\[
+p = x_1 y_1 + x_2 y_2 + x_3 y_3 = \sum_{i=1}^n x_i y_i = &lt;x,y&gt;
+\]</div>
+</details>
+<h3 id="e-se-eu-faco-ganache">E se eu faço ganache?</h3>
+<p>Nem só de brigadeiros vive uma doceria. Também queria fazer ganache. Ganache é feito igual ao brigadeiro, mas usando uma caixa de creme de leite (a caixa tem 200g e custa R$2,80). Só que agora gostaríamos de representar tanto as quantidades de ingredientes para o brigadeiro quanto para o doce de côco no mesmo espaço vetorial. Bem, agora teremos que criar "espaço" para o creme de leite, então nossos vetores vão passar a estar em <span class="arithmatex">\(\mathbb{R}^4\)</span>. Nesse caso:</p>
+<details class="info">
+<summary>Como ficam os vetores <span class="arithmatex">\(x_b\)</span> (ingredientes do brigadeiro), <span class="arithmatex">\(x_g\)</span> (ingredientes do ganache), e <span class="arithmatex">\(y\)</span> (custo dos ingredientes)?</summary>
+<p>Adicionando uma quarta dimensão para o creme de leite:</p>
+<div class="arithmatex">\[
+x_b = \begin{bmatrix} 40 \\ 400 \\ 20 \\ 0 \end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+x_g = \begin{bmatrix} 40 \\ 0 \\ 20 \\ 200 \end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+y = \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \\ 28/2000 \end{bmatrix}
+\]</div>
+</details>
+<details class="info">
+<summary>Nesse caso, ainda posso calcular o custo do brigadeiro usando <span class="arithmatex">\(&lt;x_b, y&gt;\)</span> e o custo do ganache com <span class="arithmatex">\(&lt;x_g, y&gt;\)</span>?</summary>
+<p>Sim, ainda posso. Como temos "zero" nos ingredientes inexistentes, a equação fica estritamente a mesma que se eles não existissem.</p>
+</details>
+<h2 id="matrizes_1">Matrizes</h2>
+<p>No caso da nossa doceria fictícia, tínhamos dois doces, e atuamos sobre eles de forma completamente independente. Porém, gostaríamos de representar nossas receitas - ou melhor, nossa <em>coleção de vetores</em> - em uma única estrutura! Para isso, precisamos de uma espécie de... vetor de vetores... ou melhor: uma <strong>matriz</strong>.</p>
+<p>Uma matriz tem números organizados em linhas e colunas, de forma semelhante a uma tabela. Por exemplo:</p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \end{bmatrix}
+\]</div>
+<p>Nesse caso, dizemos que <span class="arithmatex">\(X\)</span> tem duas linhas e 3 colunas, ou ainda, que <span class="arithmatex">\(X \in \mathbb{R}^{2 \times 3}\)</span>. Geralmente usamos letras maiúsculas para representar matriz, mas isso não é <em>obrigatório</em>. Usamos a notação <span class="arithmatex">\(x_{i,j}\)</span> para nos referir ao elemento de <span class="arithmatex">\(X\)</span> que está na linha <span class="arithmatex">\(i\)</span> e coluna <span class="arithmatex">\(j\)</span>.</p>
+<p>Uma maneira de representar nossas receitas poderia ser usando uma matriz com uma linha por receita e uma coluna por ingrediente, ou:</p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 40 &amp; 400 &amp; 20 &amp; 0 \\ 40 &amp; 0 &amp; 20 &amp; 200 \end{bmatrix}
+\]</div>
+<p>E agora temos uma única "entidade" que representa todo o nosso cardápio - ou ainda, toda a nossa <em>coleção de vetores</em>.</p>
+<details class="info">
+<summary>Suponha que queremos adicionar à nossa doceria caseira o doce de côco, que é feito com 400g de leite condensado e 250g de côco ralado. Como ficaria a matriz <span class="arithmatex">\(X\)</span>?</summary>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 40 &amp; 400 &amp; 20 &amp; 0 &amp; 0 \\ 40 &amp; 0 &amp; 20 &amp; 200 &amp; 0 \\ 0 &amp; 400 &amp; 0 &amp; 0 &amp; 250 \end{bmatrix}
+\]</div>
+</details>
+<h2 id="soma-de-matrizes-e-multiplicacao-por-escalar">Soma de matrizes e multiplicação por escalar</h2>
+<p>Se continuarmos assumindo que as matrizes são uma maneira de representar uma coleção de vetores, então as regras de soma e multiplicação por escalar se aplicam da mesma forma que para vetores:</p>
+<div class="arithmatex">\[
+\begin{array}{rll}
+Z &amp;= X + Y &amp;\Rightarrow z_{i,j} = x_{i,j} + y_{i,j} \\
+Z &amp;= aX &amp;\Rightarrow z_{i,j} = a x_{i,j}
+\end{array}
+\]</div>
+<h2 id="multiplicacao-de-matrizes">Multiplicação de matrizes</h2>
+<p>Podemos multiplicar duas matrizes <span class="arithmatex">\(X\)</span> e <span class="arithmatex">\(Y\)</span>. Essa operação não é trivial e há regras específicas para ela. </p>
+<h3 id="definicao">Definição</h3>
+<p>A definição da multiplicação de matrizes é: partindo de <span class="arithmatex">\(X \in \mathbb{R}^{i \times k}\)</span> e <span class="arithmatex">\(Y \in \mathbb{R}^{k \times j}\)</span>, o resultado é uma matriz <span class="arithmatex">\(Z \in \mathbb{R}^{i \times j}\)</span> onde:</p>
+<div class="arithmatex">\[
+z_{i,j} = \sum_{n=1}^k x_{i,n} y_{n,j}
+\]</div>
+<h3 id="uma-forma-mais-simples-de-entender">Uma forma mais simples de entender</h3>
+<p>Se tivermos:</p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \end{bmatrix} \hspace{1cm} Y = \begin{bmatrix} a \\ b \\ c \end{bmatrix}
+\]</div>
+<p>podemos fazer a multiplicação <span class="arithmatex">\(Z=XY\)</span>. Nesse caso, <span class="arithmatex">\(Z\)</span> é uma matriz com:</p>
+<ul>
+<li>Tantas linhas quanto a primeira matriz (<span class="arithmatex">\(X\)</span>), isto é, 2</li>
+<li>Tantas colunas quanto a segunda matriz (<span class="arithmatex">\(Y\)</span>), isto é, 1</li>
+</ul>
+<p>A definição da multiplicação matricial pode ser interpretada da seguinte forma: <em>o elemento <span class="arithmatex">\(z_{i,j}\)</span> (isto é, o elemento na linha <span class="arithmatex">\(i\)</span>, coluna <span class="arithmatex">\(j\)</span>) é calculado multiplicando sucessivamente os elementos da linha <span class="arithmatex">\(i\)</span> da primeira matriz com os elementos da coluna <span class="arithmatex">\(j\)</span> da segunda matriz</em>. Em outras palavras:</p>
+<div class="arithmatex">\[
+z_{1,1} = \sum_{n=1}^3 x_{1,n} y_{n,1} = 1a + 2b + 3c
+\]</div>
+<details class="info">
+<summary>Então, como calcular <span class="arithmatex">\(z_{2,1}\)</span>?</summary>
+<div class="arithmatex">\[z_{2,1} = \sum_{n=1}^3 x_{2,n} y_{n,1} = 4a + 5b + 6c\]</div>
+</details>
+<details class="info">
+<summary>Por fim, quanto vale Z?</summary>
+<div class="arithmatex">\[Z = \begin{bmatrix}  1a + 2b + 3c \\ 4a + 5b + 6c \end{bmatrix}\]</div>
+</details>
+<h3 id="restricoes">Restrições</h3>
+<ul>
+<li>Veja que, pela definição, a multiplicação <span class="arithmatex">\(Z=XY\)</span> só pode acontecer se o número de colunas de <span class="arithmatex">\(X\)</span> for igual ao número de linhas de <span class="arithmatex">\(Y\)</span>.</li>
+<li>Também, podemos rapidamente mostrar que, no caso geral, <span class="arithmatex">\(XY \neq YX\)</span>. Demonstre isso para duas matrizes <span class="arithmatex">\(2 \times 2\)</span>!</li>
+</ul>
+<h3 id="voltando-a-minha-doceria">Voltando à minha doceria</h3>
+<p>Partindo da minha matriz com ingredientes para brigadeiro e ganache:</p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 40 &amp; 400 &amp; 20 &amp; 0  \\ 40 &amp; 0 &amp; 20 &amp; 200 &amp; \end{bmatrix}
+\]</div>
+<p>podemos escrever nossa matriz de custos como:</p>
+<div class="arithmatex">\[
+Y = \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \\ 28/2000 \end{bmatrix}
+\]</div>
+<details class="info">
+<summary>Verifique que <span class="arithmatex">\(Z=XY\)</span> representa, simultaneamente, o custo do brigadeiro e do ganache</summary>
+<p>Realizando a multiplicação matricial, temos os resultados que encontramos anteriormente em cada elemento de <span class="arithmatex">\(Z\)</span>.</p>
+</details>
+<p>Veja que isso nos leva a interpretar matrizes de acordo com seu conteúdo. Neste problema:</p>
+<ul>
+<li><span class="arithmatex">\(Y\)</span> é uma matriz em que cada linha representa um ingrediente e cada elemento é seu custo unitário.</li>
+<li><span class="arithmatex">\(X\)</span> é uma matriz em que cada linha representa uma receita, cada coluna representa um ingrediente, e cada elemento é a quantidade usada.</li>
+<li><span class="arithmatex">\(Z\)</span> é uma matriz em que cada linha representa uma receita e cada elemento é o seu custo total.</li>
+</ul>
+<h2 id="matrizes-transpostas">Matrizes transpostas</h2>
+<p>Uma operação que podemos fazer sobre uma matriz é a <em>tranposição</em>. A matriz transposta de <span class="arithmatex">\(X\)</span> é denotada <span class="arithmatex">\(X^T\)</span>. Na transposição, os índices que indicavam colunas passam a indicar linhas, e vice-versa. A definição precisa disso é:</p>
+<div class="arithmatex">\[
+x^T_{j,i} = x_{i,j}
+\]</div>
+<div class="admonition info">
+<p class="admonition-title">Exemplo de matriz transposta</p>
+<p>se 
+<div><span class="MathJax_Preview">$$
+X = \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \end{bmatrix},
+$$</span><script type="math/tex; mode=display">
+X = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix},
+</script>
+</div>
+</p>
+<p>então</p>
+<div class="arithmatex">\[
+X^T = \begin{bmatrix} 1 &amp; 4 \\ 2 &amp; 5 \\ 3 &amp; 6 \end{bmatrix}
+\]</div>
+</div>
+<details class="info">
+<summary>Como fica nossa matriz de receitas em sua forma transposta?</summary>
+<div class="arithmatex">\[
+X^T = \begin{bmatrix} 40 &amp; 40 \\ 400 &amp; 0 \\ 20 &amp; 20 \\ 0 &amp; 200 \end{bmatrix}
+\]</div>
+</details>
+<p>??? info "Mostre que, se <span class="arithmatex">\(X\)</span> é uma matriz-linha correspondente ao vetor <span class="arithmatex">\(y\)</span>, então <span class="arithmatex">\(XX^T = &lt;y,y&gt;\)</span>.
+    Pela definição:
+    <div><span class="MathJax_Preview">$$
+    \begin{array}{rl}
+    XX^T &amp;= \sum_{n=1}^k x_{1,n} x^T_{n,1} \\ &amp;= \sum_{n=1}^k x_{1,n} x_{1,n}
+    \\ &amp;= \sum_{n=1}^k y_n y_n
+    \\ &amp;= &lt;y,y&gt;
+    \end{array}
+    $$</span><script type="math/tex; mode=display">
+    \begin{array}{rl}
+    XX^T &= \sum_{n=1}^k x_{1,n} x^T_{n,1} \\ &= \sum_{n=1}^k x_{1,n} x_{1,n}
+    \\ &= \sum_{n=1}^k y_n y_n
+    \\ &= <y,y>
+    \end{array}
+    </script>
+</div>
+</p>
+<h3 id="multiplicacao-de-transpostas">Multiplicação de transpostas</h3>
+<p>Se quisermos operar com a matriz de receitas em sua forma transposta, é claro que não conseguimos mais multiplicar da mesma forma pela matriz de custos. Se tentarmos isso, vamos encontrar:</p>
+<div class="arithmatex">\[
+Z = \begin{bmatrix} 40 &amp; 40 \\ 400 &amp; 0 \\ 20 &amp; 20 \\ 0 &amp; 200 \end{bmatrix} \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \\ 28/2000 \end{bmatrix}
+\]</div>
+<p>e essa operação é inválida porque o número de colunas de <span class="arithmatex">\(X^T\)</span> não é o número de linhas de <span class="arithmatex">\(Y\)</span>. Então, precisamos usar uma propriedade:</p>
+<div class="arithmatex">\[
+Y^T X^T = (XY)^T
+\]</div>
+<p>Isso significa que, no nosso caso, podemos encontrar a matriz <span class="arithmatex">\(Z=XY\)</span>. Porém, podemos também encontrar a matriz <span class="arithmatex">\(Z^T=(XY)^T\)</span>. Para encontra essa matriz, devemos multiplicar <span class="arithmatex">\(Y^T X^T\)</span>, isto é, transpomos cada matriz individualmente e invertemos a ordem da multiplicação.</p>
+<p>Verifique que essa propriedade realmente se aplica no caso de nossa matriz de receitas!</p>
+<div class="admonition info">
+<p class="admonition-title">Desafio</p>
+<p>Partindo das definições da multiplicação matricial e da matriz transposta, demonstre que <span class="arithmatex">\(Y^T X^T = (XY)^T\)</span>.</p>
+</div>
+<h2 id="matrizes-sao-vetores-empilhados">Matrizes são vetores empilhados</h2>
+<p>Podemos interpretar nossa matriz de receitas como uma série de vetores, cada um representando receitas, transpostos e empilhados:</p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} - &amp; x_b^T &amp; - \\ - &amp; x_g^T &amp; - \end{bmatrix}
+\]</div>
+<p>Opcionalmente, podemos trabalhar com a forma transposta:</p>
+<div class="arithmatex">\[
+X^T = \begin{bmatrix} - &amp; x_b^T &amp; - \\ - &amp; x_g^T &amp; - \end{bmatrix}^T = 
+\begin{bmatrix} \vert &amp; \vert \\ x_b &amp; x_g \\ \vert &amp; \vert \end{bmatrix}
+\]</div>
+<p>Da mesma maneira, podemos interpretar nossa matriz de custos <span class="arithmatex">\(Y\)</span> como uma série (nesse caso, de apenas um elemento) de vetores de custos empilhados:</p>
+<div class="arithmatex">\[
+Y = \begin{bmatrix} \vert \\ y \\ \vert \end{bmatrix}
+\]</div>
+<p>Veja que, nessa interpretação, podemos escrever nossa multiplicação matricial como:</p>
+<div class="arithmatex">\[
+Z = XY = \begin{bmatrix} - &amp; x_b^T &amp; - \\ - &amp; x_g^T &amp; - \end{bmatrix} \begin{bmatrix} \vert \\ y \\ \vert \end{bmatrix}
+\]</div>
+<p>Veja como isso evidencia que:</p>
+<div class="arithmatex">\[
+Z = \begin{bmatrix} \sum_{n=1}^k x_{b_k} y_k \\ \sum_{n=1}^k x_{g_k} y_k \end{bmatrix} = \begin{bmatrix} &lt;x_b, y&gt; \\ &lt;x_g, y&gt; \end{bmatrix}
+\]</div>
+<p>Como podemos observar, o elemento <span class="arithmatex">\(z_{i,j}\)</span> de <span class="arithmatex">\(Z\)</span> é calculado pelo <em>produto interno</em> entre a linha <span class="arithmatex">\(i\)</span> de <span class="arithmatex">\(X\)</span> e a coluna <span class="arithmatex">\(j\)</span> de <span class="arithmatex">\(Y\)</span>.</p>
+<h2 id="a-multiplicacao-matricial-e-uma-serie-de-produtos-internos">A multiplicação matricial é uma série de produtos internos</h2>
+<p>Agora, demonstraremos o caso geral:</p>
+<div class="arithmatex">\[
+\begin{bmatrix} - &amp; x_1 &amp; - \\ - &amp; x_2 &amp; - \\ &amp; \vdots &amp; \\ - &amp; x_i &amp; - \end{bmatrix} \begin{bmatrix} \vert &amp; \vert &amp; &amp; \vert \\ y_1 &amp; y_2 &amp; \cdots &amp; y_j \\  \vert &amp; \vert &amp; &amp; \vert \end{bmatrix} = 
+\begin{bmatrix}
+&lt;x_1, y_1&gt; &amp; &lt;x_1, y_2&gt; &amp; \cdots &amp; &lt;x_1, y_j&gt; \\ 
+&lt;x_2, y_1&gt; &amp; &lt;x_2, y_2&gt; &amp; \cdots &amp; &lt;x_2, y_j&gt; \\ 
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+&lt;x_i, y_1&gt; &amp; &lt;x_i, y_2&gt; &amp; \cdots &amp; &lt;x_i, y_j&gt; 
+\end{bmatrix} = Z
+\]</div>
+<p>Pela definição de multiplicação matricial, o elemento <span class="arithmatex">\(z_{a,b}\)</span> (vamos usar <span class="arithmatex">\(a,b\)</span> para não confundir com <span class="arithmatex">\(i,j\)</span>) pode ser calculado por:</p>
+<div class="arithmatex">\[
+z_{a,b} = \sum_{n=1}^k x_{a,k} y_{k,b}
+\]</div>
+<p>Porém, os elementos <span class="arithmatex">\(x_{a,k}\)</span>, com <span class="arithmatex">\(k\)</span> livre e <span class="arithmatex">\(a\)</span> fixo, correspondem ao vetor <span class="arithmatex">\(x_a\)</span> que compõe a linha <span class="arithmatex">\(a\)</span> da matriz <span class="arithmatex">\(X\)</span>. Analogamente, os elementos <span class="arithmatex">\(y_{k,b}\)</span> compõem a coluna <span class="arithmatex">\(b\)</span> da matriz <span class="arithmatex">\(Y\)</span>. Portanto, para <span class="arithmatex">\(a\)</span> e <span class="arithmatex">\(b\)</span> fixos, <span class="arithmatex">\(z_{a,b}\)</span> é o produto interno entre a linha <span class="arithmatex">\(a\)</span> de <span class="arithmatex">\(X\)</span> (denotada <span class="arithmatex">\(x_a\)</span> na formulação acima) e a coluna <span class="arithmatex">\(b\)</span>
+de <span class="arithmatex">\(Y\)</span> (denotada <span class="arithmatex">\(y_b\)</span>). Portanto, </p>
+<div class="arithmatex">\[
+z_{a,b} = &lt;x_a, y_b&gt;, a \in [1 \cdots i], b \in [1 \cdots j].
+\]</div>
+<h2 id="a-busca-em-espacos-de-embeddings">A busca em espaços de embeddings</h2>
+<p>Gostaríamos de representar embeddings de documentos de uma base de dados (com <span class="arithmatex">\(n\)</span> embeddings: <span class="arithmatex">\(x_1, x_2, \cdots, x_n\)</span>) em uma matriz <span class="arithmatex">\(X\)</span>. Após, recebemos uma query na forma de um vetor <span class="arithmatex">\(q\)</span>. Gostaríamos de calcular o alinhamento entre cada um de nossos embeddings da base de dados e a query usando somente uma multiplicação matricial, que é uma operação muito rápida de realizar em hardware especializado (GPU). </p>
+<p>(a) Mostre que, se normalizarmos os vetores da base de dados para que tenham norma unitária, podemos realizar essa operação usando a formulação:</p>
+<div class="arithmatex">\[
+s = \begin{bmatrix} - &amp; x_1 &amp; - \\
+- &amp; x_2 &amp; - \\
+ &amp; \vdots &amp; \\
+ - &amp; x_n &amp; - \end{bmatrix} \begin{bmatrix} \vert \\ q \\ \vert \end{bmatrix}
+\]</div>
+<p>(b) Nesse caso, quais são as dimensões de <span class="arithmatex">\(q\)</span>? O que cada um de seus elementos representa?</p>
+<p>(c) Se modificarmos o embedding <span class="arithmatex">\(x_5\)</span>, isso afeta o elemento <span class="arithmatex">\(s_2\)</span>? Por que?</p></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Estudo de caso: Estimar a Gravidade - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../matrizes/matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a class="dropdown-item" href="../pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovetores_autovalores/">Teoria: Auto-vetores e Auto-valores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovetores/">Estudo de caso: Cadeias de Markov</a>
+</li>
+<li>
+<a class="dropdown-item" href="../atividade_autovetores/">Prática: Modelos de Linguagem</a>
+</li>
+<li>
+<a class="dropdown-item" href="../regressao/">Teoria: Regressão e Pseudo-inversa</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Estudo de caso: Estimar a Gravidade</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../projeto-final/">Projeto final</a>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../regressao/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../compressao/compressao_huffman/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#estimando-a-gravidade">Estimando a Gravidade</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#teoria">Teoria</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#metodo">Método</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#atividade">Atividade</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var requireJsScript = document.createElement('script');
+    requireJsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js';
+
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var jupyterWidgetsScript = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    jupyterWidgetsScript.src = widgetRendererSrc;
+
+    document.body.appendChild(requireJsScript);
+    document.body.appendChild(jupyterWidgetsScript);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="estimando-a-gravidade">Estimando a Gravidade</h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Aprendemos a fazer um processo chamado <em>regressão</em>. Uma das aplicações desse processo é encontrar (ou estimar) valores para grandezas físicas à partir de observações. Nesta atividade, vamos estimar a <em>aceleração da gravidade</em>.</p>
+<h2 id="teoria">Teoria</h2>
+<p><em>Teoria</em> é a maneira que acreditamos que algum fenômeno se comporta. Por exemplo: a Teoria da Gravidade é a ideia de que corpos tendem a se atrair seguindo algumas equações específicas. No contexto de um experimento, <em>teoria</em> se refere aos modelos matemáticos que regem os fenômenos que esperamos encontrar, e entendê-los implica em uma série de decisões práticas sobre os experimentos.</p>
+<p>Existem muitas maneiras de estimar a aceleração da gravidade. Vamos estudar uma delas.</p>
+<h3 id="movimento-uniformemente-variado">Movimento Uniformemente Variado</h3>
+<p>Nas nossas aulas de física do Ensino Médio, provavelmente já tivemos contato com a equação do Movimento Uniformemente Acelerado:</p>
+<div class="arithmatex">\[
+s = s_0 + v_0 t + \frac{a t^2}{2}.
+\]</div>
+<p>Podemos usar essa equação para calcular a posição de um objeto em queda livre (partindo do repouso e ignorando a resistência do ar) fazendo <span class="arithmatex">\(s_0=0\)</span>, <span class="arithmatex">\(v_0=0\)</span> e <span class="arithmatex">\(a=g\)</span>, ficando com:</p>
+<div class="arithmatex">\[
+s = \frac{a t^2}{2}.
+\]</div>
+<h3 id="regressao-linear-com-pseudo-inversa">Regressão Linear com pseudo-inversa</h3>
+<p>Se temos algum fenômeno do tipo <span class="arithmatex">\(y=ax\)</span>, e podemos medir várias entradas <span class="arithmatex">\(x\)</span> e saídas correspondentes <span class="arithmatex">\(y\)</span>, então temos:</p>
+<div class="arithmatex">\[
+\begin{bmatrix} \hat{y}_1 \\ \hat{y}_2 \\ \vdots \\ \hat{y}_n \end{bmatrix} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots  \\ x_n  \end{bmatrix}  a 
+\]</div>
+<p>ou:</p>
+<div class="arithmatex">\[
+\hat{y} = x a
+\]</div>
+<p>Podemos então estimar <span class="arithmatex">\(a\)</span> usando a pseudo-inversa:
+<div><span class="MathJax_Preview">$$
+\begin{array}{rl}
+x^T y &amp;= (x^T x) a \\
+(x^T x)^{-1} x^T y &amp;= (x^T x)^{-1} (x^T x) a \\
+(x^T x)^{-1} x^T y &amp;= a \\
+\end{array}
+$$</span><script type="math/tex; mode=display">
+\begin{array}{rl}
+x^T y &amp;= (x^T x) a \\
+(x^T x)^{-1} x^T y &amp;= (x^T x)^{-1} (x^T x) a \\
+(x^T x)^{-1} x^T y &amp;= a \\
+\end{array}
+</script>
+</div>
+</p>
+<h3 id="estimacao-do-modelo-de-queda-livre">Estimação do modelo de queda livre</h3>
+<p>O uso de regressão linear implica em um fenômeno <span class="arithmatex">\(y=ax\)</span>, mas a equação da queda livre modela um termo quadrático <span class="arithmatex">\(s=\frac{at^2}{2}\)</span>. </p>
+<p>Porém, podemos usar uma variável auxiliar <span class="arithmatex">\(\tau = \frac{t^2}{2}\)</span>, de forma que:</p>
+<div class="arithmatex">\[
+s=a \tau
+\]</div>
+<p>Portanto, podemos estimar <span class="arithmatex">\(a\)</span> através da formulação matricial:</p>
+<div class="arithmatex">\[
+\begin{bmatrix} s_1 \\ s_2 \\ \vdots \\ s_n \end{bmatrix} = \begin{bmatrix} \tau_1 \\ \tau_2 \\ \vdots  \\ \tau_n  \end{bmatrix}  a
+\]</div>
+<h2 id="metodo">Método</h2>
+<p>Veja como a <em>teoria</em> implica imediatamente em um método para encontrar a aceleração da gravidade:</p>
+<ol>
+<li>Para usar a equação matricial, precisamos de vários valores de <span class="arithmatex">\(s_i\)</span> e <span class="arithmatex">\(t_i\)</span> correpondentes. Portanto, precisamos <em>medir o tempo de queda para diferentes alturas e anotar o resultado</em>.</li>
+<li>Para usar a formulação linear, precisamos calcular <span class="arithmatex">\(\tau_i = t^2_i/2\)</span> para cada valor de tempo medido</li>
+<li>Após, usamos a pseudo-inversa para encontrar o valor de <span class="arithmatex">\(a\)</span>.</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Antes de prosseguir...</p>
+<p>O método para encontrar <span class="arithmatex">\(a\)</span> só é eficaz se você for capaz de responder <em>por que</em> cada uma das etapas é relevante. Discuta com sua equipe <em>por que</em> cada uma das etapas do método é importante!</p>
+</div>
+<h2 id="atividade">Atividade</h2>
+<ol>
+<li>Defina um procedimento para coletar os dados necessários de tempo de queda e altura.</li>
+<li>Consiga os materiais necessários.</li>
+<li>Execute o procedimento de coleta de dados!</li>
+<li>Use o procedimento de pseudo-inversa para encontrar a aceleração da gravidade na sua sala.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html"></div>
+</div>
+</div></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

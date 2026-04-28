@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Prática: Modelos de Linguagem - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../matrizes/matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a class="dropdown-item" href="../pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovetores_autovalores/">Teoria: Auto-vetores e Auto-valores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovetores/">Estudo de caso: Cadeias de Markov</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Prática: Modelos de Linguagem</a>
+</li>
+<li>
+<a class="dropdown-item" href="../regressao/">Teoria: Regressão e Pseudo-inversa</a>
+</li>
+<li>
+<a class="dropdown-item" href="../gravidade/">Estudo de caso: Estimar a Gravidade</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../projeto-final/">Projeto final</a>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../autovetores/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../regressao/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#modelos-de-linguagem">Modelos de Linguagem</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-1-uma-cadeia-de-markov">Exercício 1: uma Cadeia de Markov</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-2-um-modelo-de-linguagem-simples">Exercício 2: um Modelo de Linguagem simples!</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-3-vieses-da-cadeia-de-markov">Exercício 3: Viéses da Cadeia de Markov</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-4">Exercício 4</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var requireJsScript = document.createElement('script');
+    requireJsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js';
+
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var jupyterWidgetsScript = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    jupyterWidgetsScript.src = widgetRendererSrc;
+
+    document.body.appendChild(requireJsScript);
+    document.body.appendChild(jupyterWidgetsScript);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="modelos-de-linguagem">Modelos de Linguagem</h1>
+<p>Instruções:</p>
+<ul>
+<li>Faça essa atividade em duplas ou trios. Use a lousa, caderno, etc.</li>
+<li>O tempo total da atividade é de 1h30</li>
+<li>Entregue os exercício resolvidos em papel manuscrito (sulfite ou almaço), indicando o nome de todos os integrantes do grupo</li>
+<li>Também, entregue a atividade em formato PDF via Blackboard (tire fotos! Se precisar, use apps como o PDF Scanner ou semelhantes).</li>
+<li>Ao fim da atividade, teremos um teste (individual) sobre a atividade</li>
+<li>A etapa "grupo" receberá nota entre 0 e 1. A etapa "individual" receberá nota entre 0 e 1. A nota final é a média geométrica entre as duas.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-1-uma-cadeia-de-markov">Exercício 1: uma Cadeia de Markov</h2>
+<p>Uma Cadeia de Markov é um autômato finito probabilístico. As Cadeias de Markov recebem esse nome por que  foram estudadas por um matemático russo chamado Markov no fim do Século XIX. A Cadeia de Markov serve para descrever sistemas que, a cada iteração, sempre assumem um entre um número finito de estados. Daí, na próxima iteração, o próximo estado é sorteado à partir de uma distribuição de probabilidades condicionada ao estado atual, isto é, usando as <em>probabilidades de transição</em>:</p>
+<div class="arithmatex">\[
+P(e_{t+1} = i | e_t = j)
+\]</div>
+<p>Discuta como o caso das bicicletas de Montreal (da aula passada) pode ser modelada usando uma Cadeia de Markov. Encontre:</p>
+<p>a) O que cada estado da cadeia representa? Que entidade do grafo (vértice ou aresta) é usada para representrar o estado?</p>
+<p>b) O que cada probabilidade de transição representa? Que entidade do grafo (vértice ou aresta) é usada para representar as probabilidades de transição?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-2-um-modelo-de-linguagem-simples">Exercício 2: um Modelo de Linguagem simples!</h2>
+<p>As cadeias de Markov podem ser usadas para fazer <em>modelos de linguagem</em>. Um <em>modelo de linguagem</em> é um modelo probabilítisco que gera palavras com base nas palavras anteriores. Poderíamos fazer um modelo gerador para "Hey Jude", por exemplo, usando a seguinte estrutura:</p>
+<div class="mermaid">
+graph LR;
+    HEY --&gt; JUDE;
+    JUDE --&gt; DONT;
+    DONT --&gt; LET;
+    LET --&gt; ME;
+    ME --&gt; DOWN;
+    DONT --&gt; BE;
+    BE --&gt; AFRAID;
+</div>
+<p>Neste exercício, vamos fazer uma poesia generativa e, após, analisar essa poesia:</p>
+<ol>
+<li>Escolha 5 palavras.</li>
+<li>Defina probabilidades de transição entre essas palavras, isto é, defina todos os valores de <span class="arithmatex">\(P(e_{t+1} = i | e_t = j)\)</span>. </li>
+<li>Defina a matriz de transição <span class="arithmatex">\(A\)</span> relacionada às probabilidades <span class="arithmatex">\(P(e_{t+1} = i | e_t = j)\)</span>, dando mais probabilidade a transições que fazem mais sentido para você.</li>
+<li>Faça um programa que começa de uma palavra qualquer, e, após, escolhe a próxima palavra usando as probabilidades que você definiu.</li>
+<li>Faça com que seu programa gere a palavra seguinte (<span class="arithmatex">\(e_{t+2}\)</span>) usando a palavra que foi gerada inicialmente (<span class="arithmatex">\(e_{t+1}\)</span>), e assim por diante.</li>
+<li>Deixe seu programa gerar muitas palavras (pelo menos 10000).</li>
+<li>Calcule a probabilidade <span class="arithmatex">\(P(w = n)\)</span> de, se sortearmos uma palavra aleatória <span class="arithmatex">\(w\)</span> entre as geradas, ela ser uma instância da palavra <span class="arithmatex">\(n\)</span> que você definiu no seu vocabulário.</li>
+<li>Use <code>np.linalg.eig</code> para calcular os auto-vetores e auto-valores de <span class="arithmatex">\(A\)</span>. Como eles explicam o resultado encontrado no ítem anterior?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-3-vieses-da-cadeia-de-markov">Exercício 3: Viéses da Cadeia de Markov</h2>
+<p>Vamos reproduzir o resultado do ítem anterior para um caso mais controlado. Considere a seguinte Cadeia de Markov:</p>
+<div class="mermaid">
+graph LR;
+    A --&gt;|0.2| A;
+    A --&gt;|0.5| B;
+    A --&gt;|0.3| C;
+
+    B --&gt;|0.1| A;
+    B --&gt;|0.6| B;
+    B --&gt;|0.3| C;
+
+    C --&gt;|0.4| A;
+    C --&gt;|0.2| B;
+    C --&gt;|0.4| C;
+</div>
+<ol>
+<li>Faça um programa que começa do estado <code>A</code> e então "caminha" pela cadeia, gerando uma sequência de 10000 estados.</li>
+<li>Verifique se a proporção entre os estados percorridos corresponde a aquela que é apontada pelos auto-valores e auto-vetores da matriz de transições da cadeia.</li>
+<li>As transições da Cadeia de Markov acontecem porque algumas transições entre estados são mais prováveis que outras (por exemplo: na música dos Beatles, a palavra "Jude" sempre é seguida da palavra "Don't"). Porém, isso leva a um viés: algumas palavras serão inevitavelmente mais prováveis que outras. Usando a formulação <span class="arithmatex">\(A=PQP^{-1}\)</span>, crie uma matriz de transições que leve a uma Cadeia de Markov sem esse tipo de viés. O que acontece com as probabilidades de transição?</li>
+<li>Com base nos resultados que já tivemos até aqui, discuta: é possível criar uma Cadeia de Markov que não seja enviesada a usar alguns estados mais frequentemente e que, simultaneamente, possa representar uma ideia de "sentido semântico", isto é, a ideia de que algumas sequências de estados são mais prováveis do que outras?</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-4">Exercício 4</h2>
+<p>Uma Cadeia de Markov pode ser usada para modelar linguagens através da ideia de que a probabilidade de gerar uma palavra (<span class="arithmatex">\(w_{t}\)</span>) seja condicionada à última palavra gerada (<span class="arithmatex">\(w_{t-1}\)</span>) através da distribuição <span class="arithmatex">\(P(w_t | w_{t-1})\)</span>. Poderíamos fazer uma Cadeia de Markov de ordem 2, na qual a geração de cada palavra é condicionada às <em>duas</em> anteriores, isto é:</p>
+<div class="arithmatex">\[
+P(w_t | w_{t-1}, w_{t-2})
+\]</div>
+<p>Nesse caso, nosso estado representa as duas últimas palavras geradas. Se tivéssemos duas palavras (A e B), teríamos o seguinte grafo representando os estados - veja que o estado é descrito pela <em>última sequência gerada</em>, isto é, se a sequência AB leva à geração de B, então o primeiro A é descartado e o estado seguinte passa a ser BB.</p>
+<div class="mermaid">
+graph LR;
+    AB --&gt;|"Gerou B"| BB;
+    AB --&gt; |"Gerou A"| BA;
+    AA --&gt;|"Gerou B"| AB;
+    AA --&gt; |"Gerou A"| AA;
+    BB --&gt;|"Gerou B"| BB;
+    BB --&gt; |"Gerou A"| BA;
+    BA --&gt;|"Gerou B"| AB;
+    BA --&gt; |"Gerou A"| AA;
+</div>
+<p>Poderíamos aumentar ainda mais esse processo para uma Cadeia de Markov de ordem <span class="arithmatex">\(n\)</span>. Na verdade, os Large Language Models (LLMs) fazem exatamente isso: são grandes Cadeias de Markov de ordem <span class="arithmatex">\(n\)</span> (e os transformers e embeddings são formas bastante espertas de representar os parâmetros do modelo).</p>
+<p>Mostre que todo LLM, inevitalmente, tende a repetir mais algumas palavras do que outras.</p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<script>mermaid.initialize({});</script></body>
+</html>

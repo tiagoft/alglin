@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Teoria: Auto-vetores e Auto-valores - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../matrizes/matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a class="dropdown-item" href="../pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Teoria: Auto-vetores e Auto-valores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovetores/">Estudo de caso: Cadeias de Markov</a>
+</li>
+<li>
+<a class="dropdown-item" href="../atividade_autovetores/">Prática: Modelos de Linguagem</a>
+</li>
+<li>
+<a class="dropdown-item" href="../regressao/">Teoria: Regressão e Pseudo-inversa</a>
+</li>
+<li>
+<a class="dropdown-item" href="../gravidade/">Estudo de caso: Estimar a Gravidade</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../projeto-final/">Projeto final</a>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../pixels/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../autovetores/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#teoria-auto-vetores-e-auto-valores">Teoria: auto-vetores e auto-valores</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#infinitos-auto-vetores">Infinitos auto-vetores?</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#encontrando-matrizes-a-partir-de-seus-auto-valores-e-auto-vetores">Encontrando matrizes à partir de seus auto-valores e auto-vetores</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#uma-nova-interpretacao-para-a-multiplicacao-matricial">Uma nova interpretação para a multiplicação matricial</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#uma-nova-interpretacao-para-a-inversao-de-matrizes">Uma nova interpretação para a inversão de matrizes</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="teoria-auto-vetores-e-auto-valores">Teoria: auto-vetores e auto-valores</h1>
+<p>Uma característica de matrizes é a existência de vetores e valores chamados de <em>auto-valores</em> e <em>auto-vetores</em>. Quando um auto-vetor de uma matriz é multiplicado pela própria matriz, o resultado é um múltiplo do próprio vetor, isto é:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+Av = v \lambda,
+$$</span><script type="math/tex; mode=display">
+Av = v \lambda,
+</script>
+</div>
+onde:</p>
+<ul>
+<li><span class="arithmatex">\(A \in \mathbb{R}^{n \times n}\)</span> é a matriz, </li>
+<li><span class="arithmatex">\(v \in \mathbb{R}^{n \times 1}\)</span> é o auto-vetor, e </li>
+<li><span class="arithmatex">\(\lambda \in \mathbb{R}\)</span> é o auto-valor associado.</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Exemplo de auto-vetores e auto-valores</p>
+<p>
+<div><span class="MathJax_Preview">$$
+\begin{bmatrix} 
+    2 &amp; 0  \\
+    0 &amp; 1 
+\end{bmatrix}
+\begin{bmatrix} 
+    1 \\
+    0  
+\end{bmatrix}
+= 
+\begin{bmatrix} 
+    2 \\
+    0  
+\end{bmatrix}
+=
+2
+\begin{bmatrix} 
+    1 \\
+    0  
+\end{bmatrix},
+$$</span><script type="math/tex; mode=display">
+\begin{bmatrix} 
+    2 & 0  \\
+    0 & 1 
+\end{bmatrix}
+\begin{bmatrix} 
+    1 \\
+    0  
+\end{bmatrix}
+= 
+\begin{bmatrix} 
+    2 \\
+    0  
+\end{bmatrix}
+=
+2
+\begin{bmatrix} 
+    1 \\
+    0  
+\end{bmatrix},
+</script>
+</div>
+portanto <span class="arithmatex">\(\begin{bmatrix}1\\0\end{bmatrix}\)</span> é um auto-vetor de <span class="arithmatex">\(\begin{bmatrix} 2 &amp; 0 \\  0 &amp; 1 \end{bmatrix}\)</span>, e <span class="arithmatex">\(2\)</span> é o auto-valor associado.</p>
+</div>
+<h2 id="infinitos-auto-vetores">Infinitos auto-vetores?</h2>
+<p>Veja que, se <span class="arithmatex">\(v\)</span> é um auto-vetor de <span class="arithmatex">\(A\)</span>, então:</p>
+<div class="arithmatex">\[
+Av = v \lambda,
+\]</div>
+<p>e, multiplicando ambos os lados da equação por um valor <span class="arithmatex">\(\alpha \in \mathbb{R}\)</span>, temos:</p>
+<div class="arithmatex">\[
+A \alpha v = \alpha v \lambda,
+\]</div>
+<p>Se fizermos <span class="arithmatex">\(w=\alpha v\)</span>, então temos que:</p>
+<div class="arithmatex">\[
+A w = w\lambda,
+\]</div>
+<p>e, portanto, <span class="arithmatex">\(w = \alpha v\)</span> também é um auto-vetor de <span class="arithmatex">\(A\)</span> com o <em>mesmo</em> auto-valor associado!</p>
+<p>Então, tecnicamente, temos infinitos auto-vetores de <span class="arithmatex">\(A\)</span> na <em>direção</em> de <span class="arithmatex">\(v\)</span>. Porém, usualmente usamos como auto-vetor o vetor que tem norma <span class="arithmatex">\(1\)</span> nessa direção (embora isso seja somente uma convenção ligada aos pacotes numéricos para cálculo de auto-vetores e auto-valores).</p>
+<h2 id="encontrando-matrizes-a-partir-de-seus-auto-valores-e-auto-vetores">Encontrando matrizes à partir de seus auto-valores e auto-vetores</h2>
+<p>Considere <span class="arithmatex">\(A \in \mathbb{R}^{2 \times 2}\)</span>. e tivermos dois auto-vetores (<span class="arithmatex">\(v_1, v_2 \in \mathbb{R}^{2 \times 1}\)</span>), e seus auto-valores correspondentes (<span class="arithmatex">\(\lambda_1, \lambda_2 \in \mathbb{R}\)</span>), temos na verdade um sistema:</p>
+<div class="arithmatex">\[
+\begin{cases}
+Av_1 = v_1 \lambda_1 \\
+Av_2 = v_2 \lambda_2 
+\end{cases}
+\]</div>
+<p>Esse sistema pode ser escrito na forma de uma multiplicação matricial, se assumirmos que nossos auto-vetores são vetores-coluna:</p>
+<div class="arithmatex">\[
+A \begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix} = \begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix}\begin{bmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{bmatrix} 
+\]</div>
+<p>Multiplicando os dois lados da equação por <span class="arithmatex">\(\begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix}^{-1}\)</span>, ficamos com:</p>
+<div class="arithmatex">\[
+A \begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix}\begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix}^{-1} = \begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix} \begin{bmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{bmatrix} \begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix}^{-1}
+\]</div>
+<p>e, portanto:
+<div><span class="MathJax_Preview">$$
+A  = \begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix} \begin{bmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{bmatrix} \begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix}^{-1}
+$$</span><script type="math/tex; mode=display">
+A  = \begin{bmatrix} \vert & \vert \\
+v_1 & v_2 \\
+\vert & \vert \end{bmatrix} \begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2 \end{bmatrix} \begin{bmatrix} \vert & \vert \\
+v_1 & v_2 \\
+\vert & \vert \end{bmatrix}^{-1}
+</script>
+</div>
+</p>
+<details class="info">
+<summary>Encontre a matriz cujos auto-vetores são <span class="arithmatex">\(v_1 = \begin{bmatrix} \cos \frac{\pi}{4} \\ \sin \frac{\pi}{4} \end{bmatrix}\)</span> e <span class="arithmatex">\(v_2 = \begin{bmatrix} -\sin \frac{\pi}{4} \\ \cos \frac{\pi}{4} \end{bmatrix}\)</span>, e os seus auto-valores associados são <span class="arithmatex">\(\lambda_1=2\)</span> e <span class="arithmatex">\(\lambda_2=1\)</span></summary>
+<p>Para isso, temos que resolver:
+<div><span class="MathJax_Preview">$$
+A = \begin{bmatrix} \cos \frac{\pi}{4} &amp; -\sin \frac{\pi}{4} \\
+\sin \frac{\pi}{4} &amp; \cos \frac{\pi}{4}  \end{bmatrix} \begin{bmatrix}  2 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} \begin{bmatrix} \cos \frac{\pi}{4} &amp; -\sin \frac{\pi}{4} \\
+\sin \frac{\pi}{4} &amp; \cos \frac{\pi}{4}  \end{bmatrix}^{-1}
+$$</span><script type="math/tex; mode=display">
+A = \begin{bmatrix} \cos \frac{\pi}{4} & -\sin \frac{\pi}{4} \\
+\sin \frac{\pi}{4} & \cos \frac{\pi}{4}  \end{bmatrix} \begin{bmatrix}  2 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} \cos \frac{\pi}{4} & -\sin \frac{\pi}{4} \\
+\sin \frac{\pi}{4} & \cos \frac{\pi}{4}  \end{bmatrix}^{-1}
+</script>
+</div>
+</p>
+<p>Após realizar a operação, confirme que <span class="arithmatex">\(Av_1 = v_1 \lambda_1\)</span> e que <span class="arithmatex">\(A v_2 = v_2 \lambda_2\)</span>.</p>
+</details>
+<h2 id="uma-nova-interpretacao-para-a-multiplicacao-matricial">Uma nova interpretação para a multiplicação matricial</h2>
+<p>Vamos nos recordar agora sobre como fazíamos mudanças de base. Para fazer uma mudança de base, escrevemos um vetor <span class="arithmatex">\(x\)</span> qualquer como a soma ponderada (ou: a combinação linear) de vetores-base <span class="arithmatex">\(b_j\)</span>, isto é:</p>
+<div class="arithmatex">\[
+x = \sum_{j=1}^n s_j b_j
+\]</div>
+<p>Na forma matricial, encontrávamos que:</p>
+<div class="arithmatex">\[
+x = \begin{bmatrix} \vert &amp; \vert &amp; &amp; \vert \\
+                     b_1 &amp; b_2 &amp; \cdots &amp; b_n \\
+                     \vert &amp; \vert &amp; &amp; \vert  \end{bmatrix}
+                     \begin{bmatrix} s_1 \\ s_2 \\ \vdots \\ s_n \end{bmatrix}
+\]</div>
+<p>e, portanto, poderíamos encontrar esse vetor <span class="arithmatex">\(s=\begin{bmatrix} s_1 \\ s_2 \\ \vdots \\ s_n \end{bmatrix}\)</span> com a operação:</p>
+<div class="arithmatex">\[
+s = \begin{bmatrix} \vert &amp; \vert &amp; &amp; \vert \\
+                     b_1 &amp; b_2 &amp; \cdots &amp; b_n \\
+                     \vert &amp; \vert &amp; &amp; \vert  \end{bmatrix}^{-1}
+                     x
+\]</div>
+<p>Por simplicidade, vamos chamar a matriz com vetores-base de <span class="arithmatex">\(B = \begin{bmatrix} \vert &amp; \vert &amp; &amp; \vert \\
+                     b_1 &amp; b_2 &amp; \cdots &amp; b_n \\
+                     \vert &amp; \vert &amp; &amp; \vert  \end{bmatrix}\)</span>, isto é:</p>
+<div class="arithmatex">\[
+x = B s \Rightarrow s = B^{-1} x
+\]</div>
+<div class="admonition info">
+<p class="admonition-title">Memória importante!</p>
+<p>A consequência disso é que multiplicar um vetor por <span class="arithmatex">\(B^{-1}\)</span> significa <em>mudar de base</em> para a base definida nas colunas de <span class="arithmatex">\(B\)</span>.</p>
+</div>
+<p>Outra coisa que fizemos com a mudança de bases foi a operação de levar um vetor para outra base, realizar alguma operação nessa base, e então retornar. Para isso, fazíamos:</p>
+<div class="arithmatex">\[
+y = B T B^{-1} x,
+\]</div>
+<p>onde <span class="arithmatex">\(B\)</span> é a matriz com vetores-base e <span class="arithmatex">\(T\)</span> define alguma transformação ou operação matricial. O que era relevante nisso é que podemos usar a propriedade da <em>associatividade</em> para definir <span class="arithmatex">\(A = B T B^{-1}\)</span> e realizar a operação <span class="arithmatex">\(y = Ax\)</span> com uma única operação.</p>
+<p>Ok, se você não se recorda disso tudo, é interessante voltar nas aulas anteriores e entender por que essas operações são válidas.</p>
+<p>Seguindo adiante...</p>
+<p>Agora há pouco vimos a equação:</p>
+<div class="arithmatex">\[
+A  = \begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix} \begin{bmatrix} \lambda_1 &amp; 0 \\ 0 &amp; \lambda_2 \end{bmatrix} \begin{bmatrix} \vert &amp; \vert \\
+v_1 &amp; v_2 \\
+\vert &amp; \vert \end{bmatrix}^{-1}
+\]</div>
+<p>Vamos passar para o caso de <span class="arithmatex">\(n\)</span> dimensões. Nesse caso, teríamos <span class="arithmatex">\(n\)</span> auto-vetores e <span class="arithmatex">\(n\)</span> auto-valores associados, e, portanto:</p>
+<div class="arithmatex">\[
+A  = \begin{bmatrix} \vert &amp; \vert &amp; &amp; \vert \\
+v_1 &amp; v_2 &amp; \cdots &amp; v_n \\
+\vert &amp; \vert &amp; &amp; \vert \end{bmatrix} \begin{bmatrix} \lambda_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \lambda_2 &amp; \cdots &amp; 0  \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots  \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_n \end{bmatrix} \begin{bmatrix} \vert &amp; \vert &amp; &amp; \vert \\
+v_1 &amp; v_2 &amp; \cdots &amp; v_n \\
+\vert &amp; \vert &amp; &amp; \vert \end{bmatrix}^{-1}
+\]</div>
+<p>Por simplicidade, vamos chamar a matriz com auto-vetores de <span class="arithmatex">\(P\)</span> e a matriz com auto-valores de <span class="arithmatex">\(Q\)</span>. Daí, ficamos com:</p>
+<div class="arithmatex">\[
+A  = \underbrace{\begin{bmatrix} \vert &amp; \vert &amp; &amp; \vert \\
+v_1 &amp; v_2 &amp; \cdots &amp; v_n \\
+\vert &amp; \vert &amp; &amp; \vert \end{bmatrix}}_P \underbrace{\begin{bmatrix} \lambda_1 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \lambda_2 &amp; \cdots &amp; 0  \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots  \\ 0 &amp; 0 &amp; \cdots &amp; \lambda_n \end{bmatrix}}_Q \underbrace{\begin{bmatrix} \vert &amp; \vert &amp; &amp; \vert \\
+v_1 &amp; v_2 &amp; \cdots &amp; v_n \\
+\vert &amp; \vert &amp; &amp; \vert \end{bmatrix}^{-1}}_{P^{-1}}
+\]</div>
+<div class="arithmatex">\[
+A = PQP^{-1}
+\]</div>
+<p>Portanto, quando fazemos uma multiplicação matricial <span class="arithmatex">\(y=Ax\)</span>, podemos expandir a multiplicação para:</p>
+<div class="arithmatex">\[
+y = PQP^{-1} x
+\]</div>
+<p>Fazendo um paralelo com a mudança de bases, podemos interpretar a operação como mudar <span class="arithmatex">\(x\)</span> para a base definida pelos auto-vetores de <span class="arithmatex">\(A\)</span>, realizar a transformação <span class="arithmatex">\(Q\)</span> e então retornar à base original. Só que veja uma coisa super importante: a transformação <span class="arithmatex">\(Q\)</span> é uma <em>escala</em>.</p>
+<details class="info">
+<summary>Mostre que, se todos os <span class="arithmatex">\(n\)</span> auto-valores de <span class="arithmatex">\(A\)</span> forem iguais a <span class="arithmatex">\(1\)</span>, então <span class="arithmatex">\(A\)</span> é uma matriz identidade.</summary>
+<p>Se <span class="arithmatex">\(\lambda_i=1 \forall i\)</span>, então <span class="arithmatex">\(Q\)</span> é uma matriz identidade e portanto:
+<div><span class="MathJax_Preview">$$
+\begin{array}{rl}
+A &amp;= P Q P^{-1}\\
+ &amp;= P I P^{-1}\\
+ &amp;= P P^{-1}\\
+ &amp;= I
+\end{array}
+$$</span><script type="math/tex; mode=display">
+\begin{array}{rl}
+A &= P Q P^{-1}\\
+ &= P I P^{-1}\\
+ &= P P^{-1}\\
+ &= I
+\end{array}
+</script>
+</div>
+</p>
+<p>Então, algum tipo de escala é inevitável...</p>
+</details>
+<h2 id="uma-nova-interpretacao-para-a-inversao-de-matrizes">Uma nova interpretação para a inversão de matrizes</h2>
+<p>Vamos nos recordar da distributividade da inversa:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+(XYZ)^{-1} = Z^{-1}Y^{-1}X^{-1}
+$$</span><script type="math/tex; mode=display">
+(XYZ)^{-1} = Z^{-1}Y^{-1}X^{-1}
+</script>
+</div>,</p>
+<p>isto é, aplicamos a inversa a cada uma das matrizes de "dentro dos parênteses" invertendo a ordem.</p>
+<p>Aplicando a mesma regra para <span class="arithmatex">\(A\)</span>, temos:</p>
+<div class="arithmatex">\[
+\begin{array}{rl}
+A &amp;= PQP^{-1} \\
+A^{-1} &amp;= (PQP^{-1})^{-1} \\
+&amp;= (P^{-1})^{-1} Q^{-1} P^{-1} \\
+&amp;= P Q^{-1} P^{-1}
+\end{array}
+\]</div>
+<p>Veja que isso significa que multiplicar um vetor <span class="arithmatex">\(x\)</span> por <span class="arithmatex">\(A^{-1}\)</span> equivale a, sequencialmente:</p>
+<ol>
+<li>Levar <span class="arithmatex">\(x\)</span> para a base de auto-vetores de <span class="arithmatex">\(A\)</span></li>
+<li>Realizar a escala inversa <span class="arithmatex">\(Q^{-1}\)</span> nesse domínio</li>
+<li>Voltar para a base original</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Uma interpretação geométrica!</p>
+<p>Já vimos que a multiplicação matricial é uma <em>escala</em> em uma base definida pelos auto-vetores de <span class="arithmatex">\(A\)</span>. A consequência disso é que a multiplicação pela inversa é a <em>escala inversa</em> nessa mesma base!</p>
+</div></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

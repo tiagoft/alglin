@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Estudo de caso: Cadeias de Markov - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../matrizes/matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a class="dropdown-item" href="../pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovetores_autovalores/">Teoria: Auto-vetores e Auto-valores</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Estudo de caso: Cadeias de Markov</a>
+</li>
+<li>
+<a class="dropdown-item" href="../atividade_autovetores/">Prática: Modelos de Linguagem</a>
+</li>
+<li>
+<a class="dropdown-item" href="../regressao/">Teoria: Regressão e Pseudo-inversa</a>
+</li>
+<li>
+<a class="dropdown-item" href="../gravidade/">Estudo de caso: Estimar a Gravidade</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../projeto-final/">Projeto final</a>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../autovetores_autovalores/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../atividade_autovetores/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#cadeias-de-markov">Cadeias de Markov</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#exercicio-1">Exercício 1</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-2">Exercício 2</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#exercicio-3">Exercício 3</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#exercicio-4">Exercício 4</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#exercicio-5">Exercício 5</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var requireJsScript = document.createElement('script');
+    requireJsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js';
+
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var jupyterWidgetsScript = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    jupyterWidgetsScript.src = widgetRendererSrc;
+
+    document.body.appendChild(requireJsScript);
+    document.body.appendChild(jupyterWidgetsScript);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="cadeias-de-markov">Cadeias de Markov</h1>
+<p>Você vai perceber que nesta aula específica não há "certo" ou "errado" -- o que há é um processo de aprendizado. Sendo o processo tão particular de cada um, é preciso que cada um seja responsável por si. O que gostaríamos nessa atividade é praticar o seguinte fluxo de pensamento:</p>
+<div class="mermaid">
+
+flowchart TD
+    A[Entender a situação proposta: qual é o problema, e como sabemos que ele foi resolvido, isto é, quais são os critérios de aceitação] --&gt; B[Ligar a situação a um modelo matemático e suas variáveis] --&gt; C[Resolver o modelo matemático, possivelmente implementando um programa para isso] --&gt; D[Identificar, dentro do modelo resolvido e/ou dos resultados mostrados pelo programa, como a situação inicial foi resolvida]
+
+</div>
+<p>Por esse motivo, essa atividade não tem uma "rubrica" ou um "gabarito". Existem muitas soluções para cada um dos exercícios propostos. Porém, é importante que, para cada um deles, você explicitamente passe por todas as etapas do fluxo.</p>
+<p>A quarta etapa é especialmente importante: como este é um trabalho aberto, isto é, que envolve o pensamento <em>divergente</em>, é esperado do aluno (e dos grupos de alunos) que o entendimento de cada etapa, e do que significa ter "resolvido" cada etapa, seja discutido pelo grupo de trabalho. Isso significa que fazer essa atividade pensando em "cumprir rapidamente etapas para entregar um resultado que será avaliado" não é produtivo. Ao invés disso, trata-se um trabalho importante pelo <em>vivenciar o processo</em>, e não pela entrega em si.</p>
+<p>Dito isso, é claro que GPTs e IAs atuais resolvem todas as atividades. Não use GPTs e IAs para fazer o trabalho criativo para você neste contexto - até porque isso não faz nenhum sentido porque a atividade não recebe nota. Use essa oportunidade para identificar onde estão as <em>suas</em> dificuldades, e, ao superá-las, para exercitar o senso estético/poético de apreciar os resultados do programa que for fazendo.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="exercicio-1">Exercício 1</h1>
+<p><strong>Objetivo: Entender a Cadeia de Markov como um sistema dinâmico</strong></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Já por perto de 2010 a 2011, Montreal tinha um sistema de bicicletas públicas bastante parecido com as bicicletas Itaú que temos hoje em São Paulo. Só que Montreal é uma cidade que fica em uma montanha (cujo ponto mais alto é o <a href="https://www.google.com/maps/place/Mount+Royal+Park/@45.5023053,-73.6098349,14.25z/data=!4m13!1m7!3m6!1s0x4cc91a541c64b70d:0x654e3138211fefef!2sMontreal,+QC,+Canada!3b1!8m2!3d45.5018869!4d-73.5673919!3m4!1s0x4cc91a3b89d50ee1:0x4c8dc463a4718c9a!8m2!3d45.5015664!4d-73.5932179">Mount Royal</a>), o que levou a um problema interessante: as pessoas tendem a tomar uma bicicleta emprestada na estação que fica na região mais alta e devolver em uma das estações das regiões mais baixas, mas raramente alguém faz o caminho inverso. O fim dessa história é que a <a href="https://www.csmonitor.com/World/Global-News/2011/0921/Montreal-s-public-bike-system-faces-uphill-battle">prefeitura contratou caminhões para ficarem levando bicicletas morro acima</a>, e uma consequência inesperada é que essa história seria um exemplo numa aula de álgebra linear dez anos depois num outro hemisfério.</p>
+<hr/>
+<p>Em nosso modelo, vamos fazer várias suposições que cabem para o nosso exemplo, mas que não necessariamente correspondem a dados reais.</p>
+<ul>
+<li>Vamos supor que temos três estações. As duas primeiras (E1 e E2) ficam na parte baixa da cidade. A outra estação (E3) fica na parte alta.</li>
+<li>Quando uma bicicleta é tomada emprestada em E1, ela tem 90% de chance de ser devolvida em E2 e 10% de chance de ser devolvida em E3.</li>
+<li>Quando uma bicicleta é tomada emprestada em E2, ela tem 95% de chance de ser devolvida em E1 e 5% de chance de ser devolvida em E3.</li>
+<li>Quando uma bicicleta é tomada emprestada em E3, ela tem 70% de chance de ser devolvida em E1 e 30% de chance de ser devolvida em E2.</li>
+</ul>
+<p>Podemos entender essa situação como uma <em>máquina de estados probabilística</em>. Nessa máquina, uma bicicleta sempre está em algum <em>estado</em> (que, nesse problema, representa uma estação). A cada <em>iteração</em> do sistema, todas as bicicletas movem de uma estação para a outra, seguindo as regras que definimos acima. A máquina pode ser desenhada da seguinte maneira:</p>
+<div class="mermaid">
+graph LR;
+E1 --&gt; E2;
+E2 --&gt; E1;
+E3 --&gt; E1;
+E1 --&gt; E3;
+E2 --&gt; E3;
+E3 --&gt; E2
+</div>
+<p>(a) Atribua pesos às arestas da figura de forma a evidenciar as probabilidades de uma bicicleta ser retirada de cada estação e devolvida na outra.</p>
+<p>(b) Supondo que uma bicicleta está em E1, qual é a probabilidade de, após uma retirada, ela ser devolvida em E2?</p>
+<p>(c) Supondo que uma bicicleta foi retirada em E1 e devolvida em alguma estação, e, após, foi retirada e devolvida novamente (ou seja: há duas retiradas seguidas), qual é a probabilidade dela ter sido devolvida em cada uma das estações E1, E2 e E3?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-2">Exercício 2</h2>
+<p><strong>Objetivo: manipular probabilidades relacionadas a Cadeias de Markov</strong></p>
+<p>Vamos agora extrapolar a situação anterior para o caso de termos <span class="arithmatex">\(n\)</span> estações.</p>
+<p>Vamos chamar de <span class="arithmatex">\(P(e_t = j)\)</span> a probabilidade de uma bicicleta estar na estação <span class="arithmatex">\(j\)</span> após <span class="arithmatex">\(t\)</span> iterações do nosso sistema.</p>
+<p>Seguindo essa mesma notação, temos que <span class="arithmatex">\(P(e_t = j | e_{t-1} = i)\)</span> é a probabilidade de uma bicicleta estar na estação <span class="arithmatex">\(j\)</span> na iteração <span class="arithmatex">\(t\)</span> <em>dado que sabemos que</em> ela estava na estação <span class="arithmatex">\(i\)</span> na iteração <span class="arithmatex">\(t-1\)</span>.</p>
+<p>Como estar em um determinado estado (ou: uma bicicleta estar em uma estação) leva necessariamente a não estar em outro estado (isto é: uma bicicleta só pode estar em uma estação de cada vez), então temos que:</p>
+<div class="arithmatex">\[
+P(e_t = j) = \sum_{i} P(e_t = j | e_{t-1} = i) P(e_{t-1} = i)
+\]</div>
+<p>(a notação <span class="arithmatex">\(\sum_i\)</span> representa "somatória para todo <span class="arithmatex">\(i\)</span> válido").</p>
+<p>(a) Demonstre que <span class="arithmatex">\(P(e_t = j) = \sum_{i} P(e_t = j | e_{t-1} = i) P(e_{t-1} = i)\)</span> (dica: lembre-se da definição de probabilidade condicional e desenhe um diagrama de Venn desse caso).</p>
+<p>(b) Demonstre que é possível calcular <span class="arithmatex">\(P(e_t = 1)\)</span> usando a forma matricial:</p>
+<div class="arithmatex">\[
+\begin{bmatrix} P(e_t = 1) \end{bmatrix} = \begin{bmatrix} P(e_t = 1 | e_{t-1} = 1) &amp; P(e_t = 1 | e_{t-1} = 2) &amp; \cdots &amp; P(e_t = 1 | e_{t-1} = n) \end{bmatrix} \begin{bmatrix} P(e_{t-1} = 1) \\ P(e_{t-1} = 2) \\ \vdots \\ P(e_{t-1} = n) \end{bmatrix}
+\]</div>
+<p>(c) Demonstre que podemos calcular <span class="arithmatex">\(P(e_t = j)\)</span> para todo <span class="arithmatex">\(j\)</span> usando a equação:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+x_{t} = A x_{t-1},
+$$</span><script type="math/tex; mode=display">
+x_{t} = A x_{t-1},
+</script>
+</div>
+onde:</p>
+<div class="arithmatex">\[
+x_{t} = \begin{bmatrix} P(e_{t} = 1) \\ P(e_{t} = 2) \\ \vdots \\ P(e_{t} = n) \end{bmatrix},
+\]</div>
+<div class="arithmatex">\[
+x_{t-1} = \begin{bmatrix} P(e_{t-1} = 1) \\ P(e_{t-1} = 2) \\ \vdots \\ P(e_{t-1} = n) \end{bmatrix},
+\]</div>
+<p>e</p>
+<div class="arithmatex">\[
+A = \begin{bmatrix} a_{i,j} \end{bmatrix}, a_{i,j} = P(e_t = j | e_{t-1} = i)
+\]</div>
+<p>(d) Se <span class="arithmatex">\(A\)</span> é uma matriz que leva as probabilidades de estar em cada estação numa iteração para essas mesmas probabilidades na iteração seguintes, que matriz é capaz de calcular as probabilidades de estar em estações duas iterações adiante?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercicio-3">Exercício 3</h2>
+<p><strong>Simular computacionalmente o processo de bicicletas</strong></p>
+<p>Voltando a nosso caso de três estações. Vamos supor que cada estação começa com um número igual de bicicletas, e que não há um limite máximo de bicicletas que podem ficar em cada estação. Use apoio computacional para encontrar as seguintes respostas:</p>
+<p>(a) Após uma iteração, qual é a proporção esperada de bicicletas em cada estação?</p>
+<p>(b) Após várias iterações, qual estação fica com mais bicicletas?</p>
+<p>(c) Se, ao invés de começarmos nossas iterações com um número igual de bicicletas em cada estação, começarmos com todas as bicicletas na estação E3, no topo do morro, devemos encontrar uma quantidade final de bicicletas diferente, ao fim de várias iterações?</p>
+<p>(d) Repita o experimento (c) para todas as bicicletas começando em E1 e, após, para todas as bicicletas começando em E2.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="exercicio-4">Exercício 4</h1>
+<p><strong>Objetivo: calcular auto-valores e auto-vetores usando pacotes Python</strong></p>
+<p>O problema das bicicletas de Montreal está ligado a uma característica de matrizes que é a existência de vetores e valores chamados de auto-valores e de auto-vetores. Quando um auto-vetor de uma matriz é multiplicado pela própria matriz, o resultado é um múltiplo do próprio vetor, isto é:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+Ax = x \lambda,
+$$</span><script type="math/tex; mode=display">
+Ax = x \lambda,
+</script>
+</div>
+onde: <span class="arithmatex">\(A\)</span> é a matriz, <span class="arithmatex">\(x\)</span> é o auto-vetor e <span class="arithmatex">\(\lambda\)</span> é o auto-valor correspondente.</p>
+<p>Por exemplo:</p>
+<p>
+<div><span class="MathJax_Preview">$$
+\begin{bmatrix} 
+    2 &amp; 0  \\
+    0 &amp; 1 
+\end{bmatrix}
+\begin{bmatrix} 
+    1 \\
+    0  
+\end{bmatrix}
+= 
+\begin{bmatrix} 
+    2 \\
+    0  
+\end{bmatrix}
+=
+2
+\begin{bmatrix} 
+    1 \\
+    0  
+\end{bmatrix},
+$$</span><script type="math/tex; mode=display">
+\begin{bmatrix} 
+    2 &amp; 0  \\
+    0 &amp; 1 
+\end{bmatrix}
+\begin{bmatrix} 
+    1 \\
+    0  
+\end{bmatrix}
+= 
+\begin{bmatrix} 
+    2 \\
+    0  
+\end{bmatrix}
+=
+2
+\begin{bmatrix} 
+    1 \\
+    0  
+\end{bmatrix},
+</script>
+</div>
+portanto <span class="arithmatex">\(\begin{bmatrix}1\\0\end{bmatrix}\)</span> é um auto-vetor de <span class="arithmatex">\(\begin{bmatrix} 2 &amp; 0 \\  0 &amp; 1 \end{bmatrix}\)</span>, e <span class="arithmatex">\(2\)</span> é o auto-valor associado.</p>
+<p>Se tivermos algum vetor na mesma direção de <span class="arithmatex">\(x\)</span> mas multiplicado por algum número real <span class="arithmatex">\(\alpha\)</span>, isto é, <span class="arithmatex">\(y=\alpha x\)</span>, podemos manter a mesma equação:</p>
+<div class="arithmatex">\[
+A \alpha x = \alpha x \lambda \Rightarrow Ay = y \lambda.
+\]</div>
+<p>Se você quiser calcular auto-valores e auto-vetores manualmente, pode usar. Porém, essa conta é muito longa e por isso usaremos um pacote computacional para isso.</p>
+<p>a) A instrução <code>w, v = np.linalg.eig(A)</code> retorna os auto-vetores da matriz A na variável <code>v</code> e os auto-valores correspondentes na variável <code>w</code>. Use essa função para calcular os auto-valores e auto-vetores da matriz <span class="arithmatex">\(A\)</span> do problema das bicicletas de Montreal. </p>
+<p>b) (use apoio computacional!) Calcule o ângulo entre cada um dos auto-vetores encontrados e o vetor de probabilidades <span class="arithmatex">\(x_{t}\)</span> encontrado ao fim de muitas iterações. Qual é o auto-vetor que está mais <em>alinhado</em> com <span class="arithmatex">\(x_t\)</span>, e qual é seu auto-valor associado?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="exercicio-5">Exercício 5</h1>
+<p><strong>Objetivo: auto-vetores e auto-valores como pontos de estabilidade, expansão, ou colapso</strong></p>
+<p>Vamos retomar o problema da população de carcarás e de sapos. Nesse problema, tínhamos a situação em que carcarás estão no mesmo habitat que sapos, obedecendo às seguintes regras:</p>
+<ul>
+<li>A população de carcarás naturalmente cai em 20% a cada mês</li>
+<li>Para cada cinco mil sapos existentes naquele mês, um novo carcará nasce</li>
+<li>A população de sapos naturalmente sobe em 10% porque eles se reproduzem</li>
+<li>A cada mês, cada carcará consegue comer 100 sapos</li>
+</ul>
+<p>Isso significa que podemos escrever equações para calcular o número de carcarás e de sapos a cada mês, tomando por base a quantidade deles no mês anterior:</p>
+<div class="arithmatex">\[ 
+\begin{cases}
+    \begin{aligned}
+    c_t &amp; = 0.8 c_{t-1} + 0.2 s_{t-1} \\
+    s_t &amp; = - 0.1 c_{t-1} + 1.1 s_{t-1} \\
+    \end{aligned}
+\end{cases}
+\]</div>
+<p>Podemos fazer esse cálculo usando a operação matricial:
+<div><span class="MathJax_Preview">$$
+\begin{bmatrix}
+    c_t \\
+    s_t 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0.8 &amp; 0.2\\
+    -0.1 &amp; 1.1
+\end{bmatrix} 
+\begin{bmatrix}
+    c_{t-1} \\
+    s_{t-1}
+\end{bmatrix}
+$$</span><script type="math/tex; mode=display">
+\begin{bmatrix}
+    c_t \\
+    s_t 
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0.8 &amp; 0.2\\
+    -0.1 &amp; 1.1
+\end{bmatrix} 
+\begin{bmatrix}
+    c_{t-1} \\
+    s_{t-1}
+\end{bmatrix}
+</script>
+</div>
+</p>
+<p>a) Calcule os auto-vetores e auto-vetores da matriz <span class="arithmatex">\(A = \begin{bmatrix}
+    0.8 &amp; 0.2\\
+    -0.1 &amp; 1.1
+\end{bmatrix}\)</span>.</p>
+<p>b) Iniciando com uma população aleatória de carcarás e sapos, calcule o vetor <span class="arithmatex">\(x_{t}\)</span> com a população de carcarás e sapos após muitos meses da iteração nessa comunidade.</p>
+<p>c) Encontre o ângulo entre <span class="arithmatex">\(x_t\)</span> e cada um dos auto-vetores de <span class="arithmatex">\(A\)</span>. Qual é o auto-vetor de <span class="arithmatex">\(A\)</span> mais alinhado a <span class="arithmatex">\(x_t\)</span>? Qual é o auto-valor associado a ele?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>  <span class="mf">1.1</span><span class="p">]])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">600</span><span class="p">],</span> <span class="p">[</span><span class="mi">500</span><span class="p">]])</span>
+<span class="n">populacao_carcaras</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">populacao_sapos</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">populacao_carcaras</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">populacao_sapos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">x</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">populacao_carcaras</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Carcarás'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">populacao_sapos</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Sapos (* 1000)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">800</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'População'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Semanas'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(d) Usando auto-valores e auto-vetores no caso da população de carcarás, justifique matematicamente o fato de que muito provavelmente a população deve tender a um equilíbrio ao longo de muitos meses. </p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="highlight"><pre><span></span><code><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>  <span class="mf">1.1</span><span class="p">]])</span>
+<span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(e) Partindo do caso da população de carcarás, suponha a seguinte situação. A população local decidiu que existem muitos carcarás nas redondezas, e por isso autorizou a caça. Com isso, ao fim do mês, ao invés de morrerem 20% dos carcarás existentes, morrem 80% dos carcarás existentes. Use auto-valores e auto-vetores para prever se esse processo de caça será eficaz para conter a população de carcarás. Após, confirme seu resultado usando uma simulação.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(f) Após a publicação de imagens chocantes sobre a caça dos carcarás, foram aprovadas leis de proteção e cuidado ambiental que fazem com que a mortalidade dos carcarás de um mês para o outro seja de apenas 19%. Usando auto-valores e auto-vetores, determine qual é o efeito dessa lei, a longo prazo, para as populações de carcarás e sapos na região.</p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+<script>mermaid.initialize({});</script></body>
+</html>
