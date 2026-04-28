@@ -32,7 +32,7 @@ nav:
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao/compressao_huffman.md
     - "Prática: Compressão Sem Perdas em Áudio": compressao/compressao_sem_perdas_audio.ipynb
-
+  - "Projeto final": "projeto-final.md"
 
 
 theme:
