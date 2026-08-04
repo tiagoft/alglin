@@ -12,22 +12,28 @@ nav:
     - "Estudo de Caso: Confetes Digitais": vetores/confetes.md
     - "Teoria: Projeções e produto interno": vetores/projecoes.ipynb
     - "Estudo de Caso: Embeddings": vetores/busca_embeddings.md
+    - "Exercícios: Vetores": exercicios/vetores.md
   - "Matrizes":
     - "Teoria: O que são matrizes": matrizes/matrizes.md
     - "Teoria: Sistemas Lineares": matrizes/sistemas_carcaras.md
     - "Estudo de caso: Resolvendo Sistemas": matrizes/inversa.md
+    - "Exercícios: Sistemas Lineares": exercicios/sistemas_lineares.md
     - "Projeto (opcional): Criptografia": matrizes/projeto-enigma.md
     - "Teoria: Determinantes": matrizes/determinante.md
     - "Prática: Transformadas Afins": matrizes/pratica_afins.ipynb
+    - "Exercícios: Geometria Analítica": exercicios/geometria_analitica.md
     - "Revisão": matrizes/revisao.md
     - "Projeto (opcional): Visão de Jogo": matrizes/jogo_referencial.md
   - "Avançados":
     - "Teoria: Mudanças de Base": avancado/bases.ipynb
     - "Estudo de caso: Pixels e Cores": avancado/pixels.ipynb
+    - "Exercícios: Bases": exercicios/bases.md
     - "Teoria: Auto-vetores e Auto-valores": avancado/autovetores_autovalores.md
     - "Estudo de caso: Cadeias de Markov": avancado/autovetores.ipynb
     - "Prática: Modelos de Linguagem": avancado/atividade_autovetores.ipynb
+    - "Exercícios: Autovalores e Autovetores": exercicios/autovalores_autovetores.md
     - "Teoria: Regressão e Pseudo-inversa": avancado/regressao.ipynb
+    - "Exercícios: Regressão": exercicios/regressao.md
     - "Estudo de caso: Estimar a Gravidade": avancado/gravidade.ipynb
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao/compressao_huffman.md
