@@ -7,34 +7,42 @@ nav:
   - "Vetores":
     - "Teoria: Uma caminhada por Chicago": vetores/caminhando_pela_cidade.ipynb
     - "Teoria: Propriedades de vetores": vetores/propriedades_soma_e_multiplicacao_escalar.md
+    - "Exercícios: Vetores (Parte 1)": exercicios/vetores_parte1.md
     - "Atividade: Ângulos e Distâncias": vetores/angulos.ipynb
+    - "Exercícios: Vetores (Parte 2)": exercicios/vetores_parte2.md
     - "Teoria: Vetores e Numpy": vetores/numpy01.ipynb
+    - "Exercícios: Vetores (Parte 3)": exercicios/vetores_parte3.md
     - "Estudo de Caso: Confetes Digitais": vetores/confetes.md
     - "Teoria: Projeções e produto interno": vetores/projecoes.ipynb
     - "Estudo de Caso: Embeddings": vetores/busca_embeddings.md
-    - "Exercícios: Vetores": exercicios/vetores.md
   - "Matrizes":
     - "Teoria: O que são matrizes": matrizes/matrizes.md
+    - "Exercícios: Sistemas Lineares (Parte 1)": exercicios/sistemas_lineares_parte1.md
     - "Teoria: Sistemas Lineares": matrizes/sistemas_carcaras.md
+    - "Exercícios: Sistemas Lineares (Parte 2)": exercicios/sistemas_lineares_parte2.md
     - "Estudo de caso: Resolvendo Sistemas": matrizes/inversa.md
-    - "Exercícios: Sistemas Lineares": exercicios/sistemas_lineares.md
+    - "Exercícios: Sistemas Lineares (Parte 3)": exercicios/sistemas_lineares_parte3.md
     - "Projeto (opcional): Criptografia": matrizes/projeto-enigma.md
     - "Teoria: Determinantes": matrizes/determinante.md
+    - "Exercícios: Geometria Analítica (Parte 1)": exercicios/geometria_analitica_parte1.md
     - "Prática: Transformadas Afins": matrizes/pratica_afins.ipynb
-    - "Exercícios: Geometria Analítica": exercicios/geometria_analitica.md
+    - "Exercícios: Geometria Analítica (Partes 2 e 3)": exercicios/geometria_analitica_partes2e3.md
     - "Revisão": matrizes/revisao.md
     - "Projeto (opcional): Visão de Jogo": matrizes/jogo_referencial.md
   - "Avançados":
     - "Teoria: Mudanças de Base": avancado/bases.ipynb
+    - "Exercícios: Bases (Parte 2)": exercicios/bases_parte2.md
     - "Estudo de caso: Pixels e Cores": avancado/pixels.ipynb
-    - "Exercícios: Bases": exercicios/bases.md
+    - "Exercícios: Bases (Parte 1)": exercicios/bases_parte1.md
     - "Teoria: Auto-vetores e Auto-valores": avancado/autovetores_autovalores.md
+    - "Exercícios: Autovalores e Autovetores (Partes 1 e 2)": exercicios/autovalores_autovetores_partes1e2.md
     - "Estudo de caso: Cadeias de Markov": avancado/autovetores.ipynb
     - "Prática: Modelos de Linguagem": avancado/atividade_autovetores.ipynb
-    - "Exercícios: Autovalores e Autovetores": exercicios/autovalores_autovetores.md
+    - "Exercícios: Autovalores e Autovetores (Parte 3)": exercicios/autovalores_autovetores_parte3.md
     - "Teoria: Regressão e Pseudo-inversa": avancado/regressao.ipynb
-    - "Exercícios: Regressão": exercicios/regressao.md
+    - "Exercícios: Regressão (Parte 1)": exercicios/regressao_parte1.md
     - "Estudo de caso: Estimar a Gravidade": avancado/gravidade.ipynb
+    - "Exercícios: Regressão (Parte 2)": exercicios/regressao_parte2.md
   - "Teoria da Informação":
     - "Compressão Sem Perdas": compressao/compressao_huffman.md
     - "Prática: Compressão Sem Perdas em Áudio": compressao/compressao_sem_perdas_audio.ipynb
