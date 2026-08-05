@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Exercícios: Bases (Parte 2) - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../extra/calendario.css" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores_parte1/">Exercícios: Vetores (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores_parte2/">Exercícios: Vetores (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores_parte3/">Exercícios: Vetores (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../matrizes/matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../sistemas_lineares_parte1/">Exercícios: Sistemas Lineares (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../sistemas_lineares_parte2/">Exercícios: Sistemas Lineares (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../sistemas_lineares_parte3/">Exercícios: Sistemas Lineares (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../geometria_analitica_parte1/">Exercícios: Geometria Analítica (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../geometria_analitica_partes2e3/">Exercícios: Geometria Analítica (Partes 2 e 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../avancado/bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Exercícios: Bases (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../bases_parte1/">Exercícios: Bases (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/autovetores_autovalores/">Teoria: Auto-vetores e Auto-valores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovalores_autovetores_partes1e2/">Exercícios: Autovalores e Autovetores (Partes 1 e 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/autovetores/">Estudo de caso: Cadeias de Markov</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/atividade_autovetores/">Prática: Modelos de Linguagem</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovalores_autovetores_parte3/">Exercícios: Autovalores e Autovetores (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/regressao/">Teoria: Regressão e Pseudo-inversa</a>
+</li>
+<li>
+<a class="dropdown-item" href="../regressao_parte1/">Exercícios: Regressão (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/gravidade/">Estudo de caso: Estimar a Gravidade</a>
+</li>
+<li>
+<a class="dropdown-item" href="../regressao_parte2/">Exercícios: Regressão (Parte 2)</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../projeto-final/">Projeto final</a>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../avancado/bases/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../avancado/pixels/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#exercicios-bases-parte-2">Exercícios: Bases (Parte 2)</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="exercicios-bases-parte-2">Exercícios: Bases (Parte 2)</h1>
+<h3 id="questao-1-exercicio-resolvido">Questão 1 — Exercício resolvido</h3>
+<p>Encontre <span class="arithmatex">\(a_1\)</span> e <span class="arithmatex">\(a_2\)</span> em:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    3 \\
+    4
+\end{bmatrix} = 
+a_1 \begin{bmatrix}
+    2 \\
+    4
+\end{bmatrix}
++ a_2
+\begin{bmatrix}
+    -3 \\
+    5
+\end{bmatrix}
+\]</div>
+<p>Para resolver esse exercício, realizamos explicitamente a operação no lado direito da equação, obtendo:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    3 \\
+    4
+\end{bmatrix} = 
+\begin{bmatrix}
+    2a_1 -3 a_2 \\
+    4a_1 +5a_2
+\end{bmatrix}
+\]</div>
+<p>Dois vetores são iguais se todas as suas componentes são iguais. Então, podemos montar o sistema:</p>
+<div class="arithmatex">\[
+\begin{cases}
+\begin{array}{rl}
+3 &amp;= 2a_1 -3a_2 \\
+4 &amp;= 4a_1 + 5 a_2
+\end{array}
+\end{cases}
+\]</div>
+<p>Então, encontramos <span class="arithmatex">\(a_1\)</span> e <span class="arithmatex">\(a_2\)</span> resolvendo o sistema.</p>
+<h3 id="questao-2">Questão 2</h3>
+<p>Encontre <span class="arithmatex">\(a_1\)</span> e <span class="arithmatex">\(a_2\)</span> em:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    5 \\
+    2
+\end{bmatrix} = 
+a_1 \begin{bmatrix}
+    1 \\
+    1
+\end{bmatrix}
++ a_2
+\begin{bmatrix}
+    1 \\
+    0
+\end{bmatrix}
+\]</div>
+<h3 id="questao-3">Questão 3</h3>
+<p>Encontre <span class="arithmatex">\(a_1\)</span>, <span class="arithmatex">\(a_2\)</span> e <span class="arithmatex">\(a_3\)</span> em:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    5 \\
+    2 \\
+    1
+\end{bmatrix} = 
+a_1 \begin{bmatrix}
+    1 \\
+    1 \\
+    1
+\end{bmatrix}
++ a_2
+\begin{bmatrix}
+    1 \\
+    0 \\
+    2
+\end{bmatrix}
++ a_3
+\begin{bmatrix}
+    2 \\
+    1 \\
+    0
+\end{bmatrix}
+\]</div>
+<h3 id="questao-4">Questão 4</h3>
+<p>Mostre que não é possível encontrar uma solução única para <span class="arithmatex">\(a_1\)</span> e <span class="arithmatex">\(a_2\)</span> em:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    5 \\
+    2
+\end{bmatrix} = 
+a_1 \begin{bmatrix}
+    1 \\
+    1
+\end{bmatrix}
++ a_2
+\begin{bmatrix}
+    2 \\
+    2
+\end{bmatrix}
+\]</div>
+<h3 id="questao-5">Questão 5</h3>
+<p>Encontre <span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(b\)</span>, <span class="arithmatex">\(c\)</span>, <span class="arithmatex">\(d\)</span> em:</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+    a &amp; b \\
+    c &amp; d
+\end{bmatrix}
+\begin{bmatrix}
+    x \\
+    y
+\end{bmatrix}
+= 
+x \begin{bmatrix}
+    1 \\
+    3
+\end{bmatrix}
++ y
+\begin{bmatrix}
+    2 \\
+    4
+\end{bmatrix}
+\]</div>
+<h3 id="questao-6">Questão 6</h3>
+<p>Encontre os componentes da matriz <span class="arithmatex">\(A\)</span> em:</p>
+<div class="arithmatex">\[
+A
+\begin{bmatrix}
+    x \\
+    y \\
+    z
+\end{bmatrix}
+= 
+x \begin{bmatrix}
+    1 \\
+    3 \\
+    1
+\end{bmatrix}
++ y
+\begin{bmatrix}
+    2 \\
+    4 \\
+    1
+\end{bmatrix}
++ z
+\begin{bmatrix}
+    2 \\
+    -4 \\
+    0
+\end{bmatrix}
+\]</div></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../extra/calendario.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
