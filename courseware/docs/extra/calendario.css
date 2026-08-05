@@ -7,6 +7,13 @@
   padding: 0.2em 0;
 }
 
+.calendario .calendario-questao {
+  font-size: 0.9em;
+  font-style: italic;
+  color: #555;
+  margin: 0.1em 0 0.4em 0;
+}
+
 .calendario details {
   margin-bottom: 1em;
 }

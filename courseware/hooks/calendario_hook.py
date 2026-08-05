@@ -1,11 +1,13 @@
 """Gera o bloco de calendário da home a partir de calendario.xlsx.
 
 Lê courseware/calendario.xlsx e substitui o marcador <!-- CALENDARIO -->
-em docs/index.md por uma lista de itens (data + atividade + link, quando
-houver). A separação entre aulas passadas e futuras é feita no navegador
-(ver docs/extra/calendario.js) — aqui só listamos tudo em ordem cronológica.
+em docs/index.md por uma lista de itens (data + conteúdo + questão +
+link, quando houver). A separação entre aulas passadas e futuras é feita
+no navegador (ver docs/extra/calendario.js) — aqui só listamos tudo em
+ordem cronológica.
 """
 
+import html
 import logging
 from pathlib import Path
 
@@ -35,24 +37,32 @@ def _resolver_link(link, page, files):
 
 def _gerar_html_calendario(page, files):
     df = pd.read_excel(CALENDARIO_XLSX, sheet_name="Calendario")
-    df = df.dropna(subset=["Data", "Atividade"]).sort_values("Data")
+    df = df.dropna(subset=["Data", "Conteúdo"]).sort_values("Data")
 
     itens = []
     for _, linha in df.iterrows():
         data = pd.Timestamp(linha["Data"])
         rotulo = f"{data.day} de {MESES[data.month]}"
-        atividade = str(linha["Atividade"])
+        conteudo_texto = html.escape(str(linha["Conteúdo"]).strip())
+        questao = linha.get("Questão")
         link = linha.get("Link")
 
-        conteudo = atividade
+        conteudo_html = conteudo_texto
         if isinstance(link, str) and link.strip():
             url = _resolver_link(link.strip(), page, files)
             if url:
-                conteudo = f'<a href="{url}">{atividade}</a>'
+                conteudo_html = f'<a href="{url}">{conteudo_texto}</a>'
+
+        questao_html = ""
+        if isinstance(questao, str) and questao.strip():
+            questao_html = (
+                f'<div class="calendario-questao">'
+                f'{html.escape(questao.strip())}</div>'
+            )
 
         itens.append(
             f'      <li class="calendario-item" data-date="{data.strftime("%Y-%m-%d")}">'
-            f'<strong>{rotulo}</strong> — {conteudo}</li>'
+            f'<strong>{rotulo}</strong> — {conteudo_html}{questao_html}</li>'
         )
 
     itens_html = "\n".join(itens)
