@@ -2,29 +2,13 @@
 
 ## Calendário
 
-Abril
-* 7 Teoria: autovalores
-* 9 Estudo de caso: autovalores
-* 10 Prática 3
-* 14 Avaliação: prática 3 + teste 3
-* 16 Teoria: pseudo-inversa
-* 17 Estudo de caso: gravidade
-* 23 Teoria: compressão sem perdas
-* 24 Prática 4: compressão sem perdas em áudio
-* 28 Avaliação prática 4 + teste 4
-* 30 Projeto
-
-Maio
-* 5 Projeto
-* 7 Início das PFs
-
+<!-- CALENDARIO -->
 
 ## Notas:
 
-* AI: 20%
+* AI: 30%
 * AF: 30%
-* Testes em sala: 20%
-* Práticas em sala: 20%
+* Testes em sala: 30%
 * Projeto Orientado: 10%
 
 
@@ -41,9 +25,9 @@ Maio
 ## Atividades de avaliação:
 
 * AI/AF: provas usuais. Em papel, sem consulta, realizadas no tempo de sala.
-* Testes em sala: Em papel, sem consulta, realizadas no tempo de sala, focadas no conteúdo mais recente
-* Práticas em sala: Práticas em grupo visando *descobrir algo novo* da disciplina. Nota individual E em grupo (multiplicativa)
-* Projeto orientado: Projeto de tema livre no fim do semestre. Nota individual E em grupo (multiplicativa)
+* Práticas em sala: Práticas em grupo visando *descobrir algo novo* da disciplina, preparando para o teste. A atividade é em grupo, mas não recebe nota.
+* Testes em sala: Em papel, sem consulta, realizadas no tempo de sala, focadas no conteúdo mais recente e na prática feita anteriormente.
+* Projeto orientado: Projeto de tema livre no fim do semestre. Nota em grupo, com possibilidade de arguição oral.
 
 ## Uso de IA
 

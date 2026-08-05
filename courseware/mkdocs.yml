@@ -2,6 +2,13 @@ site_name: Álgebra Linear e Teoria da Informação
 
 site_dir: build
 
+hooks:
+  - hooks/calendario_hook.py
+
+watch:
+  - calendario.xlsx
+  - hooks/calendario_hook.py
+
 nav:
   - Home: index.md
   - "Vetores":
@@ -95,3 +102,7 @@ extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
   # carrega o Mermaid da CDN
   - https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js
+  - extra/calendario.js
+
+extra_css:
+  - extra/calendario.css

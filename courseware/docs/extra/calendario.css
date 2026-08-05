@@ -1,0 +1,25 @@
+.calendario ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.calendario .calendario-item {
+  padding: 0.2em 0;
+}
+
+.calendario details {
+  margin-bottom: 1em;
+}
+
+.calendario summary {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.calendario .calendario-hoje {
+  background: #fff3cd;
+  border-left: 4px solid #f0ad4e;
+  border-radius: 3px;
+  padding: 0.3em 0.6em;
+  font-weight: bold;
+}

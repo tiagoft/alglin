@@ -126,6 +126,9 @@ venv.bak/
 # mkdocs documentation
 /site
 
+# Office lock files
+~$*
+
 # mypy
 .mypy_cache/
 .dmypy.json
