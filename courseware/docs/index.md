@@ -34,7 +34,14 @@
 * Você pode usar IA para aprender, discutir, buscar dados, etc.,
 * Você *não pode* usar IA para gerar qualquer tipo de material que será avaliado.
 
-## Exercícios complementares
+## Sobre este material
 
-* Veja no [Overleaf](https://www.overleaf.com/read/qrxwjzfjpqrp#af6903).
+Se você quiser acesso ao material para uso local, use:
 
+    git clone https://github.com/tiagoft/alglin.git
+
+ou
+
+    git clone git@github.com:tiagoft/alglin.git
+
+Se preferir, faça um fork do projeto original. Fique à vontade para sugerir mudanças e corrigir typos.
