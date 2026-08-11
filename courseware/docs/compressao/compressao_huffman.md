@@ -3,7 +3,7 @@
 ## Referências
 
 * [Mark Nelson and Jean-loup Gailly, The Data Compression Book](https://www.hlevkin.com/hlevkin/02imageprocC/The%20Data%20Compression%20Book%202nd%20edition.pdf), Chap. 3.
-* [D. A. Huffman, "A Method for the Construction of Minimum-Redundancy Codes,"]((https://doi.org/10.1109/JRPROC.1952.273898)) in Proceedings of the IRE, vol. 40, no. 9, pp. 1098-1101, Sept. 1952, doi: 10.1109/JRPROC.1952.273898.
+* [D. A. Huffman, "A Method for the Construction of Minimum-Redundancy Codes,"](https://doi.org/10.1109/JRPROC.1952.273898) in Proceedings of the IRE, vol. 40, no. 9, pp. 1098-1101, Sept. 1952, doi: 10.1109/JRPROC.1952.273898.
 
 ## Introdução
 
