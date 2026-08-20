@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Provas passadas - Álgebra Linear e Teoria da Informação</title>
+<link href="../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../css/brands.min.css" rel="stylesheet"/>
+<link href="../css/solid.min.css" rel="stylesheet"/>
+<link href="../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../extra/calendario.css" rel="stylesheet"/>
+<link href="../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/vetores_parte1/">Exercícios: Vetores (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/vetores_parte2/">Exercícios: Vetores (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/vetores_parte3/">Exercícios: Vetores (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../matrizes/matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/sistemas_lineares_parte1/">Exercícios: Sistemas Lineares (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/sistemas_lineares_parte2/">Exercícios: Sistemas Lineares (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/sistemas_lineares_parte3/">Exercícios: Sistemas Lineares (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/geometria_analitica_parte1/">Exercícios: Geometria Analítica (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/geometria_analitica_partes2e3/">Exercícios: Geometria Analítica (Partes 2 e 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../avancado/bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/bases_parte2/">Exercícios: Bases (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/bases_parte1/">Exercícios: Bases (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/autovetores_autovalores/">Teoria: Auto-vetores e Auto-valores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/autovalores_autovetores_partes1e2/">Exercícios: Autovalores e Autovetores (Partes 1 e 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/autovetores/">Estudo de caso: Cadeias de Markov</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/atividade_autovetores/">Prática: Modelos de Linguagem</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/autovalores_autovetores_parte3/">Exercícios: Autovalores e Autovetores (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/regressao/">Teoria: Regressão e Pseudo-inversa</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/regressao_parte1/">Exercícios: Regressão (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/gravidade/">Estudo de caso: Estimar a Gravidade</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/regressao_parte2/">Exercícios: Regressão (Parte 2)</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../projeto-final/">Projeto final</a>
+</li>
+<li class="nav-item">
+<a aria-current="page" class="nav-link active" href="./">Provas passadas</a>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../projeto-final/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link disabled" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#provas-passadas">Provas passadas</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#vetores">Vetores</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#matrizes-e-sistemas-lineares">Matrizes e sistemas lineares</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#bases-autovalores-regressao-e-modelos">Bases, autovalores, regressão e modelos</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#teoria-da-informacao-e-compressao">Teoria da informação e compressão</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="provas-passadas">Provas passadas</h1>
+<blockquote>
+<p><strong>Aviso:</strong> algumas questões abaixo pertencem a avaliações de conteúdos que talvez ainda não tenham sido vistos na disciplina. Use esta página como material de estudo e confira o conteúdo já trabalhado antes de tentar cada prova.</p>
+</blockquote>
+<p>As questões estão organizadas aproximadamente na ordem em que os conteúdos aparecem na disciplina. Dentro de cada avaliação, a ordem original das questões foi preservada.</p>
+<h2 id="vetores">Vetores</h2>
+<h3 id="teste-1-vetores-20252026">Teste 1 — Vetores — 2025/2026</h3>
+<h4 id="questao-1">Questão 1</h4>
+<p>Alan e Bianca estão acampando numa floresta e conversam usando um rádio comunicador com alcance de 450 m. Alan fica parado no acampamento-base, e Bianca caminha 300 m para o norte. Após, vira 90 graus para a direita e anda 200 m. Depois, faz uma curva de 60 graus para a esquerda e anda 100 m. Por fim, faz outra curva, agora de 120 graus para a direita, e anda 100 m.</p>
+<p>(a) Esboce a trajetória de Bianca.<br/>
+(b) Encontre a posição final de Bianca como um vetor na forma cartesiana.<br/>
+(c) Determine se, ao final da trajetória, Bianca consegue se comunicar com Alan.<br/>
+(d) As etapas poderiam ser percorridas em outra ordem? Quais propriedades da soma de vetores aparecem nessa situação?</p>
+<h4 id="questao-2">Questão 2</h4>
+<p>Um vetor <span class="arithmatex">\(x \in \mathbb{R}^n\)</span> é dado por</p>
+<div class="arithmatex">\[x = \begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}, \qquad x_k=\sqrt{k}.\]</div>
+<p>(a) Escreva <span class="arithmatex">\(x\)</span> para <span class="arithmatex">\(n=5\)</span>.<br/>
+(b) Encontre <span class="arithmatex">\(\lVert x\rVert\)</span> para <span class="arithmatex">\(n=5\)</span>.<br/>
+(c) Se <span class="arithmatex">\(y_k=1+\sqrt{k}\)</span>, encontre <span class="arithmatex">\(z=x-y\)</span> para <span class="arithmatex">\(n=5\)</span>.<br/>
+(d) Encontre uma expressão para <span class="arithmatex">\(\lVert x-y\rVert\)</span> que dependa somente de <span class="arithmatex">\(n\)</span> e não escreva explicitamente todos os termos da soma.</p>
+<h4 id="questao-3">Questão 3</h4>
+<p>Três partículas <span class="arithmatex">\(a\)</span>, <span class="arithmatex">\(b\)</span> e <span class="arithmatex">\(c\)</span> estão em posições <span class="arithmatex">\(x_a\)</span>, <span class="arithmatex">\(x_b\)</span> e <span class="arithmatex">\(x_c\in\mathbb{R}^3\)</span>, com cargas <span class="arithmatex">\(q_a\)</span>, <span class="arithmatex">\(q_b\)</span> e <span class="arithmatex">\(q_c\)</span>. O módulo da força eletrostática entre duas partículas é <span class="arithmatex">\(|F|=kq_1q_2/d^2\)</span>, com direção determinada pelas posições.</p>
+<p>(a) Desenhe as partículas, as forças individuais e as resultantes.<br/>
+(b) Mostre como calcular o vetor da força resultante sobre <span class="arithmatex">\(a\)</span>.<br/>
+(c) Escolha valores não nulos e distintos e calcule essa força.<br/>
+(d) Encontre uma situação em que a força resultante sobre <span class="arithmatex">\(a\)</span> seja nula sem que as cargas sejam nulas nem iguais.</p>
+<h3 id="atividade-pratica-01-20261">Atividade Prática 01 — 2026/1</h3>
+<h4 id="questao-1_1">Questão 1</h4>
+<p>Uma partícula parte da origem, caminha 3 unidades na direção de <span class="arithmatex">\(\begin{bmatrix}0\\1\end{bmatrix}\)</span>, vira 60 graus no sentido horário e caminha mais 3 unidades, chegando ao ponto <span class="arithmatex">\(v\)</span>. Em seguida vira um ângulo <span class="arithmatex">\(\theta\)</span> e caminha uma distância <span class="arithmatex">\(x\)</span>, retornando à origem.</p>
+<p>(a) Esboce a trajetória, marcando distâncias e ângulos.<br/>
+(b) Encontre <span class="arithmatex">\(\theta\)</span>.<br/>
+(c) Escreva <span class="arithmatex">\(v\)</span> nas formas polar e cartesiana.</p>
+<h4 id="questao-2_1">Questão 2</h4>
+<p>Sabendo que, para <span class="arithmatex">\(x\in\mathbb{R}^2\)</span>, <span class="arithmatex">\(\lVert x\rVert=\sqrt{x_1^2+x_2^2}\)</span>:</p>
+<p>(a) Mostre que <span class="arithmatex">\(\lVert ax\rVert=a\lVert x\rVert\)</span>.<br/>
+(b) Se <span class="arithmatex">\(\lVert x\rVert\)</span> é conhecido, encontre <span class="arithmatex">\(\alpha\)</span> tal que <span class="arithmatex">\(\lVert\alpha x\rVert=1\)</span>.</p>
+<h3 id="teste-1-vetores-20262">Teste 1 — Vetores — 2026/2</h3>
+<h4 id="questao-1_2">Questão 1</h4>
+<p>Alan e Bianca estão acampando e conversam por rádio com alcance de 450 m. Bianca caminha 300 m para o norte, 200 m para o leste, 100 m numa direção obtida por uma curva de 60 graus para a esquerda e 100 m após uma curva de 120 graus para a direita.</p>
+<p>(a) Esboce a trajetória.<br/>
+(b) Encontre a posição final como vetor cartesiano.<br/>
+(c) Verifique se Bianca ainda está no alcance do rádio.<br/>
+(d) Identifique as propriedades da soma de vetores relacionadas a trocar a ordem das etapas e a agrupar as somas.</p>
+<h4 id="questao-2_2">Questão 2</h4>
+<p>Para <span class="arithmatex">\(x_k=\sqrt{k}\)</span>:</p>
+<p>(a) Escreva <span class="arithmatex">\(x\)</span> para <span class="arithmatex">\(n=5\)</span>.<br/>
+(b) Calcule <span class="arithmatex">\(\lVert x\rVert\)</span>.<br/>
+(c) Para <span class="arithmatex">\(y_k=1+\sqrt{k}\)</span>, encontre <span class="arithmatex">\(x-y\)</span>.<br/>
+(d) Encontre <span class="arithmatex">\(\lVert x-y\rVert\)</span> em uma expressão válida para qualquer inteiro positivo <span class="arithmatex">\(n\)</span>.</p>
+<h4 id="questao-3_1">Questão 3</h4>
+<p>Considere três partículas em <span class="arithmatex">\(\mathbb{R}^3\)</span> sujeitas à força eletrostática <span class="arithmatex">\(|F|=kq_1q_2/d^2\)</span>.</p>
+<p>(a) Desenhe as forças e resultantes.<br/>
+(b) Deduzir o vetor da força resultante sobre uma partícula.<br/>
+(c) Calcular um exemplo numérico.<br/>
+(d) Encontrar uma situação de força resultante nula com cargas não nulas e distintas.</p>
+<h2 id="matrizes-e-sistemas-lineares">Matrizes e sistemas lineares</h2>
+<h3 id="teste-2-sistemas-lineares">Teste 2 — Sistemas Lineares</h3>
+<h4 id="questao-1_3">Questão 1</h4>
+<p>Encontre <span class="arithmatex">\(x\)</span> em</p>
+<div class="arithmatex">\[
+\begin{bmatrix}1&amp;1\end{bmatrix}
+\begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix}^{T}
+\begin{bmatrix}-1&amp;1\\0&amp;1\end{bmatrix}
+\left(
+\begin{bmatrix}1&amp;\pi\\\sqrt{11}&amp;9\end{bmatrix}
+\begin{bmatrix}1&amp;\pi\\\sqrt{11}&amp;9\end{bmatrix}^{-1}
+\right)
+\begin{bmatrix}1\\0\end{bmatrix}=x.
+\]</div>
+<h4 id="questao-2_3">Questão 2</h4>
+<p>Em um alfabeto fictício com caracteres A, B e C, use one-hot encoding para representar a mensagem ABCABC. A cifra troca A por B, B por C e C por A.</p>
+<p>(a) Encontre a matriz <span class="arithmatex">\(X\)</span> da mensagem.<br/>
+(b) Encontre a matriz que, multiplicada por <span class="arithmatex">\(X\)</span>, implementa a cifra.</p>
+<h4 id="questao-3_2">Questão 3</h4>
+<p>Uma máquina Enigma usa o alfabeto A, B, C, D e os rotores</p>
+<div class="arithmatex">\[P=\begin{bmatrix}0&amp;1&amp;0&amp;0\\1&amp;0&amp;0&amp;0\\0&amp;0&amp;1&amp;0\\0&amp;0&amp;0&amp;1\end{bmatrix},\qquad
+R=\begin{bmatrix}0&amp;1&amp;0&amp;0\\1&amp;0&amp;0&amp;0\\0&amp;0&amp;0&amp;1\\0&amp;0&amp;1&amp;0\end{bmatrix}.\]</div>
+<p>A primeira letra é multiplicada por <span class="arithmatex">\(P\)</span>, a segunda por <span class="arithmatex">\(RP\)</span>, a terceira por <span class="arithmatex">\(RRP\)</span> e assim por diante. Criptografe ABCD.</p>
+<h3 id="teste-3-geometria-analitica">Teste 3 — Geometria Analítica</h3>
+<h4 id="questao-1_4">Questão 1</h4>
+<p>Sabendo que</p>
+<div class="arithmatex">\[A=\begin{bmatrix}1&amp;0&amp;5\\0&amp;1&amp;3\\0&amp;0&amp;1\end{bmatrix},\]</div>
+<p>(a) determine a transformação aplicada a vetores de <span class="arithmatex">\(\mathbb{R}^2\)</span>;<br/>
+(b) encontre <span class="arithmatex">\(A^{-1}\)</span> usando apenas argumentos sobre a transformação.</p>
+<h4 id="questao-2_4">Questão 2</h4>
+<p>As matrizes homogêneas <span class="arithmatex">\(A\)</span> e <span class="arithmatex">\(B\)</span> realizam, respectivamente, as translações <span class="arithmatex">\([1,0]\)</span> e <span class="arithmatex">\([0,1]\)</span>, e <span class="arithmatex">\(R\)</span> realiza uma rotação de 15 graus no sentido anti-horário. Escreva, usando apenas <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span> e <span class="arithmatex">\(R\)</span>, a transformação que gira 60 graus em torno do ponto <span class="arithmatex">\([5,7]\)</span>.</p>
+<h3 id="teste-3-geometria-analitica-versao-2">Teste 3 — Geometria Analítica — versão 2</h3>
+<h4 id="questao-1_5">Questão 1</h4>
+<p>O sistema</p>
+<div class="arithmatex">\[\begin{bmatrix}1&amp;4\\D&amp;12\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}w\\z\end{bmatrix}\]</div>
+<p>define duas retas. Encontre <span class="arithmatex">\(D\)</span> para que elas sejam paralelas.</p>
+<h4 id="questao-2_5">Questão 2</h4>
+<p>As matrizes <span class="arithmatex">\(A\)</span> e <span class="arithmatex">\(B\)</span> realizam as translações <span class="arithmatex">\([-1,0]\)</span> e <span class="arithmatex">\([0,-1]\)</span>, e <span class="arithmatex">\(R\)</span> realiza uma rotação de 30 graus anti-horária. Escreva, em termos de <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span> e <span class="arithmatex">\(R\)</span>, a transformação que gira 60 graus em torno de <span class="arithmatex">\([7,5]\)</span>.</p>
+<h3 id="teste-4-bases">Teste 4 — Bases</h3>
+<h4 id="questao-1_6">Questão 1</h4>
+<p>Um algoritmo mapeia pixels de <span class="arithmatex">\((R,G,B)\)</span> para <span class="arithmatex">\((X,Y,Z)\)</span> por meio de uma matriz <span class="arithmatex">\(A\)</span>. As componentes <span class="arithmatex">\(Y\)</span> e <span class="arithmatex">\(Z\)</span> são relevantes, enquanto <span class="arithmatex">\(X\)</span> é ruído.</p>
+<p>(a) Desenhe o processo como um diagrama de blocos de operações matriciais.<br/>
+(b) Defina as matrizes necessárias.<br/>
+(c) Defina uma matriz <span class="arithmatex">\(B\)</span> que realize o processo completo.<br/>
+(d) Explique conceitualmente por que <span class="arithmatex">\(B\)</span> não pode ser invertida.</p>
+<h4 id="questao-2_6">Questão 2</h4>
+<p>Um sanduíche usa 350 g de grão-de-bico e 15 g de alho. Um pote de homus usa 150 g de grão-de-bico e 25 g de alho. Encontre a matriz <span class="arithmatex">\(A\)</span> que leva <span class="arithmatex">\(x=\begin{bmatrix}s\\h\end{bmatrix}\)</span>, quantidades de sanduíches e potes, para <span class="arithmatex">\(y=\begin{bmatrix}b\\a\end{bmatrix}\)</span>, quantidades de ingredientes.</p>
+<h3 id="teste-2-20262">Teste 2 — 2026/2</h3>
+<h4 id="questao-1_7">Questão 1</h4>
+<p>Sardinhas podem estar na forma de ovos, crianças ou adultas. A cada semana, 80% dos ovos viram crianças; 60% das crianças viram adultas; cada 100 adultas colocam 150 ovos; e 10% das adultas morrem.</p>
+<p>(a) Faça o diagrama do ciclo de vida.<br/>
+(b) Escreva o sistema dinâmico semanal.<br/>
+(c) Escreva-o na forma matricial.<br/>
+(d) Uma mergulhadora come 50 sardinhas e lança 50 ovos por semana. Incorpore essa interferência ao sistema.</p>
+<h4 id="questao-2_7">Questão 2</h4>
+<p>A matriz de rotação é</p>
+<div class="arithmatex">\[R=\begin{bmatrix}\cos\theta&amp;\sin\theta\\-\sin\theta&amp;\cos\theta\end{bmatrix}.\]</div>
+<p>Encontre uma transformação afim que leve um quadrado a um losango inteiramente contido nele, com dimensão horizontal maior que a vertical.</p>
+<p>(a) Identifique os vértices e seus destinos.<br/>
+(b) Esboce as transformações afins, uma a uma.<br/>
+(c) Identifique as matrizes de cada etapa.<br/>
+(d) Escreva a matriz composta <span class="arithmatex">\(Q\)</span>.</p>
+<h3 id="prova-ai-20252">Prova AI — 2025/2</h3>
+<h4 id="questao-1_8">Questão 1</h4>
+<p>Escreva um pseudocódigo, sem usar funções de Python, que receba itens vetoriais de um banco de dados e uma query e retorne o item mais semelhante, usando a menor distância. A função deve funcionar em qualquer dimensão.</p>
+<h4 id="questao-2_8">Questão 2</h4>
+<p>Encontre <span class="arithmatex">\(x\)</span> e <span class="arithmatex">\(y\)</span> em</p>
+<div class="arithmatex">\[
+\begin{bmatrix}1&amp;2\\3&amp;4\\5&amp;6\end{bmatrix}
+\begin{bmatrix}5&amp;x\\y&amp;6\end{bmatrix}
+=\begin{bmatrix}13&amp;15\\31&amp;33\\49&amp;51\end{bmatrix}.
+\]</div>
+<h4 id="questao-3_3">Questão 3</h4>
+<p>Turistas se deslocam entre a Torre Eiffel, o Louvre e o Arco do Triunfo. As probabilidades são: da Torre para Louvre 0,7, para Arco 0,1 e permanece 0,2; do Louvre para Torre 0,2, para Arco 0,3 e permanece 0,5; do Arco para Torre 0,3, para Louvre 0,5 e permanece 0,2.</p>
+<p>(a) Encontre <span class="arithmatex">\(A\)</span> tal que <span class="arithmatex">\(P_{t+1}=AP_t\)</span>.<br/>
+(b) Escreva, em termos de <span class="arithmatex">\(A\)</span>, como encontrar <span class="arithmatex">\(B\)</span> tal que <span class="arithmatex">\(P_{t+10}=BP_t\)</span>.</p>
+<h4 id="questao-4">Questão 4</h4>
+<p>Se <span class="arithmatex">\(A=\begin{bmatrix}x&amp;-y\\y&amp;x\end{bmatrix}\)</span> é uma matriz de rotação, encontre <span class="arithmatex">\(A^{-1}\)</span> em termos de <span class="arithmatex">\(x\)</span> e <span class="arithmatex">\(y\)</span>, usando as relações trigonométricas fornecidas.</p>
+<h4 id="questao-5">Questão 5</h4>
+<p>O sistema</p>
+<div class="arithmatex">\[\begin{bmatrix}1&amp;3\\D&amp;9\end{bmatrix}\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}w\\z\end{bmatrix}\]</div>
+<p>define duas retas. Mostre as equações e encontre <span class="arithmatex">\(D\)</span> para que sejam paralelas.</p>
+<h4 id="questao-6">Questão 6</h4>
+<p>Um pixel RGB é transformado por <span class="arithmatex">\(T\)</span> para o espaço <span class="arithmatex">\((X,Y,Z)\)</span>. Encontre a matriz que transforma o pixel, remove a componente <span class="arithmatex">\(Y\)</span> e o retorna ao espaço RGB.</p>
+<h2 id="bases-autovalores-regressao-e-modelos">Bases, autovalores, regressão e modelos</h2>
+<h3 id="prova-af-20252">Prova AF — 2025/2</h3>
+<h4 id="questao-1_9">Questão 1</h4>
+<p>Considere</p>
+<div class="arithmatex">\[
+\begin{bmatrix}5\\3\\2\\9\pi\end{bmatrix}=
+\begin{bmatrix}1&amp;2\\3&amp;4\\5&amp;6\\\sqrt2&amp;-1\end{bmatrix}
+\begin{bmatrix}a\\b\end{bmatrix}.
+\]</div>
+<p>Proponha um método para encontrar <span class="arithmatex">\(a\)</span> e <span class="arithmatex">\(b\)</span>, deixando indicadas as operações difíceis.</p>
+<h4 id="questao-2_9">Questão 2</h4>
+<p>O desempenho de um aluno é modelado por <span class="arithmatex">\(n=a\sqrt{t}+b\)</span>. Proponha detalhadamente um método para encontrar <span class="arithmatex">\(a\)</span> e <span class="arithmatex">\(b\)</span>.</p>
+<h4 id="questao-3_4">Questão 3</h4>
+<p>A palavra LARANJAS foi comprimida por Huffman. Mostre passo a passo como construir a árvore e encontre a sequência de bits correspondente.</p>
+<h4 id="questao-4_1">Questão 4</h4>
+<p>Explique por que a quantização é necessária para comprimir áudio com Huffman, indicando a característica do áudio que impede a aplicação direta do código e como ela é alterada.</p>
+<h4 id="questao-5_1">Questão 5</h4>
+<p>A população de carcarás e sapos segue</p>
+<div class="arithmatex">\[\begin{bmatrix}c\\s\end{bmatrix}_{t+1}=A\begin{bmatrix}c\\s\end{bmatrix}_t,\]</div>
+<p>com <span class="arithmatex">\(A=P\operatorname{diag}(0,7/2,2/\pi)P^{-1}\)</span>. Determine se a população cresce indefinidamente, fica estável ou tende a zero, justificando pelos autovalores.</p>
+<h4 id="questao-6_1">Questão 6</h4>
+<p>Explique por que, em uma Cadeia de Markov representada por <span class="arithmatex">\(x_{t+1}=Ax_t\)</span>, as colunas da matriz de transição devem somar 1.</p>
+<h4 id="questao-7">Questão 7</h4>
+<p>Encontre a matriz cujos autovetores são <span class="arithmatex">\(\begin{bmatrix}1\\0\end{bmatrix}\)</span> e <span class="arithmatex">\(\begin{bmatrix}0\\1\end{bmatrix}\)</span>, com autovalores associados 5 e <span class="arithmatex">\(\pi\)</span>.</p>
+<h3 id="prova-af-20261">Prova AF — 2026/1</h3>
+<h4 id="questao-1_10">Questão 1</h4>
+<p>Um modelo autorregressivo de ordem <span class="arithmatex">\(n\)</span> é</p>
+<div class="arithmatex">\[x_t=a_1x_{t-1}+a_2x_{t-2}+\cdots+a_nx_{t-n}.\]</div>
+<p>Para ordem 3, com <span class="arithmatex">\(a_1=2\)</span>, <span class="arithmatex">\(a_2=0\)</span> e <span class="arithmatex">\(a_3=1\)</span>:</p>
+<p>(a) Encontre o próximo elemento de <span class="arithmatex">\(s=[1,2,4,9]\)</span>.<br/>
+(b) Escreva <span class="arithmatex">\(y=Xw\)</span> para esse cálculo, com <span class="arithmatex">\(y\in\mathbb{R}^{1\times1}\)</span>, <span class="arithmatex">\(X\in\mathbb{R}^{1\times3}\)</span> e <span class="arithmatex">\(w\in\mathbb{R}^{3\times1}\)</span>.<br/>
+(c) Escreva as equações para modelar <span class="arithmatex">\(x_3,\ldots,x_8\)</span> com um modelo de ordem 2.<br/>
+(d) Passe-as à forma matricial e indique como usar a pseudoinversa para encontrar os coeficientes.</p>
+<h4 id="questao-2_10">Questão 2</h4>
+<p>Rumi, Mira e Zoey começam com 1000 conchinhas cada uma. A cada mês, Rumi dá metade das suas conchinhas para Mira e metade para Zoey; Mira dá um terço para Rumi e o restante para Zoey; Zoey dá três quartos para Mira e o restante para Rumi.</p>
+<p>(a) Desenhe o grafo e as probabilidades.<br/>
+(b) Encontre <span class="arithmatex">\(x_1\)</span> a partir de <span class="arithmatex">\(x_0\)</span>.<br/>
+(c) Acrescente um nó representando o colchão, para o qual Zoey passa a esconder um quarto das conchinhas.<br/>
+(d) Encontre o autovetor associado ao autovalor 1.</p>
+<h4 id="questao-3_5">Questão 3</h4>
+<p>Para LARANJAS:</p>
+<p>(a) Construa a árvore de Huffman.<br/>
+(b) Verifique se a árvore é única e, se não, construa outra possível.<br/>
+(c) Discuta como a árvore muda ao codificar LARANJAS repetida quatro vezes.</p>
+<h4 id="questao-4_2">Questão 4</h4>
+<p>Partindo de <span class="arithmatex">\(x\in\mathbb{R}^2\)</span>:</p>
+<p>(a) Encontre a base canônica <span class="arithmatex">\(b_1,b_2\)</span>.<br/>
+(b) Se <span class="arithmatex">\(x=v_1w_1+v_2w_2\)</span>, explique como encontrar <span class="arithmatex">\(v\)</span> conhecendo <span class="arithmatex">\(x,w_1,w_2\)</span>.<br/>
+(c) Para <span class="arithmatex">\(y=Ax\)</span>, com <span class="arithmatex">\(A\)</span> uma rotação, identifique <span class="arithmatex">\(w_1,w_2\)</span> tais que <span class="arithmatex">\(y=y_1w_1+y_2w_2\)</span>.</p>
+<h3 id="prova-sub-20252">Prova SUB — 2025/2</h3>
+<h4 id="questao-1-cadeias-de-markov">Questão 1 — Cadeias de Markov</h4>
+<p>Modele uma rede de pontos turísticos de Paris por uma Cadeia de Markov. Dadas várias medições de contagens <span class="arithmatex">\(X_t\)</span> e a relação <span class="arithmatex">\(X_{t+1}=AX_t\)</span>, explique como usar todas as medições para estimar <span class="arithmatex">\(A\)</span> com o menor erro possível, inclusive indicando a formulação matricial e a pseudoinversa.</p>
+<h4 id="questao-2-rotacao-e-translacao">Questão 2 — Rotação e translação</h4>
+<p>Para</p>
+<div class="arithmatex">\[A=\begin{bmatrix}x&amp;-y&amp;0\\y&amp;x&amp;1\\0&amp;0&amp;1\end{bmatrix},\]</div>
+<p>encontre <span class="arithmatex">\(A^{-1}\)</span> em termos de <span class="arithmatex">\(x\)</span> e <span class="arithmatex">\(y\)</span>. Na versão 2026/1, também:</p>
+<p>(a) Desenhe a transformação aplicada a uma figura.<br/>
+(b) Mostre, usando trigonometria, a relação entre a inversa e a transposta de uma matriz de rotação.<br/>
+(c) Encontre <span class="arithmatex">\(A^{-1}\)</span> usando intuições geométricas.</p>
+<h4 id="questao-3-ciclo-de-vida-das-alfaces">Questão 3 — Ciclo de vida das alfaces</h4>
+<p>A cada 100 sementes, 50 viram mudas e 50 permanecem sementes. A cada 100 mudas, 10 viram adultas, 80 permanecem mudas e 10 murcham. A cada 100 adultas, 20 murcham, as demais permanecem próprias para consumo e são geradas 200 sementes.</p>
+<p>(a) Complete o grafo com os pesos das transições.<br/>
+(b) Escreva o sistema de equações semanal.<br/>
+(c) Escreva a matriz de transição.<br/>
+(d) Se Sam come sete alfaces por dia e planta 20 sementes por alface consumida, incorpore a interferência ao modelo.</p>
+<p>Na versão SUB 2026/1, use os dados alterados do enunciado: 20% das sementes viram mudas; 5% das mudas viram adultas; 75% permanecem mudas; e 20% das adultas murcham. Acrescente também o estado das alfaces murchas ao grafo.</p>
+<h4 id="questao-4-comutatividade">Questão 4 — Comutatividade</h4>
+<p>(a) Dê um exemplo numérico de dimensão 3 mostrando a comutatividade da soma de vetores.<br/>
+(b) Demonstre a propriedade usando apenas a comutatividade dos números reais e a definição da soma vetorial.<br/>
+(c) Dê um exemplo concreto em que a comutatividade da soma de vetores ajuda a explicar um fenômeno.</p>
+<h3 id="prova-sub-20261">Prova SUB — 2026/1</h3>
+<h4 id="questao-1-rotacao-e-translacao">Questão 1 — Rotação e translação</h4>
+<p>Para a matriz homogênea</p>
+<div class="arithmatex">\[A=\begin{bmatrix}x&amp;-y&amp;0\\y&amp;x&amp;1\\0&amp;0&amp;1\end{bmatrix},\]</div>
+<p>(a) faça um desenho da transformação aplicada a uma figura;<br/>
+(b) mostre, usando trigonometria, a relação entre a inversa e a transposta de uma matriz de rotação;<br/>
+(c) encontre <span class="arithmatex">\(A^{-1}\)</span> usando intuições geométricas.</p>
+<h4 id="questao-2-ciclo-de-vida-das-alfaces">Questão 2 — Ciclo de vida das alfaces</h4>
+<p>Use os dados da versão 2026/1: 20% das sementes viram mudas e 80% permanecem sementes; 5% das mudas viram adultas, 75% permanecem mudas e o restante murcha; 20% das adultas murcham e as demais permanecem próprias para consumo, gerando 200 sementes a cada 100 adultas.</p>
+<p>(a) Acrescente o estado das alfaces murchas ao grafo e atribua os pesos.<br/>
+(b) Escreva o sistema de equações.<br/>
+(c) Passe o sistema à forma matricial.<br/>
+(d) Incorpore a intervenção de Sam, que come sete alfaces por dia e planta 20 sementes para cada alface consumida.</p>
+<h4 id="questao-3-bases">Questão 3 — Bases</h4>
+<p>Para <span class="arithmatex">\(x=\begin{bmatrix}x_1\\x_2\end{bmatrix}\)</span>:</p>
+<p>(a) demonstre que <span class="arithmatex">\(x=x_1\begin{bmatrix}1\\0\end{bmatrix}+x_2\begin{bmatrix}0\\1\end{bmatrix}\)</span>;<br/>
+(b) escreva <span class="arithmatex">\(x_1\)</span> e <span class="arithmatex">\(x_2\)</span> como funções de <span class="arithmatex">\(s_1\)</span> e <span class="arithmatex">\(s_2\)</span> em</p>
+<div class="arithmatex">\[x=s_1\begin{bmatrix}2\\3\end{bmatrix}+s_2\begin{bmatrix}4\\5\end{bmatrix};\]</div>
+<p>(c) escreva o sistema na forma matricial e indique como encontrar <span class="arithmatex">\(s_1,s_2\)</span>;<br/>
+(d) desenhe a relação entre as duas formas de representar o vetor.</p>
+<h4 id="questao-4-transformacoes-afins">Questão 4 — Transformações afins</h4>
+<p>Uma nuvem quadrada <span class="arithmatex">\(X\)</span> está centrada em <span class="arithmatex">\(\begin{bmatrix}-3\\-2\end{bmatrix}\)</span>. Encontre uma matriz <span class="arithmatex">\(Q\)</span> que expanda seu lado vertical quatro vezes, mantendo o centro, e explique as operações primitivas e a composição usadas para obter <span class="arithmatex">\(Y=QX\)</span>.</p>
+<h4 id="questao-5-inversa-de-rotacao">Questão 5 — Inversa de rotação</h4>
+<p>Para</p>
+<div class="arithmatex">\[R=\begin{bmatrix}\cos\theta&amp;-\sin\theta\\\sin\theta&amp;\cos\theta\end{bmatrix},\]</div>
+<p>(a) encontre <span class="arithmatex">\(R^{-1}\)</span>;<br/>
+(b) mostre, por multiplicação matricial, que <span class="arithmatex">\(RR^{-1}=I\)</span>.</p>
+<h3 id="prova-ai-20261">Prova AI — 2026/1</h3>
+<h4 id="questao-1-ciclo-de-vida-das-alfaces">Questão 1 — Ciclo de vida das alfaces</h4>
+<p>Use o modelo em que 50% das sementes viram mudas; 10% das mudas viram adultas, 80% permanecem mudas e 10% murcham; 20% das adultas murcham e as demais permanecem próprias para consumo, gerando 200 sementes a cada 100 adultas.</p>
+<p>(a) Complete o grafo com os pesos.<br/>
+(b) Escreva o sistema de equações.<br/>
+(c) Escreva-o na forma matricial.<br/>
+(d) Incorpore a intervenção de Sam, que come sete alfaces por dia e planta 20 sementes por alface consumida.</p>
+<h4 id="questao-2-mudanca-de-base">Questão 2 — Mudança de base</h4>
+<p>Para</p>
+<div class="arithmatex">\[x=\begin{bmatrix}x_1\\x_2\end{bmatrix},\]</div>
+<p>(a) demonstre sua representação na base canônica;<br/>
+(b) encontre as equações que relacionam <span class="arithmatex">\(x_1,x_2\)</span> a <span class="arithmatex">\(s_1,s_2\)</span> na base formada por <span class="arithmatex">\(\begin{bmatrix}2\\3\end{bmatrix}\)</span> e <span class="arithmatex">\(\begin{bmatrix}4\\5\end{bmatrix}\)</span>;<br/>
+(c) escreva a forma matricial e a expressão com a inversa;<br/>
+(d) desenhe as duas representações.</p>
+<h4 id="questao-3-transformacao-de-uma-nuvem">Questão 3 — Transformação de uma nuvem</h4>
+<p>Uma nuvem quadrada está centrada em <span class="arithmatex">\(\begin{bmatrix}-3\\-2\end{bmatrix}\)</span>. Esboce a nuvem original e a obtida ao expandir o lado vertical em quatro vezes. Explique como construir a matriz <span class="arithmatex">\(Q\)</span> para <span class="arithmatex">\(Y=QX\)</span> usando operações primitivas.</p>
+<h4 id="questao-4-rotacao">Questão 4 — Rotação</h4>
+<p>Partindo da matriz de rotação anti-horária, encontre a matriz inversa e mostre que o produto da matriz pela sua inversa é a identidade.</p>
+<h2 id="teoria-da-informacao-e-compressao">Teoria da informação e compressão</h2>
+<h3 id="teste-6-compressao">Teste 6 — Compressão</h3>
+<h4 id="questao-1_11">Questão 1</h4>
+<p>A palavra ABACAXI foi comprimida pelo algoritmo de Huffman.</p>
+<p>(a) Mostre passo a passo a construção da árvore.<br/>
+(b) Encontre a sequência de bits para ABACAXI.<br/>
+(c) Encontre a sequência de bits para ABC usando a mesma árvore.</p>
+<h4 id="questao-2_11">Questão 2</h4>
+<p>Explique por que a quantização é necessária para comprimir áudio usando Huffman. Cite a característica do arquivo de áudio que impede a compressão direta e explique como a quantização a transforma em um conjunto finito de símbolos.</p>
+<h4 id="questao-3_6">Questão 3</h4>
+<p>Explique como a taxa de compressão muda quando aumentamos o número de níveis de quantização e por que isso acontece.</p>
+<h3 id="atividade-pratica-04">Atividade Prática 04</h3>
+<h4 id="questao-1_12">Questão 1</h4>
+<p>Sobre compressão de áudio por Huffman:</p>
+<p>(a) Esboce uma onda sonora e sua quantização.<br/>
+(b) Explique o efeito de usar menos níveis na qualidade do som.<br/>
+(c) Explique o que significa a onda quantizada ser descrita por um conjunto finito de símbolos.<br/>
+(d) Explique por que sinais de áudio quantizados podem ser comprimidos por Huffman.</p></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../extra/calendario.js"></script>
+<script src="../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
