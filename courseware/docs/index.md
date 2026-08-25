@@ -45,3 +45,7 @@ ou
     git clone git@github.com:tiagoft/alglin.git
 
 Se preferir, faça um fork do projeto original. Fique à vontade para sugerir mudanças e corrigir typos.
+
+## Criar uma apostila
+
+<div id="apostila"></div>
