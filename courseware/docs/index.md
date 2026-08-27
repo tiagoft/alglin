@@ -46,6 +46,3 @@ ou
 
 Se preferir, faça um fork do projeto original. Fique à vontade para sugerir mudanças e corrigir typos.
 
-## Criar uma apostila
-
-<div id="apostila"></div>
