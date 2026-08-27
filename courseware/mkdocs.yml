@@ -104,6 +104,10 @@ extra_javascript:
   # carrega o Mermaid da CDN
   - https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js
   - extra/calendario.js
+  - extra/apresentacao/apresentacao.js
+  - extra/apostila/apostila.js
 
 extra_css:
   - extra/calendario.css
+  - extra/apresentacao/apresentacao.css
+  - extra/apostila/apostila.css
