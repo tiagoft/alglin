@@ -186,7 +186,7 @@ $$
     X^T = \begin{bmatrix} 40 & 40 \\ 400 & 0 \\ 20 & 20 \\ 0 & 200 \end{bmatrix}
     $$
 
-??? info "Mostre que, se $X$ é uma matriz-linha correspondente ao vetor $y$, então $XX^T = <y,y>$.
+??? info "Mostre que, se $X$ é uma matriz-linha correspondente ao vetor $y$, então $XX^T = <y,y>$."
     Pela definição:
     $$
     \begin{array}{rl}
