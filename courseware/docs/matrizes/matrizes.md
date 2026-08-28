@@ -210,7 +210,8 @@ $$
 Y^T X^T = (XY)^T
 $$
 
-Isso significa que, no nosso caso, podemos encontrar a matriz $Z=XY$. Porém, podemos também encontrar a matriz $Z^T=(XY)^T$. Para encontra essa matriz, devemos multiplicar $Y^T X^T$, isto é, transpomos cada matriz individualmente e invertemos a ordem da multiplicação.
+Isso significa que, no nosso caso, podemos encontrar a matriz $Z=XY$. Porém, podemos também encontrar a matriz $Z^T=(XY)^T$. Para encontrar essa matriz, devemos multiplicar $Y^T X^T$, isto é, transpomos cada matriz individualmente e invertemos a ordem da multiplicação.
+
 
 Verifique que essa propriedade realmente se aplica no caso de nossa matriz de receitas!
 
