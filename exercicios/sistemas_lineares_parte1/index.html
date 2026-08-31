@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../../img/favicon.ico" rel="shortcut icon"/>
+<title>Exercícios: Sistemas Lineares (Parte 1) - Álgebra Linear e Teoria da Informação</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../../css/brands.min.css" rel="stylesheet"/>
+<link href="../../css/solid.min.css" rel="stylesheet"/>
+<link href="../../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../../extra/calendario.css" rel="stylesheet"/>
+<link href="../../extra/apresentacao/apresentacao.css" rel="stylesheet"/>
+<link href="../../extra/apostila/apostila.css" rel="stylesheet"/>
+<link href="../../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="../..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="../..">Home</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores_parte1/">Exercícios: Vetores (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores_parte2/">Exercícios: Vetores (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores_parte3/">Exercícios: Vetores (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-current="page" aria-expanded="false" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../matrizes/matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a aria-current="page" class="dropdown-item active" href="./">Exercícios: Sistemas Lineares (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../sistemas_lineares_parte2/">Exercícios: Sistemas Lineares (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../sistemas_lineares_parte3/">Exercícios: Sistemas Lineares (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../geometria_analitica_parte1/">Exercícios: Geometria Analítica (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../geometria_analitica_partes2e3/">Exercícios: Geometria Analítica (Partes 2 e 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../matrizes/jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../avancado/bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a class="dropdown-item" href="../bases_parte2/">Exercícios: Bases (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../bases_parte1/">Exercícios: Bases (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/autovetores_autovalores/">Teoria: Auto-vetores e Auto-valores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovalores_autovetores_partes1e2/">Exercícios: Autovalores e Autovetores (Partes 1 e 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/autovetores/">Estudo de caso: Cadeias de Markov</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/atividade_autovetores/">Prática: Modelos de Linguagem</a>
+</li>
+<li>
+<a class="dropdown-item" href="../autovalores_autovetores_parte3/">Exercícios: Autovalores e Autovetores (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/regressao/">Teoria: Regressão e Pseudo-inversa</a>
+</li>
+<li>
+<a class="dropdown-item" href="../regressao_parte1/">Exercícios: Regressão (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../avancado/gravidade/">Estudo de caso: Estimar a Gravidade</a>
+</li>
+<li>
+<a class="dropdown-item" href="../regressao_parte2/">Exercícios: Regressão (Parte 2)</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../projeto-final/">Projeto final</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../apostila/">Criar uma apostila</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../questoes-antigas/">Provas passadas</a>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../matrizes/matrizes/" rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../../matrizes/sistemas_carcaras/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#exercicios-sistemas-lineares-parte-1">Exercícios: Sistemas Lineares (Parte 1)</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<h1 id="exercicios-sistemas-lineares-parte-1">Exercícios: Sistemas Lineares (Parte 1)</h1>
+<p><strong>Objetivo:</strong> modelar operações em vetores usando produtos internos e multiplicações matriciais</p>
+<h3 id="questao-1">Questão 1</h3>
+<p>Calcule <span class="arithmatex">\(x\)</span> nos casos abaixo:</p>
+<p><strong>a)</strong> <span><span class="MathJax_Preview">$ x = \left\langle \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} 3 \\ 4 \end{bmatrix} \right\rangle$</span><script type="math/tex"> x = \left\langle \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} 3 \\ 4 \end{bmatrix} \right\rangle</script></span></p>
+<p><strong>b)</strong> <span><span class="MathJax_Preview">$ x = \left\langle \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -1 \\ -2 \end{bmatrix} \right\rangle$</span><script type="math/tex"> x = \left\langle \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} -1 \\ -2 \end{bmatrix} \right\rangle</script></span></p>
+<p><strong>c)</strong> <span><span class="MathJax_Preview">$ \left\langle \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} x \\ 1 \end{bmatrix} \right\rangle = 0$</span><script type="math/tex"> \left\langle \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \begin{bmatrix} x \\ 1 \end{bmatrix} \right\rangle = 0</script></span></p>
+<p><strong>d)</strong> <span><span class="MathJax_Preview">$ \left\langle \begin{bmatrix} a \\ 2a \end{bmatrix}, \begin{bmatrix} x \\ 1 \end{bmatrix} \right\rangle = a$</span><script type="math/tex"> \left\langle \begin{bmatrix} a \\ 2a \end{bmatrix}, \begin{bmatrix} x \\ 1 \end{bmatrix} \right\rangle = a</script></span></p>
+<p><strong>e)</strong> <span class="arithmatex">\(X = \left\langle \begin{bmatrix} 1 \\ 3 \\ 4 \end{bmatrix}, \begin{bmatrix} 2 \\ -2 \\ 0 \end{bmatrix} \right\rangle\)</span></p>
+<p><strong>f)</strong> <span class="arithmatex">\(X = \left\langle \begin{bmatrix} 1 \\ 3 \\ 4 \end{bmatrix}, 5\begin{bmatrix} 2 \\ -2 \\ 0 \end{bmatrix} \right\rangle\)</span></p>
+<p><strong>g)</strong> <span class="arithmatex">\(X = \left\langle -2\begin{bmatrix} 1 \\ 3 \\ 4 \end{bmatrix}, 5\begin{bmatrix} 2 \\ -2 \\ 0 \end{bmatrix} \right\rangle\)</span></p>
+<h3 id="questao-2">Questão 2</h3>
+<p>Calcule <span class="arithmatex">\(x\)</span> nos casos abaixo:</p>
+<p><strong>a)</strong> <span class="arithmatex">\(x = \left| \begin{bmatrix} 1 \\ 2 \end{bmatrix} + \begin{bmatrix} 2 \\ 1 \end{bmatrix} \right|\)</span></p>
+<p><strong>b)</strong></p>
+<div class="arithmatex">\[
+y = \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \quad z = \begin{bmatrix} 2 \\ 1 \end{bmatrix}, \quad x = | z-y |
+\]</div>
+<p><strong>c)</strong></p>
+<div class="arithmatex">\[
+y = \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \quad z = \begin{bmatrix} 2 \\ 1 \end{bmatrix}, \quad x = | z-y\langle z,y\rangle |
+\]</div>
+<p><strong>d)</strong></p>
+<div class="arithmatex">\[
+y = \begin{bmatrix} 1 \\ 2 \end{bmatrix}, \quad z = \begin{bmatrix} 2 \\ 1 \end{bmatrix}, \quad u = \frac{y}{|y|}, \quad v = \frac{z}{|z|}, \quad x = \langle u, v \rangle
+\]</div>
+<h3 id="questao-3">Questão 3</h3>
+<p>Dizemos que dois vetores <span class="arithmatex">\(x\)</span> e <span class="arithmatex">\(y\)</span> são ortogonais se <span class="arithmatex">\(\langle x,y\rangle=0\)</span>. Calcule <span class="arithmatex">\(a\)</span> para que os vetores <span class="arithmatex">\(x\)</span> e <span class="arithmatex">\(y\)</span> abaixo sejam ortogonais:</p>
+<div class="arithmatex">\[
+x = \begin{bmatrix} a \\ a \\ 1 \end{bmatrix}, \quad y = \begin{bmatrix} a \\ 3 \\ 2 \end{bmatrix}
+\]</div>
+<h3 id="questao-4">Questão 4</h3>
+<p>Calcule X nos casos abaixo:</p>
+<p><strong>a)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} + 
+    \begin{bmatrix} 4 &amp; 3 \\
+                    2 &amp; 1
+    \end{bmatrix}
+\]</div>
+<p><strong>b)</strong></p>
+<div class="arithmatex">\[
+X = 5 \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} + 
+    \begin{bmatrix} 4 &amp; 3 \\
+                    2 &amp; 1
+    \end{bmatrix}
+\]</div>
+<p><strong>c)</strong></p>
+<div class="arithmatex">\[
+X = 5 \left(\begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} + 
+    \begin{bmatrix} 4 &amp; 3 \\
+                    2 &amp; 1
+    \end{bmatrix}\right)
+\]</div>
+<p><strong>d)</strong></p>
+<div class="arithmatex">\[
+X = 5 \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} + 
+    \begin{bmatrix} 4 &amp; 3 \\
+                    2 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix} 1 &amp; 1 \\
+                    1 &amp; 1
+    \end{bmatrix}
+\]</div>
+<p><strong>e)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} + 
+    \begin{bmatrix} 4 &amp; 3 \\
+                    2 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix} 1 &amp; 0 \\
+                    0 &amp; 1
+    \end{bmatrix}
+\]</div>
+<p><strong>f)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 4 &amp; 3 \\
+                    2 &amp; 1
+    \end{bmatrix}
+    \begin{bmatrix} 2 &amp; 0 \\
+                    0 &amp; 2
+    \end{bmatrix}
+\]</div>
+<p><strong>g)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} \frac{1}{2} &amp; 0 \\
+                    0 &amp; \frac{1}{2}
+    \end{bmatrix}
+    \begin{bmatrix} 2 &amp; 0 \\
+                    0 &amp; 2
+    \end{bmatrix}
+\]</div>
+<p><strong>h)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 0 &amp; \frac{1}{2}  \\
+                    \frac{1}{2} &amp; 0
+    \end{bmatrix}
+    \begin{bmatrix} 0 &amp; 2 \\
+                    2 &amp; 0
+    \end{bmatrix}
+\]</div>
+<p><strong>i)</strong></p>
+<div class="arithmatex">\[
+X = 5 \left( \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} + 
+    \begin{bmatrix} 4 &amp; 3 \\
+                    2 &amp; 1
+    \end{bmatrix} \right)
+    \begin{bmatrix} 1 \\
+                    1 
+    \end{bmatrix}
+\]</div>
+<p><strong>j)</strong></p>
+<div class="arithmatex">\[
+X = 5 \left( \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} + 
+    \begin{bmatrix} 4 &amp; 3 \\
+                    2 &amp; 1
+    \end{bmatrix} \right)
+    \begin{bmatrix} 1 &amp; 1 
+    \end{bmatrix}^T
+\]</div>
+<p><strong>k)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix}  
+    \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} ^{-1}
+\]</div>
+<p><strong>l)</strong></p>
+<div class="arithmatex">\[
+X = 10 \left( \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} + 
+    \begin{bmatrix} 4 &amp; 3 \\
+                    2 &amp; 0
+    \end{bmatrix} \right)
+    \begin{bmatrix}
+    5 &amp; 5 \\
+    5 &amp; 4
+    \end{bmatrix}^{-1}
+    \begin{bmatrix} 1 &amp; 1 
+    \end{bmatrix}^T
+\]</div>
+<p><strong>m)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} 
+     \begin{bmatrix} a &amp; b \\
+                    c &amp; d
+    \end{bmatrix} 
+     \begin{bmatrix} a &amp; b \\
+                    c &amp; d
+    \end{bmatrix} ^{-1}
+    \begin{bmatrix} 1 &amp; 2 \\
+                    3 &amp; 4
+    \end{bmatrix} ^{-1}
+\]</div>
+<p><strong>n)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix}
+a &amp; b &amp; c\\
+d &amp; e &amp; f\\
+g &amp; h &amp; i
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</div>
+<p><strong>o)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix}
+0 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+a &amp; b\\
+c &amp; d\\
+e &amp; f
+\end{bmatrix}
+\]</div>
+<p><strong>p)</strong></p>
+<div class="arithmatex">\[
+X = \begin{bmatrix}
+a &amp; b &amp; c\\
+d &amp; e &amp; f\\
+g &amp; h &amp; i
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+0 &amp; 1 &amp; 0 \\
+1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</div>
+<h3 id="questao-5">Questão 5</h3>
+<p>Sabendo que <span class="arithmatex">\(x=\begin{bmatrix} 1 \\ 2 \end{bmatrix}\)</span>, que <span class="arithmatex">\(y=\begin{bmatrix} a \\ 1 \end{bmatrix}\)</span> e que <span class="arithmatex">\(\langle x,y\rangle=0\)</span>, calcule <span class="arithmatex">\(a\)</span>.</p></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../../extra/calendario.js"></script>
+<script src="../../extra/apresentacao/apresentacao.js"></script>
+<script src="../../extra/apostila/apostila.js"></script>
+<script src="../../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
