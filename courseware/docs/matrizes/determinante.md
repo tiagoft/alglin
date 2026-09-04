@@ -68,7 +68,7 @@ Dois corredores estão correndo por uma trilha. Um deles parte da marcação do 
     \begin{cases}
     \begin{aligned}
     -5x + 1y  &= 3\\
-    -2 + 1y  &=  5
+    -2x + 1y  &=  5
     \end{aligned}
     \end{cases}
     $$
