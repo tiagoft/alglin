@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+
+<html data-bs-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Formulário - Álgebra Linear e Teoria da Informação</title>
+<link href="../css/bootstrap.min.css" rel="stylesheet"/>
+<link href="../css/fontawesome.min.css" rel="stylesheet"/>
+<link href="../css/brands.min.css" rel="stylesheet"/>
+<link href="../css/solid.min.css" rel="stylesheet"/>
+<link href="../css/v4-font-face.min.css" rel="stylesheet"/>
+<link href="../css/base.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" id="hljs-light" rel="stylesheet"/>
+<link disabled="" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" id="hljs-dark" rel="stylesheet"/>
+<link href="../extra/calendario.css" rel="stylesheet"/>
+<link href="../extra/apresentacao/apresentacao.css" rel="stylesheet"/>
+<link href="../extra/apostila/apostila.css" rel="stylesheet"/>
+<link href="../extra/formulas.css" rel="stylesheet"/>
+<link href="../css/ansi-colours.css" rel="stylesheet"/>
+<link href="../css/jupyter-cells.css" rel="stylesheet"/>
+<link href="../css/pandas-dataframe.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+<div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+<div class="container">
+<a class="navbar-brand" href="..">Álgebra Linear e Teoria da Informação</a>
+<!-- Expander button -->
+<button aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar-collapse" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<!-- Expanded navigation -->
+<div class="navbar-collapse collapse" id="navbar-collapse">
+<!-- Main navigation -->
+<ul class="nav navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="..">Home</a>
+</li>
+<li class="nav-item">
+<a aria-current="page" class="nav-link active" href="./">Formulário</a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Vetores</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../vetores/caminhando_pela_cidade/">Teoria: Uma caminhada por Chicago</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/propriedades_soma_e_multiplicacao_escalar/">Teoria: Propriedades de vetores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/vetores_parte1/">Exercícios: Vetores (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/angulos/">Atividade: Ângulos e Distâncias</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/vetores_parte2/">Exercícios: Vetores (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/numpy01/">Teoria: Vetores e Numpy</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/vetores_parte3/">Exercícios: Vetores (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/confetes/">Estudo de Caso: Confetes Digitais</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/projecoes/">Teoria: Projeções e produto interno</a>
+</li>
+<li>
+<a class="dropdown-item" href="../vetores/busca_embeddings/">Estudo de Caso: Embeddings</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Matrizes</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../matrizes/matrizes/">Teoria: O que são matrizes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/sistemas_lineares_parte1/">Exercícios: Sistemas Lineares (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/sistemas_carcaras/">Teoria: Sistemas Lineares</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/sistemas_lineares_parte2/">Exercícios: Sistemas Lineares (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/inversa/">Estudo de caso: Resolvendo Sistemas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/sistemas_lineares_parte3/">Exercícios: Sistemas Lineares (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/projeto-enigma/">Projeto (opcional): Criptografia</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/determinante/">Teoria: Determinantes</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/geometria_analitica_parte1/">Exercícios: Geometria Analítica (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/pratica_afins/">Prática: Transformadas Afins</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/geometria_analitica_partes2e3/">Exercícios: Geometria Analítica (Partes 2 e 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/revisao/">Revisão</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/revisao1/">Revisão (avançado)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../matrizes/jogo_referencial/">Projeto (opcional): Visão de Jogo</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Avançados</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../avancado/bases/">Teoria: Mudanças de Base</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/bases_parte2/">Exercícios: Bases (Parte 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/pixels/">Estudo de caso: Pixels e Cores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/bases_parte1/">Exercícios: Bases (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/autovetores_autovalores/">Teoria: Auto-vetores e Auto-valores</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/autovalores_autovetores_partes1e2/">Exercícios: Autovalores e Autovetores (Partes 1 e 2)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/autovetores/">Estudo de caso: Cadeias de Markov</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/atividade_autovetores/">Prática: Modelos de Linguagem</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/autovalores_autovetores_parte3/">Exercícios: Autovalores e Autovetores (Parte 3)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/regressao/">Teoria: Regressão e Pseudo-inversa</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/regressao_parte1/">Exercícios: Regressão (Parte 1)</a>
+</li>
+<li>
+<a class="dropdown-item" href="../avancado/gravidade/">Estudo de caso: Estimar a Gravidade</a>
+</li>
+<li>
+<a class="dropdown-item" href="../exercicios/regressao_parte2/">Exercícios: Regressão (Parte 2)</a>
+</li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button">Teoria da Informação</a>
+<ul class="dropdown-menu">
+<li>
+<a class="dropdown-item" href="../compressao/compressao_huffman/">Compressão Sem Perdas</a>
+</li>
+<li>
+<a class="dropdown-item" href="../compressao/compressao_sem_perdas_audio/">Prática: Compressão Sem Perdas em Áudio</a>
+</li>
+</ul>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../projeto-final/">Projeto final</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../apostila/">Criar uma apostila</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../questoes-antigas/">Provas passadas</a>
+</li>
+</ul>
+<ul class="nav navbar-nav ms-md-auto">
+<li class="nav-item">
+<a class="nav-link" data-bs-target="#mkdocs_search_modal" data-bs-toggle="modal" href="#">
+<i class="fa fa-search"></i> Search
+                            </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href=".." rel="prev">
+<i class="fa fa-arrow-left"></i> Previous
+                                </a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="../vetores/caminhando_pela_cidade/" rel="next">
+                                    Next <i class="fa fa-arrow-right"></i>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+<div class="navbar-header">
+<button class="navbar-toggler collapsed" data-bs-target="#toc-collapse" data-bs-toggle="collapse" title="Table of Contents" type="button">
+<span class="fa fa-angle-down"></span>
+</button>
+</div>
+<div class="navbar-collapse collapse card bg-body-tertiary" id="toc-collapse">
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="1"><a class="nav-link" href="#formulario">Formulário</a>
+<ul class="nav flex-column">
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#vetores">Vetores</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#matrizes-e-sistemas">Matrizes e sistemas</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#determinantes-e-transformacoes">Determinantes e transformações</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#bases-e-autovetores">Bases e autovetores</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#regressao-e-modelos-fisicos">Regressão e modelos físicos</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+<li class="nav-item" data-bs-level="2"><a class="nav-link" href="#informacao-e-python">Informação e Python</a>
+<ul class="nav flex-column">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div></div>
+<div class="col-md-9" role="main">
+<!--
+Edite este arquivo em Markdown.
+Use blocos "!!! info" para criar os cartões do botão "?".
+Escreva as fórmulas em LaTeX entre $$ e $$, como nas outras páginas da disciplina.
+-->
+<h1 id="formulario">Formulário</h1>
+<p>Fórmulas e comandos mais usados nas aulas.</p>
+<h2 id="vetores">Vetores</h2>
+<div class="admonition info">
+<p class="admonition-title">Vetor em <span class="arithmatex">\(\mathbb{R}^n\)</span></p>
+<div class="arithmatex">\[
+x =
+\begin{bmatrix}
+x_1 \\ x_2 \\ \vdots \\ x_n
+\end{bmatrix},
+\quad x \in \mathbb{R}^n
+\]</div>
+<p>Use os índices para falar de cada componente do vetor.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Soma de vetores</p>
+<div class="arithmatex">\[
+x+y =
+\begin{bmatrix}
+x_1+y_1 \\ x_2+y_2 \\ \vdots \\ x_n+y_n
+\end{bmatrix}
+\]</div>
+<p>Só faz sentido quando os dois vetores têm a mesma dimensão.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Multiplicação por escalar</p>
+<div class="arithmatex">\[
+\alpha x =
+\begin{bmatrix}
+\alpha x_1 \\ \alpha x_2 \\ \vdots \\ \alpha x_n
+\end{bmatrix}
+\]</div>
+<p>O escalar muda o tamanho do vetor e pode inverter o sentido.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Norma</p>
+<div class="arithmatex">\[
+\|x\| = \sqrt{x_1^2+x_2^2+\cdots+x_n^2}
+\]</div>
+<p>Também aparece como módulo ou comprimento.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Distância entre vetores</p>
+<div class="arithmatex">\[
+d(x_i,x_q)=\|x_i-x_q\|=\sqrt{\sum_{k=1}^{n}(x_{i,k}-x_{q,k})^2}
+\]</div>
+<p>Na AI, isso aparece na busca do item mais parecido com uma query.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Item mais semelhante</p>
+<div class="arithmatex">\[
+i^*=\arg\min_i\,d(x_i,x_q)
+\]</div>
+<p>Depois de encontrar <span class="arithmatex">\(i^*\)</span>, o banco retorna o vetor <span class="arithmatex">\(x_i\)</span> mais próximo da query.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Forma polar para cartesiana</p>
+<div class="arithmatex">\[
+x=\|x\|
+\begin{bmatrix}
+\cos(\theta) \\ \sin(\theta)
+\end{bmatrix}
+\]</div>
+<p>Para vetores no plano.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Produto interno</p>
+<div class="arithmatex">\[
+\langle x,y\rangle=\sum_{i=1}^{n}x_i y_i=\|x\|\|y\|\cos(\phi)
+\]</div>
+<p>Se o produto interno é zero, os vetores são ortogonais.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Projeção de <span class="arithmatex">\(y\)</span> sobre <span class="arithmatex">\(x\)</span></p>
+<div class="arithmatex">\[
+p=\frac{x}{\|x\|}\,\|y\|\cos(\phi)
+\]</div>
+<p>É a parte de <span class="arithmatex">\(y\)</span> que aponta na direção de <span class="arithmatex">\(x\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Força gravitacional</p>
+<div class="arithmatex">\[
+\|F\|=G\frac{m_1m_2}{d^2}
+\]</div>
+<p>A direção é dada pelo vetor que liga um corpo ao outro.</p>
+</div>
+<h2 id="matrizes-e-sistemas">Matrizes e sistemas</h2>
+<div class="admonition info">
+<p class="admonition-title">Matriz</p>
+<div class="arithmatex">\[
+X\in\mathbb{R}^{m\times n},
+\quad x_{i,j}\text{ fica na linha }i\text{ e coluna }j
+\]</div>
+<p>Linhas e colunas definem se uma multiplicação é possível.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Soma e escalar</p>
+<div class="arithmatex">\[
+Z=X+Y\Rightarrow z_{i,j}=x_{i,j}+y_{i,j},
+\quad
+Z=aX\Rightarrow z_{i,j}=a x_{i,j}
+\]</div>
+<p>A soma exige matrizes de mesmo tamanho.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Multiplicação matricial</p>
+<div class="arithmatex">\[
+Z=XY,
+\quad
+z_{i,j}=\sum_{k=1}^{n}x_{i,k}y_{k,j}
+\]</div>
+<p>Colunas de <span class="arithmatex">\(X\)</span> precisam bater com linhas de <span class="arithmatex">\(Y\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Transposta</p>
+<div class="arithmatex">\[
+(X^T)_{j,i}=x_{i,j},
+\quad
+(XY)^T=Y^T X^T
+\]</div>
+<p>A transposta troca linhas por colunas.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Identidade</p>
+<div class="arithmatex">\[
+AI=A=IA
+\]</div>
+<p>A identidade é o elemento neutro da multiplicação.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Inversa</p>
+<div class="arithmatex">\[
+AB=I\Rightarrow B=A^{-1},
+\quad
+Ax=y\Rightarrow x=A^{-1}y
+\]</div>
+<p>Só existe quando a matriz é inversível.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Sistema dinâmico</p>
+<div class="arithmatex">\[
+x_{t+1}=Ax_t
+\]</div>
+<p>A matriz <span class="arithmatex">\(A\)</span> transforma o estado atual no próximo estado.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Cadeia de Markov</p>
+<div class="arithmatex">\[
+P_{t+1}=AP_t,
+\quad
+P_{t+k}=A^kP_t
+\]</div>
+<p>Na AI, isso aparece como a probabilidade do turista depois de várias horas.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Colunas de matriz de transição</p>
+<div class="arithmatex">\[
+a_{i,j}=P(\text{estado }i\text{ em }t+1\mid\text{estado }j\text{ em }t),
+\quad
+\sum_i a_{i,j}=1
+\]</div>
+<p>Na AF, a soma <span class="arithmatex">\(1\)</span> significa que alguém que sai de um estado precisa ir para algum estado.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Movimento com aceleração</p>
+<div class="arithmatex">\[
+s_{t+1}=s_t+\Delta t\,v_t,
+\quad
+v_{t+1}=v_t+\Delta t\,a_t
+\]</div>
+<p>Usado nas simulações de movimento e confetes.</p>
+</div>
+<h2 id="determinantes-e-transformacoes">Determinantes e transformações</h2>
+<div class="admonition info">
+<p class="admonition-title">Determinante <span class="arithmatex">\(2\times2\)</span></p>
+<div class="arithmatex">\[
+\det
+\begin{bmatrix}
+a &amp; b \\ c &amp; d
+\end{bmatrix}
+=ad-bc
+\]</div>
+<p>Se <span class="arithmatex">\(\det(A)=0\)</span>, <span class="arithmatex">\(A\)</span> não tem inversa.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Reta</p>
+<div class="arithmatex">\[
+y=ax+b,
+\quad
+Ax+By+C=0
+\]</div>
+<p>Sistemas <span class="arithmatex">\(2\times2\)</span> podem ser vistos como interseções de retas.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Retas paralelas em sistema <span class="arithmatex">\(2\times2\)</span></p>
+<div class="arithmatex">\[
+\begin{cases}
+a_1x+b_1y=c_1\\
+a_2x+b_2y=c_2
+\end{cases}
+\quad
+\text{sao paralelas quando}
+\quad
+a_1b_2-a_2b_1=0
+\]</div>
+<p>Na AI, para a matriz <span class="arithmatex">\(\begin{bmatrix}1&amp;3\\D&amp;9\end{bmatrix}\)</span>, isso dá <span class="arithmatex">\(9-3D=0\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Área transformada</p>
+<div class="arithmatex">\[
+\operatorname{area}(AX)=|\det(A)|\,\operatorname{area}(X)
+\]</div>
+<p>O determinante mede o fator de escala de área.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Rotação</p>
+<div class="arithmatex">\[
+R_\theta=
+\begin{bmatrix}
+\cos\theta &amp; -\sin\theta\\
+\sin\theta &amp; \cos\theta
+\end{bmatrix}
+\]</div>
+<p>Rotaciona pontos ao redor da origem.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Soma e diferença de arcos</p>
+<div class="arithmatex">\[
+\sin(\theta\pm\phi)=\sin\theta\cos\phi\pm\cos\theta\sin\phi
+\]</div>
+<div class="arithmatex">\[
+\cos(\theta\pm\phi)=\cos\theta\cos\phi\mp\sin\theta\sin\phi
+\]</div>
+<p>Identidades usadas na AI para manipular matrizes de rotação.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Identidades trigonométricas</p>
+<div class="arithmatex">\[
+\cos(-\theta)=\cos\theta,
+\quad
+\sin(-\theta)=-\sin\theta,
+\quad
+\cos^2\theta+\sin^2\theta=1
+\]</div>
+<p>Aparecem diretamente na questão de rotação da AI.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Inversa da rotação</p>
+<div class="arithmatex">\[
+R_\theta^{-1}=R_{-\theta}=
+\begin{bmatrix}
+\cos\theta &amp; \sin\theta\\
+-\sin\theta &amp; \cos\theta
+\end{bmatrix}
+\]</div>
+<p>Se <span class="arithmatex">\(A=\begin{bmatrix}x&amp;-y\\y&amp;x\end{bmatrix}\)</span> é rotação, então <span class="arithmatex">\(A^{-1}=\begin{bmatrix}x&amp;y\\-y&amp;x\end{bmatrix}\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Escala</p>
+<div class="arithmatex">\[
+A=
+\begin{bmatrix}
+s_x &amp; 0\\
+0 &amp; s_y
+\end{bmatrix}
+\]</div>
+<p>Multiplica <span class="arithmatex">\(x\)</span> por <span class="arithmatex">\(s_x\)</span> e <span class="arithmatex">\(y\)</span> por <span class="arithmatex">\(s_y\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Coordenadas homogêneas</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+a &amp; b &amp; \Delta x\\
+c &amp; d &amp; \Delta y\\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+x\\y\\1
+\end{bmatrix}
+=
+\begin{bmatrix}
+p\\q\\1
+\end{bmatrix}
+\]</div>
+<p>Permite representar translação como multiplicação matricial.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Remover componente de cor</p>
+<div class="arithmatex">\[
+p'_{RGB}=T^{-1}
+\begin{bmatrix}
+1&amp;0&amp;0\\
+0&amp;0&amp;0\\
+0&amp;0&amp;1
+\end{bmatrix}
+Tp_{RGB}
+\]</div>
+<p>Na AI, <span class="arithmatex">\(T\)</span> leva RGB para XYZ; a matriz do meio zera a componente <span class="arithmatex">\(Y\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Composição de transformações</p>
+<div class="arithmatex">\[
+Y=ARX
+\quad
+\text{e}
+\quad
+Y=RAX
+\]</div>
+<p>A ordem importa: em geral, <span class="arithmatex">\(ARX\)</span> e <span class="arithmatex">\(RAX\)</span> geram efeitos diferentes.</p>
+</div>
+<h2 id="bases-e-autovetores">Bases e autovetores</h2>
+<div class="admonition info">
+<p class="admonition-title">Combinação linear</p>
+<div class="arithmatex">\[
+x=a_1v_1+a_2v_2+\cdots+a_nv_n
+\]</div>
+<p>Escreve um vetor como soma ponderada de outros vetores.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Matriz de base</p>
+<div class="arithmatex">\[
+x=Bs,
+\quad
+B=
+\begin{bmatrix}
+|&amp;|&amp;&amp;|\\
+b_1&amp;b_2&amp;\cdots&amp;b_n\\
+|&amp;|&amp;&amp;|
+\end{bmatrix}
+\]</div>
+<p>As colunas de <span class="arithmatex">\(B\)</span> são os vetores-base.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Mudança de base</p>
+<div class="arithmatex">\[
+s=B^{-1}x
+\]</div>
+<p>Encontra as coordenadas de <span class="arithmatex">\(x\)</span> na base <span class="arithmatex">\(B\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Autovetor e autovalor</p>
+<div class="arithmatex">\[
+Av=\lambda v
+\]</div>
+<p>A matriz só muda a escala do autovetor.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Decomposição por autovetores</p>
+<div class="arithmatex">\[
+A=PQP^{-1}
+\]</div>
+<p><span class="arithmatex">\(P\)</span> guarda autovetores; <span class="arithmatex">\(Q\)</span> guarda autovalores na diagonal.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Potências por autovalores</p>
+<div class="arithmatex">\[
+A^k=PQ^kP^{-1},
+\quad
+Q^k=\operatorname{diag}(\lambda_1^k,\ldots,\lambda_n^k)
+\]</div>
+<p>Na AF, isso ajuda a decidir se um sistema dinâmico cresce, estabiliza ou vai a zero.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Autovetores da base padrão</p>
+<div class="arithmatex">\[
+v_1=e_1,\quad v_2=e_2
+\Rightarrow
+P=I,
+\quad
+A=\operatorname{diag}(\lambda_1,\lambda_2)
+\]</div>
+<p>Na AF, com autovalores <span class="arithmatex">\(5\)</span> e <span class="arithmatex">\(\pi\)</span>, a matriz é diagonal.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Inversa por autovalores</p>
+<div class="arithmatex">\[
+A^{-1}=PQ^{-1}P^{-1}
+\]</div>
+<p>Inverter <span class="arithmatex">\(A\)</span> equivale a usar escalas inversas na base dos autovetores.</p>
+</div>
+<h2 id="regressao-e-modelos-fisicos">Regressão e modelos físicos</h2>
+<div class="admonition info">
+<p class="admonition-title">Modelo linear</p>
+<div class="arithmatex">\[
+\hat{y}=ax+b
+\]</div>
+<p><span class="arithmatex">\(a\)</span> é inclinação; <span class="arithmatex">\(b\)</span> é intercepto.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Erro</p>
+<div class="arithmatex">\[
+e_i=y_i-\hat{y}_i,
+\quad
+e=y-\hat{y}
+\]</div>
+<p>Diferença entre medição e estimativa.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Erro quadrático médio</p>
+<div class="arithmatex">\[
+\mathrm{EQM}=\frac{1}{n}\sum_{i=1}^{n}\|e_i\|^2=\frac{1}{n}e^Te
+\]</div>
+<p>Quanto menor, melhor o ajuste no conjunto medido.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Pseudoinversa</p>
+<div class="arithmatex">\[
+X^+=(X^TX)^{-1}X^T,
+\quad
+w^T=X^+y
+\]</div>
+<p>Calcula os parâmetros do modelo por matrizes.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Sistema sobredeterminado</p>
+<div class="arithmatex">\[
+y=Xw,
+\quad
+X\in\mathbb{R}^{m\times n},
+\quad
+m&gt;n
+\Rightarrow
+w=X^+y
+\]</div>
+<p>Na AF, aparece quando há mais equações do que incógnitas a estimar.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Modelo com raiz</p>
+<div class="arithmatex">\[
+n_i=a\sqrt{t_i}+b
+\]</div>
+<div class="arithmatex">\[
+X=
+\begin{bmatrix}
+\sqrt{t_1}&amp;1\\
+\sqrt{t_2}&amp;1\\
+\vdots&amp;\vdots\\
+\sqrt{t_m}&amp;1
+\end{bmatrix},
+\quad
+\begin{bmatrix}
+a\\b
+\end{bmatrix}
+=
+X^+n
+\]</div>
+<p>Na AF, transforma a estimativa de <span class="arithmatex">\(a\)</span> e <span class="arithmatex">\(b\)</span> em regressão linear.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Regressão polinomial</p>
+<div class="arithmatex">\[
+\hat{y}=
+\begin{bmatrix}
+x^2 &amp; x &amp; 1
+\end{bmatrix}
+\begin{bmatrix}
+a\\b\\c
+\end{bmatrix}
+\]</div>
+<p>Adicione colunas para os termos do modelo.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Movimento uniformemente variado</p>
+<div class="arithmatex">\[
+s=s_0+v_0t+\frac{at^2}{2}
+\]</div>
+<p>Na queda livre, <span class="arithmatex">\(a\)</span> pode representar a gravidade <span class="arithmatex">\(g\)</span>.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Queda livre linearizada</p>
+<div class="arithmatex">\[
+\tau=\frac{t^2}{2},
+\quad
+s=a\tau
+\]</div>
+<p>Transforma a estimação da gravidade em regressão linear.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Velocidade terminal</p>
+<div class="arithmatex">\[
+v=\frac{mg}{\beta}
+\]</div>
+<p>Aparece quando gravidade e arraste se equilibram.</p>
+</div>
+<h2 id="informacao-e-python">Informação e Python</h2>
+<div class="admonition info">
+<p class="admonition-title">Probabilidade de símbolo</p>
+<div class="arithmatex">\[
+P(s\mid texto)=
+\frac{\text{ocorrencias de }s}{\text{total de simbolos}}
+\]</div>
+<p>Base para construir a árvore de Huffman.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Frequência no Huffman</p>
+<div class="arithmatex">\[
+p_i=\frac{n_i}{N}
+\]</div>
+<p>Na AF, é o primeiro passo para construir a árvore da palavra.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Quantização de áudio</p>
+<div class="arithmatex">\[
+\hat{x}_n=Q(x_n),
+\quad
+\hat{x}_n\in\{q_1,q_2,\ldots,q_m\}
+\]</div>
+<p>Na AF, quantizar transforma amostras contínuas em um alfabeto finito para Huffman.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Tamanho com código fixo</p>
+<div class="arithmatex">\[
+\text{bits}=
+\text{caracteres}\times\text{bits por caractere}
+\]</div>
+<p>Comparação direta com códigos de tamanho variável.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Tamanho médio de código</p>
+<div class="arithmatex">\[
+L=\sum_i p_i\ell_i
+\]</div>
+<p><span class="arithmatex">\(p_i\)</span> é a frequência; <span class="arithmatex">\(\ell_i\)</span> é o tamanho do código do símbolo.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Taxa de compressão</p>
+<div class="arithmatex">\[
+\text{taxa}=
+\frac{\text{bits comprimidos}}{\text{bits originais}}
+\]</div>
+<p>Valores menores indicam mais compressão.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Operações em NumPy</p>
+<ul>
+<li><code>A @ x</code>: multiplicação matricial</li>
+<li><code>np.dot(x, y)</code>: produto interno</li>
+<li><code>np.linalg.norm(x)</code>: norma</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Álgebra linear em NumPy</p>
+<ul>
+<li><code>np.linalg.det(A)</code>: determinante</li>
+<li><code>np.linalg.inv(A)</code>: inversa</li>
+<li><code>np.linalg.pinv(X)</code>: pseudoinversa</li>
+<li><code>np.linalg.eig(A)</code>: autovalores e autovetores</li>
+</ul>
+</div></div>
+</div>
+</div>
+<footer class="col-md-12">
+<hr/>
+<p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+</footer>
+<script src="../js/bootstrap.bundle.min.js"></script>
+<script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+<script src="../js/base.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script src="https://unpkg.com/mermaid@10.4.0/dist/mermaid.min.js"></script>
+<script src="../extra/calendario.js"></script>
+<script src="../extra/apresentacao/apresentacao.js"></script>
+<script src="../extra/apostila/apostila.js"></script>
+<script src="../extra/formulas.js"></script>
+<script src="../search/main.js"></script>
+<div aria-hidden="true" aria-labelledby="searchModalLabel" class="modal" id="mkdocs_search_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog modal-lg">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="searchModalLabel">Search</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<p>From here you can search these documents. Enter your search terms below.</p>
+<form>
+<div class="form-group">
+<input class="form-control" id="mkdocs-search-query" placeholder="Search..." title="Type search term here" type="search"/>
+</div>
+</form>
+<div data-no-results-text="No results found" id="mkdocs-search-results"></div>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div><div aria-hidden="true" aria-labelledby="keyboardModalLabel" class="modal" id="mkdocs_keyboard_modal" role="dialog" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+<button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+</div>
+<div class="modal-body">
+<table class="table">
+<thead>
+<tr>
+<th style="width: 20%;">Keys</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="help shortcut"><kbd>?</kbd></td>
+<td>Open this help</td>
+</tr>
+<tr>
+<td class="next shortcut"><kbd>n</kbd></td>
+<td>Next page</td>
+</tr>
+<tr>
+<td class="prev shortcut"><kbd>p</kbd></td>
+<td>Previous page</td>
+</tr>
+<tr>
+<td class="search shortcut"><kbd>s</kbd></td>
+<td>Search</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="modal-footer">
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
