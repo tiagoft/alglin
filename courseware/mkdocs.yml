@@ -36,7 +36,7 @@ nav:
     - "Prática: Transformadas Afins": matrizes/pratica_afins.ipynb
     - "Exercícios: Geometria Analítica (Partes 2 e 3)": exercicios/geometria_analitica_partes2e3.md
     - "Revisão": matrizes/revisao.md
-    - "Revisão": exercicios/revisao1.md
+    - "Revisão (avançado)": exercicios/revisao1.md
     - "Projeto (opcional): Visão de Jogo": matrizes/jogo_referencial.md
   - "Avançados":
     - "Teoria: Mudanças de Base": avancado/bases.ipynb
