@@ -11,6 +11,7 @@ watch:
 
 nav:
   - Home: index.md
+  - "Formulário": formulario.md
   - "Vetores":
     - "Teoria: Uma caminhada por Chicago": vetores/caminhando_pela_cidade.ipynb
     - "Teoria: Propriedades de vetores": vetores/propriedades_soma_e_multiplicacao_escalar.md
@@ -108,8 +109,10 @@ extra_javascript:
   - extra/calendario.js
   - extra/apresentacao/apresentacao.js
   - extra/apostila/apostila.js
+  - extra/formulas.js
 
 extra_css:
   - extra/calendario.css
   - extra/apresentacao/apresentacao.css
   - extra/apostila/apostila.css
+  - extra/formulas.css
