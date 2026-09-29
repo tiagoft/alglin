@@ -109,9 +109,11 @@ extra_javascript:
   - extra/apresentacao/apresentacao.js
   - extra/apostila/apostila.js
   - extra/formulas.js
+  - extra/calculadora-matrizes.js
 
 extra_css:
   - extra/calendario.css
   - extra/apresentacao/apresentacao.css
   - extra/apostila/apostila.css
   - extra/formulas.css
+  - extra/calculadora-matrizes.css
