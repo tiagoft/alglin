@@ -2,6 +2,7 @@
   "use strict";
 
   var EPSILON = 1e-10;
+  var MAXIMO_AUTOVALORES_GERAL = 10;
   var OPERACOES = [
     {
       id: "determinante",
@@ -452,11 +453,15 @@
       });
     }
 
+    if (ehTriangular(matriz)) {
+      return autovaloresTriangulares(matriz);
+    }
+
     if (ehSimetrica(matriz)) {
       return autovaloresSimetricos(matriz);
     }
 
-    throw new Error("Para matrizes maiores que 2 \u00D7 2, use uma matriz real diagonal ou simétrica.");
+    return autovaloresGerais(matriz);
   }
 
   function autovalores2x2(matriz) {
@@ -516,10 +521,16 @@
     var c = matriz[1][0];
 
     if (Math.abs(b) >= Math.abs(c)) {
-      return [criarComplexo(b, 0), subtrairRealDoComplexo(lambda, matriz[0][0])];
+      return normalizarVetorComplexo([
+        criarComplexo(b, 0),
+        subtrairRealDoComplexo(lambda, matriz[0][0]),
+      ]);
     }
 
-    return [subtrairRealDoComplexo(lambda, matriz[1][1]), criarComplexo(c, 0)];
+    return normalizarVetorComplexo([
+      subtrairRealDoComplexo(lambda, matriz[1][1]),
+      criarComplexo(c, 0),
+    ]);
   }
 
   function ehDiagonal(matriz) {
@@ -532,6 +543,25 @@
     return true;
   }
 
+  function ehTriangular(matriz) {
+    var triangularSuperior = true;
+    var triangularInferior = true;
+
+    for (var linha = 0; linha < matriz.length; linha += 1) {
+      for (var coluna = 0; coluna < matriz.length; coluna += 1) {
+        if (linha > coluna && Math.abs(matriz[linha][coluna]) > EPSILON) {
+          triangularSuperior = false;
+        }
+
+        if (linha < coluna && Math.abs(matriz[linha][coluna]) > EPSILON) {
+          triangularInferior = false;
+        }
+      }
+    }
+
+    return triangularSuperior || triangularInferior;
+  }
+
   function ehSimetrica(matriz) {
     for (var linha = 0; linha < matriz.length; linha += 1) {
       for (var coluna = linha + 1; coluna < matriz.length; coluna += 1) {
@@ -540,6 +570,19 @@
     }
 
     return true;
+  }
+
+  function autovaloresTriangulares(matriz) {
+    var pares = matriz.map(function (linha, indice) {
+      var lambda = limparValor(linha[indice]);
+      return {
+        valor: lambda,
+        vetor: autovetorGeral(matriz, criarComplexo(lambda, 0)),
+      };
+    });
+
+    pares.sort(compararParesDeAutovalores);
+    return pares;
   }
 
   function autovaloresSimetricos(matriz) {
@@ -615,6 +658,325 @@
     return pares;
   }
 
+  function autovaloresGerais(matriz) {
+    var tamanho = matriz.length;
+
+    if (tamanho > MAXIMO_AUTOVALORES_GERAL) {
+      throw new Error(
+        "O cálculo geral de autovalores aceita matrizes até " +
+          MAXIMO_AUTOVALORES_GERAL +
+          " \u00D7 " +
+          MAXIMO_AUTOVALORES_GERAL +
+          "."
+      );
+    }
+
+    var coeficientes = coeficientesPolinomioCaracteristico(matriz);
+    var raizes = encontrarRaizesDoPolinomio(coeficientes);
+    var pares = raizes.map(function (lambda) {
+      return {
+        valor: simplificarComplexo(lambda),
+        vetor: autovetorGeral(matriz, lambda),
+      };
+    });
+
+    pares.sort(compararParesDeAutovalores);
+    return pares;
+  }
+
+  function coeficientesPolinomioCaracteristico(matriz) {
+    var tamanho = matriz.length;
+    var identidade = matrizIdentidade(tamanho);
+    var b = identidade;
+    var coeficientes = [];
+
+    for (var k = 1; k <= tamanho; k += 1) {
+      var ab = multiplicarMatrizes(matriz, b);
+      var coeficiente = limparValor(-traco(ab) / k);
+      coeficientes.push(coeficiente);
+      b = somarComIdentidadeEscalada(ab, coeficiente);
+    }
+
+    return coeficientes;
+  }
+
+  function multiplicarMatrizes(a, b) {
+    var resultado = [];
+
+    for (var linha = 0; linha < a.length; linha += 1) {
+      var novaLinha = [];
+      for (var coluna = 0; coluna < b[0].length; coluna += 1) {
+        var soma = 0;
+        for (var indice = 0; indice < b.length; indice += 1) {
+          soma += a[linha][indice] * b[indice][coluna];
+        }
+        novaLinha.push(limparValor(soma));
+      }
+      resultado.push(novaLinha);
+    }
+
+    return resultado;
+  }
+
+  function somarComIdentidadeEscalada(matriz, escalar) {
+    return matriz.map(function (linha, indiceLinha) {
+      return linha.map(function (valor, indiceColuna) {
+        return limparValor(valor + (indiceLinha === indiceColuna ? escalar : 0));
+      });
+    });
+  }
+
+  function traco(matriz) {
+    var soma = 0;
+
+    for (var indice = 0; indice < matriz.length; indice += 1) {
+      soma += matriz[indice][indice];
+    }
+
+    return soma;
+  }
+
+  function encontrarRaizesDoPolinomio(coeficientes) {
+    var grau = coeficientes.length;
+    var maximoCoeficiente = coeficientes.reduce(function (maior, valor) {
+      return Math.max(maior, Math.abs(valor));
+    }, 0);
+    var raio = Math.max(1, 1 + maximoCoeficiente);
+    var raizes = [];
+    var tolerancia = 1e-10;
+    var maximoDeIteracoes = 1400;
+
+    for (var indice = 0; indice < grau; indice += 1) {
+      var angulo = (2 * Math.PI * (indice + 0.37)) / grau;
+      raizes.push(criarComplexo(raio * Math.cos(angulo), raio * Math.sin(angulo)));
+    }
+
+    for (var iteracao = 0; iteracao < maximoDeIteracoes; iteracao += 1) {
+      var proximas = [];
+      var maiorPasso = 0;
+
+      for (var i = 0; i < grau; i += 1) {
+        var denominador = criarComplexo(1, 0);
+        for (var j = 0; j < grau; j += 1) {
+          if (i === j) continue;
+          denominador = multiplicarComplexos(denominador, subtrairComplexos(raizes[i], raizes[j]));
+        }
+
+        if (moduloComplexo(denominador) < EPSILON) {
+          denominador = criarComplexo(EPSILON, EPSILON * (i + 1));
+        }
+
+        var passo = dividirComplexos(avaliarPolinomio(coeficientes, raizes[i]), denominador);
+        proximas.push(subtrairComplexos(raizes[i], passo));
+        maiorPasso = Math.max(maiorPasso, moduloComplexo(passo));
+      }
+
+      raizes = proximas;
+      if (maiorPasso < tolerancia) break;
+    }
+
+    var maiorResiduo = raizes.reduce(function (maior, raiz) {
+      return Math.max(maior, moduloComplexo(avaliarPolinomio(coeficientes, raiz)));
+    }, 0);
+
+    if (maiorResiduo > 1e-5 * Math.max(1, maximoCoeficiente)) {
+      throw new Error("Não foi possível estabilizar os autovalores dessa matriz.");
+    }
+
+    return agruparRaizesProximas(raizes).map(function (raiz) {
+      return limparComplexo(raiz);
+    });
+  }
+
+  function agruparRaizesProximas(raizes) {
+    var usadas = raizes.map(function () {
+      return false;
+    });
+    var agrupadas = [];
+
+    for (var i = 0; i < raizes.length; i += 1) {
+      if (usadas[i]) continue;
+
+      var grupo = [i];
+      usadas[i] = true;
+
+      for (var indiceGrupo = 0; indiceGrupo < grupo.length; indiceGrupo += 1) {
+        var atual = grupo[indiceGrupo];
+
+        for (var j = 0; j < raizes.length; j += 1) {
+          if (usadas[j] || !raizesSaoProximas(raizes[atual], raizes[j])) continue;
+          grupo.push(j);
+          usadas[j] = true;
+        }
+      }
+
+      var soma = criarComplexo(0, 0);
+      grupo.forEach(function (indice) {
+        soma = somarComplexos(soma, raizes[indice]);
+      });
+
+      var media = limparComplexo(dividirComplexoPorReal(soma, grupo.length));
+      grupo.forEach(function (indice) {
+        agrupadas[indice] = media;
+      });
+    }
+
+    return agrupadas;
+  }
+
+  function raizesSaoProximas(a, b) {
+    var escala = Math.max(1, moduloComplexo(a), moduloComplexo(b));
+    return moduloComplexo(subtrairComplexos(a, b)) <= 1e-5 * escala;
+  }
+
+  function avaliarPolinomio(coeficientes, valor) {
+    var resultado = criarComplexo(1, 0);
+
+    coeficientes.forEach(function (coeficiente) {
+      resultado = somarComplexos(
+        multiplicarComplexos(resultado, valor),
+        criarComplexo(coeficiente, 0)
+      );
+    });
+
+    return resultado;
+  }
+
+  function autovetorGeral(matriz, lambda) {
+    var lambdaComplexo = paraComplexo(lambda);
+    var sistema = matriz.map(function (linha, indiceLinha) {
+      return linha.map(function (valor, indiceColuna) {
+        var entrada = criarComplexo(valor, 0);
+        return indiceLinha === indiceColuna ? subtrairComplexos(entrada, lambdaComplexo) : entrada;
+      });
+    });
+    var toleranciaBase = Math.max(1e-9, normaMatrizComplexa(sistema) * 1e-8);
+
+    for (var multiplicador = 1; multiplicador <= 1000000; multiplicador *= 10) {
+      var vetor = vetorDoNucleo(sistema, toleranciaBase * multiplicador);
+      if (vetor) return normalizarVetorComplexo(vetor);
+    }
+
+    throw new Error("Não foi possível encontrar um autovetor para essa matriz.");
+  }
+
+  function vetorDoNucleo(matriz, tolerancia) {
+    var trabalho = clonarMatrizComplexa(matriz);
+    var linhas = trabalho.length;
+    var colunas = trabalho[0].length;
+    var pivos = [];
+    var linhaPivo = 0;
+
+    for (var coluna = 0; coluna < colunas && linhaPivo < linhas; coluna += 1) {
+      var melhorLinha = linhaPivo;
+      var melhorValor = moduloComplexo(trabalho[melhorLinha][coluna]);
+
+      for (var linha = linhaPivo + 1; linha < linhas; linha += 1) {
+        var valor = moduloComplexo(trabalho[linha][coluna]);
+        if (valor > melhorValor) {
+          melhorValor = valor;
+          melhorLinha = linha;
+        }
+      }
+
+      if (melhorValor <= tolerancia) continue;
+
+      if (melhorLinha !== linhaPivo) {
+        var temporaria = trabalho[melhorLinha];
+        trabalho[melhorLinha] = trabalho[linhaPivo];
+        trabalho[linhaPivo] = temporaria;
+      }
+
+      var pivo = trabalho[linhaPivo][coluna];
+      for (var c = coluna; c < colunas; c += 1) {
+        trabalho[linhaPivo][c] = dividirComplexos(trabalho[linhaPivo][c], pivo);
+      }
+
+      for (var r = 0; r < linhas; r += 1) {
+        if (r === linhaPivo) continue;
+
+        var fator = trabalho[r][coluna];
+        if (moduloComplexo(fator) <= tolerancia) continue;
+
+        for (var c2 = coluna; c2 < colunas; c2 += 1) {
+          trabalho[r][c2] = subtrairComplexos(
+            trabalho[r][c2],
+            multiplicarComplexos(fator, trabalho[linhaPivo][c2])
+          );
+        }
+      }
+
+      pivos.push(coluna);
+      linhaPivo += 1;
+    }
+
+    if (pivos.length >= colunas) return null;
+
+    var colunasComPivo = {};
+    pivos.forEach(function (coluna) {
+      colunasComPivo[coluna] = true;
+    });
+
+    var colunaLivre = colunas - 1;
+    while (colunasComPivo[colunaLivre]) {
+      colunaLivre -= 1;
+    }
+
+    var vetor = [];
+    for (var indice = 0; indice < colunas; indice += 1) {
+      vetor.push(criarComplexo(0, 0));
+    }
+    vetor[colunaLivre] = criarComplexo(1, 0);
+
+    for (var indicePivo = pivos.length - 1; indicePivo >= 0; indicePivo -= 1) {
+      var colunaPivo = pivos[indicePivo];
+      var soma = criarComplexo(0, 0);
+
+      for (var colunaAtual = colunaPivo + 1; colunaAtual < colunas; colunaAtual += 1) {
+        soma = somarComplexos(
+          soma,
+          multiplicarComplexos(trabalho[indicePivo][colunaAtual], vetor[colunaAtual])
+        );
+      }
+
+      vetor[colunaPivo] = negarComplexo(soma);
+    }
+
+    return vetor;
+  }
+
+  function clonarMatrizComplexa(matriz) {
+    return matriz.map(function (linha) {
+      return linha.map(function (valor) {
+        var complexo = paraComplexo(valor);
+        return criarComplexo(complexo.real, complexo.imaginario);
+      });
+    });
+  }
+
+  function normaMatrizComplexa(matriz) {
+    var maior = 0;
+
+    matriz.forEach(function (linha) {
+      linha.forEach(function (valor) {
+        maior = Math.max(maior, moduloComplexo(valor));
+      });
+    });
+
+    return maior;
+  }
+
+  function compararParesDeAutovalores(a, b) {
+    var valorA = paraComplexo(a.valor);
+    var valorB = paraComplexo(b.valor);
+    var diferencaReal = valorB.real - valorA.real;
+    var diferencaImaginaria = valorB.imaginario - valorA.imaginario;
+
+    if (Math.abs(diferencaReal) > 1e-8) return diferencaReal;
+    if (Math.abs(diferencaImaginaria) > 1e-8) return diferencaImaginaria;
+    return 0;
+  }
+
   function norma(vetor) {
     return Math.sqrt(
       vetor.reduce(function (soma, valor) {
@@ -639,8 +1001,103 @@
     };
   }
 
+  function ehComplexo(valor) {
+    return valor && typeof valor === "object" && "real" in valor && "imaginario" in valor;
+  }
+
+  function paraComplexo(valor) {
+    return ehComplexo(valor) ? valor : criarComplexo(valor, 0);
+  }
+
+  function somarComplexos(a, b) {
+    return criarComplexo(a.real + b.real, a.imaginario + b.imaginario);
+  }
+
+  function subtrairComplexos(a, b) {
+    return criarComplexo(a.real - b.real, a.imaginario - b.imaginario);
+  }
+
+  function negarComplexo(valor) {
+    return criarComplexo(-valor.real, -valor.imaginario);
+  }
+
+  function multiplicarComplexos(a, b) {
+    return criarComplexo(
+      a.real * b.real - a.imaginario * b.imaginario,
+      a.real * b.imaginario + a.imaginario * b.real
+    );
+  }
+
+  function dividirComplexos(a, b) {
+    var denominador = b.real * b.real + b.imaginario * b.imaginario;
+
+    if (denominador < EPSILON * EPSILON) {
+      throw new Error("Divisão por um número muito próximo de zero.");
+    }
+
+    return criarComplexo(
+      (a.real * b.real + a.imaginario * b.imaginario) / denominador,
+      (a.imaginario * b.real - a.real * b.imaginario) / denominador
+    );
+  }
+
+  function dividirComplexoPorReal(valor, escalar) {
+    return criarComplexo(valor.real / escalar, valor.imaginario / escalar);
+  }
+
+  function moduloComplexo(valor) {
+    return Math.sqrt(valor.real * valor.real + valor.imaginario * valor.imaginario);
+  }
+
   function subtrairRealDoComplexo(valorComplexo, valorReal) {
     return criarComplexo(valorComplexo.real - valorReal, valorComplexo.imaginario);
+  }
+
+  function limparComplexo(valor) {
+    return criarComplexo(valor.real, valor.imaginario);
+  }
+
+  function simplificarComplexo(valor) {
+    var limpo = limparComplexo(valor);
+
+    if (Math.abs(limpo.imaginario) < 1e-8) {
+      return limparValor(limpo.real);
+    }
+
+    return limpo;
+  }
+
+  function normalizarVetorComplexo(vetor) {
+    var tamanho = Math.sqrt(
+      vetor.reduce(function (soma, valor) {
+        return soma + Math.pow(moduloComplexo(paraComplexo(valor)), 2);
+      }, 0)
+    );
+
+    if (tamanho < EPSILON) return vetor.slice();
+
+    var normalizado = vetor.map(function (valor) {
+      return dividirComplexoPorReal(paraComplexo(valor), tamanho);
+    });
+    var indiceMaior = 0;
+
+    for (var indice = 1; indice < normalizado.length; indice += 1) {
+      if (moduloComplexo(normalizado[indice]) > moduloComplexo(normalizado[indiceMaior])) {
+        indiceMaior = indice;
+      }
+    }
+
+    var referencia = normalizado[indiceMaior];
+    var moduloReferencia = moduloComplexo(referencia);
+
+    if (moduloReferencia > EPSILON) {
+      var fase = dividirComplexoPorReal(referencia, moduloReferencia);
+      normalizado = normalizado.map(function (valor) {
+        return dividirComplexos(valor, fase);
+      });
+    }
+
+    return normalizado.map(simplificarComplexo);
   }
 
   function limparValor(valor) {
