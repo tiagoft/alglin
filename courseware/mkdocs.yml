@@ -40,6 +40,7 @@ nav:
     - "Projeto (opcional): Visão de Jogo": matrizes/jogo_referencial.md
   - "Avançados":
     - "Teoria: Mudanças de Base": avancado/bases.ipynb
+    - "Extra: Visualização de Mudanças de Bases" : extra/mudanca_base/mudanca_base.html
     - "Exercícios: Bases (Parte 2)": exercicios/bases_parte2.md
     - "Estudo de caso: Pixels e Cores": avancado/pixels.ipynb
     - "Exercícios: Bases (Parte 1)": exercicios/bases_parte1.md

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mudança de base interativa</title>
+  <link rel="stylesheet" href="mudanca_base.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <p>Arraste o progresso para transformar a base canônica na base escolhida e observe as coordenadas de <i>V</i>.</p>
+    </header>
+    <div class="layout">
+      <section class="panel controls" aria-label="Controles dos vetores">
+        <fieldset><legend class="v">vetor v</legend><div class="pair"><label>x<input id="vx" type="number" step="any" value="1"></label><label>y<input id="vy" type="number" step="any" value="1"></label></div></fieldset>
+        <fieldset><legend class="b1">vetor-base b₁</legend><div class="pair"><label>x<input id="b1x" type="number" step="any" value="2"></label><label>y<input id="b1y" type="number" step="any" value="3"></label></div></fieldset>
+        <fieldset><legend class="b2">vetor-base b₂</legend><div class="pair"><label>x<input id="b2x" type="number" step="any" value="4"></label><label>y<input id="b2y" type="number" step="any" value="5"></label></div></fieldset>
+        <div id="validity" class="validity" role="status"></div>
+        <div class="buttons"><button id="play" class="primary" type="button">Animar</button><button id="reset" type="button">Restaurar exemplo</button></div>
+      </section>
+      <section class="panel visual" aria-label="Visualização da mudança de base">
+        <div id="visual-content">
+          <div class="slider-head"><label for="progress">Progresso da transformação</label><strong id="t-value">t = 0,000</strong></div>
+          <input id="progress" type="range" min="0" max="1" step="0.001" value="0">
+          <div class="slider-ends"><span>0 · base canônica</span><span>1 · base escolhida</span></div>
+          <div class="status"><div class="status-row"><span>Base atual</span><strong id="current-basis"></strong></div><div class="status-row"><span>Coordenadas de v na base atual</span><strong id="coordinates"></strong></div><div class="status-row"><span>Determinante</span><strong id="determinant"></strong></div></div>
+          <div id="plot-slot" class="plot-slot">
+            <svg id="plot" role="img" aria-label="Plano com a malha deformável, as bases e o vetor V"><title>Plano durante a mudança de base</title></svg>
+          </div>
+          <div class="legend"><span><i class="swatch"></i>V, fixo</span><span><i class="swatch b1"></i>b₁(t)</span><span><i class="swatch b2"></i>b₂(t)</span></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <div id="plot-modal" class="plot-modal" hidden aria-hidden="true">
+    <div class="plot-modal-panel" role="dialog" aria-modal="true" aria-labelledby="plot-modal-title">
+      <div class="plot-modal-header">
+        <strong id="plot-modal-title">Visualização ampliada</strong>
+        <button id="close-plot" type="button" aria-label="Fechar visualização ampliada">Fechar</button>
+      </div>
+      <div id="plot-modal-slot" class="plot-modal-slot"></div>
+    </div>
+  </div>
+  <script src="mudanca_base.js"></script>
+</body>
+</html>
