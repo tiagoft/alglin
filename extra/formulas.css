@@ -1,0 +1,333 @@
+.formulas-botao {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 1200;
+  width: 3.35rem;
+  height: 3.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: #168de2;
+  box-shadow: 0 8px 18px rgba(0, 62, 105, 0.28);
+  color: #fff;
+  font-size: 1.65rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.formulas-botao:hover {
+  background: #0d74bd;
+  box-shadow: 0 10px 24px rgba(0, 62, 105, 0.34);
+  transform: translateY(-2px);
+}
+
+.formulas-botao:focus {
+  outline: 3px solid rgba(22, 141, 226, 0.32);
+  outline-offset: 3px;
+}
+
+.formulas-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1240;
+  background: rgba(21, 31, 38, 0.28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.formulas-painel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1250;
+  width: min(31rem, 100vw);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #d9e2e8;
+  background: #fff;
+  box-shadow: -14px 0 32px rgba(28, 43, 54, 0.18);
+  transform: translateX(105%);
+  transition: transform 0.24s ease;
+}
+
+body.formulas-aberto .formulas-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.formulas-aberto .formulas-painel {
+  transform: translateX(0);
+}
+
+.formulas-cabecalho {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  padding: 1.15rem 1.2rem 1rem;
+  border-bottom: 1px solid #d9e2e8;
+  background: #f8fbfd;
+}
+
+.formulas-titulo {
+  margin: 0;
+  color: #1d5f82;
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.formulas-subtitulo {
+  margin: 0.3rem 0 0;
+  color: #66717a;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+.formulas-fechar {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #c8d6de;
+  border-radius: 50%;
+  background: #fff;
+  color: #47545b;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.formulas-fechar:hover,
+.formulas-fechar:focus {
+  border-color: #168de2;
+  color: #168de2;
+}
+
+.formulas-busca {
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid #edf1f4;
+}
+
+.formulas-busca input {
+  width: 100%;
+  min-height: 2.45rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #c8d6de;
+  border-radius: 4px;
+  color: #2f3a40;
+  font-size: 0.95rem;
+}
+
+.formulas-busca input:focus {
+  border-color: #168de2;
+  box-shadow: 0 0 0 3px rgba(22, 141, 226, 0.14);
+  outline: 0;
+}
+
+.formulas-conteudo {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem 1.2rem 1.35rem;
+}
+
+.formulas-secao {
+  margin: 0 0 1.15rem;
+}
+
+.formulas-secao[hidden],
+.formulas-card[hidden],
+.formulas-vazio[hidden],
+.formulas-markdown [hidden] {
+  display: none;
+}
+
+.formulas-secao h3 {
+  margin: 0 0 0.55rem;
+  color: #47545b;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.formulas-grid {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.formulas-card {
+  margin: 0 0 0.65rem;
+  padding: 0.72rem 0.78rem;
+  border: 1px solid #d9e2e8;
+  border-left: 4px solid #8fb8cc;
+  border-radius: 5px;
+  background: #fbfdfe;
+  box-shadow: none;
+}
+
+.formulas-card:nth-child(3n + 2) {
+  border-left-color: #f0ad4e;
+}
+
+.formulas-card:nth-child(3n) {
+  border-left-color: #61a878;
+}
+
+.formulas-card h4 {
+  margin: 0 0 0.35rem;
+  color: #2f3a40;
+  font-size: 0.94rem;
+  line-height: 1.25;
+}
+
+.formulas-markdown > p {
+  margin: 0 0 1rem;
+  color: #66717a;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.formulas-markdown h2 {
+  margin: 0.35rem 0 0.6rem;
+  padding: 0 0 0.35rem;
+  border-bottom: 1px solid #d9e2e8;
+  color: #1d5f82;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.formulas-markdown h2:not(:first-child) {
+  margin-top: 1.15rem;
+}
+
+.formulas-markdown .admonition-title {
+  margin: 0 0 0.45rem;
+  color: #2f3a40;
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.formulas-markdown .formulas-card p {
+  margin: 0.45rem 0 0;
+  color: #66717a;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.formulas-markdown .formulas-card ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.15rem;
+  color: #66717a;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.formulas-markdown .formulas-card li {
+  margin: 0.16rem 0;
+}
+
+.formulas-markdown .formulas-card code {
+  padding: 0.12rem 0.28rem;
+  border: 1px solid #dce3e8;
+  border-radius: 3px;
+  background: #f4f6f8;
+  color: #25313a;
+  font-family: Consolas, "Liberation Mono", monospace;
+  font-size: 0.94em;
+  overflow-wrap: anywhere;
+}
+
+.formulas-markdown .MathJax_Display {
+  margin: 0.35rem 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.formulas-carregando {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #d9e2e8;
+  border-radius: 5px;
+  background: #f8fbfd;
+}
+
+.formulas-expressao {
+  margin: 0.35rem 0;
+  color: #26333b;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.formulas-expressao .MathJax_Display {
+  margin: 0.35rem 0 !important;
+}
+
+.formulas-nota {
+  margin: 0.4rem 0 0;
+  color: #66717a;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.formulas-codigo {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.12rem 0.28rem;
+  border: 1px solid #dce3e8;
+  border-radius: 3px;
+  background: #f4f6f8;
+  color: #25313a;
+  font-family: Consolas, "Liberation Mono", monospace;
+  font-size: 0.87em;
+  overflow-wrap: anywhere;
+}
+
+.formulas-vazio {
+  margin: 0;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #d9e2e8;
+  border-radius: 5px;
+  background: #f8fbfd;
+  color: #66717a;
+}
+
+body.formulas-aberto {
+  overflow: hidden;
+}
+
+body.modo-apresentacao .formulas-botao {
+  bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@media (max-width: 640px) {
+  .formulas-botao {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.45rem;
+  }
+
+  .formulas-painel {
+    width: 100vw;
+  }
+
+  .formulas-cabecalho,
+  .formulas-busca,
+  .formulas-conteudo {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media print {
+  .formulas-botao,
+  .formulas-backdrop,
+  .formulas-painel {
+    display: none !important;
+  }
+}
