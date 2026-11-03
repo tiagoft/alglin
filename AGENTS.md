@@ -73,6 +73,24 @@ Contribuições de funcionalidades se referem a applets, acessibilidade, funcion
 * Para estas contribuições, o agente pode escrever o código. Os textos explicativos de conteúdo que aparecem na funcionalidade seguem as regras de contribuições de conteúdo.
 * Arquivos de apoio (JavaScript, CSS, HTML) ficam em `courseware/docs/extra/`, como as funcionalidades existentes.
 
+### Animações em Manim
+
+Animações feitas com [Manim](https://www.manim.community/) seguem as regras de contribuições de funcionalidades, com estas regras adicionais:
+
+* **Código-fonte em `manim/`.** O script Python da animação fica no diretório `manim/`, na raiz do repositório.
+* **Dependência.** O Manim está no grupo de dependências `manim` do `pyproject.toml`; instale com `uv sync --group manim` (ele também precisa das bibliotecas de sistema descritas na [documentação do Manim](https://docs.manim.community/en/stable/installation.html)).
+* **Compilação local.** A animação é renderizada localmente pelo contribuidor; o site não renderiza animações durante o build. A pasta `media/` gerada pelo Manim não deve ser versionada.
+* **Formato.** O padrão é `.gif` (por exemplo, `manim -ql --format gif manim/nome_da_animacao.py`). Escolha qualidade, resolução e duração de forma que cada animação tenha **menos de 1 MB**.
+* **Nome.** O arquivo da animação tem o mesmo nome do script: `manim/nome_da_animacao.py` gera `nome_da_animacao.gif`.
+* **Animação versionada junto da página.** O `.gif` é adicionado ao repositório no mesmo diretório do arquivo `.md` ou `.ipynb` que vai exibir a animação (por exemplo, uma animação usada em `courseware/docs/matrizes/aula.md` é salva em `courseware/docs/matrizes/`).
+* **Prompt no texto alternativo.** O texto alternativo (alt-text) da imagem deve mostrar o prompt que descreve a animação, no formato `Animação gerada por IA sob o prompt: [o prompt vai aqui]`. Por exemplo:
+
+    ```markdown
+    ![Animação gerada por IA sob o prompt: mostre o vetor v sendo multiplicado pela matriz A](nome_da_animacao.gif)
+    ```
+
+* Textos e fórmulas que aparecem na animação são conteúdo educacional e seguem as regras de contribuições de conteúdo.
+
 ## Checklist antes do pull request
 
 - [ ] A contribuição está em uma branch do fork, não na `main`.
@@ -83,4 +101,6 @@ Contribuições de funcionalidades se referem a applets, acessibilidade, funcion
 - [ ] Todo texto educacional novo foi escrito pelo contribuidor, não pelo agente.
 - [ ] A notação segue as convenções (escalares, constantes, vetores e matrizes).
 - [ ] Páginas novas foram adicionadas ao `nav` do `mkdocs.yml`.
+- [ ] Animações em Manim têm o código-fonte em `manim/` e o `.gif` (com o mesmo nome do script e menos de 1 MB) no mesmo diretório da página que o exibe.
+- [ ] O alt-text de cada animação traz "Animação gerada por IA sob o prompt: [prompt]".
 - [ ] O pull request segue o template `.github/pull_request_template.md`.
