@@ -177,3 +177,6 @@ $$
 \boldsymbol{x} = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} + 2 \left( \begin{bmatrix} 3 \\ 1 \\ 2 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ -3 \\ -2 \\ -1 \end{bmatrix} \right) + \begin{bmatrix} -6 \\ -4 \\ 0 \\ 2 \end{bmatrix}
 $$
 
+## Exercício adaptativo
+
+<div class="exercicio-adaptativo" data-exercicio="combinacao-linear"></div>

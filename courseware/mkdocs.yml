@@ -114,6 +114,7 @@ extra_javascript:
   - extra/apostila/apostila.js
   - extra/formulas.js
   - extra/calculadora-matrizes.js
+  - extra/exercicio-adaptativo.js
 
 extra_css:
   - extra/calendario.css
@@ -121,3 +122,4 @@ extra_css:
   - extra/apostila/apostila.css
   - extra/formulas.css
   - extra/calculadora-matrizes.css
+  - extra/exercicio-adaptativo.css
