@@ -12,6 +12,13 @@ A forma mais simples de contribuir é usando um agente de programação, como o 
 
 As regras completas estão no [AGENTS.md](https://github.com/tiagoft/alglin/blob/main/AGENTS.md).
 
+## Animações e exercícios adaptativos
+
+Duas funcionalidades já têm um padrão definido, que pode ser usado mais vezes:
+
+* **Animações** matemáticas são feitas com a biblioteca [Manim](https://www.manim.community/). O código fica na pasta `manim/` e o GIF fica junto da página que o exibe.
+* **Exercícios adaptativos**, que geram um exercício novo e um pouco mais difícil a cada acerto, seguem um template (veja o [exemplo em Propriedades de vetores](vetores/propriedades_soma_e_multiplicacao_escalar.md#exercicio-adaptativo)). Para criar um novo tipo de exercício, descreva para o agente como a dificuldade deve crescer de um nível para o outro: ele reaproveita o template.
+
 ## Passo a passo com um agente
 
 ### 1. Prepare o ambiente (uma vez só)
