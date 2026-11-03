@@ -1,6 +1,6 @@
 # Contribuições
 
-Este material é construído coletivamente. Agradecemos a todas as pessoas
+Este material aceita contribuições! Agradecemos a todas as pessoas
 que contribuíram com correções, exercícios e melhorias por meio de pull
 requests!
 

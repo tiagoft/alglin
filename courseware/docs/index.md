@@ -48,7 +48,7 @@ Se preferir, faça um fork do projeto original. Fique à vontade para sugerir mu
 
 ## Quer contribuir?
 
-Este material é construído coletivamente! Você pode contribuir com correções, exemplos e exercícios escritos por você, ou com funcionalidades como applets e calculadoras. Com um agente como o Claude Code ou o Codex, dá para fazer o fork, aplicar a mudança e abrir o pull request direto do terminal: o agente segue as regras da disciplina e ajuda a deixar sua contribuição pronta para ser aceita.
+Este material aceita contribuições! Você pode contribuir com correções, exemplos e exercícios escritos por você, ou com funcionalidades como applets e calculadoras. Com um agente como o Claude Code ou o Codex, dá para fazer o fork, aplicar a mudança e abrir o pull request direto do terminal: o agente segue as regras da disciplina e ajuda a deixar sua contribuição pronta para ser aceita.
 
 Veja o passo a passo em [Como contribuir](como-contribuir.md), e quem já contribuiu em [Contribuições](contribuicoes.md).
 
