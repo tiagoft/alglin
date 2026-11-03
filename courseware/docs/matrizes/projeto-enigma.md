@@ -57,21 +57,21 @@ Neste trabalho, vamos implementar a máquina Enigma usando ferramentas de álgeb
 Uma maneira de representar um caractere é como uma matriz-coluna. Essa matriz tem tantas linhas quantas forem os caracteres possíveis no seu alfabeto. Todos os seus elementos são iguais a zero, exceto por aquele que corresponde ao caractere que está sendo representado. Poderíamos, por exemplo, representar um alfabeto de três letras usando:
 
 $$
-A =
+\boldsymbol{A} =
 \begin{bmatrix}
     1 \\
     0 \\
     0
 \end{bmatrix}
 \hspace{0.5in}
-B =
+\boldsymbol{B} =
 \begin{bmatrix}
     0 \\
     1 \\
     0
 \end{bmatrix}
 \hspace{0.5in}
-C =
+\boldsymbol{C} =
 \begin{bmatrix}
     0 \\
     0 \\
@@ -79,10 +79,10 @@ C =
 \end{bmatrix}
 $$
 
-Então, uma mensagem pode ser representada como uma matriz $M \in \mathbb{R}^{N \times T}$, onde $N$ é o número de caracteres possíveis no alfabeto e $T$ é o número de caracteres na mensagem. A mensagem "AABBCC" seria então representada como:
+Então, uma mensagem pode ser representada como uma matriz $\boldsymbol{M} \in \mathbb{R}^{N \times T}$, onde $N$ é o número de caracteres possíveis no alfabeto e $T$ é o número de caracteres na mensagem. A mensagem "AABBCC" seria então representada como:
 
 $$
-M = 
+\boldsymbol{M} = 
 \begin{bmatrix}
     1 &  1 & 0 & 0 & 0 & 0 \\
     0 &  0 & 1 & 1 & 0 & 0 \\
@@ -91,7 +91,7 @@ M =
 $$
 
 ## Fazendo uma cifra usando uma multiplicação matricial
-É claro que, se multiplicamos a matriz $M$ por uma matriz identidade $I$, encontramos a própria matriz $M$:
+É claro que, se multiplicamos a matriz $\boldsymbol{M}$ por uma matriz identidade $\boldsymbol{I}$, encontramos a própria matriz $\boldsymbol{M}$:
 
 $$
 \begin{bmatrix}
@@ -112,7 +112,7 @@ $$
 \end{bmatrix}
 $$
 
-Porém, veja o que acontece quando permutamos as linhas da matriz $I$ (que, claro, deixa de ser uma matriz identidade e passa a ser uma matriz de permutação $P$):
+Porém, veja o que acontece quando permutamos as linhas da matriz $\boldsymbol{I}$ (que, claro, deixa de ser uma matriz identidade e passa a ser uma matriz de permutação $\boldsymbol{P}$):
 
 $$
 \begin{bmatrix}
@@ -137,18 +137,18 @@ Isso nos dá uma maneira bastante compacta de encontrar mensagens cifradas, e ta
 
 $$
 \begin{aligned}
-P M & = M_c \\
-P^{-1} P M & = P^{-1} M_c \\
-I M & = P^{-1} M_c \\
-M & = P^{-1} M_c
+\boldsymbol{P} \boldsymbol{M} & = \boldsymbol{M}_c \\
+\boldsymbol{P}^{-1} \boldsymbol{P} \boldsymbol{M} & = \boldsymbol{P}^{-1} \boldsymbol{M}_c \\
+\boldsymbol{I} \boldsymbol{M} & = \boldsymbol{P}^{-1} \boldsymbol{M}_c \\
+\boldsymbol{M} & = \boldsymbol{P}^{-1} \boldsymbol{M}_c
 \end{aligned}
 $$
 
 ## A criptografia Enigma
 
-Um problema da criptografia por substituição é que é relativamente fácil encontrar as correspondências entre letras buscando pela frequência em que elas aparecem e pelas suas posições relativas em cadeias. Pensando nisso, a máquina de criptografia Enigma usa duas matrizes de permutação, que chamaremos de $P$ e $R$.
+Um problema da criptografia por substituição é que é relativamente fácil encontrar as correspondências entre letras buscando pela frequência em que elas aparecem e pelas suas posições relativas em cadeias. Pensando nisso, a máquina de criptografia Enigma usa duas matrizes de permutação, que chamaremos de $\boldsymbol{P}$ e $\boldsymbol{R}$.
 
-A mensagem, inicialmente, é codificada como one-hot encoding, gerando a matriz $M$. Então, a *primeira letra* codificada é alterada usando a matriz $P$. Daí, a matriz $P$ é modificada pela permutação da matriz $R$, gerando $P'$ (ou: $P'=RP$). A *segunda letra* de $M$ é modificada usando $P'$. O processo, então, é repetido para cada uma das letras, num loop como em:
+A mensagem, inicialmente, é codificada como one-hot encoding, gerando a matriz $\boldsymbol{M}$. Então, a *primeira letra* codificada é alterada usando a matriz $\boldsymbol{P}$. Daí, a matriz $\boldsymbol{P}$ é modificada pela permutação da matriz $\boldsymbol{R}$, gerando $\boldsymbol{P}'$ (ou: $\boldsymbol{P}'=\boldsymbol{R}\boldsymbol{P}$). A *segunda letra* de $\boldsymbol{M}$ é modificada usando $\boldsymbol{P}'$. O processo, então, é repetido para cada uma das letras, num loop como em:
 
 <div class="mermaid">
 flowchart LR

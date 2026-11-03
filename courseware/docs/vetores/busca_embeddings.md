@@ -20,19 +20,19 @@ Dito isso, é claro que GPTs e IAs atuais resolvem todas as atividades. Não use
 
 ## Exercício 1: lembrar-se da teoria de alinhamento de vetores
 
-A busca por conteúdo em bases de dados modernas usa um conceito chamado *embedding*. Um embedding é uma representação vetorial de um documento não-estruturado, isto é, é um vetor $x_i \in \mathbb{R}^n$ que é único para cada ítem $i$ em uma coleção. Uma característica de embeddings modernos é que, tipicamente, documentos semelhantes são mais alinhados, isto é, $x_i$ e $x_j$ são semelhantes se o cosseno do ângulo entre eles é grande.
+A busca por conteúdo em bases de dados modernas usa um conceito chamado *embedding*. Um embedding é uma representação vetorial de um documento não-estruturado, isto é, é um vetor $\boldsymbol{x}_i \in \mathbb{R}^N$ que é único para cada ítem $i$ em uma coleção. Uma característica de embeddings modernos é que, tipicamente, documentos semelhantes são mais alinhados, isto é, $\boldsymbol{x}_i$ e $\boldsymbol{x}_j$ são semelhantes se o cosseno do ângulo entre eles é grande.
 
 Faça um desenho mostrando uma situação em $\mathbb{R}^2$ em que há oito embeddings diferentes. Escolha um deles como referência, e indique quais (dois ou três), dentre os restantes, são mais alinhados a ele.
 
 ## Exercício 2: modelar a semelhança entre vetores
 
-Suponha que temos dois vetores, $x$ e $y$ ($x, y \in \mathbb{R}^n$) . Escreva um processo matemático (isto é, uma equação), usando os conhecimentos que já temos, capaz de encontrar o cosseno do ângulo entre $x$ e $y$.
+Suponha que temos dois vetores, $\boldsymbol{x}$ e $\boldsymbol{y}$ ($\boldsymbol{x}, \boldsymbol{y} \in \mathbb{R}^N$) . Escreva um processo matemático (isto é, uma equação), usando os conhecimentos que já temos, capaz de encontrar o cosseno do ângulo entre $\boldsymbol{x}$ e $\boldsymbol{y}$.
 
 ## Exercício 3: implementar a busca por conteúdo
 
-Suponha que temos uma lista em Python com $m$ vetores $x_i, i \in [1..m]$, representando embeddings de documentos em uma base de dados. 
+Suponha que temos uma lista em Python com $M$ vetores $\boldsymbol{x}_i, i \in [1..M]$, representando embeddings de documentos em uma base de dados. 
 
-(a) Usando a equação que você definiu anteriormente, defina a função `alinhamento` com o cabeçalho abaixo, que calcula o alinhamento entre os vetores da sua base e um outro vetor, $q$, usado como referência;
+(a) Usando a equação que você definiu anteriormente, defina a função `alinhamento` com o cabeçalho abaixo, que calcula o alinhamento entre os vetores da sua base e um outro vetor, $\boldsymbol{q}$, usado como referência;
 
 ```python
 def alinhamento(x : list[np.ndarray], 

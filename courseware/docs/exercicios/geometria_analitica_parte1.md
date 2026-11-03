@@ -83,7 +83,7 @@ $$
 
 ### Questão 2 — Exercício resolvido
 
-Uma reta pode ser determinada por dois pontos. Se tivermos dois pontos, $p_1 = \begin{bmatrix} x_1 \\ y_1 \end{bmatrix}$, e $p_2 = \begin{bmatrix} x_2 \\ y_2 \end{bmatrix}$, qual é a equação da reta que passa por esses dois pontos?
+Uma reta pode ser determinada por dois pontos. Se tivermos dois pontos, $\boldsymbol{p}_1 = \begin{bmatrix} x_1 \\ y_1 \end{bmatrix}$, e $\boldsymbol{p}_2 = \begin{bmatrix} x_2 \\ y_2 \end{bmatrix}$, qual é a equação da reta que passa por esses dois pontos?
 
 Nesse caso, se nossa reta é $y=ax+b$, então sabemos que:
 
@@ -117,11 +117,11 @@ Calcule a equação da reta que contém todos os pontos que podem ser obtidos na
 
 ### Questão 4
 
-Calcule a equação da reta que contém todos os pontos que podem ser obtidos na forma $az$, onde $a \in \mathbb{R}$, $z \in \mathbb{R}^2$, sabendo que $w=\begin{bmatrix} 4 \\ 5 \end{bmatrix}$, que $\langle z,w\rangle=0$ e que a reta passa pela origem. Dica: calcule $\langle z,w\rangle$ explicitamente - qual é a relação entre $x$ e $y$ para esses pontos?
+Calcule a equação da reta que contém todos os pontos que podem ser obtidos na forma $a\boldsymbol{z}$, onde $a \in \mathbb{R}$, $\boldsymbol{z} \in \mathbb{R}^2$, sabendo que $\boldsymbol{w}=\begin{bmatrix} 4 \\ 5 \end{bmatrix}$, que $\langle \boldsymbol{z},\boldsymbol{w}\rangle=0$ e que a reta passa pela origem. Dica: calcule $\langle \boldsymbol{z},\boldsymbol{w}\rangle$ explicitamente - qual é a relação entre $x$ e $y$ para esses pontos?
 
 ### Questão 5
 
-Calcule a equação da reta que contém todos os pontos que podem ser obtidos na forma $az$, onde $a \in \mathbb{R}$, $z \in \mathbb{R}^2$, sabendo que $w=\begin{bmatrix} 1 \\ 2 \end{bmatrix}$, que $\langle z,w\rangle=0$ e que a reta passa pelo ponto $\begin{bmatrix} -4 \\ 1 \end{bmatrix}$.
+Calcule a equação da reta que contém todos os pontos que podem ser obtidos na forma $a\boldsymbol{z}$, onde $a \in \mathbb{R}$, $\boldsymbol{z} \in \mathbb{R}^2$, sabendo que $\boldsymbol{w}=\begin{bmatrix} 1 \\ 2 \end{bmatrix}$, que $\langle \boldsymbol{z},\boldsymbol{w}\rangle=0$ e que a reta passa pelo ponto $\begin{bmatrix} -4 \\ 1 \end{bmatrix}$.
 
 ### Questão 6
 

@@ -6,13 +6,13 @@
 
 No espaço $\mathbb{R}^3$, há três eixos, que vamos chamar - exclusivamente neste exercício - de $x$, $y$ e $z$.
 
-a) Deduza como encontrar uma matriz $R$ que realiza a rotação de um vetor em $\mathbb{R}^3$ ao redor da origem e ao redor do eixo $x$. A rotação é de um ângulo arbitrário $\theta$. Para isso (i) desenhe a situação para visualizá-la corretamente; (ii) identifique os ângulos, módulos, etc., que forem relevantes para a sua solução; (iii) encontre as equações que definem as novas coordenadas $x_1$, $y_1$, $z_1$ do vetor rotacionado; (iv) passe as equações para o formato matricial.
+a) Deduza como encontrar uma matriz $\boldsymbol{R}$ que realiza a rotação de um vetor em $\mathbb{R}^3$ ao redor da origem e ao redor do eixo $x$. A rotação é de um ângulo arbitrário $\theta$. Para isso (i) desenhe a situação para visualizá-la corretamente; (ii) identifique os ângulos, módulos, etc., que forem relevantes para a sua solução; (iii) encontre as equações que definem as novas coordenadas $x_1$, $y_1$, $z_1$ do vetor rotacionado; (iv) passe as equações para o formato matricial.
 
 b) Suponha que temos um cubo com centro no ponto $(5, 5, 5)$. Se ele for rotacionado de 45 graus somente aplicando a matriz que você encontrou no ítem (a), qual será a figura encontrada?
 
-c) Podemos definir uma matriz de translação $T$ que leva o centro da figura a rotacionar para a origem. Essa matriz tem uma dimensão a mais que o vetor a ser transladado, isto é, uma matriz de translação em $\mathbb{R}^3$ tem formato $4 \times 4$. Que ajuste deve ser feito ao vetor original para que ele possa ser multiplicado pela matriz de translação? Justifique sua resposta partindo do princípio de funcionamento da translação (que é somar constantes a cada uma das dimensões).
+c) Podemos definir uma matriz de translação $\boldsymbol{T}$ que leva o centro da figura a rotacionar para a origem. Essa matriz tem uma dimensão a mais que o vetor a ser transladado, isto é, uma matriz de translação em $\mathbb{R}^3$ tem formato $4 \times 4$. Que ajuste deve ser feito ao vetor original para que ele possa ser multiplicado pela matriz de translação? Justifique sua resposta partindo do princípio de funcionamento da translação (que é somar constantes a cada uma das dimensões).
 
-d) Uma rotação do vetor $v_0$ ao redor de um ponto arbitrário $(x_c, y_c, z_c)$ pode ser realizada usando: $v_1 = T^{-1} R T v_0$. Escreva explicitamente as matrizes $T^{-1}$, $R$ e $T$.
+d) Uma rotação do vetor $\boldsymbol{v}_0$ ao redor de um ponto arbitrário $(x_c, y_c, z_c)$ pode ser realizada usando: $\boldsymbol{v}_1 = \boldsymbol{T}^{-1} \boldsymbol{R} \boldsymbol{T} \boldsymbol{v}_0$. Escreva explicitamente as matrizes $\boldsymbol{T}^{-1}$, $\boldsymbol{R}$ e $\boldsymbol{T}$.
 
 
 **Prática**
@@ -27,9 +27,9 @@ Faça os dois projetos opcionais (enigma e ponto de vista do jogo) relacionados 
 
 **Teoria**
 
-1. Suponha que temos dois vetores: $v = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix}$ e $w=\begin{bmatrix} 5 \\ 6 \\ 7 \\ 8 \end{bmatrix}$. Encontre o cosseno do ângulo entre $v$ e $w$.
+1. Suponha que temos dois vetores: $\boldsymbol{v} = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix}$ e $\boldsymbol{w}=\begin{bmatrix} 5 \\ 6 \\ 7 \\ 8 \end{bmatrix}$. Encontre o cosseno do ângulo entre $\boldsymbol{v}$ e $\boldsymbol{w}$.
 
-2. Suponha que temos dois vetores: $v = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix}$ e $w=\begin{bmatrix} 5 \\ 6 \\ 7 \\ x \end{bmatrix}$. Encontre $x$ para que $v$ seja ortogonal a $w$.
+2. Suponha que temos dois vetores: $\boldsymbol{v} = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix}$ e $\boldsymbol{w}=\begin{bmatrix} 5 \\ 6 \\ 7 \\ x \end{bmatrix}$. Encontre $x$ para que $\boldsymbol{v}$ seja ortogonal a $\boldsymbol{w}$.
 
 **Prática**
 

@@ -126,10 +126,10 @@ x \\ y
 \end{aligned}
 $$
 
-Calcule (manualmente) $Z$ em:
+Calcule (manualmente) $\boldsymbol{Z}$ em:
 
 $$
-Z = 
+\boldsymbol{Z} = 
 \begin{bmatrix}
 1 & 1\\
 1 & -1
@@ -144,41 +144,41 @@ $$
     Se tudo correu bem, você deve ter encontrado:
 
     $$
-    Z = \begin{bmatrix}
+    \boldsymbol{Z} = \begin{bmatrix}
     1 & 0\\
     0 & 1
     \end{bmatrix}
     $$
-    Essa matriz quadrada, com $1$ na diagonal principal e $0$ em todos os outros elementos, se chama *Matriz Identidade* ($I$). Opcionalmente, podemos dizer "identidade de tamanho $n$" para nos referir especificamente a $I \in \mathbb{R}^{n \times n}$.
+    Essa matriz quadrada, com $1$ na diagonal principal e $0$ em todos os outros elementos, se chama *Matriz Identidade* ($\boldsymbol{I}$). Opcionalmente, podemos dizer "identidade de tamanho $N$" para nos referir especificamente a $\boldsymbol{I} \in \mathbb{R}^{N \times N}$.
 
 
 ## Exercício 3: propriedades da identidade
 
-Uma propriedade da matriz identidade é que ela é *neutra em relação à multiplicação*, isto é, para qualquer matriz quadrada $A$ do mesmo tamanho que $I$,
+Uma propriedade da matriz identidade é que ela é *neutra em relação à multiplicação*, isto é, para qualquer matriz quadrada $\boldsymbol{A}$ do mesmo tamanho que $\boldsymbol{I}$,
 
 $$
-AI = A = IA
+\boldsymbol{A}\boldsymbol{I} = \boldsymbol{A} = \boldsymbol{I}\boldsymbol{A}
 $$
 
-Mostre um exemplo que ilustre que $AI=A$ para o caso de $A$ ser uma matriz retangular.
+Mostre um exemplo que ilustre que $\boldsymbol{A}\boldsymbol{I}=\boldsymbol{A}$ para o caso de $\boldsymbol{A}$ ser uma matriz retangular.
 
 ## Exercício 4: matriz inversa
 
 !!! info "Matriz inversa"
-    Quando $AB=I$, dizemos que $B$ é a inversa de $A$, ou $B=A^{-1}$.
+    Quando $\boldsymbol{A}\boldsymbol{B}=\boldsymbol{I}$, dizemos que $\boldsymbol{B}$ é a inversa de $\boldsymbol{A}$, ou $\boldsymbol{B}=\boldsymbol{A}^{-1}$.
 
-Vamos supor que sabemos como encontrar a matriz $A^{-1}$. Veja o que podemos fazer:
+Vamos supor que sabemos como encontrar a matriz $\boldsymbol{A}^{-1}$. Veja o que podemos fazer:
 
 $$
 \begin{array}{rl}
-Ax &= y \\
-A^{-1} A x &= A^{-1}y\\
-I x &= A^{-1} y\\
-x &= A^{-1} y
+\boldsymbol{A}\boldsymbol{x} &= \boldsymbol{y} \\
+\boldsymbol{A}^{-1} \boldsymbol{A} \boldsymbol{x} &= \boldsymbol{A}^{-1}\boldsymbol{y}\\
+\boldsymbol{I} \boldsymbol{x} &= \boldsymbol{A}^{-1} \boldsymbol{y}\\
+\boldsymbol{x} &= \boldsymbol{A}^{-1} \boldsymbol{y}
 \end{array}
 $$
 
-Em Python, podemos calcular a matriz $A^{-1}$ usando:
+Em Python, podemos calcular a matriz $\boldsymbol{A}^{-1}$ usando:
 
 ```python
 import numpy as np
@@ -212,12 +212,12 @@ $$
 \end{cases}
 $$
 
-1. Escreva o sistema na forma matricial, isto é, encontre $x_t \in \mathbb{R}^{2 \times 1}$, $A \in \mathbb{R}^{2 \times 2}$ e $x_{t-1} \in \mathbb{R}^{2 \times 1}$ em:
+1. Escreva o sistema na forma matricial, isto é, encontre $\boldsymbol{x}_t \in \mathbb{R}^{2 \times 1}$, $\boldsymbol{A} \in \mathbb{R}^{2 \times 2}$ e $\boldsymbol{x}_{t-1} \in \mathbb{R}^{2 \times 1}$ em:
 $$ 
-x_t = A x_{t-1}
+\boldsymbol{x}_t = \boldsymbol{A} \boldsymbol{x}_{t-1}
 $$
 
-2. Suponha que em $t=5$ tínhamos 10 carcarás e 20 mil sapos (ou seja, $x_5 = \begin{bmatrix} 10 \\ 20 \end{bmatrix}$). Faça um script Python e encontre a quantidade de carcarás e sapos em $t=4$, $t=3$, $t=2$, $t=1$ e $t=0$.
+2. Suponha que em $t=5$ tínhamos 10 carcarás e 20 mil sapos (ou seja, $\boldsymbol{x}_5 = \begin{bmatrix} 10 \\ 20 \end{bmatrix}$). Faça um script Python e encontre a quantidade de carcarás e sapos em $t=4$, $t=3$, $t=2$, $t=1$ e $t=0$.
 
 
 !!! info "Maneiras de calcular matrizes inversas"

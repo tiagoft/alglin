@@ -2,7 +2,7 @@
 
 ### Questão 1
 
-Se os autovetores de $A$ são as colunas de:
+Se os autovetores de $\boldsymbol{A}$ são as colunas de:
 
 $$
 \begin{bmatrix}
@@ -13,13 +13,13 @@ $$
 
 e os seus autovalores associados são $1$ e $2$, encontre o valor de:
 
-**a)** $y = A \begin{bmatrix} 1 \\ 3\end{bmatrix}$
+**a)** $\boldsymbol{y} = \boldsymbol{A} \begin{bmatrix} 1 \\ 3\end{bmatrix}$
 
-**b)** $y = A \begin{bmatrix} 2 \\ 6\end{bmatrix}$
+**b)** $\boldsymbol{y} = \boldsymbol{A} \begin{bmatrix} 2 \\ 6\end{bmatrix}$
 
-**c)** $y = A \begin{bmatrix} 1+2 \\ 3+4\end{bmatrix}$
+**c)** $\boldsymbol{y} = \boldsymbol{A} \begin{bmatrix} 1+2 \\ 3+4\end{bmatrix}$
 
-**d)** $y = A \begin{bmatrix} 1-2 \\ 3-4\end{bmatrix}$
+**d)** $\boldsymbol{y} = \boldsymbol{A} \begin{bmatrix} 1-2 \\ 3-4\end{bmatrix}$
 
 ### Questão 2
 
@@ -29,10 +29,10 @@ Esse sistema deve colapsar, ficar estável, ou explodir?
 
 ### Questão 3
 
-Os autovetores da matriz $A$ são as colunas da matriz de rotação:
+Os autovetores da matriz $\boldsymbol{A}$ são as colunas da matriz de rotação:
 
 $$
-R = \begin{bmatrix} \cos{\theta} & -\sin{\theta} \\ \sin{\theta} & \cos{\theta} \end{bmatrix}
+\boldsymbol{R} = \begin{bmatrix} \cos{\theta} & -\sin{\theta} \\ \sin{\theta} & \cos{\theta} \end{bmatrix}
 $$
 
-Os seus autovalores associados são $1$ e $2$. Calcule $A$ em função de $\theta$.
+Os seus autovalores associados são $1$ e $2$. Calcule $\boldsymbol{A}$ em função de $\theta$.

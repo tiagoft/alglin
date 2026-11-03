@@ -3,9 +3,9 @@
 Já sabemos que podemos escrever um vetor na forma cartesiana e na forma polar. Porém, uma outra maneira de re-escrever vetores é através da *combinação linear de fatores*. A ideia aqui é escrever um vetor como a soma ponderada de dois outros vetores, isto é:
 
 $$
-x = a_1 v_1 + a_2 v_2,
+\boldsymbol{x} = a_1 \boldsymbol{v}_1 + a_2 \boldsymbol{v}_2,
 $$
-onde $a_1, a_2 \in \mathbb{R}$ e $x, v_1, v_2 \in \mathbb{R}^2$.
+onde $a_1, a_2 \in \mathbb{R}$ e $\boldsymbol{x}, \boldsymbol{v}_1, \boldsymbol{v}_2 \in \mathbb{R}^2$.
 
 Note que estamos definindo esse processo apenas para vetores de 2 dimensões! Posteriormente, nos ocuparemos do caso geral.
 

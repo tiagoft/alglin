@@ -18,45 +18,45 @@ Leite condensado | R\$10,00 (lata de 400g)
 Manteiga | R\$15,00 (pote com 200g)
 Chocolate em pó |R\$18,00 (caixa com 200g)
 
-Podemos representar a quantidade de nossos ingredientes (em gramas) como um vetor $x \in \mathbb{R}^3$:
+Podemos representar a quantidade de nossos ingredientes (em gramas) como um vetor $\boldsymbol{x} \in \mathbb{R}^3$:
 
 $$
-x = \begin{bmatrix} 40 \\ 400 \\ 20 \end{bmatrix}.
+\boldsymbol{x} = \begin{bmatrix} 40 \\ 400 \\ 20 \end{bmatrix}.
 $$
 
-Podemos também representar o preço por grama de cada ingrediente como um vetor $y \in \mathbb{R}^3$:
+Podemos também representar o preço por grama de cada ingrediente como um vetor $\boldsymbol{y} \in \mathbb{R}^3$:
 
 $$
-y = \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \end{bmatrix}.
+\boldsymbol{y} = \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \end{bmatrix}.
 $$
 
-??? info "Mostre que o preço de uma fornada pode ser calculado por $<x,y>$."
+??? info "Mostre que o preço de uma fornada pode ser calculado por $<\boldsymbol{x},\boldsymbol{y}>$."
     O preço total da fornada é calculado somando os preços parciais de cada ingrediente, ou seja:
 
     $$
-    p = x_1 y_1 + x_2 y_2 + x_3 y_3 = \sum_{i=1}^n x_i y_i = <x,y>
+    p = x_1 y_1 + x_2 y_2 + x_3 y_3 = \sum_{n=1}^N x_n y_n = <\boldsymbol{x},\boldsymbol{y}>
     $$
 
 ### E se eu faço ganache?
 
 Nem só de brigadeiros vive uma doceria. Também queria fazer ganache. Ganache é feito igual ao brigadeiro, mas usando uma caixa de creme de leite (a caixa tem 200g e custa R\$2,80). Só que agora gostaríamos de representar tanto as quantidades de ingredientes para o brigadeiro quanto para o doce de côco no mesmo espaço vetorial. Bem, agora teremos que criar "espaço" para o creme de leite, então nossos vetores vão passar a estar em $\mathbb{R}^4$. Nesse caso:
 
-??? info "Como ficam os vetores $x_b$ (ingredientes do brigadeiro), $x_g$ (ingredientes do ganache), e $y$ (custo dos ingredientes)?"
+??? info "Como ficam os vetores $\boldsymbol{x}_b$ (ingredientes do brigadeiro), $\boldsymbol{x}_g$ (ingredientes do ganache), e $\boldsymbol{y}$ (custo dos ingredientes)?"
     Adicionando uma quarta dimensão para o creme de leite:
 
     $$
-    x_b = \begin{bmatrix} 40 \\ 400 \\ 20 \\ 0 \end{bmatrix}
+    \boldsymbol{x}_b = \begin{bmatrix} 40 \\ 400 \\ 20 \\ 0 \end{bmatrix}
     $$
 
     $$
-    x_g = \begin{bmatrix} 40 \\ 0 \\ 20 \\ 200 \end{bmatrix}
+    \boldsymbol{x}_g = \begin{bmatrix} 40 \\ 0 \\ 20 \\ 200 \end{bmatrix}
     $$
 
     $$
-    y = \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \\ 28/2000 \end{bmatrix}
+    \boldsymbol{y} = \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \\ 28/2000 \end{bmatrix}
     $$
 
-??? info "Nesse caso, ainda posso calcular o custo do brigadeiro usando $<x_b, y>$ e o custo do ganache com $<x_g, y>$?"
+??? info "Nesse caso, ainda posso calcular o custo do brigadeiro usando $<\boldsymbol{x}_b, \boldsymbol{y}>$ e o custo do ganache com $<\boldsymbol{x}_g, \boldsymbol{y}>$?"
     Sim, ainda posso. Como temos "zero" nos ingredientes inexistentes, a equação fica estritamente a mesma que se eles não existissem.
 
 ## Matrizes
@@ -66,22 +66,22 @@ No caso da nossa doceria fictícia, tínhamos dois doces, e atuamos sobre eles d
 Uma matriz tem números organizados em linhas e colunas, de forma semelhante a uma tabela. Por exemplo:
 
 $$
-X = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}
+\boldsymbol{X} = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}
 $$
 
-Nesse caso, dizemos que $X$ tem duas linhas e 3 colunas, ou ainda, que $X \in \mathbb{R}^{2 \times 3}$. Geralmente usamos letras maiúsculas para representar matriz, mas isso não é *obrigatório*. Usamos a notação $x_{i,j}$ para nos referir ao elemento de $X$ que está na linha $i$ e coluna $j$.
+Nesse caso, dizemos que $\boldsymbol{X}$ tem duas linhas e 3 colunas, ou ainda, que $\boldsymbol{X} \in \mathbb{R}^{2 \times 3}$. Geralmente usamos letras maiúsculas para representar matriz, mas isso não é *obrigatório*. Usamos a notação $x_{i,j}$ para nos referir ao elemento de $\boldsymbol{X}$ que está na linha $i$ e coluna $j$.
 
 Uma maneira de representar nossas receitas poderia ser usando uma matriz com uma linha por receita e uma coluna por ingrediente, ou:
 
 $$
-X = \begin{bmatrix} 40 & 400 & 20 & 0 \\ 40 & 0 & 20 & 200 \end{bmatrix}
+\boldsymbol{X} = \begin{bmatrix} 40 & 400 & 20 & 0 \\ 40 & 0 & 20 & 200 \end{bmatrix}
 $$
 
 E agora temos uma única "entidade" que representa todo o nosso cardápio - ou ainda, toda a nossa *coleção de vetores*.
 
-??? info "Suponha que queremos adicionar à nossa doceria caseira o doce de côco, que é feito com 400g de leite condensado e 250g de côco ralado. Como ficaria a matriz $X$?"
+??? info "Suponha que queremos adicionar à nossa doceria caseira o doce de côco, que é feito com 400g de leite condensado e 250g de côco ralado. Como ficaria a matriz $\boldsymbol{X}$?"
     $$
-    X = \begin{bmatrix} 40 & 400 & 20 & 0 & 0 \\ 40 & 0 & 20 & 200 & 0 \\ 0 & 400 & 0 & 0 & 250 \end{bmatrix}
+    \boldsymbol{X} = \begin{bmatrix} 40 & 400 & 20 & 0 & 0 \\ 40 & 0 & 20 & 200 & 0 \\ 0 & 400 & 0 & 0 & 250 \end{bmatrix}
     $$
 
 ## Soma de matrizes e multiplicação por escalar
@@ -90,21 +90,21 @@ Se continuarmos assumindo que as matrizes são uma maneira de representar uma co
 
 $$
 \begin{array}{rll}
-Z &= X + Y &\Rightarrow z_{i,j} = x_{i,j} + y_{i,j} \\
-Z &= aX &\Rightarrow z_{i,j} = a x_{i,j}
+\boldsymbol{Z} &= \boldsymbol{X} + \boldsymbol{Y} &\Rightarrow z_{i,j} = x_{i,j} + y_{i,j} \\
+\boldsymbol{Z} &= a\boldsymbol{X} &\Rightarrow z_{i,j} = a x_{i,j}
 \end{array}
 $$
 
 ## Multiplicação de matrizes
 
-Podemos multiplicar duas matrizes $X$ e $Y$. Essa operação não é trivial e há regras específicas para ela. 
+Podemos multiplicar duas matrizes $\boldsymbol{X}$ e $\boldsymbol{Y}$. Essa operação não é trivial e há regras específicas para ela. 
 
 ### Definição
 
-A definição da multiplicação de matrizes é: partindo de $X \in \mathbb{R}^{i \times k}$ e $Y \in \mathbb{R}^{k \times j}$, o resultado é uma matriz $Z \in \mathbb{R}^{i \times j}$ onde:
+A definição da multiplicação de matrizes é: partindo de $\boldsymbol{X} \in \mathbb{R}^{I \times N}$ e $\boldsymbol{Y} \in \mathbb{R}^{N \times J}$, o resultado é uma matriz $\boldsymbol{Z} \in \mathbb{R}^{I \times J}$ onde:
 
 $$
-z_{i,j} = \sum_{n=1}^k x_{i,n} y_{n,j}
+z_{i,j} = \sum_{n=1}^N x_{i,n} y_{n,j}
 $$
 
 ### Uma forma mais simples de entender
@@ -112,13 +112,13 @@ $$
 Se tivermos:
 
 $$
-X = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} \hspace{1cm} Y = \begin{bmatrix} a \\ b \\ c \end{bmatrix}
+\boldsymbol{X} = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix} \hspace{1cm} \boldsymbol{Y} = \begin{bmatrix} a \\ b \\ c \end{bmatrix}
 $$
 
-podemos fazer a multiplicação $Z=XY$. Nesse caso, $Z$ é uma matriz com:
+podemos fazer a multiplicação $\boldsymbol{Z}=\boldsymbol{X}\boldsymbol{Y}$. Nesse caso, $\boldsymbol{Z}$ é uma matriz com:
 
-* Tantas linhas quanto a primeira matriz ($X$), isto é, 2
-* Tantas colunas quanto a segunda matriz ($Y$), isto é, 1
+* Tantas linhas quanto a primeira matriz ($\boldsymbol{X}$), isto é, 2
+* Tantas colunas quanto a segunda matriz ($\boldsymbol{Y}$), isto é, 1
 
 A definição da multiplicação matricial pode ser interpretada da seguinte forma: *o elemento $z_{i,j}$ (isto é, o elemento na linha $i$, coluna $j$) é calculado multiplicando sucessivamente os elementos da linha $i$ da primeira matriz com os elementos da coluna $j$ da segunda matriz*. Em outras palavras:
 
@@ -129,40 +129,40 @@ $$
 ??? info "Então, como calcular $z_{2,1}$?"
     $$z_{2,1} = \sum_{n=1}^3 x_{2,n} y_{n,1} = 4a + 5b + 6c$$
 
-??? info "Por fim, quanto vale Z?"
-    $$Z = \begin{bmatrix}  1a + 2b + 3c \\ 4a + 5b + 6c \end{bmatrix}$$
+??? info "Por fim, quanto vale $\boldsymbol{Z}$?"
+    $$\boldsymbol{Z} = \begin{bmatrix}  1a + 2b + 3c \\ 4a + 5b + 6c \end{bmatrix}$$
 
 ### Restrições
 
-* Veja que, pela definição, a multiplicação $Z=XY$ só pode acontecer se o número de colunas de $X$ for igual ao número de linhas de $Y$.
-* Também, podemos rapidamente mostrar que, no caso geral, $XY \neq YX$. Demonstre isso para duas matrizes $2 \times 2$!
+* Veja que, pela definição, a multiplicação $\boldsymbol{Z}=\boldsymbol{X}\boldsymbol{Y}$ só pode acontecer se o número de colunas de $\boldsymbol{X}$ for igual ao número de linhas de $\boldsymbol{Y}$.
+* Também, podemos rapidamente mostrar que, no caso geral, $\boldsymbol{X}\boldsymbol{Y} \neq \boldsymbol{Y}\boldsymbol{X}$. Demonstre isso para duas matrizes $2 \times 2$!
 
 ### Voltando à minha doceria
 
 Partindo da minha matriz com ingredientes para brigadeiro e ganache:
 
 $$
-X = \begin{bmatrix} 40 & 400 & 20 & 0  \\ 40 & 0 & 20 & 200 & \end{bmatrix}
+\boldsymbol{X} = \begin{bmatrix} 40 & 400 & 20 & 0  \\ 40 & 0 & 20 & 200 \end{bmatrix}
 $$
 
 podemos escrever nossa matriz de custos como:
 
 $$
-Y = \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \\ 28/2000 \end{bmatrix}
+\boldsymbol{Y} = \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \\ 28/2000 \end{bmatrix}
 $$
 
-??? info "Verifique que $Z=XY$ representa, simultaneamente, o custo do brigadeiro e do ganache"
-    Realizando a multiplicação matricial, temos os resultados que encontramos anteriormente em cada elemento de $Z$.
+??? info "Verifique que $\boldsymbol{Z}=\boldsymbol{X}\boldsymbol{Y}$ representa, simultaneamente, o custo do brigadeiro e do ganache"
+    Realizando a multiplicação matricial, temos os resultados que encontramos anteriormente em cada elemento de $\boldsymbol{Z}$.
 
 Veja que isso nos leva a interpretar matrizes de acordo com seu conteúdo. Neste problema:
 
-* $Y$ é uma matriz em que cada linha representa um ingrediente e cada elemento é seu custo unitário.
-* $X$ é uma matriz em que cada linha representa uma receita, cada coluna representa um ingrediente, e cada elemento é a quantidade usada.
-* $Z$ é uma matriz em que cada linha representa uma receita e cada elemento é o seu custo total.
+* $\boldsymbol{Y}$ é uma matriz em que cada linha representa um ingrediente e cada elemento é seu custo unitário.
+* $\boldsymbol{X}$ é uma matriz em que cada linha representa uma receita, cada coluna representa um ingrediente, e cada elemento é a quantidade usada.
+* $\boldsymbol{Z}$ é uma matriz em que cada linha representa uma receita e cada elemento é o seu custo total.
 
 ## Matrizes transpostas
 
-Uma operação que podemos fazer sobre uma matriz é a *tranposição*. A matriz transposta de $X$ é denotada $X^T$. Na transposição, os índices que indicavam colunas passam a indicar linhas, e vice-versa. A definição precisa disso é:
+Uma operação que podemos fazer sobre uma matriz é a *tranposição*. A matriz transposta de $\boldsymbol{X}$ é denotada $\boldsymbol{X}^T$. Na transposição, os índices que indicavam colunas passam a indicar linhas, e vice-versa. A definição precisa disso é:
 
 $$
 x^T_{j,i} = x_{i,j}
@@ -172,27 +172,27 @@ $$
 
     se 
     $$
-    X = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix},
+    \boldsymbol{X} = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix},
     $$
 
     então
 
     $$
-    X^T = \begin{bmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{bmatrix}
+    \boldsymbol{X}^T = \begin{bmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{bmatrix}
     $$
 
 ??? info "Como fica nossa matriz de receitas em sua forma transposta?"
     $$
-    X^T = \begin{bmatrix} 40 & 40 \\ 400 & 0 \\ 20 & 20 \\ 0 & 200 \end{bmatrix}
+    \boldsymbol{X}^T = \begin{bmatrix} 40 & 40 \\ 400 & 0 \\ 20 & 20 \\ 0 & 200 \end{bmatrix}
     $$
 
-??? info "Mostre que, se $X$ é uma matriz-linha correspondente ao vetor $y$, então $XX^T = <y,y>$."
+??? info "Mostre que, se $\boldsymbol{X}$ é uma matriz-linha correspondente ao vetor $\boldsymbol{y}$, então $\boldsymbol{X}\boldsymbol{X}^T = <\boldsymbol{y},\boldsymbol{y}>$."
     Pela definição:
     $$
     \begin{array}{rl}
-    XX^T &= \sum_{n=1}^k x_{1,n} x^T_{n,1} \\ &= \sum_{n=1}^k x_{1,n} x_{1,n}
-    \\ &= \sum_{n=1}^k y_n y_n
-    \\ &= <y,y>
+    \boldsymbol{X}\boldsymbol{X}^T &= \sum_{n=1}^N x_{1,n} x^T_{n,1} \\ &= \sum_{n=1}^N x_{1,n} x_{1,n}
+    \\ &= \sum_{n=1}^N y_n y_n
+    \\ &= <\boldsymbol{y},\boldsymbol{y}>
     \end{array}
     $$
 
@@ -201,98 +201,98 @@ $$
 Se quisermos operar com a matriz de receitas em sua forma transposta, é claro que não conseguimos mais multiplicar da mesma forma pela matriz de custos. Se tentarmos isso, vamos encontrar:
 
 $$
-Z = \begin{bmatrix} 40 & 40 \\ 400 & 0 \\ 20 & 20 \\ 0 & 200 \end{bmatrix} \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \\ 28/2000 \end{bmatrix}
+\boldsymbol{Z} = \begin{bmatrix} 40 & 40 \\ 400 & 0 \\ 20 & 20 \\ 0 & 200 \end{bmatrix} \begin{bmatrix} 15/200 \\ 10/400 \\ 18/200 \\ 28/2000 \end{bmatrix}
 $$
 
-e essa operação é inválida porque o número de colunas de $X^T$ não é o número de linhas de $Y$. Então, precisamos usar uma propriedade:
+e essa operação é inválida porque o número de colunas de $\boldsymbol{X}^T$ não é o número de linhas de $\boldsymbol{Y}$. Então, precisamos usar uma propriedade:
 
 $$
-Y^T X^T = (XY)^T
+\boldsymbol{Y}^T \boldsymbol{X}^T = (\boldsymbol{X}\boldsymbol{Y})^T
 $$
 
-Isso significa que, no nosso caso, podemos encontrar a matriz $Z=XY$. Porém, podemos também encontrar a matriz $Z^T=(XY)^T$. Para encontrar essa matriz, devemos multiplicar $Y^T X^T$, isto é, transpomos cada matriz individualmente e invertemos a ordem da multiplicação.
+Isso significa que, no nosso caso, podemos encontrar a matriz $\boldsymbol{Z}=\boldsymbol{X}\boldsymbol{Y}$. Porém, podemos também encontrar a matriz $\boldsymbol{Z}^T=(\boldsymbol{X}\boldsymbol{Y})^T$. Para encontrar essa matriz, devemos multiplicar $\boldsymbol{Y}^T \boldsymbol{X}^T$, isto é, transpomos cada matriz individualmente e invertemos a ordem da multiplicação.
 
 
 Verifique que essa propriedade realmente se aplica no caso de nossa matriz de receitas!
 
 !!! info "Desafio"
-    Partindo das definições da multiplicação matricial e da matriz transposta, demonstre que $Y^T X^T = (XY)^T$.
+    Partindo das definições da multiplicação matricial e da matriz transposta, demonstre que $\boldsymbol{Y}^T \boldsymbol{X}^T = (\boldsymbol{X}\boldsymbol{Y})^T$.
 
 ## Matrizes são vetores empilhados
 
 Podemos interpretar nossa matriz de receitas como uma série de vetores, cada um representando receitas, transpostos e empilhados:
 
 $$
-X = \begin{bmatrix} - & x_b^T & - \\ - & x_g^T & - \end{bmatrix}
+\boldsymbol{X} = \begin{bmatrix} - & \boldsymbol{x}_b^T & - \\ - & \boldsymbol{x}_g^T & - \end{bmatrix}
 $$
 
 Opcionalmente, podemos trabalhar com a forma transposta:
 
 $$
-X^T = \begin{bmatrix} - & x_b^T & - \\ - & x_g^T & - \end{bmatrix}^T = 
-\begin{bmatrix} \vert & \vert \\ x_b & x_g \\ \vert & \vert \end{bmatrix}
+\boldsymbol{X}^T = \begin{bmatrix} - & \boldsymbol{x}_b^T & - \\ - & \boldsymbol{x}_g^T & - \end{bmatrix}^T = 
+\begin{bmatrix} \vert & \vert \\ \boldsymbol{x}_b & \boldsymbol{x}_g \\ \vert & \vert \end{bmatrix}
 $$
 
-Da mesma maneira, podemos interpretar nossa matriz de custos $Y$ como uma série (nesse caso, de apenas um elemento) de vetores de custos empilhados:
+Da mesma maneira, podemos interpretar nossa matriz de custos $\boldsymbol{Y}$ como uma série (nesse caso, de apenas um elemento) de vetores de custos empilhados:
 
 $$
-Y = \begin{bmatrix} \vert \\ y \\ \vert \end{bmatrix}
+\boldsymbol{Y} = \begin{bmatrix} \vert \\ \boldsymbol{y} \\ \vert \end{bmatrix}
 $$
 
 Veja que, nessa interpretação, podemos escrever nossa multiplicação matricial como:
 
 $$
-Z = XY = \begin{bmatrix} - & x_b^T & - \\ - & x_g^T & - \end{bmatrix} \begin{bmatrix} \vert \\ y \\ \vert \end{bmatrix}
+\boldsymbol{Z} = \boldsymbol{X}\boldsymbol{Y} = \begin{bmatrix} - & \boldsymbol{x}_b^T & - \\ - & \boldsymbol{x}_g^T & - \end{bmatrix} \begin{bmatrix} \vert \\ \boldsymbol{y} \\ \vert \end{bmatrix}
 $$
 
 Veja como isso evidencia que:
 
 $$
-Z = \begin{bmatrix} \sum_{n=1}^k x_{b_k} y_k \\ \sum_{n=1}^k x_{g_k} y_k \end{bmatrix} = \begin{bmatrix} <x_b, y> \\ <x_g, y> \end{bmatrix}
+\boldsymbol{Z} = \begin{bmatrix} \sum_{n=1}^N x_{b_n} y_n \\ \sum_{n=1}^N x_{g_n} y_n \end{bmatrix} = \begin{bmatrix} <\boldsymbol{x}_b, \boldsymbol{y}> \\ <\boldsymbol{x}_g, \boldsymbol{y}> \end{bmatrix}
 $$
 
-Como podemos observar, o elemento $z_{i,j}$ de $Z$ é calculado pelo *produto interno* entre a linha $i$ de $X$ e a coluna $j$ de $Y$.
+Como podemos observar, o elemento $z_{i,j}$ de $\boldsymbol{Z}$ é calculado pelo *produto interno* entre a linha $i$ de $\boldsymbol{X}$ e a coluna $j$ de $\boldsymbol{Y}$.
 
 ## A multiplicação matricial é uma série de produtos internos
 
 Agora, demonstraremos o caso geral:
 
 $$
-\begin{bmatrix} - & x_1 & - \\ - & x_2 & - \\ & \vdots & \\ - & x_i & - \end{bmatrix} \begin{bmatrix} \vert & \vert & & \vert \\ y_1 & y_2 & \cdots & y_j \\  \vert & \vert & & \vert \end{bmatrix} = 
+\begin{bmatrix} - & \boldsymbol{x}_1 & - \\ - & \boldsymbol{x}_2 & - \\ & \vdots & \\ - & \boldsymbol{x}_I & - \end{bmatrix} \begin{bmatrix} \vert & \vert & & \vert \\ \boldsymbol{y}_1 & \boldsymbol{y}_2 & \cdots & \boldsymbol{y}_J \\  \vert & \vert & & \vert \end{bmatrix} = 
 \begin{bmatrix}
-<x_1, y_1> & <x_1, y_2> & \cdots & <x_1, y_j> \\ 
-<x_2, y_1> & <x_2, y_2> & \cdots & <x_2, y_j> \\ 
+<\boldsymbol{x}_1, \boldsymbol{y}_1> & <\boldsymbol{x}_1, \boldsymbol{y}_2> & \cdots & <\boldsymbol{x}_1, \boldsymbol{y}_J> \\ 
+<\boldsymbol{x}_2, \boldsymbol{y}_1> & <\boldsymbol{x}_2, \boldsymbol{y}_2> & \cdots & <\boldsymbol{x}_2, \boldsymbol{y}_J> \\ 
 \vdots & \vdots & \vdots & \vdots \\
-<x_i, y_1> & <x_i, y_2> & \cdots & <x_i, y_j> 
-\end{bmatrix} = Z
+<\boldsymbol{x}_I, \boldsymbol{y}_1> & <\boldsymbol{x}_I, \boldsymbol{y}_2> & \cdots & <\boldsymbol{x}_I, \boldsymbol{y}_J> 
+\end{bmatrix} = \boldsymbol{Z}
 $$
 
 Pela definição de multiplicação matricial, o elemento $z_{a,b}$ (vamos usar $a,b$ para não confundir com $i,j$) pode ser calculado por:
 
 $$
-z_{a,b} = \sum_{n=1}^k x_{a,k} y_{k,b}
+z_{a,b} = \sum_{n=1}^N x_{a,n} y_{n,b}
 $$
 
-Porém, os elementos $x_{a,k}$, com $k$ livre e $a$ fixo, correspondem ao vetor $x_a$ que compõe a linha $a$ da matriz $X$. Analogamente, os elementos $y_{k,b}$ compõem a coluna $b$ da matriz $Y$. Portanto, para $a$ e $b$ fixos, $z_{a,b}$ é o produto interno entre a linha $a$ de $X$ (denotada $x_a$ na formulação acima) e a coluna $b$
-de $Y$ (denotada $y_b$). Portanto, 
+Porém, os elementos $x_{a,n}$, com $n$ livre e $a$ fixo, correspondem ao vetor $\boldsymbol{x}_a$ que compõe a linha $a$ da matriz $\boldsymbol{X}$. Analogamente, os elementos $y_{n,b}$ compõem a coluna $b$ da matriz $\boldsymbol{Y}$. Portanto, para $a$ e $b$ fixos, $z_{a,b}$ é o produto interno entre a linha $a$ de $\boldsymbol{X}$ (denotada $\boldsymbol{x}_a$ na formulação acima) e a coluna $b$
+de $\boldsymbol{Y}$ (denotada $\boldsymbol{y}_b$). Portanto, 
 
 $$
-z_{a,b} = <x_a, y_b>, a \in [1 \cdots i], b \in [1 \cdots j].
+z_{a,b} = <\boldsymbol{x}_a, \boldsymbol{y}_b>, a \in [1 \cdots I], b \in [1 \cdots J].
 $$
 
 ## A busca em espaços de embeddings
 
-Gostaríamos de representar embeddings de documentos de uma base de dados (com $n$ embeddings: $x_1, x_2, \cdots, x_n$) em uma matriz $X$. Após, recebemos uma query na forma de um vetor $q$. Gostaríamos de calcular o alinhamento entre cada um de nossos embeddings da base de dados e a query usando somente uma multiplicação matricial, que é uma operação muito rápida de realizar em hardware especializado (GPU). 
+Gostaríamos de representar embeddings de documentos de uma base de dados (com $N$ embeddings: $\boldsymbol{x}_1, \boldsymbol{x}_2, \cdots, \boldsymbol{x}_N$) em uma matriz $\boldsymbol{X}$. Após, recebemos uma query na forma de um vetor $\boldsymbol{q}$. Gostaríamos de calcular o alinhamento entre cada um de nossos embeddings da base de dados e a query usando somente uma multiplicação matricial, que é uma operação muito rápida de realizar em hardware especializado (GPU). 
 
 (a) Mostre que, se normalizarmos os vetores da base de dados para que tenham norma unitária, podemos realizar essa operação usando a formulação:
 
 $$
-s = \begin{bmatrix} - & x_1 & - \\
-- & x_2 & - \\
+\boldsymbol{s} = \begin{bmatrix} - & \boldsymbol{x}_1 & - \\
+- & \boldsymbol{x}_2 & - \\
  & \vdots & \\
- - & x_n & - \end{bmatrix} \begin{bmatrix} \vert \\ q \\ \vert \end{bmatrix}
+ - & \boldsymbol{x}_N & - \end{bmatrix} \begin{bmatrix} \vert \\ \boldsymbol{q} \\ \vert \end{bmatrix}
 $$
 
-(b) Nesse caso, quais são as dimensões de $q$? O que cada um de seus elementos representa?
+(b) Nesse caso, quais são as dimensões de $\boldsymbol{q}$? O que cada um de seus elementos representa?
 
-(c) Se modificarmos o embedding $x_5$, isso afeta o elemento $s_2$? Por que?
+(c) Se modificarmos o embedding $\boldsymbol{x}_5$, isso afeta o elemento $s_2$? Por que?

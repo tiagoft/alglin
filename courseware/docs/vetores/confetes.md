@@ -25,8 +25,8 @@ O código abaixo simula uma situação na qual jogamos uma pequena pedra do alto
 $$
 \begin{cases}
 \begin{array}{rl}
-s_{t+1} &= s_{t} + \Delta t v_t\\
-v_{t+1} &= v_{t} + \Delta t a
+\boldsymbol{s}_{t+1} &= \boldsymbol{s}_{t} + \Delta t \boldsymbol{v}_t\\
+\boldsymbol{v}_{t+1} &= \boldsymbol{v}_{t} + \Delta t \boldsymbol{a}
 \end{array}
 \end{cases}
 $$

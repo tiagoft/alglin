@@ -7,7 +7,7 @@
 A força gravitacional entre dois planetas tem módulo igual a:
 
 $$
-|F| = G\frac{m_1 m_2}{d^2},
+|\boldsymbol{F}| = G\frac{m_1 m_2}{d^2},
 $$
 
 onde $m_1$ e $m_2$ são as massas dos planetas, $d$ é a distância entre eles, e $G$ é uma constante física.
@@ -16,7 +16,7 @@ A direção da força gravitacional é de um planeta para o outro.
 
 **a)** Se há dois planetas, um eles em $\begin{bmatrix} x_1 \\ y_1 \\ z_1 \end{bmatrix}$, e o outro em $\begin{bmatrix} x_2 \\ y_2 \\ z_2 \end{bmatrix}$, mostre a expressão que calcula o vetor força que é aplicado em cada um deles.
 
-**b)** Se um dos planetas tem velocidade inicial $v_1$ e o o outro tem velocidade inicial $v_2$, encontre uma expressão que permita calcular suas velocidades após um pequeno período $\Delta t$.
+**b)** Se um dos planetas tem velocidade inicial $\boldsymbol{v}_1$ e o o outro tem velocidade inicial $\boldsymbol{v}_2$, encontre uma expressão que permita calcular suas velocidades após um pequeno período $\Delta t$.
 
 ### Questão 2
 
