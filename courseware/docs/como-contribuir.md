@@ -1,6 +1,6 @@
 # Como contribuir
 
-Este material aceita contribuições, e a sua é muito bem-vinda! Você pode contribuir com **conteúdo** (correções, exemplos, demonstrações, exercícios que você escreveu) ou com **funcionalidades** (applets, calculadoras, acessibilidade, animações).
+Este material aceita contribuições, e a sua é muito bem-vinda! Você pode contribuir com **conteúdo** (correções, exemplos, demonstrações, exercícios que você escreveu) ou com **funcionalidades** (applets, calculadoras, acessibilidade, animações). As animações matemáticas usam a biblioteca [Manim](https://www.manim.community/).
 
 A forma mais simples de contribuir é usando um agente de programação, como o [Claude Code](https://claude.com/claude-code) ou o [Codex](https://openai.com/codex/). O repositório tem um arquivo `AGENTS.md` com as regras de contribuição: o agente faz o fork, aplica a sua mudança, confere se ela segue as convenções da disciplina e abre o pull request para você.
 
