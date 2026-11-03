@@ -25,3 +25,8 @@ dependencies = [
     "scipy>=1.16.1",
     "soundfile>=0.13.1",
 ]
+
+[dependency-groups]
+manim = [
+    "manim>=0.22.1",
+]
