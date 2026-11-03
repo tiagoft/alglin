@@ -4,8 +4,7 @@ Este material é construído coletivamente. Agradecemos a todas as pessoas
 que contribuíram com correções, exercícios e melhorias por meio de pull
 requests!
 
-Quer contribuir também? Veja as instruções no
-[README do repositório](https://github.com/tiagoft/alglin#como-fazer-um-pull-request).
+Quer contribuir também? Veja o passo a passo em [Como contribuir](como-contribuir.md).
 
 <!-- Arquivo gerado por courseware/scripts/gerar_contribuicoes.py. Não edite à mão. -->
 
