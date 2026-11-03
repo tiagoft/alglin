@@ -92,6 +92,18 @@ Animações feitas com [Manim](https://www.manim.community/) seguem as regras de
 
 * Textos e fórmulas que aparecem na animação são conteúdo educacional e seguem as regras de contribuições de conteúdo.
 
+### Exercícios adaptativos
+
+Exercícios adaptativos são applets que geram exercícios com dificuldade crescente: a cada acerto, o nível sobe e o exercício seguinte fica um pouco mais difícil, sem nível máximo. Eles seguem as regras de contribuições de funcionalidades e já têm um template, que deve ser reutilizado em vez de criar um applet novo:
+
+* **Template em `courseware/docs/extra/exercicio-adaptativo.js`.** Cada tipo de exercício é uma função geradora registrada no objeto `GERADORES`. Ela recebe o nível (um inteiro a partir de 1) e retorna `{ latex, resposta }`: a expressão em LaTeX e a resposta como uma lista de números (o applet mostra uma caixa por número). A referência é `gerarCombinacaoLinear`, usada em `vetores/propriedades_soma_e_multiplicacao_escalar.md`.
+* **Embutir na página.** O `.md` recebe só a `<div>`, com o nome do tipo: `<div class="exercicio-adaptativo" data-exercicio="nome-do-tipo"></div>`. O `.js` e o `.css` já estão registrados no `mkdocs.yml`.
+* **Progressão.** Os parâmetros de dificuldade crescem de forma monótona com o nível (o nível seguinte nunca é mais fácil que o anterior), introduzindo um recurso novo de cada vez.
+* **Respostas "bonitas".** As respostas devem ter tamanho razoável e poucas casas decimais; quando o sorteio não respeitar isso, o gerador sorteia de novo.
+* **Nível salvo no navegador.** O nível fica no `localStorage`, com a chave `exercicio-adaptativo:<tipo>`; nada é enviado para servidor.
+* **Teste.** Antes do pull request, confira as respostas do gerador de forma independente (por exemplo, recalculando com NumPy as expressões geradas em vários níveis).
+* O gerador só pode usar conceitos que já apareceram até a página em que é embutido. Textos que aparecem no applet além da expressão (enunciados, dicas) são conteúdo educacional e seguem as regras de contribuições de conteúdo.
+
 ## Checklist antes do pull request
 
 - [ ] A contribuição está em uma branch do fork, não na `main`.
@@ -104,4 +116,5 @@ Animações feitas com [Manim](https://www.manim.community/) seguem as regras de
 - [ ] Páginas novas foram adicionadas ao `nav` do `mkdocs.yml`.
 - [ ] Animações em Manim têm o código-fonte em `manim/` e o `.gif` (com o mesmo nome do script e menos de 1 MB) no mesmo diretório da página que o exibe.
 - [ ] O alt-text de cada animação traz "Animação gerada por IA sob o prompt: [prompt]".
+- [ ] Exercícios adaptativos reutilizam o template de `extra/exercicio-adaptativo.js` (um gerador novo em `GERADORES`) e são embutidos só com a `<div>`.
 - [ ] O pull request segue o template `.github/pull_request_template.md`.
