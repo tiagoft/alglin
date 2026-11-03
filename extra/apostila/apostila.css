@@ -1,0 +1,58 @@
+#apostila {
+  margin-top: 3em;
+  padding-top: 1.5em;
+  border-top: 1px solid #ddd;
+}
+
+.apostila-lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1em;
+}
+
+.apostila-lista fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0.8em 1em;
+  border: 1px solid #d9e2e8;
+  border-radius: 4px;
+}
+
+.apostila-lista legend {
+  width: auto;
+  padding: 0 0.35em;
+  color: #168de2;
+  font-weight: 600;
+}
+
+.apostila-topicos {
+  display: grid;
+  gap: 0.45em;
+  margin-top: 0.4em;
+  font-size: 0.9em;
+}
+
+.apostila-topicos label,
+.apostila-lista legend {
+  cursor: pointer;
+}
+
+.apostila-gerar-botao {
+  margin-top: 1.5em;
+  padding: 0.7em 1em;
+  border: 0;
+  border-radius: 4px;
+  background: #168de2;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.apostila-gerar-botao:hover {
+  background: #0d74bd;
+}
+
+.apostila-gerar-botao:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}

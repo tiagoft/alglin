@@ -1,0 +1,114 @@
+.exercicio-adaptativo {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid #c8d6d0;
+  border-radius: 0.5rem;
+  background: #f6faf8;
+}
+
+.exercicio-adaptativo-cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.exercicio-adaptativo-nivel {
+  font-weight: 700;
+  color: #2f765f;
+}
+
+.exercicio-adaptativo button {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid #2f765f;
+  border-radius: 0.35rem;
+  background: #2f765f;
+  color: #fff;
+  cursor: pointer;
+}
+
+.exercicio-adaptativo button:hover {
+  background: #255f4c;
+}
+
+.exercicio-adaptativo button:focus-visible {
+  outline: 3px solid rgba(47, 118, 95, 0.32);
+  outline-offset: 2px;
+}
+
+.exercicio-adaptativo .exercicio-adaptativo-recomecar {
+  background: transparent;
+  color: #2f765f;
+  font-size: 0.85rem;
+}
+
+.exercicio-adaptativo .exercicio-adaptativo-recomecar:hover {
+  background: #e3efea;
+}
+
+.exercicio-adaptativo-equacao {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.exercicio-adaptativo-resposta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.exercicio-adaptativo-igual {
+  font-size: 1.4rem;
+}
+
+.exercicio-adaptativo-vetor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.35rem 0.5rem;
+  border-left: 2px solid #333;
+  border-right: 2px solid #333;
+  border-radius: 0.35rem;
+}
+
+.exercicio-adaptativo-vetor input {
+  width: 4.5rem;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid #b7c4bf;
+  border-radius: 0.25rem;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.exercicio-adaptativo-vetor input.exercicio-adaptativo-certo {
+  border-color: #2f765f;
+  background: #e3f4ec;
+}
+
+.exercicio-adaptativo-vetor input.exercicio-adaptativo-errado {
+  border-color: #c0392b;
+  background: #fbeaea;
+}
+
+.exercicio-adaptativo-acoes {
+  display: flex;
+  justify-content: center;
+}
+
+.exercicio-adaptativo-retorno {
+  min-height: 1.5em;
+  margin: 0.75rem 0 0;
+  text-align: center;
+}
+
+.exercicio-adaptativo-sucesso {
+  color: #2f765f;
+  font-weight: 700;
+}
+
+.exercicio-adaptativo-falha {
+  color: #c0392b;
+}
