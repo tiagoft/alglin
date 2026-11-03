@@ -14,22 +14,22 @@ Ana, Bárbara e Carolina são três amigas que um dia decidiram ir à praia cata
 
 ### Questão 2
 
-Quando um sinal de áudio (ou: um som do ambiente) é digitalizado, ele é representado por uma sequência de números. Esses números são chamados de amostras, e podem ser colocados em uma matriz-coluna $x$ com um número de linhas igual ao número de amostras que temos (vamos chamar essa quantidade de amostras de $N$). Daí, podemos manipular dessa matriz. Por exemplo, ao multiplicar as amostras todas por um escalar $g$, alteramos a intensidade (ou: o volume) relacionado ao som que gravamos.
+Quando um sinal de áudio (ou: um som do ambiente) é digitalizado, ele é representado por uma sequência de números. Esses números são chamados de amostras, e podem ser colocados em uma matriz-coluna $\boldsymbol{x}$ com um número de linhas igual ao número de amostras que temos (vamos chamar essa quantidade de amostras de $N$). Daí, podemos manipular dessa matriz. Por exemplo, ao multiplicar as amostras todas por um escalar $g$, alteramos a intensidade (ou: o volume) relacionado ao som que gravamos.
 
-Quando temos dois sons diferentes (por exemplo: $x_1$ e $x_2$, cada um deles $N \times 1$) podemos colocá-los lado a lado, formando uma matriz $N \times 2$, como em:
+Quando temos dois sons diferentes (por exemplo: $\boldsymbol{x}_1$ e $\boldsymbol{x}_2$, cada um deles $N \times 1$) podemos colocá-los lado a lado, formando uma matriz $N \times 2$, como em:
 
 $$
 \begin{bmatrix}
-x_1 & x_2
+\boldsymbol{x}_1 & \boldsymbol{x}_2
 \end{bmatrix}
 $$
 
 Representar dois sons diferentes é útil quando queremos, por exemplo, tocar sons em estéreo. Nesse caso, temos um som que vai para o canal da esquerda, e outro que vai para o canal da direita. O truque do estéreo é alterar as intensidades de cada som em cada canal, criando uma ilusão de imersão espacial.
 
-Suponha que temos duas gravações, $x_1$ e $x_2$, correspondentes respectivamente ao violão e à voz de uma canção. Queremos que a voz apareça igualmente nos dois canais, mas que o violão apareça somente no canal da direita. Nesse caso:
+Suponha que temos duas gravações, $\boldsymbol{x}_1$ e $\boldsymbol{x}_2$, correspondentes respectivamente ao violão e à voz de uma canção. Queremos que a voz apareça igualmente nos dois canais, mas que o violão apareça somente no canal da direita. Nesse caso:
 
-**a)** Quais são as equações que permitem calcular os sons $x_e$ e $x_d$, que são os sons correspondentes aos canais da esquerda e da direita, respectivamente?
+**a)** Quais são as equações que permitem calcular os sons $\boldsymbol{x}_e$ e $\boldsymbol{x}_d$, que são os sons correspondentes aos canais da esquerda e da direita, respectivamente?
 
 **b)** Escreva essas equações em formato matricial.
 
-**c)** Proponha um procedimento para recuperar $x_1$ e $x_2$ à partir de $x_e$ e $x_d$ usando as técnicas que estudamos até o momento.
+**c)** Proponha um procedimento para recuperar $\boldsymbol{x}_1$ e $\boldsymbol{x}_2$ à partir de $\boldsymbol{x}_e$ e $\boldsymbol{x}_d$ usando as técnicas que estudamos até o momento.

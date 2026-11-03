@@ -99,21 +99,21 @@ x - y  &= b
 \right.
 $$
 
-**a)** Represente o sistema em sua forma matricial, isto é, encontre a matriz $A$ tal que:
+**a)** Represente o sistema em sua forma matricial, isto é, encontre a matriz $\boldsymbol{A}$ tal que:
 
 $$
-A \begin{bmatrix} x \\ y\end{bmatrix} = \begin{bmatrix} a \\ b\end{bmatrix}
+\boldsymbol{A} \begin{bmatrix} x \\ y\end{bmatrix} = \begin{bmatrix} a \\ b\end{bmatrix}
 $$
 
 **b)** Resolva o sistema, encontrando $x$ e $y$ em termos de $a$ e $b$.
 
-**c)** Encontre a matriz $B$ tal que
+**c)** Encontre a matriz $\boldsymbol{B}$ tal que
 
 $$
-B \begin{bmatrix} a \\ b\end{bmatrix} = \begin{bmatrix} x \\ y\end{bmatrix}
+\boldsymbol{B} \begin{bmatrix} a \\ b\end{bmatrix} = \begin{bmatrix} x \\ y\end{bmatrix}
 $$
 
-**d)** Calcule $Z=AB$
+**d)** Calcule $\boldsymbol{Z}=\boldsymbol{A}\boldsymbol{B}$
 
 ### Questão 3
 
@@ -121,11 +121,11 @@ Ao comprar 2kg de cebolas e 4kg de batatas eu gasto 8 reais. Ao comprar 5kg de b
 
 **a)** Escreva essa situação como um sistema de equações em que as variáveis são os preços do kg da cebola e da batata.
 
-**b)** Coloque seu sistema na forma matricial $Ax=y$, onde $x = \begin{bmatrix}\text{preço da batata} \\ \text{preço da cebola}\end{bmatrix}$.
+**b)** Coloque seu sistema na forma matricial $\boldsymbol{A}\boldsymbol{x}=\boldsymbol{y}$, onde $\boldsymbol{x} = \begin{bmatrix}\text{preço da batata} \\ \text{preço da cebola}\end{bmatrix}$.
 
-**c)** Resolva seu sistema e encontre a forma matricial inversa $y=Bx$.
+**c)** Resolva seu sistema e encontre a forma matricial inversa $\boldsymbol{y}=\boldsymbol{B}\boldsymbol{x}$.
 
-**d)** Calcule $Z=AB$ e, após, $W=BA$.
+**d)** Calcule $\boldsymbol{Z}=\boldsymbol{A}\boldsymbol{B}$ e, após, $\boldsymbol{W}=\boldsymbol{B}\boldsymbol{A}$.
 
 ### Questão 4
 

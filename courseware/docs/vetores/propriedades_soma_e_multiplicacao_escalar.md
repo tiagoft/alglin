@@ -16,10 +16,10 @@ $$
 
 Se $x \in \mathbb{R}$, dizemos que $x$ é real, ou, ainda, que $x$ é *escalar*.
 
-Se $x$ é um "vetor" com $n$ dimensões, a notação é:
+Se $\boldsymbol{x}$ é um "vetor" com $N$ dimensões, a notação é:
 
 $$
-x \in \mathbb{R}^n.
+\boldsymbol{x} \in \mathbb{R}^N.
 $$
 
 
@@ -27,8 +27,8 @@ $$
     Uma variável **não é escalar ou vetor pela letra**, mas pelo **conjunto ao qual pertence**.
 
     - Se \(x \in \mathbb{R}\), então \(x\) é um **escalar** (um número).
-    - Se \(x \in \mathbb{R}^n\), então \(x\) é um **vetor**.
-    - O conjunto (\(\mathbb{R}\) ou \(\mathbb{R}^n\)) é sempre a informação mais importante.
+    - Se \(\boldsymbol{x} \in \mathbb{R}^N\), então \(\boldsymbol{x}\) é um **vetor**.
+    - O conjunto (\(\mathbb{R}\) ou \(\mathbb{R}^N\)) é sempre a informação mais importante.
 
 
 ### Vetores e suas componentes
@@ -36,12 +36,12 @@ $$
 Como vamos trabalhar com vetores de várias dimensões, será útil usarmos índices para nos referir a elementos de um vetor:
 
 $$
-x = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix},
+\boldsymbol{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix},
 $$
 
 onde:
 
-* $x \in \mathbb{R}^n$
+* $\boldsymbol{x} \in \mathbb{R}^N$
 * $x_i \in \mathbb{R}$
 
 ## Operações elementares
@@ -51,13 +51,13 @@ As operações de "soma de vetores" e "multiplicação por escalar" são somente
 ### Soma de vetores
 
 $$
-x + y = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{bmatrix}
+\boldsymbol{x} + \boldsymbol{y} = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_N + y_N \end{bmatrix}
 $$
 
 ### Multiplicação por escalar
 
 $$
-\alpha x = \begin{bmatrix} \alpha x_1 \\ \alpha x_2 \\ \vdots \\ \alpha x_n \end{bmatrix}
+\alpha \boldsymbol{x} = \begin{bmatrix} \alpha x_1 \\ \alpha x_2 \\ \vdots \\ \alpha x_N \end{bmatrix}
 $$
 
 
@@ -78,8 +78,8 @@ $$
 !!! info "Como identificar o tipo de uma variável em uma expressão"
     Mesmo quando o conjunto não está escrito, o **tipo da variável pode ser inferido pela operação**.
 
-    - Em uma soma \(x + y\), as duas variáveis **devem ser do mesmo tipo**.
-    - Em uma expressão \(\alpha x\), \(\alpha\) é um **escalar** e \(x\) é um **vetor**.
+    - Em uma soma \(\boldsymbol{x} + \boldsymbol{y}\), as duas variáveis **devem ser do mesmo tipo**.
+    - Em uma expressão \(\alpha \boldsymbol{x}\), \(\alpha\) é um **escalar** e \(\boldsymbol{x}\) é um **vetor**.
     - Não existe soma entre escalar e vetor.
 
 
@@ -94,48 +94,48 @@ As operações que definimos levam imediatamente a algumas propriedades, todas e
 
 ### Comutatividade da soma
 
-Uma operação é "comutativa" se a ordem não importa. A soma de vetores é comutativa, ou seja, se $x \in \mathbb{R}^n$ e $y \in \mathbb{R}^n$, então:
+Uma operação é "comutativa" se a ordem não importa. A soma de vetores é comutativa, ou seja, se $\boldsymbol{x} \in \mathbb{R}^N$ e $\boldsymbol{y} \in \mathbb{R}^N$, então:
 
 $$
-x + y = y + x
+\boldsymbol{x} + \boldsymbol{y} = \boldsymbol{y} + \boldsymbol{x}
 $$
 
 ??? info "Demonstração"
     $$
-    x + y = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{bmatrix} = \begin{bmatrix} y_1 + x_1 \\ y_2 + x_2 \\ \vdots \\ y_n + x_n \end{bmatrix} = y + x
+    \boldsymbol{x} + \boldsymbol{y} = \begin{bmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_N + y_N \end{bmatrix} = \begin{bmatrix} y_1 + x_1 \\ y_2 + x_2 \\ \vdots \\ y_N + x_N \end{bmatrix} = \boldsymbol{y} + \boldsymbol{x}
     $$
 
-Lembra-se da caminhada por Chicago? Já sabemos intuitivamente que andar para o leste e depois para o norte leva ao mesmo destino (ou, o mesmo resultado) que andar para o norte e depois para o leste. Mais formalmente, podemos chamar o "andar para o norte" de $y$ e o "andar para o leste" de $x$. Então, os dois caminhos serem iguais é uma consequência de que $x+y=y+x$.
+Lembra-se da caminhada por Chicago? Já sabemos intuitivamente que andar para o leste e depois para o norte leva ao mesmo destino (ou, o mesmo resultado) que andar para o norte e depois para o leste. Mais formalmente, podemos chamar o "andar para o norte" de $\boldsymbol{y}$ e o "andar para o leste" de $\boldsymbol{x}$. Então, os dois caminhos serem iguais é uma consequência de que $\boldsymbol{x}+\boldsymbol{y}=\boldsymbol{y}+\boldsymbol{x}$.
 
 ### Associatividade da soma
 
-A associatividade é o que permite fazer operações em qualquer ordem. Para $x \in \mathbb{R}^n$, $y \in \mathbb{R}^n$ e $z \in \mathbb{R}^n$:
+A associatividade é o que permite fazer operações em qualquer ordem. Para $\boldsymbol{x} \in \mathbb{R}^N$, $\boldsymbol{y} \in \mathbb{R}^N$ e $\boldsymbol{z} \in \mathbb{R}^N$:
 
 $$
-x + (y + z) = (x + y) + z
+\boldsymbol{x} + (\boldsymbol{y} + \boldsymbol{z}) = (\boldsymbol{x} + \boldsymbol{y}) + \boldsymbol{z}
 $$
 
 ??? info "Demonstração"
     $$
     \begin{align*}
-    x + (y + z) &= \begin{bmatrix} x_1 \\ x_2  \\ \vdots \\ x_n  \end{bmatrix} + \begin{bmatrix} y_1 + z_1 \\ y_2 + z_2\\ \vdots \\ y_n + z_n \end{bmatrix} = \begin{bmatrix} x_1 + y_1 + z_1 \\ x_2 + y_2 + z_2  \\ \vdots \\ x_n + y_n + z_n  \end{bmatrix} = x + y + z\\
-    (x + y) + z &= \begin{bmatrix} x_1+y_1 \\ x_2+y_2  \\ \vdots \\ x_n+y_n  \end{bmatrix} + \begin{bmatrix} z_1 \\ z_2\\ \vdots \\ z_n \end{bmatrix} = \begin{bmatrix} x_1 + y_1 + z_1 \\ x_2 + y_2 + z_2  \\ \vdots \\ x_n + y_n + z_n  \end{bmatrix} = x + y+ z
+    \boldsymbol{x} + (\boldsymbol{y} + \boldsymbol{z}) &= \begin{bmatrix} x_1 \\ x_2  \\ \vdots \\ x_N  \end{bmatrix} + \begin{bmatrix} y_1 + z_1 \\ y_2 + z_2\\ \vdots \\ y_N + z_N \end{bmatrix} = \begin{bmatrix} x_1 + y_1 + z_1 \\ x_2 + y_2 + z_2  \\ \vdots \\ x_N + y_N + z_N  \end{bmatrix} = \boldsymbol{x} + \boldsymbol{y} + \boldsymbol{z}\\
+    (\boldsymbol{x} + \boldsymbol{y}) + \boldsymbol{z} &= \begin{bmatrix} x_1+y_1 \\ x_2+y_2  \\ \vdots \\ x_N+y_N  \end{bmatrix} + \begin{bmatrix} z_1 \\ z_2\\ \vdots \\ z_N \end{bmatrix} = \begin{bmatrix} x_1 + y_1 + z_1 \\ x_2 + y_2 + z_2  \\ \vdots \\ x_N + y_N + z_N  \end{bmatrix} = \boldsymbol{x} + \boldsymbol{y}+ \boldsymbol{z}
     \end{align*}
     $$
 
-A associatividade significa que, se sairmos de casa com três listas de compras ($x$, $y$ e $z$), então tanto faz comprar primeiro as duas iniciais e depois comprar a terceira, ou comprar as duas últimas e, por último, a terceira - ou: $x + (y+z) = (x+y) + z$. Em outras palavras: podemos agrupar as operações de soma livremente.
+A associatividade significa que, se sairmos de casa com três listas de compras ($\boldsymbol{x}$, $\boldsymbol{y}$ e $\boldsymbol{z}$), então tanto faz comprar primeiro as duas iniciais e depois comprar a terceira, ou comprar as duas últimas e, por último, a terceira - ou: $\boldsymbol{x} + (\boldsymbol{y}+\boldsymbol{z}) = (\boldsymbol{x}+\boldsymbol{y}) + \boldsymbol{z}$. Em outras palavras: podemos agrupar as operações de soma livremente.
 
 ### Distributividade da multiplicação por escalar
 
-"Distributividade" significa que podemos aplicar a distributiva em operações com parênteses, isto é, se $\alpha \in \mathbb{R}$, $x \in \mathbb{R}^n$ e $y \in \mathbb{R}^n$:
+"Distributividade" significa que podemos aplicar a distributiva em operações com parênteses, isto é, se $\alpha \in \mathbb{R}$, $\boldsymbol{x} \in \mathbb{R}^N$ e $\boldsymbol{y} \in \mathbb{R}^N$:
 
 $$
-\alpha (x + y)  = \alpha x + \alpha y
+\alpha (\boldsymbol{x} + \boldsymbol{y})  = \alpha \boldsymbol{x} + \alpha \boldsymbol{y}
 $$
 
 ??? info "Demonstração"
     $$
-    \alpha (x + y) = \begin{bmatrix} \alpha (x_1 + y_1) \\ \alpha (x_2 + y_2) \\ \vdots \\ \alpha (x_n + y_n) \end{bmatrix} = \begin{bmatrix} \alpha x_1 + \alpha y_1 \\ \alpha x_2 + \alpha y_2 \\ \vdots \\ \alpha x_n + \alpha y_n \end{bmatrix} = \begin{bmatrix} \alpha x_1 \\ \alpha x_2  \\ \vdots \\ \alpha x_n \end{bmatrix} + \begin{bmatrix} \alpha y_1 \\ \alpha y_2 \\ \vdots \\ \alpha y_n \end{bmatrix} = \alpha x + \alpha y 
+    \alpha (\boldsymbol{x} + \boldsymbol{y}) = \begin{bmatrix} \alpha (x_1 + y_1) \\ \alpha (x_2 + y_2) \\ \vdots \\ \alpha (x_N + y_N) \end{bmatrix} = \begin{bmatrix} \alpha x_1 + \alpha y_1 \\ \alpha x_2 + \alpha y_2 \\ \vdots \\ \alpha x_N + \alpha y_N \end{bmatrix} = \begin{bmatrix} \alpha x_1 \\ \alpha x_2  \\ \vdots \\ \alpha x_N \end{bmatrix} + \begin{bmatrix} \alpha y_1 \\ \alpha y_2 \\ \vdots \\ \alpha y_N \end{bmatrix} = \alpha \boldsymbol{x} + \alpha \boldsymbol{y} 
     $$
 
 Em nossa caminhada por Chicago, essa propriedade significa que, se cada "passo" de deslocamento for dobrado, então a posição final do nosso passeio também será "dobrada".
@@ -145,16 +145,16 @@ Em nossa caminhada por Chicago, essa propriedade significa que, se cada "passo" 
 Nas situações abaixo, identifique qual é a propriedade que explica o comportamento observado e como as variáveis relevantes se relacionam aos elementos do problema.
 
 ??? info "Um pedestre faz três deslocamentos no plano: primeiro um vetor **a**, depois um vetor **b**, depois um vetor **c**. Para calcular o deslocamento total, ele soma primeiro **a + b** e depois soma **c**. Um colega soma primeiro **b + c** e depois soma **a**. Ambos chegam ao mesmo deslocamento final."
-    A propriedade envolvida é a **associatividade da soma vetorial**. No problema, os vetores $a, b, c$ representam os três deslocamentos realizados pelo pedestre. A igualdade mostra que o deslocamento total independe da forma como esses deslocamentos são agrupados no cálculo.
+    A propriedade envolvida é a **associatividade da soma vetorial**. No problema, os vetores $\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{c}$ representam os três deslocamentos realizados pelo pedestre. A igualdade mostra que o deslocamento total independe da forma como esses deslocamentos são agrupados no cálculo.
 
 ??? info "Um barco sofre dois deslocamentos vetoriais: um devido ao motor (**m**) e outro devido à correnteza (**c**). O piloto observa que aplicar primeiro o deslocamento do motor e depois o da correnteza produz o mesmo deslocamento final que aplicar primeiro a correnteza e depois o motor."
-    A propriedade envolvida é a **comutatividade da soma vetorial**. No problema, os vetores $m$ e $c$ representam os deslocamentos causados pelo motor e pela correnteza, respectivamente. A igualdade mostra que a ordem em que esses deslocamentos são somados não altera o deslocamento final do barco.
+    A propriedade envolvida é a **comutatividade da soma vetorial**. No problema, os vetores $\boldsymbol{m}$ e $\boldsymbol{c}$ representam os deslocamentos causados pelo motor e pela correnteza, respectivamente. A igualdade mostra que a ordem em que esses deslocamentos são somados não altera o deslocamento final do barco.
 
 ??? info "Um drone realiza um trajeto composto por dois vetores de deslocamento, **a** e **b**. Um engenheiro decide ampliar toda a trajetória por um fator 2. Ele observa que pode multiplicar cada deslocamento por 2 e depois somá-los, ou somar os deslocamentos primeiro e multiplicar o resultado por 2, obtendo o mesmo deslocamento final."
-    A propriedade envolvida é a **distributividade da multiplicação escalar em relação à soma vetorial**. No problema, os vetores $a$ e $b$ representam os dois trechos do trajeto do drone, e o escalar $2$ representa o fator de ampliação aplicado à trajetória. A igualdade mostra que a escala pode ser aplicada antes ou depois da soma dos deslocamentos.
+    A propriedade envolvida é a **distributividade da multiplicação escalar em relação à soma vetorial**. No problema, os vetores $\boldsymbol{a}$ e $\boldsymbol{b}$ representam os dois trechos do trajeto do drone, e o escalar $2$ representa o fator de ampliação aplicado à trajetória. A igualdade mostra que a escala pode ser aplicada antes ou depois da soma dos deslocamentos.
 
 ??? info "Em uma animação gráfica, um objeto é deslocado por dois vetores, **a** e **b**, e depois toda a cena é ampliada por um fator **k** (zoom). O programador percebe que o deslocamento final é o mesmo se o zoom for aplicado antes ou depois da soma dos deslocamentos."
-    A propriedade envolvida é a **distributividade da multiplicação escalar em relação à soma vetorial**. No problema, os vetores $a$ e $b$ representam os deslocamentos aplicados ao objeto, enquanto o escalar $k$ representa o fator de ampliação da cena. A igualdade mostra que o efeito da escala se distribui sobre a soma dos vetores.
+    A propriedade envolvida é a **distributividade da multiplicação escalar em relação à soma vetorial**. No problema, os vetores $\boldsymbol{a}$ e $\boldsymbol{b}$ representam os deslocamentos aplicados ao objeto, enquanto o escalar $k$ representa o fator de ampliação da cena. A igualdade mostra que o efeito da escala se distribui sobre a soma dos vetores.
 
 ## Exercício
 
@@ -171,9 +171,9 @@ Nas situações abaixo, identifique qual é a propriedade que explica o comporta
     - multiplica cada componente de um vetor por um número.
 
 
-Resolva a expressão abaixo encontrando $x$. Para cada passo, explicite se está usando uma propriedade (dizendo qual propriedade foi usada - comutatividade, associatividade, distributividade) ou se está aplicando diretamente a definição de soma de vetores ou de multiplicação por escalares.
+Resolva a expressão abaixo encontrando $\boldsymbol{x}$. Para cada passo, explicite se está usando uma propriedade (dizendo qual propriedade foi usada - comutatividade, associatividade, distributividade) ou se está aplicando diretamente a definição de soma de vetores ou de multiplicação por escalares.
 
 $$
-x = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} + 2 \left( \begin{bmatrix} 3 \\ 1 \\ 2 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ -3 \\ -2 \\ -1 \end{bmatrix} \right) + \begin{bmatrix} -6 \\ -4 \\ 0 \\ 2 \end{bmatrix}
+\boldsymbol{x} = \begin{bmatrix} 1 \\ 2 \\ 3 \\ 4 \end{bmatrix} + 2 \left( \begin{bmatrix} 3 \\ 1 \\ 2 \\ 0 \end{bmatrix} + \begin{bmatrix} 0 \\ -3 \\ -2 \\ -1 \end{bmatrix} \right) + \begin{bmatrix} -6 \\ -4 \\ 0 \\ 2 \end{bmatrix}
 $$
 

@@ -8,29 +8,29 @@ Faça as atividades abaixo em dupla ou trio. A atividade deve ser resolvida em u
 
 ### Transformações
 
-Uma núvem de pontos é representada na matriz $X \in \mathbb{R}^{2 \times 100}$. Os pontos estão uniformemente distribuídos em um quadrado de lado 1 centrado na origem. Definimos também as matrizes:
+Uma núvem de pontos é representada na matriz $\boldsymbol{X} \in \mathbb{R}^{2 \times 100}$. Os pontos estão uniformemente distribuídos em um quadrado de lado 1 centrado na origem. Definimos também as matrizes:
 
 $$
-A = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}
+\boldsymbol{A} = \begin{bmatrix} 2 & 0 \\ 0 & 1 \end{bmatrix}
 $$
 
 e 
 
 $$
-R = \begin{bmatrix} \cos(\pi/4) & -\sin(\pi/4) \\ \sin(\pi/4) & \cos(\pi/4) \end{bmatrix}
+\boldsymbol{R} = \begin{bmatrix} \cos(\pi/4) & -\sin(\pi/4) \\ \sin(\pi/4) & \cos(\pi/4) \end{bmatrix}
 $$
 
-Esboce o espaço ocupado pela núvem de pontos $Y$ nos seguintes casos:
+Esboce o espaço ocupado pela núvem de pontos $\boldsymbol{Y}$ nos seguintes casos:
 
-a) $Y = AX$
+a) $\boldsymbol{Y} = \boldsymbol{A}\boldsymbol{X}$
 
-b) $Y = RX$
+b) $\boldsymbol{Y} = \boldsymbol{R}\boldsymbol{X}$
 
-c) $Y = ARX$
+c) $\boldsymbol{Y} = \boldsymbol{A}\boldsymbol{R}\boldsymbol{X}$
 
-d) $Y = RAX$
+d) $\boldsymbol{Y} = \boldsymbol{R}\boldsymbol{A}\boldsymbol{X}$
 
-e) $Y = A^{-1}X$
+e) $\boldsymbol{Y} = \boldsymbol{A}^{-1}\boldsymbol{X}$
 
 ### Ciclos de vida
 
@@ -99,20 +99,20 @@ Imagine que você tem um colega que apenas decorou essa relação, e está conte
 ### Rotações ao redor de um ponto arbitrário
 
 Quando queremos fazer uma rotação ao redor de um ponto arbitrário $\begin{bmatrix}p_1\\p_2\end{bmatrix}$, não podemos simplesmente usar a matriz de rotação usual $
-R = \begin{bmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{bmatrix}$. Ao invés disso, precisamos transformá-la em uma matriz com coordenadas homogêneas e combiná-la com matrizes de translação.
+\boldsymbol{R} = \begin{bmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{bmatrix}$. Ao invés disso, precisamos transformá-la em uma matriz com coordenadas homogêneas e combiná-la com matrizes de translação.
 
 a) Escreva (e use desenhos, se for necessário) por que é preciso realizar translações, e quais são elas.
 
-b) Como encontramos uma matriz $Q$ para realizar uma rotação de um ângulo $\theta$ ao redor do ponto  $\begin{bmatrix}p_1\\p_2\end{bmatrix}$?
+b) Como encontramos uma matriz $\boldsymbol{Q}$ para realizar uma rotação de um ângulo $\theta$ ao redor do ponto  $\begin{bmatrix}p_1\\p_2\end{bmatrix}$?
 
 ### Trigonometria
 
 Uma matriz de rotação que rotaciona pontos ao redor da origem de um ângulo $\theta$ tem a forma:
 
 $$
-R = \begin{bmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{bmatrix}
+\boldsymbol{R} = \begin{bmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{bmatrix}
 $$
 
-a) Demonstre (matematicamente) que a matriz $R^2=RR$ realiza a rotação de um ângulo $2\theta$. Após, escreva em português uma interpretação geométrica para essa propriedade.
+a) Demonstre (matematicamente) que a matriz $\boldsymbol{R}^2=\boldsymbol{R}\boldsymbol{R}$ realiza a rotação de um ângulo $2\theta$. Após, escreva em português uma interpretação geométrica para essa propriedade.
 
-b) Demonstre (matematicamente) que, se $\theta=\pi/4$, então $R^8=I$. Após, discuta se essa propriedade é condizente com a interpretação geométrica que você trouxe no ítem (a).
+b) Demonstre (matematicamente) que, se $\theta=\pi/4$, então $\boldsymbol{R}^8=\boldsymbol{I}$. Após, discuta se essa propriedade é condizente com a interpretação geométrica que você trouxe no ítem (a).

@@ -4,12 +4,12 @@
 
 ### Questão 1
 
-Calcule $X$ nos casos abaixo:
+Calcule $\boldsymbol{x}$ nos casos abaixo:
 
 **a)**
 
 $$
-X =
+\boldsymbol{x} =
 \begin{bmatrix}
 1 \\
 3 \\
@@ -26,7 +26,7 @@ $$
 **b)**
 
 $$
-X =
+\boldsymbol{x} =
 \begin{bmatrix}
 2 \\
 1 \\
@@ -43,7 +43,7 @@ $$
 **c)**
 
 $$
-X =
+\boldsymbol{x} =
 \begin{bmatrix}
 2 \\
 1 \\
@@ -61,7 +61,7 @@ $$
 **d)**
 
 $$
-X =
+\boldsymbol{x} =
 2\left(
 \begin{bmatrix}
 2 \\
@@ -80,7 +80,7 @@ $$
 **e)**
 
 $$
-X =
+\boldsymbol{x} =
 2\left(
 \begin{bmatrix}
 2 \\
@@ -112,7 +112,7 @@ $$
 **f)**
 
 $$
-X =
+\boldsymbol{x} =
 -1\left(
 \begin{bmatrix}
 2 \\
@@ -144,7 +144,7 @@ $$
 **g)**
 
 $$
-X =
+\boldsymbol{x} =
 2\left(
 \begin{bmatrix}
 1 \\
@@ -182,7 +182,7 @@ $$
 **h)**
 
 $$
-X =
+\boldsymbol{x} =
 -1\left(
 \begin{bmatrix}
 2 \\
@@ -219,7 +219,7 @@ $$
 **i)**
 
 $$
-X =
+\boldsymbol{x} =
 3\left(
 \begin{bmatrix}
 1 \\
@@ -261,7 +261,7 @@ $$
 **j)**
 
 $$
-X =
+\boldsymbol{x} =
 \left(
 2
 \begin{bmatrix}
@@ -303,7 +303,7 @@ $$
 **k)**
 
 $$
-X =
+\boldsymbol{x} =
 -2\left(
 \begin{bmatrix}
 1 \\

@@ -6,7 +6,7 @@ Um pixel em OpenCV é representado na forma BGR, isto é, com as componentes (ne
 
 ### Questão 2
 
-Gostaríamos de mapear pixels no formato RGB para a representação XYZ. Para isso, multiplicamos um pixel $p$ pela matriz de transformação $T$, obtendo $p_{\text{xyz}} = T p_{\text{rgb}}$. Encontre a matriz $R$ que gera o pixel $P_{+} = R p_{\text{rgb}}$, também no domínio RGB, mas cuja componente $Z$ é zero.
+Gostaríamos de mapear pixels no formato RGB para a representação XYZ. Para isso, multiplicamos um pixel $\boldsymbol{p}$ pela matriz de transformação $\boldsymbol{T}$, obtendo $\boldsymbol{p}_{\text{xyz}} = \boldsymbol{T} \boldsymbol{p}_{\text{rgb}}$. Encontre a matriz $\boldsymbol{R}$ que gera o pixel $\boldsymbol{p}_{+} = \boldsymbol{R} \boldsymbol{p}_{\text{rgb}}$, também no domínio RGB, mas cuja componente $Z$ é zero.
 
 ### Questão 3
 

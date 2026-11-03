@@ -22,32 +22,32 @@ Suponha que você coletou dados do PIB, taxa de analfabetismo e taxa de natalida
 
 ### Questão 3
 
-Um modelo auto-regressivo (AR) é um modelo aplicado a séries temporais (por exemplo, sequências de medidas $y_t$ para $t=[0, 1, 2, \cdots, n]$. No modelo AR, o elemento $y_t$ é encontrado à partir da soma ponderada de seus $n$ elementos anteriores, isto é:
+Um modelo auto-regressivo (AR) é um modelo aplicado a séries temporais (por exemplo, sequências de medidas $y_t$ para $t=[0, 1, 2, \cdots, T]$. No modelo AR, o elemento $y_t$ é encontrado à partir da soma ponderada de seus $N$ elementos anteriores, isto é:
 
 $$
-y_{t} = w_0 + \sum_{i=1}^n w_i y_{t-i}
+y_{t} = w_0 + \sum_{n=1}^N w_n y_{t-n}
 $$
 
 **a)** Usando a formulação matricial e a pseudoinversa, encontre os coeficientes do modelo AR capaz de prever a série:
 
 $$
-y = [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
+\boldsymbol{y} = [0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2]
 $$
 
-considerando $n=1$, $n=2$, $n=3$ e $n=4$.
+considerando $N=1$, $N=2$, $N=3$ e $N=4$.
 
 Use apoio computacional para fazer as contas.
 
 **b)** Gere uma série temporal que tenha amostras independentes de uma distribuição normal (ou: $y_t \sim N(0,1)$). Use um modelo AR para tentar prever a próxima amostra. O que você observa nos coeficientes?
 
-**c)** Usando dados do Yahoo Finance (ou semelhante), encontre os valores de fechamento de ações de uma empresa à sua escolha. Use um modelo AR para tentar prever o valor das ações. Explore diferentes valores de $n$. O que você descobriu? Por que isso aconteceu?
+**c)** Usando dados do Yahoo Finance (ou semelhante), encontre os valores de fechamento de ações de uma empresa à sua escolha. Use um modelo AR para tentar prever o valor das ações. Explore diferentes valores de $N$. O que você descobriu? Por que isso aconteceu?
 
 ### Questão 4
 
 Em modelos lineares do tipo:
 
 $$
-y = w_0 + \sum_{i=1}^n w_i x_i
+y = w_0 + \sum_{n=1}^N w_n x_n
 $$
 
 é comum assumir que os valores de $w_i$ são representativos do impacto de cada uma das dimensões $i$ da entrada.

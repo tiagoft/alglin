@@ -8,7 +8,7 @@ Talvez você se lembre do determinante de matrizes que talvez tenha aprendido no
     $$
 
 !!! info "Significado do determinante"
-    Tipicamente, ensinamos que, se o determinante de $A$ é zero, então $A^{-1}$ não existe.
+    Tipicamente, ensinamos que, se o determinante de $\boldsymbol{A}$ é zero, então $\boldsymbol{A}^{-1}$ não existe.
 
 !!! info "Determinantes em Python"
     A função `np.linalg.det(A)` calcula o determinante de `A`.
@@ -199,27 +199,27 @@ plt.grid()
 plt.show()
 ```
 
-Veja que `x` contém vários pontos (1 ponto por coluna). Mas, gostaríamos de verificar o que acontece com nossa núvem de pontos quando multiplicamos por uma matriz $A$. Em outras palavras, gostaríamos de fazer:
+Veja que `x` contém vários pontos (1 ponto por coluna). Mas, gostaríamos de verificar o que acontece com nossa núvem de pontos quando multiplicamos por uma matriz $\boldsymbol{A}$. Em outras palavras, gostaríamos de fazer:
 
 $$
-Y = AX
+\boldsymbol{Y} = \boldsymbol{A}\boldsymbol{X}
 $$
 
-que pode ser interpretado como aplicar a matriz $A$ sobre cada uma das colunas de $X$, ou:
+que pode ser interpretado como aplicar a matriz $\boldsymbol{A}$ sobre cada uma das colunas de $\boldsymbol{X}$, ou:
 
 $$
 \begin{bmatrix}
 \vert & \vert &  & \vert \\
- y_1 & y_2 & \cdots & y_n \\
+ \boldsymbol{y}_1 & \boldsymbol{y}_2 & \cdots & \boldsymbol{y}_N \\
  \vert & \vert &  & \vert \\
- \end{bmatrix} = A \begin{bmatrix}
+ \end{bmatrix} = \boldsymbol{A} \begin{bmatrix}
 \vert & \vert &  & \vert \\
- x_1 & x_2 & \cdots & x_n \\
+ \boldsymbol{x}_1 & \boldsymbol{x}_2 & \cdots & \boldsymbol{x}_N \\
  \vert & \vert &  & \vert \\
  \end{bmatrix}
 $$
 
-Podemos implementar essa situação para a matriz $A=\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}$ com o código:
+Podemos implementar essa situação para a matriz $\boldsymbol{A}=\begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix}$ com o código:
 
 ```python
 x = np.random.uniform(-0.5, 0.5, size=(2, 600))
@@ -242,10 +242,10 @@ Veja que isso levou a termos duas núvens de pontos: a vermelha, correspondente 
 ??? info "Qual é a área ocupada pelos pontos transformados (azuis)?"
     A área é $4$
 
-Transforme a núvem de pontos anterior, experimentando independentemente cada uma das candiatas a matriz $A$ abaixo. Use os seguintes valores para $D$: $1$, $1.5$, $2$, $0$. Para cada valor de $D$ na matriz, calcule o determinante da matriz e a área da núvem de pontos resultante.
+Transforme a núvem de pontos anterior, experimentando independentemente cada uma das candiatas a matriz $\boldsymbol{A}$ abaixo. Use os seguintes valores para $D$: $1$, $1.5$, $2$, $0$. Para cada valor de $D$ na matriz, calcule o determinante da matriz e a área da núvem de pontos resultante.
 
 $$
-A = 
+\boldsymbol{A} = 
 \begin{bmatrix}
     1 & 0\\
     0 & D
@@ -253,8 +253,8 @@ A =
 $$
 
 ??? info "O que significa o determinante em relação à transformação da área da núvem de pontos?"
-    Se transformamos uma núvem de pontos por uma matriz $A$, a área ocupada pela núvem transformada é a área original multiplicada pelo determinante de $A$.
+    Se transformamos uma núvem de pontos por uma matriz $\boldsymbol{A}$, a área ocupada pela núvem transformada é a área original multiplicada pelo determinante de $\boldsymbol{A}$.
 
 ??? info "Por que o determinante $0$ implica necessariamente em uma matriz não ser inversível?"
-    Como os pontos de uma área são projetados sobre uma reta (ou seja, estão sendo achatados, de forma semelhante a uma foto achatando um mundo 3D), então sabemos que há vários pontos da núvem original que são projetados sobre o mesmo ponto da núvem transformada. Por isso, é impossível determinar qual era o ponto original, e, portanto, a função que leva de $X$ para $Y$ não é inversível. Por isso, $A$ não tem inversa.
+    Como os pontos de uma área são projetados sobre uma reta (ou seja, estão sendo achatados, de forma semelhante a uma foto achatando um mundo 3D), então sabemos que há vários pontos da núvem original que são projetados sobre o mesmo ponto da núvem transformada. Por isso, é impossível determinar qual era o ponto original, e, portanto, a função que leva de $\boldsymbol{X}$ para $\boldsymbol{Y}$ não é inversível. Por isso, $\boldsymbol{A}$ não tem inversa.
 

@@ -10,22 +10,22 @@ Fórmulas e comandos mais usados nas aulas.
 
 ## Vetores
 
-!!! info "Vetor em $\mathbb{R}^n$"
+!!! info "Vetor em $\mathbb{R}^N$"
     $$
-    x =
+    \boldsymbol{x} =
     \begin{bmatrix}
-    x_1 \\ x_2 \\ \vdots \\ x_n
+    x_1 \\ x_2 \\ \vdots \\ x_N
     \end{bmatrix},
-    \quad x \in \mathbb{R}^n
+    \quad \boldsymbol{x} \in \mathbb{R}^N
     $$
 
     Use os índices para falar de cada componente do vetor.
 
 !!! info "Soma de vetores"
     $$
-    x+y =
+    \boldsymbol{x}+\boldsymbol{y} =
     \begin{bmatrix}
-    x_1+y_1 \\ x_2+y_2 \\ \vdots \\ x_n+y_n
+    x_1+y_1 \\ x_2+y_2 \\ \vdots \\ x_N+y_N
     \end{bmatrix}
     $$
 
@@ -33,9 +33,9 @@ Fórmulas e comandos mais usados nas aulas.
 
 !!! info "Multiplicação por escalar"
     $$
-    \alpha x =
+    \alpha \boldsymbol{x} =
     \begin{bmatrix}
-    \alpha x_1 \\ \alpha x_2 \\ \vdots \\ \alpha x_n
+    \alpha x_1 \\ \alpha x_2 \\ \vdots \\ \alpha x_N
     \end{bmatrix}
     $$
 
@@ -43,28 +43,28 @@ Fórmulas e comandos mais usados nas aulas.
 
 !!! info "Norma"
     $$
-    \|x\| = \sqrt{x_1^2+x_2^2+\cdots+x_n^2}
+    \|\boldsymbol{x}\| = \sqrt{x_1^2+x_2^2+\cdots+x_N^2}
     $$
 
     Também aparece como módulo ou comprimento.
 
 !!! info "Distância entre vetores"
     $$
-    d(x_i,x_q)=\|x_i-x_q\|=\sqrt{\sum_{k=1}^{n}(x_{i,k}-x_{q,k})^2}
+    d(\boldsymbol{x}_i,\boldsymbol{x}_q)=\|\boldsymbol{x}_i-\boldsymbol{x}_q\|=\sqrt{\sum_{n=1}^{N}(x_{i,n}-x_{q,n})^2}
     $$
 
     Na AI, isso aparece na busca do item mais parecido com uma query.
 
 !!! info "Item mais semelhante"
     $$
-    i^*=\arg\min_i\,d(x_i,x_q)
+    i^*=\arg\min_i\,d(\boldsymbol{x}_i,\boldsymbol{x}_q)
     $$
 
-    Depois de encontrar $i^*$, o banco retorna o vetor $x_i$ mais próximo da query.
+    Depois de encontrar $i^*$, o banco retorna o vetor $\boldsymbol{x}_i$ mais próximo da query.
 
 !!! info "Forma polar para cartesiana"
     $$
-    x=\|x\|
+    \boldsymbol{x}=\|\boldsymbol{x}\|
     \begin{bmatrix}
     \cos(\theta) \\ \sin(\theta)
     \end{bmatrix}
@@ -74,21 +74,21 @@ Fórmulas e comandos mais usados nas aulas.
 
 !!! info "Produto interno"
     $$
-    \langle x,y\rangle=\sum_{i=1}^{n}x_i y_i=\|x\|\|y\|\cos(\phi)
+    \langle \boldsymbol{x},\boldsymbol{y}\rangle=\sum_{n=1}^{N}x_n y_n=\|\boldsymbol{x}\|\|\boldsymbol{y}\|\cos(\phi)
     $$
 
     Se o produto interno é zero, os vetores são ortogonais.
 
-!!! info "Projeção de $y$ sobre $x$"
+!!! info "Projeção de $\boldsymbol{y}$ sobre $\boldsymbol{x}$"
     $$
-    p=\frac{x}{\|x\|}\,\|y\|\cos(\phi)
+    \boldsymbol{p}=\frac{\boldsymbol{x}}{\|\boldsymbol{x}\|}\,\|\boldsymbol{y}\|\cos(\phi)
     $$
 
-    É a parte de $y$ que aponta na direção de $x$.
+    É a parte de $\boldsymbol{y}$ que aponta na direção de $\boldsymbol{x}$.
 
 !!! info "Força gravitacional"
     $$
-    \|F\|=G\frac{m_1m_2}{d^2}
+    \|\boldsymbol{F}\|=G\frac{m_1m_2}{d^2}
     $$
 
     A direção é dada pelo vetor que liga um corpo ao outro.
@@ -97,7 +97,7 @@ Fórmulas e comandos mais usados nas aulas.
 
 !!! info "Matriz"
     $$
-    X\in\mathbb{R}^{m\times n},
+    \boldsymbol{X}\in\mathbb{R}^{M\times N},
     \quad x_{i,j}\text{ fica na linha }i\text{ e coluna }j
     $$
 
@@ -105,59 +105,59 @@ Fórmulas e comandos mais usados nas aulas.
 
 !!! info "Soma e escalar"
     $$
-    Z=X+Y\Rightarrow z_{i,j}=x_{i,j}+y_{i,j},
+    \boldsymbol{Z}=\boldsymbol{X}+\boldsymbol{Y}\Rightarrow z_{i,j}=x_{i,j}+y_{i,j},
     \quad
-    Z=aX\Rightarrow z_{i,j}=a x_{i,j}
+    \boldsymbol{Z}=a\boldsymbol{X}\Rightarrow z_{i,j}=a x_{i,j}
     $$
 
     A soma exige matrizes de mesmo tamanho.
 
 !!! info "Multiplicação matricial"
     $$
-    Z=XY,
+    \boldsymbol{Z}=\boldsymbol{X}\boldsymbol{Y},
     \quad
-    z_{i,j}=\sum_{k=1}^{n}x_{i,k}y_{k,j}
+    z_{i,j}=\sum_{n=1}^{N}x_{i,n}y_{n,j}
     $$
 
-    Colunas de $X$ precisam bater com linhas de $Y$.
+    Colunas de $\boldsymbol{X}$ precisam bater com linhas de $\boldsymbol{Y}$.
 
 !!! info "Transposta"
     $$
-    (X^T)_{j,i}=x_{i,j},
+    (\boldsymbol{X}^T)_{j,i}=x_{i,j},
     \quad
-    (XY)^T=Y^T X^T
+    (\boldsymbol{X}\boldsymbol{Y})^T=\boldsymbol{Y}^T \boldsymbol{X}^T
     $$
 
     A transposta troca linhas por colunas.
 
 !!! info "Identidade"
     $$
-    AI=A=IA
+    \boldsymbol{A}\boldsymbol{I}=\boldsymbol{A}=\boldsymbol{I}\boldsymbol{A}
     $$
 
     A identidade é o elemento neutro da multiplicação.
 
 !!! info "Inversa"
     $$
-    AB=I\Rightarrow B=A^{-1},
+    \boldsymbol{A}\boldsymbol{B}=\boldsymbol{I}\Rightarrow \boldsymbol{B}=\boldsymbol{A}^{-1},
     \quad
-    Ax=y\Rightarrow x=A^{-1}y
+    \boldsymbol{A}\boldsymbol{x}=\boldsymbol{y}\Rightarrow \boldsymbol{x}=\boldsymbol{A}^{-1}\boldsymbol{y}
     $$
 
     Só existe quando a matriz é inversível.
 
 !!! info "Sistema dinâmico"
     $$
-    x_{t+1}=Ax_t
+    \boldsymbol{x}_{t+1}=\boldsymbol{A}\boldsymbol{x}_t
     $$
 
-    A matriz $A$ transforma o estado atual no próximo estado.
+    A matriz $\boldsymbol{A}$ transforma o estado atual no próximo estado.
 
 !!! info "Cadeia de Markov"
     $$
-    P_{t+1}=AP_t,
+    \boldsymbol{p}_{t+1}=\boldsymbol{A}\boldsymbol{p}_t,
     \quad
-    P_{t+k}=A^kP_t
+    \boldsymbol{p}_{t+k}=\boldsymbol{A}^k\boldsymbol{p}_t
     $$
 
     Na AI, isso aparece como a probabilidade do turista depois de várias horas.
@@ -173,9 +173,9 @@ Fórmulas e comandos mais usados nas aulas.
 
 !!! info "Movimento com aceleração"
     $$
-    s_{t+1}=s_t+\Delta t\,v_t,
+    \boldsymbol{s}_{t+1}=\boldsymbol{s}_t+\Delta t\,\boldsymbol{v}_t,
     \quad
-    v_{t+1}=v_t+\Delta t\,a_t
+    \boldsymbol{v}_{t+1}=\boldsymbol{v}_t+\Delta t\,\boldsymbol{a}_t
     $$
 
     Usado nas simulações de movimento e confetes.
@@ -191,7 +191,7 @@ Fórmulas e comandos mais usados nas aulas.
     =ad-bc
     $$
 
-    Se $\det(A)=0$, $A$ não tem inversa.
+    Se $\det(\boldsymbol{A})=0$, $\boldsymbol{A}$ não tem inversa.
 
 !!! info "Reta"
     $$
@@ -218,14 +218,14 @@ Fórmulas e comandos mais usados nas aulas.
 
 !!! info "Área transformada"
     $$
-    \operatorname{area}(AX)=|\det(A)|\,\operatorname{area}(X)
+    \operatorname{area}(\boldsymbol{A}\boldsymbol{X})=|\det(\boldsymbol{A})|\,\operatorname{area}(\boldsymbol{X})
     $$
 
     O determinante mede o fator de escala de área.
 
 !!! info "Rotação"
     $$
-    R_\theta=
+    \boldsymbol{R}_\theta=
     \begin{bmatrix}
     \cos\theta & -\sin\theta\\
     \sin\theta & \cos\theta
@@ -258,18 +258,18 @@ Fórmulas e comandos mais usados nas aulas.
 
 !!! info "Inversa da rotação"
     $$
-    R_\theta^{-1}=R_{-\theta}=
+    \boldsymbol{R}_\theta^{-1}=\boldsymbol{R}_{-\theta}=
     \begin{bmatrix}
     \cos\theta & \sin\theta\\
     -\sin\theta & \cos\theta
     \end{bmatrix}
     $$
 
-    Se $A=\begin{bmatrix}x&-y\\y&x\end{bmatrix}$ é rotação, então $A^{-1}=\begin{bmatrix}x&y\\-y&x\end{bmatrix}$.
+    Se $\boldsymbol{A}=\begin{bmatrix}x&-y\\y&x\end{bmatrix}$ é rotação, então $\boldsymbol{A}^{-1}=\begin{bmatrix}x&y\\-y&x\end{bmatrix}$.
 
 !!! info "Escala"
     $$
-    A=
+    \boldsymbol{A}=
     \begin{bmatrix}
     s_x & 0\\
     0 & s_y
@@ -298,98 +298,98 @@ Fórmulas e comandos mais usados nas aulas.
 
 !!! info "Remover componente de cor"
     $$
-    p'_{RGB}=T^{-1}
+    \boldsymbol{p}'_{RGB}=\boldsymbol{T}^{-1}
     \begin{bmatrix}
     1&0&0\\
     0&0&0\\
     0&0&1
     \end{bmatrix}
-    Tp_{RGB}
+    \boldsymbol{T}\boldsymbol{p}_{RGB}
     $$
 
-    Na AI, $T$ leva RGB para XYZ; a matriz do meio zera a componente $Y$.
+    Na AI, $\boldsymbol{T}$ leva RGB para XYZ; a matriz do meio zera a componente $Y$.
 
 !!! info "Composição de transformações"
     $$
-    Y=ARX
+    \boldsymbol{Y}=\boldsymbol{A}\boldsymbol{R}\boldsymbol{X}
     \quad
     \text{e}
     \quad
-    Y=RAX
+    \boldsymbol{Y}=\boldsymbol{R}\boldsymbol{A}\boldsymbol{X}
     $$
 
-    A ordem importa: em geral, $ARX$ e $RAX$ geram efeitos diferentes.
+    A ordem importa: em geral, $\boldsymbol{A}\boldsymbol{R}\boldsymbol{X}$ e $\boldsymbol{R}\boldsymbol{A}\boldsymbol{X}$ geram efeitos diferentes.
 
 ## Bases e autovetores
 
 !!! info "Combinação linear"
     $$
-    x=a_1v_1+a_2v_2+\cdots+a_nv_n
+    \boldsymbol{x}=a_1\boldsymbol{v}_1+a_2\boldsymbol{v}_2+\cdots+a_N\boldsymbol{v}_N
     $$
 
     Escreve um vetor como soma ponderada de outros vetores.
 
 !!! info "Matriz de base"
     $$
-    x=Bs,
+    \boldsymbol{x}=\boldsymbol{B}\boldsymbol{s},
     \quad
-    B=
+    \boldsymbol{B}=
     \begin{bmatrix}
     |&|&&|\\
-    b_1&b_2&\cdots&b_n\\
+    \boldsymbol{b}_1&\boldsymbol{b}_2&\cdots&\boldsymbol{b}_N\\
     |&|&&|
     \end{bmatrix}
     $$
 
-    As colunas de $B$ são os vetores-base.
+    As colunas de $\boldsymbol{B}$ são os vetores-base.
 
 !!! info "Mudança de base"
     $$
-    s=B^{-1}x
+    \boldsymbol{s}=\boldsymbol{B}^{-1}\boldsymbol{x}
     $$
 
-    Encontra as coordenadas de $x$ na base $B$.
+    Encontra as coordenadas de $\boldsymbol{x}$ na base $\boldsymbol{B}$.
 
 !!! info "Autovetor e autovalor"
     $$
-    Av=\lambda v
+    \boldsymbol{A}\boldsymbol{v}=\lambda \boldsymbol{v}
     $$
 
     A matriz só muda a escala do autovetor.
 
 !!! info "Decomposição por autovetores"
     $$
-    A=PQP^{-1}
+    \boldsymbol{A}=\boldsymbol{P}\boldsymbol{Q}\boldsymbol{P}^{-1}
     $$
 
-    $P$ guarda autovetores; $Q$ guarda autovalores na diagonal.
+    $\boldsymbol{P}$ guarda autovetores; $\boldsymbol{Q}$ guarda autovalores na diagonal.
 
 !!! info "Potências por autovalores"
     $$
-    A^k=PQ^kP^{-1},
+    \boldsymbol{A}^k=\boldsymbol{P}\boldsymbol{Q}^k\boldsymbol{P}^{-1},
     \quad
-    Q^k=\operatorname{diag}(\lambda_1^k,\ldots,\lambda_n^k)
+    \boldsymbol{Q}^k=\operatorname{diag}(\lambda_1^k,\ldots,\lambda_N^k)
     $$
 
     Na AF, isso ajuda a decidir se um sistema dinâmico cresce, estabiliza ou vai a zero.
 
 !!! info "Autovetores da base padrão"
     $$
-    v_1=e_1,\quad v_2=e_2
+    \boldsymbol{v}_1=\boldsymbol{e}_1,\quad \boldsymbol{v}_2=\boldsymbol{e}_2
     \Rightarrow
-    P=I,
+    \boldsymbol{P}=\boldsymbol{I},
     \quad
-    A=\operatorname{diag}(\lambda_1,\lambda_2)
+    \boldsymbol{A}=\operatorname{diag}(\lambda_1,\lambda_2)
     $$
 
     Na AF, com autovalores $5$ e $\pi$, a matriz é diagonal.
 
 !!! info "Inversa por autovalores"
     $$
-    A^{-1}=PQ^{-1}P^{-1}
+    \boldsymbol{A}^{-1}=\boldsymbol{P}\boldsymbol{Q}^{-1}\boldsymbol{P}^{-1}
     $$
 
-    Inverter $A$ equivale a usar escalas inversas na base dos autovetores.
+    Inverter $\boldsymbol{A}$ equivale a usar escalas inversas na base dos autovetores.
 
 ## Regressão e modelos físicos
 
@@ -404,36 +404,36 @@ Fórmulas e comandos mais usados nas aulas.
     $$
     e_i=y_i-\hat{y}_i,
     \quad
-    e=y-\hat{y}
+    \boldsymbol{e}=\boldsymbol{y}-\hat{\boldsymbol{y}}
     $$
 
     Diferença entre medição e estimativa.
 
 !!! info "Erro quadrático médio"
     $$
-    \mathrm{EQM}=\frac{1}{n}\sum_{i=1}^{n}\|e_i\|^2=\frac{1}{n}e^Te
+    \mathrm{EQM}=\frac{1}{N}\sum_{n=1}^{N}\|e_n\|^2=\frac{1}{N}\boldsymbol{e}^T\boldsymbol{e}
     $$
 
     Quanto menor, melhor o ajuste no conjunto medido.
 
 !!! info "Pseudoinversa"
     $$
-    X^+=(X^TX)^{-1}X^T,
+    \boldsymbol{X}^+=(\boldsymbol{X}^T\boldsymbol{X})^{-1}\boldsymbol{X}^T,
     \quad
-    w^T=X^+y
+    \boldsymbol{w}^T=\boldsymbol{X}^+\boldsymbol{y}
     $$
 
     Calcula os parâmetros do modelo por matrizes.
 
 !!! info "Sistema sobredeterminado"
     $$
-    y=Xw,
+    \boldsymbol{y}=\boldsymbol{X}\boldsymbol{w},
     \quad
-    X\in\mathbb{R}^{m\times n},
+    \boldsymbol{X}\in\mathbb{R}^{M\times N},
     \quad
-    m>n
+    M>N
     \Rightarrow
-    w=X^+y
+    \boldsymbol{w}=\boldsymbol{X}^+\boldsymbol{y}
     $$
 
     Na AF, aparece quando há mais equações do que incógnitas a estimar.
@@ -444,19 +444,19 @@ Fórmulas e comandos mais usados nas aulas.
     $$
 
     $$
-    X=
+    \boldsymbol{X}=
     \begin{bmatrix}
     \sqrt{t_1}&1\\
     \sqrt{t_2}&1\\
     \vdots&\vdots\\
-    \sqrt{t_m}&1
+    \sqrt{t_M}&1
     \end{bmatrix},
     \quad
     \begin{bmatrix}
     a\\b
     \end{bmatrix}
     =
-    X^+n
+    \boldsymbol{X}^+\boldsymbol{n}
     $$
 
     Na AF, transforma a estimativa de $a$ e $b$ em regressão linear.
@@ -518,7 +518,7 @@ Fórmulas e comandos mais usados nas aulas.
     $$
     \hat{x}_n=Q(x_n),
     \quad
-    \hat{x}_n\in\{q_1,q_2,\ldots,q_m\}
+    \hat{x}_n\in\{q_1,q_2,\ldots,q_M\}
     $$
 
     Na AF, quantizar transforma amostras contínuas em um alfabeto finito para Huffman.

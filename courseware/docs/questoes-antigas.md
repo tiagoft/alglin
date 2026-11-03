@@ -19,18 +19,18 @@ Alan e Bianca estão acampando numa floresta e conversam usando um rádio comuni
 
 #### Questão 2
 
-Um vetor $x \in \mathbb{R}^n$ é dado por
+Um vetor $\boldsymbol{x} \in \mathbb{R}^N$ é dado por
 
-$$x = \begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}, \qquad x_k=\sqrt{k}.$$
+$$\boldsymbol{x} = \begin{bmatrix}x_1\\x_2\\\vdots\\x_N\end{bmatrix}, \qquad x_k=\sqrt{k}.$$
 
-(a) Escreva $x$ para $n=5$.  
-(b) Encontre $\lVert x\rVert$ para $n=5$.  
-(c) Se $y_k=1+\sqrt{k}$, encontre $z=x-y$ para $n=5$.  
-(d) Encontre uma expressão para $\lVert x-y\rVert$ que dependa somente de $n$ e não escreva explicitamente todos os termos da soma.
+(a) Escreva $\boldsymbol{x}$ para $N=5$.  
+(b) Encontre $\lVert \boldsymbol{x}\rVert$ para $N=5$.  
+(c) Se $y_k=1+\sqrt{k}$, encontre $\boldsymbol{z}=\boldsymbol{x}-\boldsymbol{y}$ para $N=5$.  
+(d) Encontre uma expressão para $\lVert \boldsymbol{x}-\boldsymbol{y}\rVert$ que dependa somente de $N$ e não escreva explicitamente todos os termos da soma.
 
 #### Questão 3
 
-Três partículas $a$, $b$ e $c$ estão em posições $x_a$, $x_b$ e $x_c\in\mathbb{R}^3$, com cargas $q_a$, $q_b$ e $q_c$. O módulo da força eletrostática entre duas partículas é $|F|=kq_1q_2/d^2$, com direção determinada pelas posições.
+Três partículas $a$, $b$ e $c$ estão em posições $\boldsymbol{x}_a$, $\boldsymbol{x}_b$ e $\boldsymbol{x}_c\in\mathbb{R}^3$, com cargas $q_a$, $q_b$ e $q_c$. O módulo da força eletrostática entre duas partículas é $|\boldsymbol{F}|=kq_1q_2/d^2$, com direção determinada pelas posições.
 
 (a) Desenhe as partículas, as forças individuais e as resultantes.  
 (b) Mostre como calcular o vetor da força resultante sobre $a$.  
@@ -41,18 +41,18 @@ Três partículas $a$, $b$ e $c$ estão em posições $x_a$, $x_b$ e $x_c\in\mat
 
 #### Questão 1
 
-Uma partícula parte da origem, caminha 3 unidades na direção de $\begin{bmatrix}0\\1\end{bmatrix}$, vira 60 graus no sentido horário e caminha mais 3 unidades, chegando ao ponto $v$. Em seguida vira um ângulo $\theta$ e caminha uma distância $x$, retornando à origem.
+Uma partícula parte da origem, caminha 3 unidades na direção de $\begin{bmatrix}0\\1\end{bmatrix}$, vira 60 graus no sentido horário e caminha mais 3 unidades, chegando ao ponto $\boldsymbol{v}$. Em seguida vira um ângulo $\theta$ e caminha uma distância $x$, retornando à origem.
 
 (a) Esboce a trajetória, marcando distâncias e ângulos.  
 (b) Encontre $\theta$.  
-(c) Escreva $v$ nas formas polar e cartesiana.
+(c) Escreva $\boldsymbol{v}$ nas formas polar e cartesiana.
 
 #### Questão 2
 
-Sabendo que, para $x\in\mathbb{R}^2$, $\lVert x\rVert=\sqrt{x_1^2+x_2^2}$:
+Sabendo que, para $\boldsymbol{x}\in\mathbb{R}^2$, $\lVert \boldsymbol{x}\rVert=\sqrt{x_1^2+x_2^2}$:
 
-(a) Mostre que $\lVert ax\rVert=a\lVert x\rVert$.  
-(b) Se $\lVert x\rVert$ é conhecido, encontre $\alpha$ tal que $\lVert\alpha x\rVert=1$.
+(a) Mostre que $\lVert a\boldsymbol{x}\rVert=a\lVert \boldsymbol{x}\rVert$.  
+(b) Se $\lVert \boldsymbol{x}\rVert$ é conhecido, encontre $\alpha$ tal que $\lVert\alpha \boldsymbol{x}\rVert=1$.
 
 ### Teste 1 — Vetores — 2026/2
 
@@ -69,14 +69,14 @@ Alan e Bianca estão acampando e conversam por rádio com alcance de 450 m. Bian
 
 Para $x_k=\sqrt{k}$:
 
-(a) Escreva $x$ para $n=5$.  
-(b) Calcule $\lVert x\rVert$.  
-(c) Para $y_k=1+\sqrt{k}$, encontre $x-y$.  
-(d) Encontre $\lVert x-y\rVert$ em uma expressão válida para qualquer inteiro positivo $n$.
+(a) Escreva $\boldsymbol{x}$ para $N=5$.  
+(b) Calcule $\lVert \boldsymbol{x}\rVert$.  
+(c) Para $y_k=1+\sqrt{k}$, encontre $\boldsymbol{x}-\boldsymbol{y}$.  
+(d) Encontre $\lVert \boldsymbol{x}-\boldsymbol{y}\rVert$ em uma expressão válida para qualquer inteiro positivo $N$.
 
 #### Questão 3
 
-Considere três partículas em $\mathbb{R}^3$ sujeitas à força eletrostática $|F|=kq_1q_2/d^2$.
+Considere três partículas em $\mathbb{R}^3$ sujeitas à força eletrostática $|\boldsymbol{F}|=kq_1q_2/d^2$.
 
 (a) Desenhe as forças e resultantes.  
 (b) Deduzir o vetor da força resultante sobre uma partícula.  
@@ -106,8 +106,8 @@ $$
 
 Em um alfabeto fictício com caracteres A, B e C, use one-hot encoding para representar a mensagem ABCABC. A cifra troca A por B, B por C e C por A.
 
-(a) Encontre a matriz $X$ da mensagem.  
-(b) Encontre a matriz que, multiplicada por $X$, implementa a cifra.
+(a) Encontre a matriz $\boldsymbol{X}$ da mensagem.  
+(b) Encontre a matriz que, multiplicada por $\boldsymbol{X}$, implementa a cifra.
 
 #### Questão 3
 
@@ -116,7 +116,7 @@ Uma máquina Enigma usa o alfabeto A, B, C, D e os rotores
 $$P=\begin{bmatrix}0&1&0&0\\1&0&0&0\\0&0&1&0\\0&0&0&1\end{bmatrix},\qquad
 R=\begin{bmatrix}0&1&0&0\\1&0&0&0\\0&0&0&1\\0&0&1&0\end{bmatrix}.$$
 
-A primeira letra é multiplicada por $P$, a segunda por $RP$, a terceira por $RRP$ e assim por diante. Criptografe ABCD.
+A primeira letra é multiplicada por $\boldsymbol{P}$, a segunda por $\boldsymbol{R}\boldsymbol{P}$, a terceira por $\boldsymbol{R}\boldsymbol{R}\boldsymbol{P}$ e assim por diante. Criptografe ABCD.
 
 ### Teste 3 — Geometria Analítica
 
@@ -124,14 +124,14 @@ A primeira letra é multiplicada por $P$, a segunda por $RP$, a terceira por $RR
 
 Sabendo que
 
-$$A=\begin{bmatrix}1&0&5\\0&1&3\\0&0&1\end{bmatrix},$$
+$$\boldsymbol{A}=\begin{bmatrix}1&0&5\\0&1&3\\0&0&1\end{bmatrix},$$
 
 (a) determine a transformação aplicada a vetores de $\mathbb{R}^2$;  
-(b) encontre $A^{-1}$ usando apenas argumentos sobre a transformação.
+(b) encontre $\boldsymbol{A}^{-1}$ usando apenas argumentos sobre a transformação.
 
 #### Questão 2
 
-As matrizes homogêneas $A$ e $B$ realizam, respectivamente, as translações $[1,0]$ e $[0,1]$, e $R$ realiza uma rotação de 15 graus no sentido anti-horário. Escreva, usando apenas $A$, $B$ e $R$, a transformação que gira 60 graus em torno do ponto $[5,7]$.
+As matrizes homogêneas $\boldsymbol{A}$ e $\boldsymbol{B}$ realizam, respectivamente, as translações $[1,0]$ e $[0,1]$, e $\boldsymbol{R}$ realiza uma rotação de 15 graus no sentido anti-horário. Escreva, usando apenas $\boldsymbol{A}$, $\boldsymbol{B}$ e $\boldsymbol{R}$, a transformação que gira 60 graus em torno do ponto $[5,7]$.
 
 ### Teste 3 — Geometria Analítica — versão 2
 
@@ -145,22 +145,22 @@ define duas retas. Encontre $D$ para que elas sejam paralelas.
 
 #### Questão 2
 
-As matrizes $A$ e $B$ realizam as translações $[-1,0]$ e $[0,-1]$, e $R$ realiza uma rotação de 30 graus anti-horária. Escreva, em termos de $A$, $B$ e $R$, a transformação que gira 60 graus em torno de $[7,5]$.
+As matrizes $\boldsymbol{A}$ e $\boldsymbol{B}$ realizam as translações $[-1,0]$ e $[0,-1]$, e $\boldsymbol{R}$ realiza uma rotação de 30 graus anti-horária. Escreva, em termos de $\boldsymbol{A}$, $\boldsymbol{B}$ e $\boldsymbol{R}$, a transformação que gira 60 graus em torno de $[7,5]$.
 
 ### Teste 4 — Bases
 
 #### Questão 1
 
-Um algoritmo mapeia pixels de $(R,G,B)$ para $(X,Y,Z)$ por meio de uma matriz $A$. As componentes $Y$ e $Z$ são relevantes, enquanto $X$ é ruído.
+Um algoritmo mapeia pixels de $(R,G,B)$ para $(X,Y,Z)$ por meio de uma matriz $\boldsymbol{A}$. As componentes $Y$ e $Z$ são relevantes, enquanto $X$ é ruído.
 
 (a) Desenhe o processo como um diagrama de blocos de operações matriciais.  
 (b) Defina as matrizes necessárias.  
-(c) Defina uma matriz $B$ que realize o processo completo.  
-(d) Explique conceitualmente por que $B$ não pode ser invertida.
+(c) Defina uma matriz $\boldsymbol{B}$ que realize o processo completo.  
+(d) Explique conceitualmente por que $\boldsymbol{B}$ não pode ser invertida.
 
 #### Questão 2
 
-Um sanduíche usa 350 g de grão-de-bico e 15 g de alho. Um pote de homus usa 150 g de grão-de-bico e 25 g de alho. Encontre a matriz $A$ que leva $x=\begin{bmatrix}s\\h\end{bmatrix}$, quantidades de sanduíches e potes, para $y=\begin{bmatrix}b\\a\end{bmatrix}$, quantidades de ingredientes.
+Um sanduíche usa 350 g de grão-de-bico e 15 g de alho. Um pote de homus usa 150 g de grão-de-bico e 25 g de alho. Encontre a matriz $\boldsymbol{A}$ que leva $\boldsymbol{x}=\begin{bmatrix}s\\h\end{bmatrix}$, quantidades de sanduíches e potes, para $\boldsymbol{y}=\begin{bmatrix}b\\a\end{bmatrix}$, quantidades de ingredientes.
 
 ### Teste 2 — 2026/2
 
@@ -177,14 +177,14 @@ Sardinhas podem estar na forma de ovos, crianças ou adultas. A cada semana, 80%
 
 A matriz de rotação é
 
-$$R=\begin{bmatrix}\cos\theta&\sin\theta\\-\sin\theta&\cos\theta\end{bmatrix}.$$
+$$\boldsymbol{R}=\begin{bmatrix}\cos\theta&\sin\theta\\-\sin\theta&\cos\theta\end{bmatrix}.$$
 
 Encontre uma transformação afim que leve um quadrado a um losango inteiramente contido nele, com dimensão horizontal maior que a vertical.
 
 (a) Identifique os vértices e seus destinos.  
 (b) Esboce as transformações afins, uma a uma.  
 (c) Identifique as matrizes de cada etapa.  
-(d) Escreva a matriz composta $Q$.
+(d) Escreva a matriz composta $\boldsymbol{Q}$.
 
 ### Prova AI — 2025/2
 
@@ -206,12 +206,12 @@ $$
 
 Turistas se deslocam entre a Torre Eiffel, o Louvre e o Arco do Triunfo. As probabilidades são: da Torre para Louvre 0,7, para Arco 0,1 e permanece 0,2; do Louvre para Torre 0,2, para Arco 0,3 e permanece 0,5; do Arco para Torre 0,3, para Louvre 0,5 e permanece 0,2.
 
-(a) Encontre $A$ tal que $P_{t+1}=AP_t$.  
-(b) Escreva, em termos de $A$, como encontrar $B$ tal que $P_{t+10}=BP_t$.
+(a) Encontre $\boldsymbol{A}$ tal que $\boldsymbol{p}_{t+1}=\boldsymbol{A}\boldsymbol{p}_t$.  
+(b) Escreva, em termos de $\boldsymbol{A}$, como encontrar $\boldsymbol{B}$ tal que $\boldsymbol{p}_{t+10}=\boldsymbol{B}\boldsymbol{p}_t$.
 
 #### Questão 4
 
-Se $A=\begin{bmatrix}x&-y\\y&x\end{bmatrix}$ é uma matriz de rotação, encontre $A^{-1}$ em termos de $x$ e $y$, usando as relações trigonométricas fornecidas.
+Se $\boldsymbol{A}=\begin{bmatrix}x&-y\\y&x\end{bmatrix}$ é uma matriz de rotação, encontre $\boldsymbol{A}^{-1}$ em termos de $x$ e $y$, usando as relações trigonométricas fornecidas.
 
 #### Questão 5
 
@@ -223,7 +223,7 @@ define duas retas. Mostre as equações e encontre $D$ para que sejam paralelas.
 
 #### Questão 6
 
-Um pixel RGB é transformado por $T$ para o espaço $(X,Y,Z)$. Encontre a matriz que transforma o pixel, remove a componente $Y$ e o retorna ao espaço RGB.
+Um pixel RGB é transformado por $\boldsymbol{T}$ para o espaço $(X,Y,Z)$. Encontre a matriz que transforma o pixel, remove a componente $Y$ e o retorna ao espaço RGB.
 
 ## Bases, autovalores, regressão e modelos
 
@@ -257,13 +257,13 @@ Explique por que a quantização é necessária para comprimir áudio com Huffma
 
 A população de carcarás e sapos segue
 
-$$\begin{bmatrix}c\\s\end{bmatrix}_{t+1}=A\begin{bmatrix}c\\s\end{bmatrix}_t,$$
+$$\begin{bmatrix}c\\s\end{bmatrix}_{t+1}=\boldsymbol{A}\begin{bmatrix}c\\s\end{bmatrix}_t,$$
 
-com $A=P\operatorname{diag}(0,7/2,2/\pi)P^{-1}$. Determine se a população cresce indefinidamente, fica estável ou tende a zero, justificando pelos autovalores.
+com $\boldsymbol{A}=\boldsymbol{P}\operatorname{diag}(0,7/2,2/\pi)\boldsymbol{P}^{-1}$. Determine se a população cresce indefinidamente, fica estável ou tende a zero, justificando pelos autovalores.
 
 #### Questão 6
 
-Explique por que, em uma Cadeia de Markov representada por $x_{t+1}=Ax_t$, as colunas da matriz de transição devem somar 1.
+Explique por que, em uma Cadeia de Markov representada por $\boldsymbol{x}_{t+1}=\boldsymbol{A}\boldsymbol{x}_t$, as colunas da matriz de transição devem somar 1.
 
 #### Questão 7
 
@@ -273,14 +273,14 @@ Encontre a matriz cujos autovetores são $\begin{bmatrix}1\\0\end{bmatrix}$ e $\
 
 #### Questão 1
 
-Um modelo autorregressivo de ordem $n$ é
+Um modelo autorregressivo de ordem $N$ é
 
-$$x_t=a_1x_{t-1}+a_2x_{t-2}+\cdots+a_nx_{t-n}.$$
+$$x_t=a_1x_{t-1}+a_2x_{t-2}+\cdots+a_Nx_{t-N}.$$
 
 Para ordem 3, com $a_1=2$, $a_2=0$ e $a_3=1$:
 
-(a) Encontre o próximo elemento de $s=[1,2,4,9]$.  
-(b) Escreva $y=Xw$ para esse cálculo, com $y\in\mathbb{R}^{1\times1}$, $X\in\mathbb{R}^{1\times3}$ e $w\in\mathbb{R}^{3\times1}$.  
+(a) Encontre o próximo elemento de $\boldsymbol{s}=[1,2,4,9]$.  
+(b) Escreva $\boldsymbol{y}=\boldsymbol{X}\boldsymbol{w}$ para esse cálculo, com $\boldsymbol{y}\in\mathbb{R}^{1\times1}$, $\boldsymbol{X}\in\mathbb{R}^{1\times3}$ e $\boldsymbol{w}\in\mathbb{R}^{3\times1}$.  
 (c) Escreva as equações para modelar $x_3,\ldots,x_8$ com um modelo de ordem 2.  
 (d) Passe-as à forma matricial e indique como usar a pseudoinversa para encontrar os coeficientes.
 
@@ -289,7 +289,7 @@ Para ordem 3, com $a_1=2$, $a_2=0$ e $a_3=1$:
 Rumi, Mira e Zoey começam com 1000 conchinhas cada uma. A cada mês, Rumi dá metade das suas conchinhas para Mira e metade para Zoey; Mira dá um terço para Rumi e o restante para Zoey; Zoey dá três quartos para Mira e o restante para Rumi.
 
 (a) Desenhe o grafo e as probabilidades.  
-(b) Encontre $x_1$ a partir de $x_0$.  
+(b) Encontre $\boldsymbol{x}_1$ a partir de $\boldsymbol{x}_0$.  
 (c) Acrescente um nó representando o colchão, para o qual Zoey passa a esconder um quarto das conchinhas.  
 (d) Encontre o autovetor associado ao autovalor 1.
 
@@ -303,29 +303,29 @@ Para LARANJAS:
 
 #### Questão 4
 
-Partindo de $x\in\mathbb{R}^2$:
+Partindo de $\boldsymbol{x}\in\mathbb{R}^2$:
 
-(a) Encontre a base canônica $b_1,b_2$.  
-(b) Se $x=v_1w_1+v_2w_2$, explique como encontrar $v$ conhecendo $x,w_1,w_2$.  
-(c) Para $y=Ax$, com $A$ uma rotação, identifique $w_1,w_2$ tais que $y=y_1w_1+y_2w_2$.
+(a) Encontre a base canônica $\boldsymbol{b}_1,\boldsymbol{b}_2$.  
+(b) Se $\boldsymbol{x}=v_1\boldsymbol{w}_1+v_2\boldsymbol{w}_2$, explique como encontrar $\boldsymbol{v}$ conhecendo $\boldsymbol{x},\boldsymbol{w}_1,\boldsymbol{w}_2$.  
+(c) Para $\boldsymbol{y}=\boldsymbol{A}\boldsymbol{x}$, com $\boldsymbol{A}$ uma rotação, identifique $\boldsymbol{w}_1,\boldsymbol{w}_2$ tais que $\boldsymbol{y}=y_1\boldsymbol{w}_1+y_2\boldsymbol{w}_2$.
 
 ### Prova SUB — 2025/2
 
 #### Questão 1 — Cadeias de Markov
 
-Modele uma rede de pontos turísticos de Paris por uma Cadeia de Markov. Dadas várias medições de contagens $X_t$ e a relação $X_{t+1}=AX_t$, explique como usar todas as medições para estimar $A$ com o menor erro possível, inclusive indicando a formulação matricial e a pseudoinversa.
+Modele uma rede de pontos turísticos de Paris por uma Cadeia de Markov. Dadas várias medições de contagens $\boldsymbol{x}_t$ e a relação $\boldsymbol{x}_{t+1}=\boldsymbol{A}\boldsymbol{x}_t$, explique como usar todas as medições para estimar $\boldsymbol{A}$ com o menor erro possível, inclusive indicando a formulação matricial e a pseudoinversa.
 
 #### Questão 2 — Rotação e translação
 
 Para
 
-$$A=\begin{bmatrix}x&-y&0\\y&x&1\\0&0&1\end{bmatrix},$$
+$$\boldsymbol{A}=\begin{bmatrix}x&-y&0\\y&x&1\\0&0&1\end{bmatrix},$$
 
-encontre $A^{-1}$ em termos de $x$ e $y$. Na versão 2026/1, também:
+encontre $\boldsymbol{A}^{-1}$ em termos de $x$ e $y$. Na versão 2026/1, também:
 
 (a) Desenhe a transformação aplicada a uma figura.  
 (b) Mostre, usando trigonometria, a relação entre a inversa e a transposta de uma matriz de rotação.  
-(c) Encontre $A^{-1}$ usando intuições geométricas.
+(c) Encontre $\boldsymbol{A}^{-1}$ usando intuições geométricas.
 
 #### Questão 3 — Ciclo de vida das alfaces
 
@@ -350,11 +350,11 @@ Na versão SUB 2026/1, use os dados alterados do enunciado: 20% das sementes vir
 
 Para a matriz homogênea
 
-$$A=\begin{bmatrix}x&-y&0\\y&x&1\\0&0&1\end{bmatrix},$$
+$$\boldsymbol{A}=\begin{bmatrix}x&-y&0\\y&x&1\\0&0&1\end{bmatrix},$$
 
 (a) faça um desenho da transformação aplicada a uma figura;  
 (b) mostre, usando trigonometria, a relação entre a inversa e a transposta de uma matriz de rotação;  
-(c) encontre $A^{-1}$ usando intuições geométricas.
+(c) encontre $\boldsymbol{A}^{-1}$ usando intuições geométricas.
 
 #### Questão 2 — Ciclo de vida das alfaces
 
@@ -367,28 +367,28 @@ Use os dados da versão 2026/1: 20% das sementes viram mudas e 80% permanecem se
 
 #### Questão 3 — Bases
 
-Para $x=\begin{bmatrix}x_1\\x_2\end{bmatrix}$:
+Para $\boldsymbol{x}=\begin{bmatrix}x_1\\x_2\end{bmatrix}$:
 
-(a) demonstre que $x=x_1\begin{bmatrix}1\\0\end{bmatrix}+x_2\begin{bmatrix}0\\1\end{bmatrix}$;  
+(a) demonstre que $\boldsymbol{x}=x_1\begin{bmatrix}1\\0\end{bmatrix}+x_2\begin{bmatrix}0\\1\end{bmatrix}$;  
 (b) escreva $x_1$ e $x_2$ como funções de $s_1$ e $s_2$ em
 
-$$x=s_1\begin{bmatrix}2\\3\end{bmatrix}+s_2\begin{bmatrix}4\\5\end{bmatrix};$$
+$$\boldsymbol{x}=s_1\begin{bmatrix}2\\3\end{bmatrix}+s_2\begin{bmatrix}4\\5\end{bmatrix};$$
 
 (c) escreva o sistema na forma matricial e indique como encontrar $s_1,s_2$;  
 (d) desenhe a relação entre as duas formas de representar o vetor.
 
 #### Questão 4 — Transformações afins
 
-Uma nuvem quadrada $X$ está centrada em $\begin{bmatrix}-3\\-2\end{bmatrix}$. Encontre uma matriz $Q$ que expanda seu lado vertical quatro vezes, mantendo o centro, e explique as operações primitivas e a composição usadas para obter $Y=QX$.
+Uma nuvem quadrada $\boldsymbol{X}$ está centrada em $\begin{bmatrix}-3\\-2\end{bmatrix}$. Encontre uma matriz $\boldsymbol{Q}$ que expanda seu lado vertical quatro vezes, mantendo o centro, e explique as operações primitivas e a composição usadas para obter $\boldsymbol{Y}=\boldsymbol{Q}\boldsymbol{X}$.
 
 #### Questão 5 — Inversa de rotação
 
 Para
 
-$$R=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix},$$
+$$\boldsymbol{R}=\begin{bmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bmatrix},$$
 
-(a) encontre $R^{-1}$;  
-(b) mostre, por multiplicação matricial, que $RR^{-1}=I$.
+(a) encontre $\boldsymbol{R}^{-1}$;  
+(b) mostre, por multiplicação matricial, que $\boldsymbol{R}\boldsymbol{R}^{-1}=\boldsymbol{I}$.
 
 ### Prova AI — 2026/1
 
@@ -405,7 +405,7 @@ Use o modelo em que 50% das sementes viram mudas; 10% das mudas viram adultas, 8
 
 Para
 
-$$x=\begin{bmatrix}x_1\\x_2\end{bmatrix},$$
+$$\boldsymbol{x}=\begin{bmatrix}x_1\\x_2\end{bmatrix},$$
 
 (a) demonstre sua representação na base canônica;  
 (b) encontre as equações que relacionam $x_1,x_2$ a $s_1,s_2$ na base formada por $\begin{bmatrix}2\\3\end{bmatrix}$ e $\begin{bmatrix}4\\5\end{bmatrix}$;  
@@ -414,7 +414,7 @@ $$x=\begin{bmatrix}x_1\\x_2\end{bmatrix},$$
 
 #### Questão 3 — Transformação de uma nuvem
 
-Uma nuvem quadrada está centrada em $\begin{bmatrix}-3\\-2\end{bmatrix}$. Esboce a nuvem original e a obtida ao expandir o lado vertical em quatro vezes. Explique como construir a matriz $Q$ para $Y=QX$ usando operações primitivas.
+Uma nuvem quadrada está centrada em $\begin{bmatrix}-3\\-2\end{bmatrix}$. Esboce a nuvem original e a obtida ao expandir o lado vertical em quatro vezes. Explique como construir a matriz $\boldsymbol{Q}$ para $\boldsymbol{Y}=\boldsymbol{Q}\boldsymbol{X}$ usando operações primitivas.
 
 #### Questão 4 — Rotação
 

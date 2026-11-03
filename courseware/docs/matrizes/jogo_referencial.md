@@ -84,7 +84,7 @@ Veja que a posição do jogador está no vetor `s`, que é recalculado a cada it
 
 Gostaríamos de manter nosso jogador sempre no centro da tela, mas gostaríamos de usar somente *multiplicações matriciais* para isso.
 
-1. Através de uma nova matriz $T$ (crie essa matriz!), transforme os pontos do vetor `pontos_loc` e do próprio vetor `s` de forma que a tela fique sempre centralizada no jogador. Seu resultado deveria ser um ponto verde parado na tela e vários pontos vermelhos girando ao redor dele. Lembre-se que o ponto central da tela é o ponto $(200,200)$ O resultado deve ser parecido com isso:
+1. Através de uma nova matriz $\boldsymbol{T}$ (crie essa matriz!), transforme os pontos do vetor `pontos_loc` e do próprio vetor `s` de forma que a tela fique sempre centralizada no jogador. Seu resultado deveria ser um ponto verde parado na tela e vários pontos vermelhos girando ao redor dele. Lembre-se que o ponto central da tela é o ponto $(200,200)$ O resultado deve ser parecido com isso:
 
 ![Translacao](transforma_translacao.gif)
 
@@ -96,7 +96,7 @@ Gostaríamos de manter nosso jogador sempre no centro da tela, mas gostaríamos 
     Uma matriz de *translação* se parece com:
 
     $$
-    T = \begin{bmatrix}
+    \boldsymbol{T} = \begin{bmatrix}
     1 & 0 & \Delta x \\
     0 & 1 & \Delta y \\
     0 & 0 & 1 
@@ -105,7 +105,7 @@ Gostaríamos de manter nosso jogador sempre no centro da tela, mas gostaríamos 
 
     Uma matriz de *rotação*, que realiza a rotação de vetores *ao redor da origem*, se parece com:
     $$
-    T = \begin{bmatrix}
+    \boldsymbol{T} = \begin{bmatrix}
     \cos(\theta) & -\sin(\theta) & 0 \\
     \sin(\theta) & \cos(\theta) & 0 \\
     0 & 0 & 1 

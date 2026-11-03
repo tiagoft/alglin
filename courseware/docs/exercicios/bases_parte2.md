@@ -142,10 +142,10 @@ $$
 
 ### Questão 6
 
-Encontre os componentes da matriz $A$ em:
+Encontre os componentes da matriz $\boldsymbol{A}$ em:
 
 $$
-A
+\boldsymbol{A}
 \begin{bmatrix}
     x \\
     y \\
