@@ -25,7 +25,9 @@
 
 # Como fazer um pull request
 
-Para contribuir com o projeto, crie um fork do repositório original no GitHub e faça as alterações no fork:
+Antes de contribuir, leia as regras em [AGENTS.md](AGENTS.md) (elas valem para quem usa agentes como Claude Code ou Codex e também para quem contribui sem agente). O passo a passo com agente está na página [Como contribuir](courseware/docs/como-contribuir.md) do material.
+
+Para contribuir sem agente, crie um fork do repositório original no GitHub e faça as alterações em uma branch do fork:
 
 1. Acesse o repositório original no GitHub e clique em **Fork**.
 2. Clone o fork criado e entre no diretório do projeto:
@@ -33,18 +35,22 @@ Para contribuir com o projeto, crie um fork do repositório original no GitHub e
     git clone <URL_DO_SEU_FORK>
     cd alglin
 
-3. Faça as alterações necessárias no seu fork.
-4. Adicione e faça commit das alterações:
+3. Crie uma branch para a sua contribuição:
+
+    git switch -c minha-contribuicao
+
+4. Faça as alterações necessárias.
+5. Adicione e faça commit das alterações:
 
     git add .
     git commit -m "Descreva suas alterações"
 
-5. Envie o commit para o seu fork:
+6. Envie a branch para o seu fork:
 
-    git push origin main
+    git push origin minha-contribuicao
 
-6. Acesse o seu fork no GitHub e abra a aba **Pull requests**.
-7. Clique em **New pull request**, confira se o repositório original é o destino e crie o pull request.
+7. Acesse o seu fork no GitHub e abra a aba **Pull requests**.
+8. Clique em **New pull request**, confira se o repositório original é o destino e crie o pull request, preenchendo o template (tipo, justificativa escrita por você e conteúdos da disciplina usados).
 
 O pull request ficará disponível no repositório original para revisão.
 
